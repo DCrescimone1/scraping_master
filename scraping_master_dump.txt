@@ -1,0 +1,224 @@
+Folder structure:
+.
+├── easy_rich
+│   ├── main.py
+│   ├── README.md
+│   └── src
+│       ├── __init__.py
+│       ├── serp_api_client.py
+│       └── web_scraper.py
+├── project_dump.sh
+├── requirements.txt
+└── scraping_master_dump.txt
+
+3 directories, 8 files
+
+
+--- File Contents ---
+
+
+------------------------------------------------- ./.env --------------------------------------------------
+
+SERP_API_KEY=47c6cb52b4141c5f94ff57a3eece11d84cb6990ddd18486002c941f6f89aeb9b
+------------------------------------------------- ./easy_rich/main.py --------------------------------------------------
+
+#!/usr/bin/env python3
+"""
+Ninja Assassin IMDB Scraper
+Searches for 'ninja assassin' on IMDB and scrapes the page content.
+"""
+
+from src.serp_api_client import SerpAPIClient
+from src.web_scraper import WebScraper
+
+
+def main() -> None:
+    """Main application entry point."""
+    print("Starting Ninja Assassin IMDB Scraper...")
+
+    # Initialize clients
+    try:
+        serp_client = SerpAPIClient()
+        web_scraper = WebScraper()
+
+        print("Searching for 'ninja assassin' on IMDB...")
+
+        # Search IMDB
+        search_results = serp_client.search_imdb("ninja assassin")
+
+        if not search_results:
+            print("Failed to get search results")
+            return
+
+        # Extract IMDB URL
+        imdb_url = serp_client.extract_first_imdb_url(search_results)
+
+        if not imdb_url:
+            print("No IMDB URL found in search results")
+            return
+
+        print(f"Found IMDB URL: {imdb_url}")
+
+        # Scrape the page
+        print("Scraping page content...")
+        scraped_content = web_scraper.scrape_page(imdb_url)
+
+        if scraped_content:
+            print(f"Successfully scraped: {scraped_content['title']}")
+
+            # Save content
+            web_scraper.save_content(scraped_content, "ninja_assassin_imdb.html")
+
+            print("Scraping completed successfully!")
+        else:
+            print("Failed to scrape page content")
+
+    except Exception as e:
+        print(f"Application error: {e}")
+
+
+if __name__ == "__main__":
+    main()
+
+
+------------------------------------------------- ./easy_rich/src/web_scraper.py --------------------------------------------------
+
+from typing import Optional, Dict
+
+import requests
+from bs4 import BeautifulSoup
+
+
+class WebScraper:
+    """Web scraper for extracting content from web pages."""
+
+    def __init__(self) -> None:
+        self.session = requests.Session()
+        self.session.headers.update(
+            {
+                "User-Agent": (
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+                )
+            }
+        )
+
+    def scrape_page(self, url: str) -> Optional[Dict[str, str]]:
+        """
+        Scrape content from a given URL.
+
+        Args:
+            url: URL to scrape.
+
+        Returns:
+            A dict containing metadata and content, or None if the request fails.
+        """
+        try:
+            response = self.session.get(url, timeout=30)
+            response.raise_for_status()
+
+            soup = BeautifulSoup(response.content, "html.parser")
+
+            return {
+                "url": url,
+                "title": self._extract_title(soup),
+                "html_content": str(soup),
+                "text_content": soup.get_text(strip=True),
+                "status_code": str(response.status_code),
+            }
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error scraping {url}: {e}")
+            return None
+
+    def _extract_title(self, soup: BeautifulSoup) -> str:
+        """Extract page title from soup object."""
+        title_tag = soup.find("title")
+        return title_tag.get_text(strip=True) if title_tag else "No title found"
+
+    def save_content(self, content: Dict[str, str], filename: str = "scraped_content.html") -> None:
+        """
+        Save scraped HTML content to file.
+
+        Args:
+            content: Scraped content dict.
+            filename: Output filename.
+        """
+        try:
+            with open(filename, "w", encoding="utf-8") as f:
+                f.write(content["html_content"])
+            print(f"Content saved to {filename}")
+        except Exception as e:  # noqa: BLE001 - broad except with logging for robustness
+            print(f"Error saving content: {e}")
+
+
+------------------------------------------------- ./easy_rich/src/serp_api_client.py --------------------------------------------------
+
+import os
+from typing import Dict, Optional, List
+
+import requests
+from dotenv import load_dotenv
+
+
+class SerpAPIClient:
+    """Client for handling SerpAPI search requests."""
+
+    def __init__(self) -> None:
+        """Initialize client by loading environment variables and base config."""
+        # Load environment variables from .env (searched from CWD upward)
+        load_dotenv()
+        self.api_key: Optional[str] = os.getenv("SERP_API_KEY")
+        self.base_url: str = "https://serpapi.com/search.json"
+
+        if not self.api_key:
+            raise ValueError("SERP_API_KEY not found in environment variables")
+
+    def search_imdb(self, query: str) -> Optional[Dict]:
+        """
+        Search IMDB using SerpAPI with a site restriction.
+
+        Args:
+            query: Search query (e.g., "ninja assassin").
+
+        Returns:
+            The parsed JSON response as a dict, or None if the request failed.
+        """
+        params: Dict[str, str | int] = {
+            "engine": "google",
+            "q": f"site:imdb.com {query}",
+            "api_key": self.api_key or "",
+            "num": 10,
+        }
+
+        try:
+            response = requests.get(self.base_url, params=params, timeout=30)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error making API request: {e}")
+            return None
+
+    def extract_first_imdb_url(self, search_results: Dict) -> Optional[str]:
+        """
+        Extract the first IMDB URL from search results.
+
+        Args:
+            search_results: SerpAPI response payload.
+
+        Returns:
+            First IMDB URL if found, otherwise None.
+        """
+        try:
+            organic_results: List[Dict] = search_results.get("organic_results", [])  # type: ignore[assignment]
+
+            for result in organic_results:
+                url: str = result.get("link", "")
+                if "imdb.com" in url:
+                    return url
+
+            return None
+        except Exception as e:  # noqa: BLE001 - broad except with logging for robustness
+            print(f"Error extracting URL: {e}")
+            return None
+

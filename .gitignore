@@ -1,0 +1,79 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+webpage/node_modules
+webpage/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+webpage/coverage
+
+# next.js
+webpage/.next/
+webpage/out/
+
+# production
+webpage/build
+
+# misc
+.DS_Store
+**/.DS_Store
+webpage/.DS_Store
+email_handling/.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+# .env
+# webpage/.env*/
+# vercel
+.vercel
+
+# typescript
+   *.tsbuildinfo
+   next-env.d.ts
+   
+  # Environment Variables
+  .env
+  .env.local
+  .env.development.local
+  .env.test.local
+  .env.production.local
+  
+venv/
+ENV/
+email_handling/__pycache__/
+email_handling/*.py[cod]
+email_handling/.Python
+email_handling/sendgrid.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+
+# Local configuration
+email_data.json
+
+scraping/data/user_article_tracker.json
+
+logs/
+.DS_Store
+.DS_Store
+
+# YoYo AI version control directory
+.yoyo/
+*.json
+*.html
+*.csv
+!user_preferences.json
