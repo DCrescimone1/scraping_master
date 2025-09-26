@@ -56,7 +56,7 @@ def main() -> None:
             print(f"Successfully scraped: {scraped_content['title']}")
 
             # Save content
-            filename = f"{search_text.replace(' ', '_').replace('/', '_')}_results.html"
+            filename = f"{search_text.replace(' ', '_').replace('/', '_')}_results"
             web_scraper.save_content(scraped_content, filename)
 
             print("Scraping completed successfully!")

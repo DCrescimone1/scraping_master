@@ -1,68 +1,99 @@
 from typing import Optional, Dict
 
-import requests
-from bs4 import BeautifulSoup
+import os
+from firecrawl import Firecrawl
+from dotenv import load_dotenv
 
 
 class WebScraper:
     """Web scraper for extracting content from web pages."""
 
     def __init__(self) -> None:
-        self.session = requests.Session()
-        self.session.headers.update(
-            {
-                "User-Agent": (
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-                )
-            }
-        )
+        """Initialize Firecrawl client."""
+        load_dotenv()
+        api_key = os.getenv("FIRECRAWL_API_KEY")
+        if not api_key:
+            raise ValueError("FIRECRAWL_API_KEY not found in environment variables")
+        self.firecrawl = Firecrawl(api_key=api_key)
 
     def scrape_page(self, url: str) -> Optional[Dict[str, str]]:
         """
-        Scrape content from a given URL.
+        Scrape content from a given URL using Firecrawl.
 
         Args:
             url: URL to scrape.
 
         Returns:
-            A dict containing metadata and content, or None if the request fails.
+            A dict containing metadata, markdown content, and structured data, or None if the request fails.
         """
         try:
-            response = self.session.get(url, timeout=30)
-            response.raise_for_status()
+            result = self.firecrawl.scrape(
+                url,
+                formats=[
+                    "markdown",
+                    {
+                        "type": "json",
+                        "prompt": "Extract key information from this page including title, main content summary, key points, and any important data like prices, dates, or contact information.",
+                    },
+                ],
+            )
 
-            soup = BeautifulSoup(response.content, "html.parser")
+            # Access attributes from Firecrawl Document object safely
+            has_metadata = hasattr(result, "metadata") and result.metadata is not None
+            title = getattr(result.metadata, "title", "No title found") if has_metadata else "No title found"
+            status_code = getattr(result.metadata, "statusCode", "Unknown") if has_metadata else "Unknown"
+            markdown_content = getattr(result, "markdown", "")
+            structured_data = getattr(result, "json", {})
 
             return {
                 "url": url,
-                "title": self._extract_title(soup),
-                "html_content": str(soup),
-                "text_content": soup.get_text(strip=True),
-                "status_code": str(response.status_code),
+                "title": title,
+                "markdown_content": markdown_content,
+                "structured_data": structured_data,
+                "status_code": str(status_code),
             }
 
-        except requests.exceptions.RequestException as e:
+        except Exception as e:  # noqa: BLE001 - broad except with logging for robustness
             print(f"Error scraping {url}: {e}")
             return None
 
-    def _extract_title(self, soup: BeautifulSoup) -> str:
-        """Extract page title from soup object."""
-        title_tag = soup.find("title")
-        return title_tag.get_text(strip=True) if title_tag else "No title found"
+    
 
-    def save_content(self, content: Dict[str, str], filename: str = "scraped_content.html") -> None:
+    def save_content(self, content: Dict[str, str], filename: str = "scraped_content") -> None:
         """
-        Save scraped HTML content to file.
+        Save scraped content to both markdown and JSON files.
 
         Args:
             content: Scraped content dict.
-            filename: Output filename.
+            filename: Base filename (without extension).
         """
         try:
-            with open(filename, "w", encoding="utf-8") as f:
-                f.write(content["html_content"])
-            print(f"Content saved to {filename}")
+            # Save markdown content
+            md_filename = f"{filename}.md"
+            with open(md_filename, "w", encoding="utf-8") as f:
+                f.write(f"# {content['title']}\n\n")
+                f.write(f"**Source:** {content['url']}\n\n")
+                f.write(content.get("markdown_content", ""))
+            print(f"Markdown content saved to {md_filename}")
+
+            # Save structured data if available
+            if content.get("structured_data") is not None:
+                json_filename = f"{filename}_data.json"
+                import json
+                with open(json_filename, "w", encoding="utf-8") as f:
+                    json.dump(
+                        {
+                            "url": content.get("url", ""),
+                            "title": content.get("title", ""),
+                            "status_code": content.get("status_code", ""),
+                            "structured_data": content.get("structured_data", {}),
+                        },
+                        f,
+                        indent=2,
+                        ensure_ascii=False,
+                    )
+                print(f"Structured data saved to {json_filename}")
+
         except Exception as e:  # noqa: BLE001 - broad except with logging for robustness
             print(f"Error saving content: {e}")
 
