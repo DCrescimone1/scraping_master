@@ -58,6 +58,7 @@ find . -type f \
     ! -name "logs/*" \
     ! -name ".vscode" \
     ! -name ".pytest_cache" \
+    ! -name ".env" \
     -size -${max_file_size}c \
     -print0 | while IFS= read -r -d '' file; do
     # Check if the file is not empty

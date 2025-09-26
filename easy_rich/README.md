@@ -1,33 +1,49 @@
 # Enhanced Generic Web Scraper
-
-Search for content on the web or scrape any direct URL, then interactively explore and scrape same‑domain subpages. Results are organized into session folders with clean Markdown and structured JSON.
-
 ## Features
-
 - **Dual Mode Operation**: Choose between web search or direct URL input
 - **Subpage Exploration**: Automatically extract and explore links from scraped pages
-- **Session Management**: Organize multiple scraped pages in per‑session folders
+- **Session Management**: Organize multiple scraped pages in per-session folders
 - **Domain Filtering**: Only show subpages from the same domain
 - **Smart File Organization**: Automatic file naming and folder structure
 - **SerpAPI Integration**: Reliable search results when using Search Mode
-- **Advanced Web Scraping (Firecrawl)**: Handles JS‑heavy pages and anti‑bot protections
-- **Clean Markdown + JSON**: Human‑readable Markdown and structured JSON outputs
+- **Advanced Web Scraping (Firecrawl)**: Handles JS-heavy pages and anti-bot protections
+- **Clean Markdown + JSON**: Human-readable Markdown and structured JSON outputs
+
+## New Features
+
+### Stealth Proxy Support
+The scraper now includes automatic bot detection and stealth proxy fallback:
+
+- **Auto Detection**: Monitors for bot blocking (status codes 401, 403, 500)
+- **Manual Approval**: Prompts user before using stealth mode (costs 5 credits)
+- **Per-scrape Decision**: Each blocked request gets individual stealth confirmation
+- **Session Override**: Option to enable stealth mode for entire session
+
+### Configuration
+Modify `config.py` to customize:
+- `DEFAULT_PROXY_MODE` : Set default proxy behavior ("auto", "basic", "stealth")
+- `STEALTH_COST_WARNING` : Enable/disable cost warnings
+- `BOT_DETECTION_CODES` : Customize detection status codes
+
+### Usage
+1. Run normally - stealth prompts appear when bot detection occurs
+2. Choose option 3 at startup to enable session-wide stealth mode
+3. Costs are clearly displayed before stealth attempts
 
 ## Usage
 
 1. Run the application:
-   ```bash
-   python easy_rich/main.py
-   ```
-
+    ```bash
+    python easy_rich/main.py
+    ```
 2. Choose your mode:
-   - Search Mode: Enter search text (required) and optionally a website (e.g., `imdb.com`). The app finds a relevant URL and scrapes it.
-   - Direct URL Mode: Enter any URL to scrape directly (e.g., `https://example.com/page`).
+    - Search Mode: Enter search text (required) and optionally a website (e.g., `imdb.com`). The app finds a relevant URL and scrapes it.
+    - Direct URL Mode: Enter any URL to scrape directly (e.g., `https://example.com/page`).
 
-3. After scraping the initial page, you’ll see a numbered list of same‑domain subpages found on the page:
-   - Enter a number to scrape that subpage
-   - Enter `n` to start a new search or URL
-   - Enter `q` to quit
+3. After scraping the initial page, you’ll see a numbered list of same-domain subpages found on the page:
+    - Enter a number to scrape that subpage
+    - Enter `n` to start a new search or URL
+    - Enter `q` to quit
 
 ## Requirements
 

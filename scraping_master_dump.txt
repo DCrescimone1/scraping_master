@@ -1,29 +1,48 @@
 Folder structure:
 .
+├── docs_multion_ai_20250926_120504
+│   ├── docs_multion_ai_welcome_data.json
+│   └── docs_multion_ai_welcome.md
 ├── easy_rich
+│   ├── config.py
 │   ├── main.py
 │   ├── README.md
 │   └── src
 │       ├── __init__.py
 │       ├── serp_api_client.py
 │       └── web_scraper.py
-├── ninja_assassin_results.html
 ├── project_dump.sh
 ├── requirements.txt
-├── scraping_master_dump.txt
-├── toy_story_2_results_data.json
-└── toy_story_2_results.md
+└── scraping_master_dump.txt
 
-3 directories, 11 files
+4 directories, 11 files
 
 
 --- File Contents ---
 
 
-------------------------------------------------- ./.env --------------------------------------------------
+------------------------------------------------- ./easy_rich/config.py --------------------------------------------------
 
-SERP_API_KEY=47c6cb52b4141c5f94ff57a3eece11d84cb6990ddd18486002c941f6f89aeb9b
-FIRECRAWL_API_KEY=fc-b2d74ba4c3f64eb38a6569d0db1d1c49
+"""
+Configuration settings for the Generic Web Scraper.
+"""
+
+# Proxy Settings
+DEFAULT_PROXY_MODE = "auto"  # "auto", "basic", "stealth"
+MANUAL_STEALTH_OVERRIDE = False  # Force stealth from start if True
+
+# Cost Management  
+STEALTH_COST_WARNING = True
+STEALTH_CREDITS_COST = 5
+
+# Bot Detection
+BOT_DETECTION_CODES = [401, 403, 500]
+
+# Terminal Messages
+STEALTH_WARNING_MSG = "💰 Stealth mode costs {} credits per request"
+BOT_DETECTED_MSG = "❌ Bot detected (Status: {})"
+STEALTH_PROMPT_MSG = "🤔 Try stealth mode? [y/N]: "
+STEALTH_TRYING_MSG = "🥷 Trying stealth mode..."
 
 ------------------------------------------------- ./easy_rich/main.py --------------------------------------------------
 
@@ -33,67 +52,256 @@ Generic Web Scraper
 Searches for user input on the web and scrapes the page content.
 """
 
+from typing import Tuple, Optional, List
 from src.serp_api_client import SerpAPIClient
 from src.web_scraper import WebScraper
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from config import MANUAL_STEALTH_OVERRIDE, DEFAULT_PROXY_MODE
+import config
+
+
+def get_scraping_mode() -> str:
+    """Get user's preferred scraping mode."""
+    print("\n=== Generic Web Scraper ===")
+    print("Choose your option:")
+    print("1. Search the web for something")
+    print("2. Enter a direct URL to scrape")
+    
+    while True:
+        choice = input("Your choice (1, 2): ").strip()
+        if choice == "1":
+            return "search"
+        elif choice == "2":
+            return "url"
+        else:
+            print("Please enter a valid choice")
+
+
+def get_search_input() -> Tuple[str, Optional[str]]:
+    """Get search text and optional website from user."""
+    search_text = input("Enter search text (required): ").strip()
+    if not search_text:
+        raise ValueError("Search text cannot be empty!")
+    
+    website = input("Enter website to search on (optional, e.g., 'bbc.com'): ").strip()
+    return search_text, website if website else None
+
+
+def get_direct_url() -> str:
+    """Get direct URL from user."""
+    url = input("Enter the URL to scrape: ").strip()
+    if not url:
+        raise ValueError("URL cannot be empty!")
+    if not (url.startswith('http://') or url.startswith('https://')):
+        url = 'https://' + url
+    return url
+
+
+def display_subpage_menu(links: List[Tuple[str, str]]) -> None:
+    """Display available subpages in a numbered menu with improved formatting."""
+    if not links:
+        print("\nNo additional subpages found on this domain.")
+        return
+    
+    print(f"\nFound {len(links)} subpages on the same domain:")
+    print("=" * 80)
+    for i, (title, url) in enumerate(links, 1):
+        # Truncate long titles for readability
+        display_title = title[:60] + "..." if len(title) > 60 else title
+        print(f"{i:2}. {display_title}")
+        print(f"    └─ {url}")
+        print()  # Add blank line between items for better readability
+    print("=" * 80)
+
+
+def handle_subpage_choice(links: List[Tuple[str, str]]) -> Optional[str]:
+    """Handle user's subpage selection."""
+    if not links:
+        return None
+        
+    while True:
+        print("\nEnter number (1-{0}), 'n' for new search, or 'q' to quit:".format(len(links)))
+        choice = input("> ").strip().lower()
+        
+        if choice == 'q':
+            return 'quit'
+        elif choice == 'n':
+            return 'new'
+        elif choice.isdigit():
+            num = int(choice)
+            if 1 <= num <= len(links):
+                return links[num - 1][1]  # Return the URL
+            else:
+                print(f"\nPlease enter a number between 1 and {len(links)}")
+        else:
+            print("\nPlease enter a valid number, 'n', or 'q'")
 
 
 def main() -> None:
-    """Main application entry point."""
-    print("Starting Generic Web Scraper...")
-
-    # Collect user input
-    print("\n--- Generic Web Scraper ---")
-    search_text = input("Enter search text (required): ").strip()
-    website = input("Enter website to search on (optional, e.g., 'bbc.com'): ").strip()
-
-    # Validate input
-    if not search_text:
-        print("Error: Search text cannot be empty!")
-        return
-
-    website = website if website else None
-    print(f"\nSearching for '{search_text}'" + (f" on {website}" if website else " on the web"))
-
-    # Initialize clients
+    """Main application entry point with enhanced subpage support."""
+    print("Starting Enhanced Generic Web Scraper...")
+    
     try:
         serp_client = SerpAPIClient()
-        web_scraper = WebScraper()
+        session_folder = None
+        original_proxy_mode = config.DEFAULT_PROXY_MODE
+        stealth_session_applied = False
+        
+        while True:
+            try:
+                # Get scraping mode
+                mode = get_scraping_mode()
 
-        print("Searching the web...")
+                # Handle stealth session mode
+                stealth_session = False
+                if mode == "stealth_session":
+                    stealth_session = True
+                    print("🥷 Stealth mode enabled for this session")
+                    mode = get_scraping_mode()  # Get the actual scraping mode
 
-        # Search the web
-        search_results = serp_client.search_web(search_text, website)
+                # Before scraping, if stealth_session is True, temporarily override the proxy mode
+                if stealth_session and not stealth_session_applied:
+                    # Modify the WebScraper to use stealth mode by default
+                    # Keep import style consistent and safe
+                    _ = DEFAULT_PROXY_MODE  # referenced to satisfy explicit import
+                    config.DEFAULT_PROXY_MODE = "stealth"
+                    stealth_session_applied = True
 
-        if not search_results:
-            print("Failed to get search results")
-            return
+                # Create WebScraper instance after applying any session overrides
+                web_scraper = WebScraper()
+                
+                if mode == "search":
+                    # Original search workflow
+                    search_text, website = get_search_input()
+                    print(f"\nSearching for '{search_text}'" + (f" on {website}" if website else " on the web"))
+                    
+                    # Search the web
+                    search_results = serp_client.search_web(search_text, website)
+                    if not search_results:
+                        print("Failed to get search results")
+                        continue
+                    
+                    # Extract target URL
+                    target_url = serp_client.extract_first_url(search_results, website)
+                    if not target_url:
+                        print("No relevant URL found in search results")
+                        continue
+                        
+                    print(f"Found URL: {target_url}")
+                    filename = f"{search_text.replace(' ', '_').replace('/', '_')}_results"
+                    
+                else:  # mode == "url"
+                    # Direct URL workflow
+                    target_url = get_direct_url()
+                    print(f"\nPreparing to scrape: {target_url}")
+                    
+                    # Generate filename from URL
+                    from urllib.parse import urlparse
+                    parsed_url = urlparse(target_url)
+                    filename = f"{parsed_url.netloc.replace('.', '_')}_{parsed_url.path.replace('/', '_').strip('_')}"
+                    filename = filename or "direct_scrape"
 
-        # Extract target URL
-        target_url = serp_client.extract_first_url(search_results, website)
+                # Create session folder on first scrape
+                if session_folder is None:
+                    if mode == "search":
+                        session_folder = web_scraper.create_session_folder(target_url, search_text)
+                    else:
+                        session_folder = web_scraper.create_session_folder(target_url)
+                    print(f"Created session folder: {session_folder}")
 
-        if not target_url:
-            print("No relevant URL found in search results")
-            return
+                # Scrape the page
+                print("Scraping page content...")
+                scraped_content = web_scraper.scrape_page(target_url)
+                
+                if not scraped_content:
+                    print("Failed to scrape page content")
+                    continue
 
-        print(f"Found URL: {target_url}")
-
-        # Scrape the page
-        print("Scraping page content...")
-        scraped_content = web_scraper.scrape_page(target_url)
-
-        if scraped_content:
-            print(f"Successfully scraped: {scraped_content['title']}")
-
-            # Save content
-            filename = f"{search_text.replace(' ', '_').replace('/', '_')}_results"
-            web_scraper.save_content(scraped_content, filename)
-
-            print("Scraping completed successfully!")
-        else:
-            print("Failed to scrape page content")
-
+                print(f"Successfully scraped: {scraped_content['title']}")
+                
+                # Save content to session folder
+                web_scraper.save_content_to_session(scraped_content, filename, session_folder)
+                
+                # Extract and display subpage options
+                links = web_scraper.extract_links_from_markdown(
+                    scraped_content.get('markdown_content', ''), 
+                    target_url
+                )
+                
+                display_subpage_menu(links)
+                
+                # Handle subpage choice
+                while links:
+                    choice = handle_subpage_choice(links)
+                    
+                    if choice == 'quit':
+                        print("Thanks for using the Enhanced Web Scraper!")
+                        return
+                    elif choice == 'new':
+                        break  # Break inner loop to start new search
+                    elif choice:  # It's a URL
+                        # Find the title corresponding to the chosen URL
+                        chosen_title = None
+                        for title, url in links:
+                            if url == choice:
+                                chosen_title = title
+                                break
+                        
+                        print(f"\nScraping subpage: {chosen_title or choice}")
+                        subpage_content = web_scraper.scrape_page(choice)
+                        
+                        if subpage_content:
+                            # Generate subpage filename using the readable title
+                            if chosen_title:
+                                subpage_filename = web_scraper.sanitize_filename(chosen_title)
+                            else:
+                                # Fallback to URL-based naming
+                                from urllib.parse import urlparse
+                                parsed_subpage = urlparse(choice)
+                                subpage_filename = f"subpage_{parsed_subpage.path.replace('/', '_').strip('_')}"
+                                subpage_filename = subpage_filename or "subpage"
+                            
+                            print(f"Successfully scraped subpage: {subpage_content['title']}")
+                            web_scraper.save_content_to_session(subpage_content, subpage_filename, session_folder)
+                            
+                            # Extract links from subpage for further exploration
+                            subpage_links = web_scraper.extract_links_from_markdown(
+                                subpage_content.get('markdown_content', ''), 
+                                choice
+                            )
+                            
+                            if subpage_links:
+                                display_subpage_menu(subpage_links)
+                                links = subpage_links  # Update links for next iteration
+                            else:
+                                print("No more subpages found. Returning to main menu.")
+                                break
+                        else:
+                            print("Failed to scrape subpage")
+                
+                # If no links or user chose 'new', continue to next iteration
+                
+            except ValueError as e:
+                print(f"Input error: {e}")
+            except KeyboardInterrupt:
+                print("\nOperation cancelled by user")
+                break
+            except Exception as e:
+                print(f"Unexpected error: {e}")
+                
     except Exception as e:
         print(f"Application error: {e}")
+    finally:
+        # Restore proxy mode if it was overridden for stealth session
+        try:
+            if 'stealth_session_applied' in locals() and stealth_session_applied:
+                config.DEFAULT_PROXY_MODE = original_proxy_mode
+        except Exception:
+            pass
+    
+    print("Scraping session completed!")
 
 
 if __name__ == "__main__":
@@ -101,11 +309,32 @@ if __name__ == "__main__":
 
 ------------------------------------------------- ./easy_rich/src/web_scraper.py --------------------------------------------------
 
-from typing import Optional, Dict
-
+from typing import Optional, Dict, List, Tuple, Set
 import os
+import sys
 from firecrawl import Firecrawl
 from dotenv import load_dotenv
+import re
+from urllib.parse import urlparse, urljoin
+
+# Add config imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from config import (
+        DEFAULT_PROXY_MODE, BOT_DETECTION_CODES, STEALTH_COST_WARNING, 
+        STEALTH_CREDITS_COST, STEALTH_WARNING_MSG, BOT_DETECTED_MSG, 
+        STEALTH_PROMPT_MSG, STEALTH_TRYING_MSG
+    )
+except ImportError:
+    # Fallback values if config.py doesn't exist yet
+    DEFAULT_PROXY_MODE = "auto"
+    BOT_DETECTION_CODES = [401, 403, 500]
+    STEALTH_COST_WARNING = True
+    STEALTH_CREDITS_COST = 5
+    STEALTH_WARNING_MSG = "💰 Stealth mode costs {} credits per request"
+    BOT_DETECTED_MSG = "❌ Bot detected (Status: {})"
+    STEALTH_PROMPT_MSG = "🤔 Try stealth mode? [y/N]: "
+    STEALTH_TRYING_MSG = "🥷 Trying stealth mode..."
 
 
 class WebScraper:
@@ -119,19 +348,42 @@ class WebScraper:
             raise ValueError("FIRECRAWL_API_KEY not found in environment variables")
         self.firecrawl = Firecrawl(api_key=api_key)
 
-    def scrape_page(self, url: str) -> Optional[Dict[str, str]]:
+    def is_bot_detected(self, status_code: str) -> bool:
+        """Check if the response indicates bot detection."""
+        try:
+            return int(status_code) in BOT_DETECTION_CODES
+        except (ValueError, TypeError):
+            return False
+
+    def prompt_stealth_retry(self) -> bool:
+        """Prompt user for stealth mode retry with cost warning."""
+        if STEALTH_COST_WARNING:
+            print(STEALTH_WARNING_MSG.format(STEALTH_CREDITS_COST))
+        
+        while True:
+            choice = input(STEALTH_PROMPT_MSG).strip().lower()
+            if choice in ['y', 'yes']:
+                return True
+            elif choice in ['n', 'no', '']:
+                return False
+            else:
+                print("Please enter 'y' or 'n'")
+
+    def scrape_with_proxy(self, url: str, proxy_mode: str = DEFAULT_PROXY_MODE) -> Optional[Dict[str, str]]:
         """
-        Scrape content from a given URL using Firecrawl.
-
+        Scrape content with specified proxy mode.
+        
         Args:
-            url: URL to scrape.
-
+            url: URL to scrape
+            proxy_mode: Proxy mode ("auto", "basic", "stealth")
+        
         Returns:
-            A dict containing metadata, markdown content, and structured data, or None if the request fails.
+            Scraped content dict or None if failed
         """
         try:
             result = self.firecrawl.scrape(
                 url,
+                proxy=proxy_mode,
                 formats=[
                     "markdown",
                     {
@@ -160,7 +412,42 @@ class WebScraper:
             print(f"Error scraping {url}: {e}")
             return None
 
-    
+    def scrape_page(self, url: str) -> Optional[Dict[str, str]]:
+        """
+        Scrape content from a given URL using Firecrawl with bot detection and stealth fallback.
+
+        Args:
+            url: URL to scrape.
+
+        Returns:
+            A dict containing metadata, markdown content, and structured data, or None if the request fails.
+        """
+        # First attempt with default proxy
+        scraped_content = self.scrape_with_proxy(url, DEFAULT_PROXY_MODE)
+        
+        if not scraped_content:
+            return None
+        
+        # Check for bot detection
+        status_code = scraped_content.get("status_code", "Unknown")
+        if self.is_bot_detected(status_code):
+            print(BOT_DETECTED_MSG.format(status_code))
+            
+            # Prompt for stealth retry
+            if self.prompt_stealth_retry():
+                print(STEALTH_TRYING_MSG)
+                stealth_content = self.scrape_with_proxy(url, "stealth")
+                if stealth_content:
+                    print("✅ Success with stealth mode!")
+                    return stealth_content
+                else:
+                    print("❌ Stealth mode also failed")
+                    return None
+            else:
+                print("⏭️  Skipping stealth mode")
+                return None
+        
+        return scraped_content
 
     def save_content(self, content: Dict[str, str], filename: str = "scraped_content") -> None:
         """
@@ -200,7 +487,123 @@ class WebScraper:
         except Exception as e:  # noqa: BLE001 - broad except with logging for robustness
             print(f"Error saving content: {e}")
 
+    def extract_links_from_markdown(self, markdown_content: str, base_url: str) -> List[Tuple[str, str]]:
+        """
+        Extract all markdown links from content and filter by same domain.
+        
+        Args:
+            markdown_content: The markdown content to parse
+            base_url: The original URL to determine the base domain
+            
+        Returns:
+            List of tuples (title, url) for same-domain links
+        """
+        try:
+            # Parse base domain
+            base_domain = urlparse(base_url).netloc.lower()
+            
+            # Extract markdown links using regex
+            link_pattern = r"\[([^\]]+)\]\(([^)]+)\)"
+            matches = re.findall(link_pattern, markdown_content)
+            
+            same_domain_links: List[Tuple[str, str]] = []
+            seen_urls: Set[str] = set()
+            
+            for title, url in matches:
+                # Convert relative URLs to absolute
+                if url.startswith('/'):
+                    url = urljoin(base_url, url)
+                elif not url.startswith('http'):
+                    continue
+                
+                # Check if same domain
+                try:
+                    link_domain = urlparse(url).netloc.lower()
+                    if base_domain in link_domain or link_domain in base_domain:
+                        # Avoid duplicates and self-references
+                        if url not in seen_urls and url != base_url:
+                            same_domain_links.append((title.strip(), url))
+                            seen_urls.add(url)
+                except Exception:
+                    continue
+                
+            return same_domain_links[:100]
+            
+        except Exception as e:
+            print(f"Error extracting links: {e}")
+            return []
 
+    def sanitize_filename(self, filename: str) -> str:
+        """
+        Sanitize a string to be safe for use as a filename.
+        
+        Args:
+            filename: The raw filename string
+            
+        Returns:
+            A filesystem-safe filename
+        """
+        import re
+        
+        # Remove or replace problematic characters
+        filename = re.sub(r'[<>:"/\\|?*]', '', filename)  # Remove invalid chars
+        filename = re.sub(r'\s+', '_', filename.strip())  # Replace spaces with underscores
+        filename = re.sub(r'_+', '_', filename)  # Remove multiple underscores
+        filename = filename.strip('_')  # Remove leading/trailing underscores
+        
+        # Limit length and ensure it's not empty
+        filename = filename[:50] if filename else "unnamed"
+        
+        return filename
+
+    def create_session_folder(self, base_url: str, search_term: str = None) -> str:
+        """Create a session folder based on domain, search term, and timestamp."""
+        try:
+            domain = urlparse(base_url).netloc.replace('www.', '').replace('.', '_')
+            timestamp = __import__('datetime').datetime.now().strftime('%Y%m%d_%H%M%S')
+            
+            # Include search term if available
+            if search_term:
+                clean_search = self.sanitize_filename(search_term)
+                folder_name = f"{domain}_{clean_search}_{timestamp}"
+            else:
+                folder_name = f"{domain}_{timestamp}"
+            
+            import os
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
+            return folder_name
+        except Exception as e:
+            print(f"Error creating session folder: {e}")
+            return "."
+
+    def save_content_to_session(self, content: Dict[str, str], filename: str, session_folder: str) -> None:
+        """Save content to session folder."""
+        try:
+            import json
+            
+            # Save markdown content
+            md_path = os.path.join(session_folder, f"{filename}.md")
+            with open(md_path, "w", encoding="utf-8") as f:
+                f.write(f"# {content['title']}\n\n")
+                f.write(f"**Source:** {content['url']}\n\n")
+                f.write(content.get("markdown_content", ""))
+            print(f"Markdown saved to {md_path}")
+
+            # Save structured data if available
+            if content.get("structured_data") is not None:
+                json_path = os.path.join(session_folder, f"{filename}_data.json")
+                with open(json_path, "w", encoding="utf-8") as f:
+                    json.dump({
+                        "url": content.get("url", ""),
+                        "title": content.get("title", ""),
+                        "status_code": content.get("status_code", ""),
+                        "structured_data": content.get("structured_data", {}),
+                    }, f, indent=2, ensure_ascii=False)
+                print(f"Structured data saved to {json_path}")
+            
+        except Exception as e:
+            print(f"Error saving content to session: {e}")
 ------------------------------------------------- ./easy_rich/src/serp_api_client.py --------------------------------------------------
 
 """

@@ -7,6 +7,11 @@ Searches for user input on the web and scrapes the page content.
 from typing import Tuple, Optional, List
 from src.serp_api_client import SerpAPIClient
 from src.web_scraper import WebScraper
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from config import MANUAL_STEALTH_OVERRIDE, DEFAULT_PROXY_MODE
+import config
 
 
 def get_scraping_mode() -> str:
@@ -17,13 +22,13 @@ def get_scraping_mode() -> str:
     print("2. Enter a direct URL to scrape")
     
     while True:
-        choice = input("Your choice (1 or 2): ").strip()
+        choice = input("Your choice (1, 2): ").strip()
         if choice == "1":
             return "search"
         elif choice == "2":
             return "url"
         else:
-            print("Please enter 1 or 2")
+            print("Please enter a valid choice")
 
 
 def get_search_input() -> Tuple[str, Optional[str]]:
@@ -92,13 +97,32 @@ def main() -> None:
     
     try:
         serp_client = SerpAPIClient()
-        web_scraper = WebScraper()
         session_folder = None
+        original_proxy_mode = config.DEFAULT_PROXY_MODE
+        stealth_session_applied = False
         
         while True:
             try:
                 # Get scraping mode
                 mode = get_scraping_mode()
+
+                # Handle stealth session mode
+                stealth_session = False
+                if mode == "stealth_session":
+                    stealth_session = True
+                    print("🥷 Stealth mode enabled for this session")
+                    mode = get_scraping_mode()  # Get the actual scraping mode
+
+                # Before scraping, if stealth_session is True, temporarily override the proxy mode
+                if stealth_session and not stealth_session_applied:
+                    # Modify the WebScraper to use stealth mode by default
+                    # Keep import style consistent and safe
+                    _ = DEFAULT_PROXY_MODE  # referenced to satisfy explicit import
+                    config.DEFAULT_PROXY_MODE = "stealth"
+                    stealth_session_applied = True
+
+                # Create WebScraper instance after applying any session overrides
+                web_scraper = WebScraper()
                 
                 if mode == "search":
                     # Original search workflow
@@ -221,6 +245,13 @@ def main() -> None:
                 
     except Exception as e:
         print(f"Application error: {e}")
+    finally:
+        # Restore proxy mode if it was overridden for stealth session
+        try:
+            if 'stealth_session_applied' in locals() and stealth_session_applied:
+                config.DEFAULT_PROXY_MODE = original_proxy_mode
+        except Exception:
+            pass
     
     print("Scraping session completed!")
 
