@@ -1,16 +1,17 @@
-# Generic Web Scraper
+# Enhanced Generic Web Scraper
 
-A Python-based web scraping tool that allows users to search for content on specific websites or the entire web using SerpAPI and scrape the resulting pages.
+Search for content on the web or scrape any direct URL, then interactively explore and scrape same‑domain subpages. Results are organized into session folders with clean Markdown and structured JSON.
 
 ## Features
 
-- **Flexible Search**: Search for any text on any website or the entire web
-- **User Input**: Interactive terminal prompts for search parameters
-- **SerpAPI Integration**: Uses SerpAPI for reliable search results
-- **Advanced Web Scraping (Firecrawl)**: Handles JavaScript-heavy pages and anti-bot protection
-- **Clean Markdown Extraction**: Saves readable content as Markdown (.md)
-- **Structured Data Extraction**: Saves key information as JSON (.json)
-- **Error Handling**: Robust error handling and validation
+- **Dual Mode Operation**: Choose between web search or direct URL input
+- **Subpage Exploration**: Automatically extract and explore links from scraped pages
+- **Session Management**: Organize multiple scraped pages in per‑session folders
+- **Domain Filtering**: Only show subpages from the same domain
+- **Smart File Organization**: Automatic file naming and folder structure
+- **SerpAPI Integration**: Reliable search results when using Search Mode
+- **Advanced Web Scraping (Firecrawl)**: Handles JS‑heavy pages and anti‑bot protections
+- **Clean Markdown + JSON**: Human‑readable Markdown and structured JSON outputs
 
 ## Usage
 
@@ -19,35 +20,54 @@ A Python-based web scraping tool that allows users to search for content on spec
    python easy_rich/main.py
    ```
 
-2. Enter your search parameters when prompted:
-   - Search text (required): What you want to search for
-   - Website (optional): Specific website to search on (e.g., "imdb.com", "wikipedia.org")
+2. Choose your mode:
+   - Search Mode: Enter search text (required) and optionally a website (e.g., `imdb.com`). The app finds a relevant URL and scrapes it.
+   - Direct URL Mode: Enter any URL to scrape directly (e.g., `https://example.com/page`).
 
-The scraper will:
-- Search using SerpAPI
-- Find the first relevant result
-- Scrape the page content
-- Save the content as Markdown and JSON files
+3. After scraping the initial page, you’ll see a numbered list of same‑domain subpages found on the page:
+   - Enter a number to scrape that subpage
+   - Enter `n` to start a new search or URL
+   - Enter `q` to quit
 
 ## Requirements
 
-- Python 3.x
-- SerpAPI key (set in `.env` file as `SERP_API_KEY`)
-- Firecrawl API key (set in `.env` file as `FIRECRAWL_API_KEY`)
+- Python 3.8+
+- SerpAPI account and API key
+- Firecrawl account and API key
 - Required packages: `requests`, `python-dotenv`, `firecrawl-py`
 
-## Configuration
+## Setup
 
-Create a root-level `.env` file with the following variables:
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```env
-SERP_API_KEY=your_serpapi_key_here
-FIRECRAWL_API_KEY=your_firecrawl_api_key_here
-```
+2. Create a root‑level `.env` file with:
+   ```env
+   SERP_API_KEY=your-serpapi-key-here
+   FIRECRAWL_API_KEY=your-firecrawl-key-here
+   ```
+
+3. Run the scraper:
+   ```bash
+   python easy_rich/main.py
+   ```
 
 ## Output
 
-Scraped content is saved in the project directory as:
+Each run creates a session folder named like `domain_YYYYMMDD_HHMMSS/` containing all scraped content:
 
-- `{search_text}_results.md` — Clean Markdown content
-- `{search_text}_results_data.json` — Structured data (title, status code, extracted fields)
+- Markdown Files: Clean, readable content with metadata
+- JSON Files: Structured data extracted from pages
+
+Example session structure:
+
+```
+imdb_com_20250926_143022/
+├── toy_story_2_results.md
+├── toy_story_2_results_data.json
+├── subpage_cast_crew.md
+├── subpage_cast_crew_data.json
+└── subpage_reviews.md
+```
