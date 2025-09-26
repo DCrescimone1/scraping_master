@@ -77,3 +77,5 @@ logs/
 *.html
 *.csv
 !user_preferences.json
+
+.env
