@@ -1,5 +1,19 @@
 Folder structure:
 .
+├── doc_processor
+│   ├── config.py
+│   ├── main.py
+│   ├── outputs
+│   ├── README.md
+│   ├── requirements.txt
+│   └── src
+│       ├── __init__.py
+│       ├── firecrawl_parser.py
+│       ├── json_generator.py
+│       ├── llm_processor.py
+│       ├── pdf_handler.py
+│       └── user_prompt.py
+├── doc_scraper
 ├── easy_rich
 │   ├── config.py
 │   ├── main.py
@@ -8,23 +22,721 @@ Folder structure:
 │       ├── __init__.py
 │       ├── serp_api_client.py
 │       └── web_scraper.py
+├── imdb_com_20250926_170527
+│   ├── www_imdb_com_title_tt0120363_fullcredits_data.json
+│   └── www_imdb_com_title_tt0120363_fullcredits.md
+├── imdb_com_toy_story_2_20250926_170241
+│   ├── toy_story_2_results_data.json
+│   └── toy_story_2_results.md
+├── linkedin_com_20250927_112938
 ├── manual_scrape
 │   ├── config.py
+│   ├── install_browsers.sh
 │   ├── main.py
 │   ├── README.md
 │   └── src
 │       ├── __init__.py
+│       ├── browser_utils.py
+│       ├── browsers
+│       │   ├── __init__.py
+│       │   ├── browser_chromium.py
+│       │   ├── browser_factory.py
+│       │   └── browser_firefox.py
+│       ├── content_extractor.py
 │       ├── serp_api_client.py
 │       └── web_scraper.py
 ├── project_dump.sh
 ├── requirements.txt
-└── scraping_master_dump.txt
+├── scraping_master_dump.txt
+└── store_steampowered_com_spider_man_20250926_171735
+    ├── spider_man_results_data.json
+    └── spider_man_results.md
 
-5 directories, 15 files
+14 directories, 38 files
 
 
 --- File Contents ---
 
+
+------------------------------------------------- ./doc_processor/config.py --------------------------------------------------
+
+"""
+Configuration settings for Document Processor.
+Follows same pattern as easy_rich and manual_scrape configs.
+"""
+
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from root .env
+load_dotenv()
+
+# API Configuration
+FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
+GROK_API_KEY = os.getenv("GROK_API_KEY")  # xAI API key
+GROK_MODEL = os.getenv("GROK_MODEL", "grok-beta")  # Default model
+
+# Output Settings
+OUTPUT_DIR = "outputs/"
+FILENAME_PATTERN = "{original_name}_summary_{timestamp}.json"
+
+# JSON Template - AI fills these fields
+DOCUMENT_TEMPLATE = {
+    "executive_summary": "",
+    "document_type": "",
+    "key_topics": [],
+    "technical_details": {
+        "technologies_mentioned": [],
+        "requirements": [],
+        "constraints": []
+    },
+    "entities": {
+        "people": [],
+        "organizations": [],
+        "products": [],
+        "dates": []
+    },
+    "action_items": [],
+    "decisions_made": [],
+    "open_questions": [],
+    "complexity_assessment": "",
+    "estimated_read_time_minutes": 0,
+    "critical_sections": []
+}
+
+# User Questions - asked in terminal after AI processing
+USER_QUESTIONS = [
+    "What is the primary purpose of this document?",
+    "Who is the intended audience? (e.g., developers, executives)",
+    "Project or client name (if applicable):",
+    "Any critical deadlines or milestones mentioned?",
+    "Specific areas you want highlighted or tracked:",
+    "Additional context or notes:"
+]
+
+# Validation
+if not FIRECRAWL_API_KEY:
+    raise ValueError("FIRECRAWL_API_KEY not found in environment variables")
+
+if not GROK_API_KEY:
+    raise ValueError("GROK_API_KEY not found in environment variables")
+
+
+------------------------------------------------- ./doc_processor/main.py --------------------------------------------------
+
+#!/usr/bin/env python3
+"""
+Document Processor - PDF Analysis Tool
+Parses PDFs, analyzes with AI, collects user context, outputs structured JSON.
+"""
+
+import sys
+import time
+from pathlib import Path
+
+# Import configuration
+import config
+
+# Import modules
+from src.pdf_handler import PDFHandler
+from src.firecrawl_parser import FirecrawlParser
+from src.llm_processor import LLMProcessor
+from src.user_prompt import UserPrompt
+from src.json_generator import JSONGenerator
+
+
+def get_pdf_path() -> str:
+    """Get PDF path from command line or user input."""
+    if len(sys.argv) > 1:
+        return sys.argv[1]
+    else:
+        print("📄 Document Processor")
+        print("="*60)
+        pdf_path = input("Enter path to PDF file: ").strip()
+        return pdf_path
+
+
+def main():
+    """Main orchestration function."""
+    start_time = time.time()
+    
+    try:
+        # Get PDF path
+        pdf_path = get_pdf_path()
+        
+        # PHASE 1: Validate PDF
+        print("\n🔍 Validating PDF...")
+        pdf_handler = PDFHandler()
+        
+        if not pdf_handler.validate_file(pdf_path):
+            print("❌ Validation failed. Exiting.")
+            return
+        
+        file_info = pdf_handler.get_file_info(pdf_path)
+        print(f"✅ Valid: {file_info['filename']} ({file_info['size_mb']} MB)")
+        
+        # PHASE 2: Parse PDF with Firecrawl
+        print("\n📄 Extracting text with Firecrawl...")
+        parser = FirecrawlParser(config.FIRECRAWL_API_KEY)
+        
+        parse_result = parser.parse_pdf(pdf_path)
+        if not parse_result:
+            print("❌ Failed to extract text from PDF. Exiting.")
+            return
+        
+        markdown_text = parser.get_parsed_content(parse_result)
+        file_info["word_count"] = parse_result.get("word_count", 0)
+        
+        # PHASE 3: Process with Grok AI
+        print("\n🤖 Analyzing with LLM (xAI Grok by default)...")
+        grok = LLMProcessor(config.GROK_API_KEY, config.GROK_MODEL, base_url="https://api.x.ai/v1")
+        
+        ai_analysis = grok.process_document(markdown_text, config.DOCUMENT_TEMPLATE)
+        if not ai_analysis:
+            print("❌ AI processing failed. Exiting.")
+            return
+        
+        # PHASE 4: Collect user context
+        print("\n📝 Collecting additional context...")
+        user_prompt = UserPrompt(config.USER_QUESTIONS)
+        
+        raw_answers = user_prompt.ask_questions()
+        user_context = user_prompt.format_for_json(raw_answers)
+        
+        # PHASE 5: Generate output
+        print("\n💾 Generating JSON output...")
+        
+        # Calculate processing time
+        processing_time = round(time.time() - start_time, 2)
+        
+        processing_meta = {
+            "grok_model": config.GROK_MODEL,
+            "parsing_method": "firecrawl",
+            "total_processing_time_seconds": processing_time
+        }
+        
+        generator = JSONGenerator(config.OUTPUT_DIR)
+        
+        final_output = generator.create_output(
+            ai_data=ai_analysis,
+            user_answers=user_context,
+            file_metadata=file_info,
+            processing_metadata=processing_meta
+        )
+        
+        output_path = generator.save_to_file(final_output, file_info["filename"])
+        
+        if output_path:
+            # Display summary
+            generator.display_summary(final_output)
+            print(f"✅ Processing complete! Saved to: {output_path}")
+            print(f"⏱️  Total time: {processing_time}s")
+        else:
+            print("❌ Failed to save output file.")
+        
+    except KeyboardInterrupt:
+        print("\n\n⚠️  Process interrupted by user. Exiting.")
+    except Exception as e:
+        print(f"\n❌ Unexpected error: {e}")
+        import traceback
+        traceback.print_exc()
+
+
+if __name__ == "__main__":
+    main()
+
+
+------------------------------------------------- ./doc_processor/src/pdf_handler.py --------------------------------------------------
+
+"""PDF file validation and handling."""
+
+import os
+from pathlib import Path
+from typing import Dict
+
+
+class PDFHandler:
+    """Validates and prepares PDF files for processing."""
+    
+    def __init__(self):
+        """Initialize PDF handler."""
+        pass
+    
+    def validate_file(self, file_path: str) -> bool:
+        """
+        Validate that file exists and is a PDF.
+        
+        Args:
+            file_path: Path to PDF file
+            
+        Returns:
+            True if valid, False otherwise
+        """
+        try:
+            path = Path(file_path)
+            
+            # Check exists
+            if not path.exists():
+                print(f"❌ File not found: {file_path}")
+                return False
+            
+            # Check is file (not directory)
+            if not path.is_file():
+                print(f"❌ Not a file: {file_path}")
+                return False
+            
+            # Check PDF extension
+            if path.suffix.lower() != '.pdf':
+                print(f"❌ Not a PDF file: {file_path}")
+                return False
+            
+            # Check readable
+            if not os.access(file_path, os.R_OK):
+                print(f"❌ File not readable: {file_path}")
+                return False
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error validating file: {e}")
+            return False
+    
+    def get_file_info(self, file_path: str) -> Dict[str, object]:
+        """
+        Extract file metadata.
+        
+        Args:
+            file_path: Path to PDF file
+            
+        Returns:
+            Dict with file info
+        """
+        try:
+            path = Path(file_path)
+            size_mb = path.stat().st_size / (1024 * 1024)
+            
+            return {
+                "filename": path.name,
+                "file_path": str(path.absolute()),
+                "size_mb": round(size_mb, 2)
+            }
+        except Exception as e:
+            print(f"⚠️  Error getting file info: {e}")
+            return {
+                "filename": "unknown",
+                "file_path": file_path,
+                "size_mb": 0
+            }
+
+------------------------------------------------- ./doc_processor/src/firecrawl_parser.py --------------------------------------------------
+
+"""Firecrawl PDF parsing integration."""
+
+from typing import Optional, Dict
+from firecrawl import Firecrawl
+
+
+class FirecrawlParser:
+    """Handles PDF to text conversion using Firecrawl."""
+    
+    def __init__(self, api_key: str):
+        """
+        Initialize Firecrawl client.
+        
+        Args:
+            api_key: Firecrawl API key
+        """
+        if not api_key:
+            raise ValueError("Firecrawl API key is required")
+        
+        self.firecrawl = Firecrawl(api_key=api_key)
+    
+    def parse_pdf(self, file_path: str) -> Optional[Dict[str, object]]:
+        """
+        Parse PDF file to text using Firecrawl.
+        
+        Args:
+            file_path: Path to PDF file
+            
+        Returns:
+            Dict with parsed content or None if failed
+        """
+        try:
+            print("📄 Parsing PDF with Firecrawl...")
+            
+            # Use Firecrawl with PDF parser explicitly
+            result = self.firecrawl.scrape(
+                file_path,
+                formats=["markdown"],
+                parsers=["pdf"]  # Ensure PDF parsing
+            )
+            
+            # Extract markdown content
+            markdown_content = getattr(result, "markdown", "")
+            
+            if not markdown_content or len(markdown_content) < 50:
+                print("⚠️  Warning: Extracted content is very short")
+                return None
+            
+            # Count words for info
+            word_count = len(markdown_content.split())
+            
+            print(f"✅ Extracted {word_count:,} words")
+            
+            return {
+                "markdown": markdown_content,
+                "word_count": word_count,
+                "raw_result": result
+            }
+            
+        except Exception as e:
+            print(f"❌ Error parsing PDF: {e}")
+            return None
+    
+    def get_parsed_content(self, parse_result: Dict) -> str:
+        """
+        Extract markdown text from parse result.
+        
+        Args:
+            parse_result: Result from parse_pdf()
+            
+        Returns:
+            Markdown text content
+        """
+        if not parse_result:
+            return ""
+        
+        return parse_result.get("markdown", "")
+
+------------------------------------------------- ./doc_processor/src/user_prompt.py --------------------------------------------------
+
+"""Terminal user interaction for collecting context."""
+
+from typing import Dict, List
+
+
+class UserPrompt:
+    """Handles interactive terminal questions to collect user context."""
+    
+    def __init__(self, questions: List[str]):
+        """
+        Initialize with list of questions.
+        
+        Args:
+            questions: List of question strings
+        """
+        self.questions = questions
+    
+    def ask_questions(self) -> Dict[str, str]:
+        """
+        Present questions to user in terminal and collect answers.
+        
+        Returns:
+            Dict mapping question index to answer
+        """
+        print("\n" + "="*60)
+        print("📝 Additional Context Needed")
+        print("="*60)
+        print("(Press Enter to skip optional questions)\n")
+        
+        answers = {}
+        total = len(self.questions)
+        
+        for i, question in enumerate(self.questions, 1):
+            # Display question with progress
+            print(f"Question {i}/{total}:")
+            print(f"  {question}")
+            
+            # Get user input
+            try:
+                answer = input("> ").strip()
+                
+                # Store answer (even if empty)
+                answers[f"question_{i}"] = {
+                    "question": question,
+                    "answer": answer if answer else "N/A"
+                }
+                
+                print()  # Blank line for readability
+                
+            except KeyboardInterrupt:
+                print("\n\n⚠️  Input interrupted. Skipping remaining questions.")
+                break
+            except Exception as e:
+                print(f"⚠️  Error reading input: {e}")
+                answers[f"question_{i}"] = {
+                    "question": question,
+                    "answer": "N/A"
+                }
+        
+        print("="*60)
+        print("✅ Context collection complete\n")
+        
+        return answers
+    
+    def format_for_json(self, answers: Dict) -> Dict[str, str]:
+        """
+        Format answers for JSON output structure.
+        
+        Args:
+            answers: Raw answers dict from ask_questions()
+            
+        Returns:
+            Cleaned dict for user_context section
+        """
+        formatted = {}
+        
+        for key, value in answers.items():
+            # Create simple key from question
+            question_text = value["question"]
+            answer_text = value["answer"]
+            
+            # Use simplified key
+            clean_key = question_text.split("?")[0].lower().replace(" ", "_")[:30]
+            formatted[clean_key] = answer_text
+        
+        return formatted
+
+------------------------------------------------- ./doc_processor/src/json_generator.py --------------------------------------------------
+
+"""JSON output file generation."""
+
+import json
+import os
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, Optional
+
+
+class JSONGenerator:
+    """Creates structured JSON output files."""
+    
+    def __init__(self, output_dir: str = "outputs/"):
+        """
+        Initialize generator.
+        
+        Args:
+            output_dir: Directory for output files
+        """
+        self.output_dir = output_dir
+        self._ensure_output_dir()
+    
+    def _ensure_output_dir(self):
+        """Create output directory if it doesn't exist."""
+        Path(self.output_dir).mkdir(parents=True, exist_ok=True)
+    
+    def create_output(
+        self,
+        ai_data: Dict,
+        user_answers: Dict,
+        file_metadata: Dict,
+        processing_metadata: Optional[Dict] = None
+    ) -> Dict:
+        """
+        Combine all data into final JSON structure.
+        
+        Args:
+            ai_data: AI analysis results
+            user_answers: User context answers
+            file_metadata: Source file info
+            processing_metadata: Optional processing stats
+            
+        Returns:
+            Complete output dict
+        """
+        timestamp = datetime.now().isoformat()
+        
+        output = {
+            "document_info": {
+                "source_file": file_metadata.get("filename", "unknown"),
+                "file_path": file_metadata.get("file_path", ""),
+                "processed_at": timestamp,
+                "file_size_mb": file_metadata.get("size_mb", 0),
+                "word_count": file_metadata.get("word_count", 0)
+            },
+            "ai_analysis": ai_data,
+            "user_context": user_answers,
+            "processing_metadata": processing_metadata or {}
+        }
+        
+        return output
+    
+    def save_to_file(self, data: Dict, original_filename: str) -> str:
+        """
+        Save JSON data to timestamped file.
+        
+        Args:
+            data: JSON data to save
+            original_filename: Original PDF filename
+            
+        Returns:
+            Path to saved file
+        """
+        try:
+            # Generate filename
+            base_name = Path(original_filename).stem
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_filename = f"{base_name}_summary_{timestamp}.json"
+            output_path = os.path.join(self.output_dir, output_filename)
+            
+            # Write JSON file
+            with open(output_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+            
+            print(f"💾 Saved to: {output_path}")
+            
+            return output_path
+            
+        except Exception as e:
+            print(f"❌ Error saving file: {e}")
+            return ""
+    
+    def display_summary(self, data: Dict):
+        """
+        Display key information in terminal.
+        
+        Args:
+            data: Complete output data
+        """
+        print("\n" + "="*60)
+        print("📊 Document Summary")
+        print("="*60)
+        
+        # Executive summary
+        if "ai_analysis" in data:
+            summary = data["ai_analysis"].get("executive_summary", "N/A")
+            print(f"\nSummary:\n{summary[:200]}...")
+            
+            # Key topics
+            topics = data["ai_analysis"].get("key_topics", [])
+            if topics:
+                print(f"\nKey Topics: {', '.join(topics[:5])}")
+            
+            # Complexity
+            complexity = data["ai_analysis"].get("complexity_assessment", "N/A")
+            print(f"Complexity: {complexity}")
+        
+        print("\n" + "="*60 + "\n")
+
+------------------------------------------------- ./doc_processor/src/llm_processor.py --------------------------------------------------
+
+"""Generic LLM API integration for document analysis (xAI Grok-compatible)."""
+
+import json
+from typing import Dict, Optional
+import requests
+
+
+class LLMProcessor:
+    """Processes documents using xAI's Grok API via direct HTTP calls."""
+
+    def __init__(self, api_key: str, model_name: str = "grok-4-fast-reasoning", base_url: str = "https://api.x.ai/v1"):
+        """Initialize LLM processor.
+
+        Args:
+            api_key: xAI API key
+            model_name: Grok model to use
+            base_url: xAI API base URL
+        """
+        if not api_key:
+            raise ValueError("LLM API key is required")
+
+        self.api_key = api_key
+        self.model = model_name
+        self.base_url = base_url.rstrip('/')
+    
+    def create_analysis_prompt(self, text_content: str, template: Dict) -> str:
+        """
+        Create prompt for the LLM to analyze the document and fill the template.
+        """
+        template_str = json.dumps(template, indent=2)
+        
+        prompt = f"""Analyze the following document and fill the JSON template with accurate information extracted from the text.
+
+INSTRUCTIONS:
+- Be concise but thorough
+- Extract only information present in the document
+- Use "N/A" for fields where information is not available
+- For lists, provide the most relevant items
+- Estimate complexity as: Simple, Medium, or Complex
+
+DOCUMENT CONTENT:
+{text_content[:15000]}  
+
+JSON TEMPLATE TO FILL:
+{template_str}
+
+Return ONLY the filled JSON, no other text."""
+        
+        return prompt
+    
+    def process_document(self, markdown_text: str, template: Dict) -> Optional[Dict]:
+        """
+        Send document to the LLM for analysis and return the filled JSON template.
+        """
+        try:
+            print("🤖 Processing with LLM (xAI Grok)...")
+
+            # Create prompt
+            prompt = self.create_analysis_prompt(markdown_text, template)
+
+            # Build request
+            url = f"{self.base_url}/chat/completions"
+            headers = {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+            }
+            payload = {
+                "model": self.model,
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are a document analysis AI that extracts structured information and fills JSON templates accurately.",
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt,
+                    },
+                ],
+                "temperature": 0.3,
+                "max_tokens": 4000,
+            }
+
+            resp = requests.post(url, headers=headers, json=payload, timeout=60)
+
+            if resp.status_code != 200:
+                print(f"❌ Grok API error: {resp.status_code} - {resp.text[:500]}")
+                return None
+
+            data = resp.json()
+
+            # Extract assistant message content
+            try:
+                content = data["choices"][0]["message"]["content"]
+            except Exception:
+                print("❌ Unexpected response format from Grok API")
+                return None
+            
+            # Parse JSON response
+            try:
+                filled_template = json.loads(content)
+                print("✅ AI analysis complete")
+                return filled_template
+            except json.JSONDecodeError:
+                print("⚠️  Warning: Response was not valid JSON, attempting to extract...")
+                start = content.find('{')
+                end = content.rfind('}') + 1
+                if start != -1 and end != 0:
+                    json_str = content[start:end]
+                    filled_template = json.loads(json_str)
+                    print("✅ AI analysis complete (extracted JSON)")
+                    return filled_template
+                else:
+                    print("❌ Could not parse AI response as JSON")
+                    return None
+        except Exception as e:
+            print(f"❌ Error processing with LLM: {e}")
+            return None
 
 ------------------------------------------------- ./easy_rich/config.py --------------------------------------------------
 
@@ -718,6 +1430,29 @@ BOT_DETECTED_MSG = "❌ Bot detected (Status: {})"
 STEALTH_PROMPT_MSG = "🤔 Try stealth mode? [y/N]: "
 STEALTH_TRYING_MSG = "🥷 Trying stealth mode..."
 
+# Browser Configuration
+BROWSER = {
+    'default': 'firefox',  # Options: 'chromium', 'firefox'
+    'engines': {
+        'chromium': {
+            'timeout': 30000,
+            'stealth_mode': True
+        },
+        'firefox': {
+            'timeout': 30000,
+            'stealth_mode': True
+        }
+    }
+}
+
+------------------------------------------------- ./manual_scrape/install_browsers.sh --------------------------------------------------
+
+#!/bin/bash
+echo "🚀 Installing Playwright browsers..."
+playwright install
+playwright install chromium firefox
+echo "✅ Both Chromium and Firefox installed successfully!"
+
 ------------------------------------------------- ./manual_scrape/main.py --------------------------------------------------
 
 #!/usr/bin/env python3
@@ -981,27 +1716,184 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
+------------------------------------------------- ./manual_scrape/src/content_extractor.py --------------------------------------------------
+
+"""Extract article content from webpages using Playwright."""
+
+import time
+from bs4 import BeautifulSoup
+from .browser_utils import handle_any_popups, add_human_pause, extract_readable_text
+
+class ContentExtractor:
+    """Extract article content from a webpage."""
+    
+    def __init__(self):
+        pass
+    
+    def extract_article_content(self, page, url, article, domain, source, user_email=None):
+        """Extract article content from the page.
+        
+        Args:
+            page: The Playwright page object
+            url: The URL of the article
+            article: The article metadata
+            domain: The domain of the article
+            source: The source of the article
+            user_email: Optional user email for validation context
+            
+        Returns:
+            tuple: (success, article_content, title, rejection_reason)
+        """
+        print("Extracting article content...")
+                
+        try:
+            # Start with aggressive popup handling first
+            print("Applying aggressive popup/cookie handling approach...")
+            handle_any_popups(page, aggressive=True)
+            page.wait_for_timeout(1000)
+            
+            # Perform progressive scrolling for content exposure
+            print("Performing progressive scrolling for content exposure...")
+            self._perform_progressive_scrolling(page)
+            
+            # Handle any popups that appeared after scrolling
+            print("Handling any new popups after scrolling...")
+            handle_any_popups(page, aggressive=True)
+            page.wait_for_timeout(1000)
+            
+            # Wait for page to be fully loaded with a timeout
+            print("Waiting for page ready state before content extraction...")
+            try:
+                page.wait_for_load_state("networkidle", timeout=10000)
+                print("Page ready state reached")
+            except Exception as e:
+                print(f"Error waiting for page ready state (continuing anyway): {e}")
+            
+            # Extract content with BeautifulSoup
+            article_content = self._extract_content_with_soup(page)
+            
+            # Get character count
+            chars_count = len(article_content) if article_content else 0
+            print(f"Extracted {chars_count} chars with content extraction")
+            
+            # Include the full content in logs when it's less than 100 characters
+            if article_content and chars_count < 100:
+                print(f"Content (under 100 chars): {article_content}")
+            
+            # If we have substantial content (>5500 chars), consider it valid
+            if article_content and len(article_content) > 5500:
+                title = self._extract_title(page, article)
+                print(f"Article has substantial content ({len(article_content)} chars), accepting")
+                return True, article_content, title, None
+            
+            # Continue with validation for articles with less content
+            if article_content and len(article_content) > 150:
+                title = self._extract_title(page, article)
+            
+                # Return the content for validation
+                if len(article_content) < 1600:
+                    print(f"Content too short: {len(article_content)} chars (minimum 1600)")
+                    
+                    # Try a more aggressive approach as fallback
+                    try:
+                        print("Attempting more aggressive content extraction as fallback...")
+                        
+                        fallback_content = page.evaluate("""() => {
+                            const bodyText = document.body.innerText;
+                            return bodyText || '';
+                        }""")
+                        
+                        if fallback_content and len(fallback_content) > 1600:
+                            print(f"Fallback extraction succeeded, got {len(fallback_content)} chars")
+                            return True, fallback_content, title, None
+                    except Exception as fallback_error:
+                        print(f"Fallback extraction failed: {fallback_error}")
+                    
+                    rejection_reason = f"Content too short: {len(article_content)} chars (minimum 1600)"
+                    return False, "", title, rejection_reason
+                
+                return True, article_content, title, None
+            else:
+                rejection_reason = "Content too short: 0 chars"
+                print("Content extraction failed: Empty or very short content")
+                return False, "", article.get("title", ""), rejection_reason
+            
+        except Exception as e:
+            print(f"Error extracting content: {e}")
+            import traceback
+            print(f"Extraction error traceback: {traceback.format_exc()}")
+            rejection_reason = f"Error: {str(e)}"
+            return False, "", article.get("title", ""), rejection_reason
+
+    def _perform_progressive_scrolling(self, page):
+        """Perform progressive scrolling to expose all content."""
+        try:
+            page_height = page.evaluate("document.body.scrollHeight")
+            view_height = page.evaluate("window.innerHeight")
+            
+            scroll_steps = min(4, max(2, int(page_height / view_height)))
+            print(f"Performing {scroll_steps} scroll steps to load all content...")
+            
+            for i in range(1, scroll_steps + 1):
+                scroll_position = (i * page_height) / scroll_steps
+                page.evaluate(f"window.scrollTo(0, {scroll_position})")
+                page.wait_for_timeout(1000)
+            
+            # Go back to top before extraction
+            page.evaluate("window.scrollTo(0, 0)")
+            page.wait_for_timeout(1000)
+            
+        except Exception as e:
+            print(f"Error during progressive scrolling: {e}")
+
+    def _extract_content_with_soup(self, page):
+        """Extract content using BeautifulSoup parsing."""
+        try:
+            # Get page HTML and parse with BeautifulSoup
+            html_content = page.content()
+            soup = BeautifulSoup(html_content, 'html.parser')
+            
+            # Extract readable text
+            return extract_readable_text(soup)
+            
+        except Exception as e:
+            print(f"Error during content extraction: {e}")
+            return ""
+
+    def _extract_title(self, page, article):
+        """Extract title from the page."""
+        try:
+            # Try to get title from page
+            page_title = page.title()
+            if page_title and len(page_title.strip()) > 0:
+                return page_title.strip()
+                
+            # Fallback to original title
+            return article.get("title", "")
+            
+        except Exception as e:
+            print(f"Error extracting title: {e}")
+            return article.get("title", "")
+
 ------------------------------------------------- ./manual_scrape/src/web_scraper.py --------------------------------------------------
 
 from typing import Optional, Dict, List, Tuple, Set
 import os
 import sys
-from firecrawl import Firecrawl
-from dotenv import load_dotenv
 import re
 from urllib.parse import urlparse, urljoin
+from playwright.sync_api import sync_playwright
 
 # Add config imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 try:
     from config import (
-        DEFAULT_PROXY_MODE, BOT_DETECTION_CODES, STEALTH_COST_WARNING, 
+        BOT_DETECTION_CODES, STEALTH_COST_WARNING, 
         STEALTH_CREDITS_COST, STEALTH_WARNING_MSG, BOT_DETECTED_MSG, 
         STEALTH_PROMPT_MSG, STEALTH_TRYING_MSG
     )
 except ImportError:
     # Fallback values if config.py doesn't exist yet
-    DEFAULT_PROXY_MODE = "auto"
     BOT_DETECTION_CODES = [401, 403, 500]
     STEALTH_COST_WARNING = True
     STEALTH_CREDITS_COST = 5
@@ -1010,17 +1902,16 @@ except ImportError:
     STEALTH_PROMPT_MSG = "🤔 Try stealth mode? [y/N]: "
     STEALTH_TRYING_MSG = "🥷 Trying stealth mode..."
 
+from .browsers.browser_factory import BrowserFactory
+from .content_extractor import ContentExtractor
+
 
 class WebScraper:
     """Web scraper for extracting content from web pages."""
 
     def __init__(self) -> None:
-        """Initialize Firecrawl client."""
-        load_dotenv()
-        api_key = os.getenv("FIRECRAWL_API_KEY")
-        if not api_key:
-            raise ValueError("FIRECRAWL_API_KEY not found in environment variables")
-        self.firecrawl = Firecrawl(api_key=api_key)
+        """Initialize web scraper with Playwright."""
+        self.content_extractor = ContentExtractor()
 
     def is_bot_detected(self, status_code: str) -> bool:
         """Check if the response indicates bot detection."""
@@ -1043,44 +1934,67 @@ class WebScraper:
             else:
                 print("Please enter 'y' or 'n'")
 
-    def scrape_with_proxy(self, url: str, proxy_mode: str = DEFAULT_PROXY_MODE) -> Optional[Dict[str, str]]:
+    def scrape_with_playwright(self, url: str) -> Optional[Dict[str, str]]:
         """
-        Scrape content with specified proxy mode.
+        Scrape content with Playwright browser.
         
         Args:
             url: URL to scrape
-            proxy_mode: Proxy mode ("auto", "basic", "stealth")
         
         Returns:
             Scraped content dict or None if failed
         """
         try:
-            result = self.firecrawl.scrape(
-                url,
-                proxy=proxy_mode,
-                formats=[
-                    "markdown",
-                    {
-                        "type": "json",
-                        "prompt": "Extract key information from this page including title, main content summary, key points, and any important data like prices, dates, or contact information.",
-                    },
-                ],
-            )
-
-            # Access attributes from Firecrawl Document object safely
-            has_metadata = hasattr(result, "metadata") and result.metadata is not None
-            title = getattr(result.metadata, "title", "No title found") if has_metadata else "No title found"
-            status_code = getattr(result.metadata, "statusCode", "Unknown") if has_metadata else "Unknown"
-            markdown_content = getattr(result, "markdown", "")
-            structured_data = getattr(result, "json", {})
-
-            return {
-                "url": url,
-                "title": title,
-                "markdown_content": markdown_content,
-                "structured_data": structured_data,
-                "status_code": str(status_code),
-            }
+            with sync_playwright() as p:
+                # Create browser instance
+                browser_config = BrowserFactory.create()
+                browser = browser_config.launch(p, headless=True)
+                
+                # Create context with stealth settings
+                user_agents = browser_config.get_user_agents()
+                import random
+                context = browser.new_context(
+                    user_agent=random.choice(user_agents),
+                    viewport={"width": 1280, "height": 1200}
+                )
+                page = context.new_page()
+                
+                # Set timeout
+                page.set_default_navigation_timeout(60000)
+                
+                try:
+                    # Navigate to URL
+                    response = page.goto(url, wait_until="domcontentloaded")
+                    
+                    if response and response.status >= 400:
+                        print(f"HTTP error {response.status} while accessing content")
+                        return None
+                    
+                    # Extract domain and create article dict
+                    domain = urlparse(url).netloc
+                    article = {"title": f"Article from {domain}"}
+                    
+                    # Extract content
+                    success, article_content, title, rejection_reason = self.content_extractor.extract_article_content(
+                        page, url, article, domain, domain
+                    )
+                    
+                    if not success:
+                        print(f"Content extraction failed: {rejection_reason}")
+                        return None
+                    
+                    return {
+                        "url": url,
+                        "title": title,
+                        "markdown_content": article_content,
+                        "structured_data": {},
+                        "status_code": str(response.status if response else 200),
+                    }
+                    
+                finally:
+                    page.close()
+                    context.close()
+                    browser.close()
 
         except Exception as e:  # noqa: BLE001 - broad except with logging for robustness
             print(f"Error scraping {url}: {e}")
@@ -1088,7 +2002,7 @@ class WebScraper:
 
     def scrape_page(self, url: str) -> Optional[Dict[str, str]]:
         """
-        Scrape content from a given URL using Firecrawl with bot detection and stealth fallback.
+        Scrape content from a given URL using Playwright with bot detection.
 
         Args:
             url: URL to scrape.
@@ -1096,8 +2010,8 @@ class WebScraper:
         Returns:
             A dict containing metadata, markdown content, and structured data, or None if the request fails.
         """
-        # First attempt with default proxy
-        scraped_content = self.scrape_with_proxy(url, DEFAULT_PROXY_MODE)
+        # Scrape with Playwright
+        scraped_content = self.scrape_with_playwright(url)
         
         if not scraped_content:
             return None
@@ -1107,32 +2021,18 @@ class WebScraper:
         if self.is_bot_detected(status_code):
             print(BOT_DETECTED_MSG.format(status_code))
             
-            # Prompt for stealth retry
-            if self.prompt_stealth_retry():
-                print(STEALTH_TRYING_MSG)
-                stealth_content = self.scrape_with_proxy(url, "stealth")
-                if stealth_content:
-                    print("✅ Success with stealth mode!")
-                    return stealth_content
-                else:
-                    print("❌ Stealth mode also failed")
-                    return None
-            else:
-                print("⏭️  Skipping stealth mode")
-                return None
+            # For now, just return None - stealth retry could be implemented later
+            print("⭐ Bot detection encountered")
         
         return scraped_content
 
     def save_content(self, content: Dict[str, str], filename: str = "scraped_content") -> None:
         """
-        Save scraped content to both markdown and JSON files.
-
         Args:
             content: Scraped content dict.
             filename: Base filename (without extension).
         """
         try:
-            # Save markdown content
             md_filename = f"{filename}.md"
             with open(md_filename, "w", encoding="utf-8") as f:
                 f.write(f"# {content['title']}\n\n")
@@ -1278,6 +2178,389 @@ class WebScraper:
             
         except Exception as e:
             print(f"Error saving content to session: {e}")
+------------------------------------------------- ./manual_scrape/src/browser_utils.py --------------------------------------------------
+
+"""Browser utilities for popup handling, data extraction, and stealth operations."""
+
+import time
+import random
+from bs4 import BeautifulSoup
+
+def get_human_delay(min_ms=800, max_ms=2500):
+    """Get a random delay that mimics human behavior."""
+    return random.randint(min_ms, max_ms)
+
+def add_human_pause(page, min_ms=1000, max_ms=3000):
+    """Add a human-like pause with mouse movement."""
+    try:
+        viewport = page.viewport_size
+        if viewport:
+            x = random.randint(100, viewport['width'] - 100)
+            y = random.randint(100, viewport['height'] - 100)
+            page.mouse.move(x, y)
+        page.wait_for_timeout(get_human_delay(min_ms, max_ms))
+    except Exception:
+        page.wait_for_timeout(get_human_delay(min_ms, max_ms))
+
+def handle_cookies_and_consent(page, timeout=15000):
+    """Handle cookies and consent dialogs with Playwright selectors."""
+    print("Handling cookies and consent with Playwright selectors...")
+    
+    start_time = time.time()
+    max_time_ms = timeout
+    
+    try:
+        if (time.time() - start_time) * 1000 > max_time_ms:
+            print(f"Cookie handling timed out after {timeout}ms")
+            return False
+        
+        # Priority 1: Explicit accept buttons
+        accept_buttons = [
+            "button:has-text('I accept all cookies')",
+            "button:has-text('Accept all cookies')", 
+            "button:has-text('Accept All')",
+            "button:has-text('Accept')",
+            "button:has-text('Accetta tutto')",  # Italian
+            "button:has-text('Accetto')",       # Italian
+        ]
+        
+        # Priority 2: Close/dismiss buttons  
+        close_buttons = [
+            "button:has-text('Close')",
+            "button:has-text('Chiudi')",        # Italian
+            "button:has-text('×')",
+            "button[aria-label*='close']",
+            "button[class*='close']",
+        ]
+        
+        # Priority 3: Generic attribute-based selectors
+        generic_buttons = [
+            "[id*='accept'] button:not([href]):not(a)",
+            "[class*='accept'] button:not([href]):not(a)", 
+            "[id*='cookie'] button:not([href]):not(a)",
+            "[class*='cookie'] button:not([href]):not(a)",
+            "[data-testid*='accept'] button:not([href]):not(a)",
+        ]
+        
+        # Combine all selectors in priority order
+        button_selectors = accept_buttons + close_buttons + generic_buttons
+        
+        clicked = False
+        
+        # Try each selector with timeout check
+        for selector in button_selectors:
+            if (time.time() - start_time) * 1000 > max_time_ms:
+                print(f"Cookie handling timed out during selector iteration")
+                return False
+            
+            try:
+                if page.query_selector(selector):
+                    print(f"Found popup button with selector: {selector}")
+                    page.click(selector, timeout=2000)
+                    print(f"Successfully clicked popup button with selector: {selector}")
+                    clicked = True
+                    break
+            except Exception:
+                continue
+        
+        if clicked:
+            print("Cookie/consent button clicked, waiting for page to stabilize...")
+            remaining_time = max(0, max_time_ms - (time.time() - start_time) * 1000)
+            if remaining_time > 1000:
+                page.wait_for_timeout(min(2000, int(remaining_time)))
+            return True
+        
+        return False
+        
+    except Exception as e:
+        print(f"Error handling cookies and consent: {e}")
+        return False
+
+def handle_any_popups(page, aggressive=False):
+    """Handle any type of popup, consent dialog, or cookie banner."""
+    print(f"Trying {'aggressive ' if aggressive else ''}popup handling...")
+    
+    # Step 1: Try button clicking with human delays
+    add_human_pause(page, 500, 1200)
+    
+    button_clicked = handle_cookies_and_consent(page, timeout=8000 if aggressive else 5000)
+    
+    if button_clicked:
+        print("✅ Successfully handled popup with button clicking")
+        add_human_pause(page, 1000, 2000)
+        return True
+    
+    # Step 2: DOM removal fallback if aggressive
+    if aggressive:
+        print("Using DOM removal fallback...")
+        add_human_pause(page, 1000, 2000)
+        
+        try:
+            removed_count = page.evaluate("""() => {
+                const removeElements = (selector) => {
+                    const elements = document.querySelectorAll(selector);
+                    let removed = 0;
+                    elements.forEach(el => {
+                        el.remove();
+                        removed++;
+                    });
+                    return removed;
+                };
+                
+                let removedCount = 0;
+                
+                // Remove elements with high z-index that could be overlays
+                document.querySelectorAll('*').forEach(el => {
+                    const style = window.getComputedStyle(el);
+                    const zIndex = parseInt(style.zIndex);
+                    if (zIndex > 999) {
+                        const position = style.position;
+                        if (position === 'fixed' || position === 'absolute') {
+                            el.remove();
+                            removedCount++;
+                        }
+                    }
+                });
+                
+                // Remove common cookie/consent banners
+                removedCount += removeElements('[class*="cookie"]:not(html):not(body)');
+                removedCount += removeElements('[class*="consent"]:not(html):not(body)');
+                removedCount += removeElements('[class*="popup"]:not(html):not(body)');
+                removedCount += removeElements('[class*="banner"]:not(html):not(body)');
+                removedCount += removeElements('[class*="overlay"]:not(html):not(body)');
+                removedCount += removeElements('[class*="modal"]:not(html):not(body)');
+                removedCount += removeElements('[id*="cookie"]:not(html):not(body)');
+                removedCount += removeElements('[id*="consent"]:not(html):not(body)');
+                
+                document.body.style.overflow = 'auto';
+                document.documentElement.style.overflow = 'auto';
+                
+                return removedCount;
+            }""")
+            
+            if removed_count > 0:
+                print("DOM removal: removed ${removed_count} elements")
+                add_human_pause(page, 1500, 3000)
+                return True
+        except Exception as e:
+            print(f"DOM removal failed: {e}")
+    
+    return False
+
+def extract_readable_text(soup):
+    """Extract readable text from BeautifulSoup object."""
+    # Remove unwanted elements
+    for element in soup(['script', 'style', 'nav', 'footer', 'aside', 'header']):
+        element.decompose()
+    
+    # Try to find main content areas
+    content_selectors = [
+        'article', 
+        '[role="main"]', 
+        '.content', 
+        '#content',
+        '.post-content',
+        '.article-body',
+        '.entry-content'
+    ]
+    
+    for selector in content_selectors:
+        content = soup.select_one(selector)
+        if content:
+            text = content.get_text(separator=' ', strip=True)
+            if len(text) > 500:  # Only return if substantial content
+                return text
+    
+    # Fallback to body text
+    return soup.get_text(separator=' ', strip=True)
+
+------------------------------------------------- ./manual_scrape/src/browsers/browser_firefox.py --------------------------------------------------
+
+"""Firefox browser implementation."""
+
+from typing import List
+
+class FirefoxBrowser:
+    """Firefox browser configuration and launch handler."""
+
+    name = "firefox"
+
+    def get_launch_args(self) -> List[str]:
+        """Get Firefox-specific launch arguments optimized for stealth."""
+        return [
+            '--no-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--disable-background-timer-throttling',
+            '--disable-backgrounding-occluded-windows',
+            '--disable-renderer-backgrounding',
+            '--no-first-run',
+            '--disable-default-browser-check',
+            '--disable-infobars'
+        ]
+
+    def launch(self, playwright_instance, headless: bool = False):
+        """Launch Firefox browser with stealth configuration."""
+        print(f"🚀 Launching Firefox browser (headless: {headless})")
+        print(f"🔧 Firefox launch args: {self.get_launch_args()}")
+        
+        try:
+            browser = playwright_instance.firefox.launch(
+                headless=headless,
+                args=self.get_launch_args()
+            )
+            print(f"✅ Firefox browser launched successfully")
+            return browser
+        except Exception as e:
+            print(f"❌ Failed to launch Firefox browser: {e}")
+            raise
+
+    def get_user_agents(self) -> List[str]:
+        """Get Firefox-compatible user agents."""
+        return [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:119.0) Gecko/20100101 Firefox/119.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:120.0) Gecko/20100101 Firefox/120.0",
+            "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+        ]
+
+    def add_human_behavior(self, page):
+        """Add realistic human behavior including mouse movement."""
+        import random
+        # Random mouse movement
+        page.mouse.move(
+            random.randint(100, 800),
+            random.randint(100, 600)
+        )
+        page.wait_for_timeout(random.randint(800, 2000))
+
+------------------------------------------------- ./manual_scrape/src/browsers/__init__.py --------------------------------------------------
+
+"""Browser factory and configuration modules."""
+
+------------------------------------------------- ./manual_scrape/src/browsers/browser_factory.py --------------------------------------------------
+
+"""Factory class for creating browser instances."""
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from config import BROWSER
+
+from .browser_chromium import ChromiumBrowser
+from .browser_firefox import FirefoxBrowser
+
+class BrowserFactory:
+    """Factory class for creating browser instances."""
+
+    _browsers = {
+        'chromium': ChromiumBrowser,
+        'firefox': FirefoxBrowser
+    }
+
+    @classmethod
+    def create(cls, browser_name=None):
+        """Create a browser instance based on configuration or specified name."""
+        if browser_name is None:
+            browser_name = BROWSER.get('default', 'firefox')
+            print(f"🌐 Browser auto-selected from config: {browser_name}")
+        else:
+            print(f"🌐 Browser explicitly requested: {browser_name}")
+
+        browser_class = cls._browsers.get(browser_name)
+        if not browser_class:
+            raise ValueError(f"Unsupported browser: {browser_name}. Available: {list(cls._browsers.keys())}")
+
+        browser_instance = browser_class()
+        print(f"✅ Browser instance created: {browser_instance.name}")
+        return browser_instance
+
+    @classmethod
+    def get_available_browsers(cls):
+        """Get list of available browser names."""
+        return list(cls._browsers.keys())
+    
+    @classmethod
+    def verify_browser_config(cls):
+        """Verify current browser configuration and return details."""
+        try:
+            config_browser = BROWSER.get('default', 'firefox')
+            print(f"📋 Config browser setting: {config_browser}")
+            
+            browser_instance = cls.create()
+            print(f"📋 Actual browser created: {browser_instance.name}")
+            
+            return {
+                'config_browser': config_browser,
+                'actual_browser': browser_instance.name,
+                'available_browsers': cls.get_available_browsers()
+            }
+        except Exception as e:
+            print(f"❌ Browser config verification failed: {e}")
+            return None
+
+------------------------------------------------- ./manual_scrape/src/browsers/browser_chromium.py --------------------------------------------------
+
+"""Chromium browser implementation."""
+
+from typing import List
+
+class ChromiumBrowser:
+    """Chromium browser configuration and launch handler."""
+
+    name = "chromium"
+
+    def get_launch_args(self) -> List[str]:
+        """Get Chromium-specific launch arguments optimized for stealth."""
+        return [
+            '--no-sandbox',
+            '--disable-blink-features=AutomationControlled',
+            '--disable-dev-shm-usage',
+            '--disable-background-timer-throttling',
+            '--disable-backgrounding-occluded-windows',
+            '--disable-renderer-backgrounding',
+            '--disable-features=TranslateUI',
+            '--disable-ipc-flooding-protection',
+            '--no-first-run',
+            '--force-device-scale-factor=1',
+            '--disable-default-apps'
+        ]
+
+    def launch(self, playwright_instance, headless: bool = True):
+        """Launch Chromium browser with stealth configuration."""
+        print(f"🚀 Launching Chromium browser (headless: {headless})")
+        print(f"🔧 Chromium launch args: {self.get_launch_args()}")
+        
+        try:
+            browser = playwright_instance.chromium.launch(
+                headless=headless,
+                args=self.get_launch_args()
+            )
+            print(f"✅ Chromium browser launched successfully")
+            return browser
+        except Exception as e:
+            print(f"❌ Failed to launch Chromium browser: {e}")
+            raise
+
+    def get_user_agents(self) -> List[str]:
+        """Get Chromium-compatible user agents."""
+        return [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        ]
+
+    def add_human_behavior(self, page):
+        """Add realistic human behavior including mouse movement."""
+        import random
+        # Random mouse movement
+        page.mouse.move(
+            random.randint(100, 800),
+            random.randint(100, 600)
+        )
+        page.wait_for_timeout(random.randint(800, 2000))
+
 ------------------------------------------------- ./manual_scrape/src/serp_api_client.py --------------------------------------------------
 
 """
