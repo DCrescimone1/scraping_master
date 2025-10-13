@@ -5,6 +5,7 @@ from firecrawl import Firecrawl
 import fitz  # PyMuPDF
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as minidom
+from .bmecat_parser import BMEcatParser
 
 class FirecrawlParser:
     """Handles PDF and XML to text conversion using Firecrawl and local parsers."""
@@ -80,8 +81,8 @@ class FirecrawlParser:
 
     def _parse_local_xml(self, file_path: str) -> Optional[Dict[str, object]]:
         """
-        Parse local XML file and convert to readable text format.
-        
+        Parse local XML file using enhanced BMEcat parser.
+
         Args:
             file_path: Path to local XML file
             
@@ -89,30 +90,32 @@ class FirecrawlParser:
             Dict with parsed content or None if failed
         """
         try:
-            # Read XML file
-            tree = ET.parse(file_path)
-            root = tree.getroot()
-
-            # Convert to pretty-printed string
-            xml_string = ET.tostring(root, encoding='unicode')
-            pretty_xml = minidom.parseString(xml_string).toprettyxml(indent="  ")
-
-            # Extract text content for analysis
-            text_content = self._extract_xml_text(root)
-
-            # Combine structure and content
-            markdown_text = f"# XML Document Structure\n\n```xml\n{pretty_xml}\n```\n\n# Extracted Text Content\n\n{text_content}"
-
-            word_count = len(text_content.split())
-
+            print("📄 Parsing BMEcat XML with enhanced parser...")
+            
+            # Use BMEcat-specific parser
+            bmecat_parser = BMEcatParser()
+            parsed_data = bmecat_parser.parse_bmecat_file(file_path)
+            
+            if not parsed_data:
+                print("⚠️  Failed to parse BMEcat XML")
+                return None
+            
+            # Convert to markdown for AI processing
+            markdown_content = bmecat_parser.to_markdown(parsed_data)
+            word_count = len(markdown_content.split())
+            
+            print(f"✅ Extracted {word_count:,} words")
+            print(f"   - {parsed_data['metadata']['total_catalog_structures']} catalog structures")
+            print(f"   - {parsed_data['metadata']['root_categories']} root categories")
+            
             return {
-                "markdown": markdown_text,
+                "markdown": markdown_content,
                 "word_count": word_count,
-                "method": "xml_parser"
+                "method": "bmecat_parser"
             }
         
         except Exception as e:
-            print(f"❌ Error parsing local XML: {e}")
+            print(f"❌ Error parsing BMEcat XML: {e}")
             return None
 
     def _parse_url_pdf(self, pdf_url: str) -> Optional[Dict[str, object]]:
@@ -180,13 +183,10 @@ class FirecrawlParser:
             xml_string = ET.tostring(root, encoding='unicode')
             pretty_xml = minidom.parseString(xml_string).toprettyxml(indent="  ")
             
-            # Extract text content
-            text_content = self._extract_xml_text(root)
+            # Combine structure content (pretty XML only)
+            markdown_text = f"# XML Document Structure\n\n```xml\n{pretty_xml}\n```"
             
-            # Combine structure and content
-            markdown_text = f"# XML Document Structure\n\n```xml\n{pretty_xml}\n```\n\n# Extracted Text Content\n\n{text_content}"
-            
-            word_count = len(text_content.split())
+            word_count = len(pretty_xml.split())
             
             return {
                 "markdown": markdown_text,
@@ -198,34 +198,7 @@ class FirecrawlParser:
             print(f"❌ Error parsing XML URL: {e}")
             return None
 
-    def _extract_xml_text(self, element, level: int = 0) -> str:
-        """
-        Recursively extract text content from XML elements.
-        
-        Args:
-            element: XML element
-            level: Indentation level
-            
-        Returns:
-            Formatted text content
-        """
-        text_parts = []
-        indent = "  " * level
-        
-        # Add element tag and attributes
-        if getattr(element, 'tag', None):
-            attrs = " ".join([f"{k}='{v}'" for k, v in getattr(element, 'attrib', {}).items()])
-            text_parts.append(f"{indent}<{element.tag}{' ' + attrs if attrs else ''}>")
-        
-        # Add text content if present
-        if getattr(element, 'text', None) and element.text.strip():
-            text_parts.append(f"{indent}  {element.text.strip()}")
-        
-        # Process children
-        for child in list(element):
-            text_parts.append(self._extract_xml_text(child, level + 1))
-        
-        return "\n".join(text_parts)
+
 
     def parse_document(self, file_path: str, file_type: str = 'pdf') -> Optional[Dict[str, object]]:
         """

@@ -1,5 +1,8 @@
 Folder structure:
 .
+├── dabag_ch_20251010_183516
+│   ├── www_dabag_ch__data.json
+│   └── www_dabag_ch_.md
 ├── doc_processor
 │   ├── config.py
 │   ├── main.py
@@ -46,6 +49,7 @@ Folder structure:
 │       ├── serp_api_client.py
 │       └── web_scraper.py
 ├── outputs
+│   └── Stihl_Version DABAG_summary_20251010_183123.json
 ├── project_dump.sh
 ├── requirements.txt
 ├── scraping_master_dump.txt
@@ -53,7 +57,7 @@ Folder structure:
     ├── spider_man_results_data.json
     └── spider_man_results.md
 
-15 directories, 38 files
+16 directories, 41 files
 
 
 --- File Contents ---
@@ -127,8 +131,8 @@ if not GROK_API_KEY:
 
 #!/usr/bin/env python3
 """
-Document Processor - PDF Analysis Tool
-Parses PDFs, analyzes with AI, collects user context, outputs structured JSON.
+Document Processor - PDF & XML Analysis Tool
+Parses PDFs/XMLs, analyzes with AI, collects user context, outputs structured JSON.
 """
 
 import sys
@@ -146,15 +150,15 @@ from src.user_prompt import UserPrompt
 from src.json_generator import JSONGenerator
 
 
-def get_pdf_path() -> str:
-    """Get PDF path from command line or user input."""
+def get_file_path() -> str:
+    """Get file path (PDF or XML) from command line or user input."""
     if len(sys.argv) > 1:
         return sys.argv[1]
     else:
-        print("📄 Document Processor")
+        print("📄 Document Processor (PDF & XML)")
         print("="*60)
-        pdf_path = input("Enter path to PDF file: ").strip()
-        return pdf_path
+        file_path = input("Enter path to PDF or XML file: ").strip()
+        return file_path
 
 
 def main():
@@ -162,31 +166,33 @@ def main():
     start_time = time.time()
     
     try:
-        # Get PDF path
-        pdf_path = get_pdf_path()
+        # Get file path
+        file_path = get_file_path()
         
-        # PHASE 1: Validate PDF
-        print("\n🔍 Validating PDF...")
+        # PHASE 1: Validate file
+        print("\n🔍 Validating file...")
         pdf_handler = PDFHandler()
         
-        if not pdf_handler.validate_file(pdf_path):
+        if not pdf_handler.validate_file(file_path):
             print("❌ Validation failed. Exiting.")
             return
         
-        file_info = pdf_handler.get_file_info(pdf_path)
-        print(f"✅ Valid: {file_info['filename']} ({file_info['size_mb']} MB)")
+        file_info = pdf_handler.get_file_info(file_path)
+        file_type = file_info.get('file_type', 'pdf')
+        print(f"✅ Valid {file_type.upper()}: {file_info['filename']} ({file_info['size_mb']} MB)")
         
-        # PHASE 2: Parse PDF (auto-detects URL vs local file)
-        print("\n📄 Extracting text from PDF...")
+        # PHASE 2: Parse document (auto-detects URL vs local, PDF vs XML)
+        print(f"\n📄 Extracting content from {file_type.upper()}...")
         parser = FirecrawlParser(config.FIRECRAWL_API_KEY)
         
-        parse_result = parser.parse_pdf(pdf_path)
+        parse_result = parser.parse_document(file_path, file_type)
         if not parse_result:
-            print("❌ Failed to extract text from PDF. Exiting.")
+            print(f"❌ Failed to extract content from {file_type.upper()}. Exiting.")
             return
         
         markdown_text = parser.get_parsed_content(parse_result)
         file_info["word_count"] = parse_result.get("word_count", 0)
+        print(f"✅ Extracted {file_info['word_count']} words")
         
         # PHASE 3: Process with Grok AI
         print("\n🤖 Analyzing with LLM (xAI Grok by default)...")
@@ -212,7 +218,8 @@ def main():
         
         processing_meta = {
             "grok_model": config.GROK_MODEL,
-            "parsing_method": "firecrawl",
+            "parsing_method": parse_result.get("method", "unknown"),
+            "file_type": file_type,
             "total_processing_time_seconds": processing_time
         }
         
@@ -249,7 +256,7 @@ if __name__ == "__main__":
 
 ------------------------------------------------- ./doc_processor/src/pdf_handler.py --------------------------------------------------
 
-"""PDF file validation and handling."""
+"""PDF and XML file validation and handling."""
 
 import os
 from pathlib import Path
@@ -258,32 +265,35 @@ from typing import Dict
 
 
 class PDFHandler:
-    """Validates and prepares PDF files for processing."""
+    """Validates and prepares PDF and XML files for processing."""
     
     def __init__(self):
-        """Initialize PDF handler."""
+        """Initialize file handler for PDF and XML files."""
         pass
+    
+    # Supported file extensions
+    SUPPORTED_EXTENSIONS = {'.pdf', '.xml'}
     
     def validate_file(self, file_path: str) -> bool:
         """
-        Validate that input is either a valid local PDF file or a PDF URL.
+        Validate that input is either a valid local PDF/XML file or a PDF/XML URL.
         
         Args:
-            file_path: Path to PDF file
+            file_path: Path to PDF or XML file
             
         Returns:
-            True if valid, False otherwise
         """
         try:
             # URL case
             if isinstance(file_path, str) and (file_path.startswith("http://") or file_path.startswith("https://")):
                 parsed = urlparse(file_path)
-                # Basic sanity: must have netloc and path ending with .pdf
+                # Basic sanity: must have netloc and path ending with supported extension
                 if not parsed.netloc:
                     print(f"❌ Invalid URL: {file_path}")
                     return False
-                if not parsed.path.lower().endswith('.pdf'):
-                    print(f"❌ URL does not point to a PDF: {file_path}")
+                path_lower = parsed.path.lower()
+                if not any(path_lower.endswith(ext) for ext in self.SUPPORTED_EXTENSIONS):
+                    print(f"❌ URL does not point to a supported file (PDF or XML): {file_path}")
                     return False
                 return True
 
@@ -300,9 +310,9 @@ class PDFHandler:
                 print(f"❌ Not a file: {file_path}")
                 return False
 
-            # Check PDF extension
-            if path.suffix.lower() != '.pdf':
-                print(f"❌ Not a PDF file: {file_path}")
+            # Check supported extension
+            if path.suffix.lower() not in self.SUPPORTED_EXTENSIONS:
+                print(f"❌ Not a supported file type (PDF or XML): {file_path}")
                 return False
 
             # Check readable
@@ -315,56 +325,88 @@ class PDFHandler:
         except Exception as e:
             print(f"❌ Error validating file: {e}")
             return False
+
+    def get_file_type(self, file_path: str) -> str:
+        """
+        Determine file type (pdf or xml).
+        
+        Args:
+            file_path: Path to file or URL
+            
+        Returns:
+            'pdf' or 'xml' or 'unknown'
+        """
+        try:
+            if isinstance(file_path, str) and (file_path.startswith("http://") or file_path.startswith("https://")):
+                parsed = urlparse(file_path)
+                path_lower = parsed.path.lower()
+            else:
+                path_lower = str(file_path).lower()
+            
+            if path_lower.endswith('.pdf'):
+                return 'pdf'
+            elif path_lower.endswith('.xml'):
+                return 'xml'
+            else:
+                return 'unknown'
+        except Exception:
+            return 'unknown'
     
     def get_file_info(self, file_path: str) -> Dict[str, object]:
         """
-        Extract file metadata for local PDF or URL.
+        Extract file metadata for local PDF/XML or URL.
         
         Args:
-            file_path: Path to PDF file
+            file_path: Path to PDF or XML file
             
         Returns:
             Dict with file info
         """
         try:
+            file_type = self.get_file_type(file_path)
             # URL case
             if isinstance(file_path, str) and (file_path.startswith("http://") or file_path.startswith("https://")):
                 parsed = urlparse(file_path)
                 # Derive filename from URL path
-                name = Path(parsed.path).name or "document.pdf"
+                name = Path(parsed.path).name or f"document.{file_type}"
                 return {
                     "filename": name,
                     "file_path": file_path,
-                    "size_mb": 0
+                    "size_mb": 0,
+                    "file_type": file_type
                 }
-
+            
             # Local file case
             path = Path(file_path)
             size_mb = path.stat().st_size / (1024 * 1024)
-
+            
             return {
                 "filename": path.name,
                 "file_path": str(path.absolute()),
-                "size_mb": round(size_mb, 2)
+                "size_mb": round(size_mb, 2),
+                "file_type": file_type
             }
         except Exception as e:
             print(f"⚠️  Error getting file info: {e}")
             return {
                 "filename": "unknown",
                 "file_path": file_path,
-                "size_mb": 0
+                "size_mb": 0,
+                "file_type": "unknown"
             }
 
 ------------------------------------------------- ./doc_processor/src/firecrawl_parser.py --------------------------------------------------
 
-"""Firecrawl PDF parsing integration."""
+"""Firecrawl PDF/XML parsing integration."""
 
 from typing import Optional, Dict
 from firecrawl import Firecrawl
 import fitz  # PyMuPDF
+import xml.etree.ElementTree as ET
+import xml.dom.minidom as minidom
 
 class FirecrawlParser:
-    """Handles PDF to text conversion using Firecrawl."""
+    """Handles PDF and XML to text conversion using Firecrawl and local parsers."""
 
     def __init__(self, api_key: str):
         """
@@ -435,6 +477,43 @@ class FirecrawlParser:
             print(f"❌ Error parsing local PDF: {e}")
             return None
 
+    def _parse_local_xml(self, file_path: str) -> Optional[Dict[str, object]]:
+        """
+        Parse local XML file and convert to readable text format.
+        
+        Args:
+            file_path: Path to local XML file
+            
+        Returns:
+            Dict with parsed content or None if failed
+        """
+        try:
+            # Read XML file
+            tree = ET.parse(file_path)
+            root = tree.getroot()
+
+            # Convert to pretty-printed string
+            xml_string = ET.tostring(root, encoding='unicode')
+            pretty_xml = minidom.parseString(xml_string).toprettyxml(indent="  ")
+
+            # Extract text content for analysis
+            text_content = self._extract_xml_text(root)
+
+            # Combine structure and content
+            markdown_text = f"# XML Document Structure\n\n```xml\n{pretty_xml}\n```\n\n# Extracted Text Content\n\n{text_content}"
+
+            word_count = len(text_content.split())
+
+            return {
+                "markdown": markdown_text,
+                "word_count": word_count,
+                "method": "xml_parser"
+            }
+        
+        except Exception as e:
+            print(f"❌ Error parsing local XML: {e}")
+            return None
+
     def _parse_url_pdf(self, pdf_url: str) -> Optional[Dict[str, object]]:
         """
         Parse PDF from URL using Firecrawl.
@@ -476,37 +555,121 @@ class FirecrawlParser:
             print(f"❌ Error parsing PDF from URL: {e}")
             return None
 
-    def parse_pdf(self, file_path: str) -> Optional[Dict[str, object]]:
+    def _parse_url_xml(self, url: str) -> Optional[Dict[str, object]]:
         """
-        Parse PDF file using appropriate method (URL → Firecrawl, Local → PyMuPDF).
+        Parse XML from URL.
+        
+        Args:
+            url: URL to XML file
+            
+        Returns:
+            Dict with parsed content or None if failed
+        """
+        try:
+            import requests
+            
+            # Fetch XML from URL
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+            
+            # Parse XML
+            root = ET.fromstring(response.content)
+            
+            # Convert to pretty-printed string
+            xml_string = ET.tostring(root, encoding='unicode')
+            pretty_xml = minidom.parseString(xml_string).toprettyxml(indent="  ")
+            
+            # Extract text content
+            text_content = self._extract_xml_text(root)
+            
+            # Combine structure and content
+            markdown_text = f"# XML Document Structure\n\n```xml\n{pretty_xml}\n```\n\n# Extracted Text Content\n\n{text_content}"
+            
+            word_count = len(text_content.split())
+            
+            return {
+                "markdown": markdown_text,
+                "word_count": word_count,
+                "method": "xml_url_parser"
+            }
+            
+        except Exception as e:
+            print(f"❌ Error parsing XML URL: {e}")
+            return None
+
+    def _extract_xml_text(self, element, level: int = 0) -> str:
+        """
+        Recursively extract text content from XML elements.
+        
+        Args:
+            element: XML element
+            level: Indentation level
+            
+        Returns:
+            Formatted text content
+        """
+        text_parts = []
+        indent = "  " * level
+        
+        # Add element tag and attributes
+        if getattr(element, 'tag', None):
+            attrs = " ".join([f"{k}='{v}'" for k, v in getattr(element, 'attrib', {}).items()])
+            text_parts.append(f"{indent}<{element.tag}{' ' + attrs if attrs else ''}>")
+        
+        # Add text content if present
+        if getattr(element, 'text', None) and element.text.strip():
+            text_parts.append(f"{indent}  {element.text.strip()}")
+        
+        # Process children
+        for child in list(element):
+            text_parts.append(self._extract_xml_text(child, level + 1))
+        
+        return "\n".join(text_parts)
+
+    def parse_document(self, file_path: str, file_type: str = 'pdf') -> Optional[Dict[str, object]]:
+        """
+        Parse document (PDF or XML) based on type and location.
 
         Args:
-            file_path: Path to local PDF file OR URL to PDF
+            file_path: Path to local file OR URL to file
+            file_type: 'pdf' or 'xml' (default: 'pdf')
 
         Returns:
             Dict with parsed content or None if failed
         """
-        # Detect if input is URL or local path
-        if self._is_url(file_path):
-            print("🌐 Detected URL input - using Firecrawl")
-            return self._parse_url_pdf(file_path)
+        is_url = self._is_url(file_path)
+
+        # Route to appropriate parser
+        if file_type == 'pdf':
+            if is_url:
+                print("🌐 Detected PDF URL - using Firecrawl")
+                return self._parse_url_pdf(file_path)
+            else:
+                print("💾 Detected local PDF - using PyMuPDF")
+                return self._parse_local_pdf(file_path)
+        elif file_type == 'xml':
+            if is_url:
+                print("🌐 Detected XML URL - using XML parser")
+                return self._parse_url_xml(file_path)
+            else:
+                print("💾 Detected local XML - using XML parser")
+                return self._parse_local_xml(file_path)
         else:
-            print("💾 Detected local file - using PyMuPDF")
-            return self._parse_local_pdf(file_path)
+            print(f"❌ Unsupported file type: {file_type}")
+            return None
 
     def get_parsed_content(self, parse_result: Dict) -> str:
         """
         Extract markdown text from parse result.
-
+        
         Args:
-            parse_result: Result from parse_pdf()
-
+            parse_result: Result from parse_document()
+        
         Returns:
             Markdown text content
         """
         if not parse_result:
             return ""
-
         return parse_result.get("markdown", "")
 
 ------------------------------------------------- ./doc_processor/src/user_prompt.py --------------------------------------------------

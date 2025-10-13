@@ -118,6 +118,21 @@ doc_processor/
 - ✅ Timestamped filenames
 - ✅ Error handling & validation
 
+## XML Processing
+
+The tool now includes an enhanced BMEcat XML parser that:
+
+- Captures all XML attributes (type, language, relationships)
+- Preserves complete content including long descriptions
+- Maintains multi-language support (deu, fra, ita)
+- Provides structured output optimized for AI processing
+
+The BMEcat parser automatically extracts:
+- Catalog header information (ID, version, languages, supplier)
+- Complete catalog structure hierarchy (root, node, leaf categories)
+- All group names and descriptions in all available languages
+- Parent-child relationships and ordering information
+
 ## Notes
 
 - Processes one PDF at a time
