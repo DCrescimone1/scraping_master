@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Document Processor - PDF Analysis Tool
-Parses PDFs, analyzes with AI, collects user context, outputs structured JSON.
+Document Processor - PDF & XML Analysis Tool
+Parses PDFs/XMLs, analyzes with AI, collects user context, outputs structured JSON.
 """
 
 import sys
@@ -19,15 +19,15 @@ from src.user_prompt import UserPrompt
 from src.json_generator import JSONGenerator
 
 
-def get_pdf_path() -> str:
-    """Get PDF path from command line or user input."""
+def get_file_path() -> str:
+    """Get file path (PDF or XML) from command line or user input."""
     if len(sys.argv) > 1:
         return sys.argv[1]
     else:
-        print("📄 Document Processor")
+        print("📄 Document Processor (PDF & XML)")
         print("="*60)
-        pdf_path = input("Enter path to PDF file: ").strip()
-        return pdf_path
+        file_path = input("Enter path to PDF or XML file: ").strip()
+        return file_path
 
 
 def main():
@@ -35,31 +35,33 @@ def main():
     start_time = time.time()
     
     try:
-        # Get PDF path
-        pdf_path = get_pdf_path()
+        # Get file path
+        file_path = get_file_path()
         
-        # PHASE 1: Validate PDF
-        print("\n🔍 Validating PDF...")
+        # PHASE 1: Validate file
+        print("\n🔍 Validating file...")
         pdf_handler = PDFHandler()
         
-        if not pdf_handler.validate_file(pdf_path):
+        if not pdf_handler.validate_file(file_path):
             print("❌ Validation failed. Exiting.")
             return
         
-        file_info = pdf_handler.get_file_info(pdf_path)
-        print(f"✅ Valid: {file_info['filename']} ({file_info['size_mb']} MB)")
+        file_info = pdf_handler.get_file_info(file_path)
+        file_type = file_info.get('file_type', 'pdf')
+        print(f"✅ Valid {file_type.upper()}: {file_info['filename']} ({file_info['size_mb']} MB)")
         
-        # PHASE 2: Parse PDF (auto-detects URL vs local file)
-        print("\n📄 Extracting text from PDF...")
+        # PHASE 2: Parse document (auto-detects URL vs local, PDF vs XML)
+        print(f"\n📄 Extracting content from {file_type.upper()}...")
         parser = FirecrawlParser(config.FIRECRAWL_API_KEY)
         
-        parse_result = parser.parse_pdf(pdf_path)
+        parse_result = parser.parse_document(file_path, file_type)
         if not parse_result:
-            print("❌ Failed to extract text from PDF. Exiting.")
+            print(f"❌ Failed to extract content from {file_type.upper()}. Exiting.")
             return
         
         markdown_text = parser.get_parsed_content(parse_result)
         file_info["word_count"] = parse_result.get("word_count", 0)
+        print(f"✅ Extracted {file_info['word_count']} words")
         
         # PHASE 3: Process with Grok AI
         print("\n🤖 Analyzing with LLM (xAI Grok by default)...")
@@ -85,7 +87,8 @@ def main():
         
         processing_meta = {
             "grok_model": config.GROK_MODEL,
-            "parsing_method": "firecrawl",
+            "parsing_method": parse_result.get("method", "unknown"),
+            "file_type": file_type,
             "total_processing_time_seconds": processing_time
         }
         

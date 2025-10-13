@@ -45,6 +45,7 @@ Folder structure:
 │       ├── content_extractor.py
 │       ├── serp_api_client.py
 │       └── web_scraper.py
+├── outputs
 ├── project_dump.sh
 ├── requirements.txt
 ├── scraping_master_dump.txt
@@ -52,7 +53,7 @@ Folder structure:
     ├── spider_man_results_data.json
     └── spider_man_results.md
 
-14 directories, 38 files
+15 directories, 38 files
 
 
 --- File Contents ---
@@ -72,7 +73,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # API Configuration
-FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
+FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")  # Used for URL-based PDF parsing
 GROK_API_KEY = os.getenv("GROK_API_KEY")  # xAI API key
 GROK_MODEL = os.getenv("GROK_MODEL", "grok-beta")  # Default model
 
@@ -175,8 +176,8 @@ def main():
         file_info = pdf_handler.get_file_info(pdf_path)
         print(f"✅ Valid: {file_info['filename']} ({file_info['size_mb']} MB)")
         
-        # PHASE 2: Parse PDF with Firecrawl
-        print("\n📄 Extracting text with Firecrawl...")
+        # PHASE 2: Parse PDF (auto-detects URL vs local file)
+        print("\n📄 Extracting text from PDF...")
         parser = FirecrawlParser(config.FIRECRAWL_API_KEY)
         
         parse_result = parser.parse_pdf(pdf_path)
@@ -252,6 +253,7 @@ if __name__ == "__main__":
 
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 from typing import Dict
 
 
@@ -264,7 +266,7 @@ class PDFHandler:
     
     def validate_file(self, file_path: str) -> bool:
         """
-        Validate that file exists and is a PDF.
+        Validate that input is either a valid local PDF file or a PDF URL.
         
         Args:
             file_path: Path to PDF file
@@ -273,37 +275,50 @@ class PDFHandler:
             True if valid, False otherwise
         """
         try:
+            # URL case
+            if isinstance(file_path, str) and (file_path.startswith("http://") or file_path.startswith("https://")):
+                parsed = urlparse(file_path)
+                # Basic sanity: must have netloc and path ending with .pdf
+                if not parsed.netloc:
+                    print(f"❌ Invalid URL: {file_path}")
+                    return False
+                if not parsed.path.lower().endswith('.pdf'):
+                    print(f"❌ URL does not point to a PDF: {file_path}")
+                    return False
+                return True
+
+            # Local file case
             path = Path(file_path)
-            
+
             # Check exists
             if not path.exists():
                 print(f"❌ File not found: {file_path}")
                 return False
-            
+
             # Check is file (not directory)
             if not path.is_file():
                 print(f"❌ Not a file: {file_path}")
                 return False
-            
+
             # Check PDF extension
             if path.suffix.lower() != '.pdf':
                 print(f"❌ Not a PDF file: {file_path}")
                 return False
-            
+
             # Check readable
             if not os.access(file_path, os.R_OK):
                 print(f"❌ File not readable: {file_path}")
                 return False
-            
+
             return True
-            
+
         except Exception as e:
             print(f"❌ Error validating file: {e}")
             return False
     
     def get_file_info(self, file_path: str) -> Dict[str, object]:
         """
-        Extract file metadata.
+        Extract file metadata for local PDF or URL.
         
         Args:
             file_path: Path to PDF file
@@ -312,9 +327,21 @@ class PDFHandler:
             Dict with file info
         """
         try:
+            # URL case
+            if isinstance(file_path, str) and (file_path.startswith("http://") or file_path.startswith("https://")):
+                parsed = urlparse(file_path)
+                # Derive filename from URL path
+                name = Path(parsed.path).name or "document.pdf"
+                return {
+                    "filename": name,
+                    "file_path": file_path,
+                    "size_mb": 0
+                }
+
+            # Local file case
             path = Path(file_path)
             size_mb = path.stat().st_size / (1024 * 1024)
-            
+
             return {
                 "filename": path.name,
                 "file_path": str(path.absolute()),
@@ -334,78 +361,152 @@ class PDFHandler:
 
 from typing import Optional, Dict
 from firecrawl import Firecrawl
-
+import fitz  # PyMuPDF
 
 class FirecrawlParser:
     """Handles PDF to text conversion using Firecrawl."""
-    
+
     def __init__(self, api_key: str):
         """
         Initialize Firecrawl client.
-        
+
         Args:
             api_key: Firecrawl API key
         """
         if not api_key:
             raise ValueError("Firecrawl API key is required")
-        
+
         self.firecrawl = Firecrawl(api_key=api_key)
-    
-    def parse_pdf(self, file_path: str) -> Optional[Dict[str, object]]:
+
+    def _is_url(self, path: str) -> bool:
         """
-        Parse PDF file to text using Firecrawl.
-        
+        Check if input is a URL or local file path.
+
         Args:
-            file_path: Path to PDF file
-            
+            path: Input path or URL
+
+        Returns:
+            True if URL, False if local path
+        """
+        return path.startswith("http://") or path.startswith("https://")
+
+    def _parse_local_pdf(self, file_path: str) -> Optional[Dict[str, object]]:
+        """
+        Parse local PDF file using PyMuPDF.
+
+        Args:
+            file_path: Path to local PDF file
+
         Returns:
             Dict with parsed content or None if failed
         """
         try:
-            print("📄 Parsing PDF with Firecrawl...")
-            
-            # Use Firecrawl with PDF parser explicitly
-            result = self.firecrawl.scrape(
-                file_path,
-                formats=["markdown"],
-                parsers=["pdf"]  # Ensure PDF parsing
-            )
-            
-            # Extract markdown content
-            markdown_content = getattr(result, "markdown", "")
-            
+            print("📄 Parsing local PDF with PyMuPDF...")
+
+            # Open PDF
+            doc = fitz.open(file_path)
+
+            # Extract text from all pages
+            markdown_content = ""
+            for page_num, page in enumerate(doc, start=1):
+                text = page.get_text()
+                markdown_content += f"\n\n## Page {page_num}\n\n{text}"
+
+            page_count = len(doc)
+            doc.close()
+
             if not markdown_content or len(markdown_content) < 50:
                 print("⚠️  Warning: Extracted content is very short")
                 return None
-            
+
+            # Count words
+            word_count = len(markdown_content.split())
+
+            print(f"✅ Extracted {word_count:,} words from {page_count} pages")
+
+            return {
+                "markdown": markdown_content.strip(),
+                "word_count": word_count,
+                "page_count": page_count,
+                "method": "pymupdf",
+            }
+
+        except Exception as e:
+            print(f"❌ Error parsing local PDF: {e}")
+            return None
+
+    def _parse_url_pdf(self, pdf_url: str) -> Optional[Dict[str, object]]:
+        """
+        Parse PDF from URL using Firecrawl.
+
+        Args:
+            pdf_url: URL to PDF file
+
+        Returns:
+            Dict with parsed content or None if failed
+        """
+        try:
+            print("📄 Parsing PDF from URL with Firecrawl...")
+
+            # Use Firecrawl with PDF parser explicitly
+            result = self.firecrawl.scrape(
+                pdf_url, formats=["markdown"], parsers=["pdf"]
+            )
+
+            # Extract markdown content
+            markdown_content = getattr(result, "markdown", "")
+
+            if not markdown_content or len(markdown_content) < 50:
+                print(" Warning: Extracted content is very short")
+                return None
+
             # Count words for info
             word_count = len(markdown_content.split())
-            
+
             print(f"✅ Extracted {word_count:,} words")
-            
+
             return {
                 "markdown": markdown_content,
                 "word_count": word_count,
-                "raw_result": result
+                "raw_result": result,
+                "method": "firecrawl",
             }
-            
+
         except Exception as e:
-            print(f"❌ Error parsing PDF: {e}")
+            print(f"❌ Error parsing PDF from URL: {e}")
             return None
-    
+
+    def parse_pdf(self, file_path: str) -> Optional[Dict[str, object]]:
+        """
+        Parse PDF file using appropriate method (URL → Firecrawl, Local → PyMuPDF).
+
+        Args:
+            file_path: Path to local PDF file OR URL to PDF
+
+        Returns:
+            Dict with parsed content or None if failed
+        """
+        # Detect if input is URL or local path
+        if self._is_url(file_path):
+            print("🌐 Detected URL input - using Firecrawl")
+            return self._parse_url_pdf(file_path)
+        else:
+            print("💾 Detected local file - using PyMuPDF")
+            return self._parse_local_pdf(file_path)
+
     def get_parsed_content(self, parse_result: Dict) -> str:
         """
         Extract markdown text from parse result.
-        
+
         Args:
             parse_result: Result from parse_pdf()
-            
+
         Returns:
             Markdown text content
         """
         if not parse_result:
             return ""
-        
+
         return parse_result.get("markdown", "")
 
 ------------------------------------------------- ./doc_processor/src/user_prompt.py --------------------------------------------------

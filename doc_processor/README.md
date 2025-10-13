@@ -1,9 +1,9 @@
-# Document Processor
+# Document Processor - PDF & XML Analysis
 
 
 ## Overview
 
-Converts PDF documents into structured JSON summaries with:
+Converts PDF and XML documents into structured JSON summaries with:
 - Automated text extraction (Firecrawl)
 - AI-powered analysis (xAI Grok via HTTP requests)
 - User context collection (terminal Q&A)
@@ -15,6 +15,7 @@ Converts PDF documents into structured JSON summaries with:
 - PyMuPDF (for local PDF parsing)
 - Firecrawl API key (for URL-based PDF parsing)
 - xAI Grok API key
+- requests (for fetching XML over HTTP)
 
 ## Installation
 
@@ -39,11 +40,17 @@ GROK_MODEL=grok-4-fast-reasoning
 ### Command Line
 
 ```bash
-# With Local PDF
+# Local PDF
 python3 main.py /path/to/your/document.pdf
 
-# With PDF URL
+# Local XML
+python3 main.py /path/to/your/document.xml
+
+# PDF URL
 python3 main.py https://example.com/document.pdf
+
+# XML URL
+python3 main.py https://example.com/data.xml
 ```
 
 ### Interactive Mode
@@ -93,8 +100,8 @@ doc_processor/
 ├── config.py                # Settings & templates
 ├── outputs/                 # Generated JSON files
 └── src/
-    ├── pdf_handler.py       # File validation
-    ├── firecrawl_parser.py  # PDF→text extraction
+    ├── pdf_handler.py       # File validation (PDF & XML)
+    ├── firecrawl_parser.py  # PDF/XML → text extraction
     ├── llm_processor.py     # AI analysis (generic)
     ├── user_prompt.py       # Terminal Q&A
     └── json_generator.py    # Output creation
@@ -102,7 +109,8 @@ doc_processor/
 
 ## Features
 
-- ✅ Hybrid PDF Processing: Automatically detects and processes both local PDFs (PyMuPDF) and PDF URLs (Firecrawl)
+- ✅ Hybrid PDF Processing: Automatically detects and processes local PDFs (PyMuPDF) and PDF URLs (Firecrawl)
+- ✅ XML Processing: Supports local XML files and XML URLs (requests + xml parsers)
 - ✅ PDF text extraction with Firecrawl
 - ✅ AI analysis via LLM (xAI Grok by default)
 - ✅ Interactive context collection
