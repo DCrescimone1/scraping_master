@@ -40,10 +40,10 @@ class XMLReader:
     def extract_SUPPLIER_PIDs(self) -> List[str]:
         """Extract a list of unique SUPPLIER_PID strings from the XML file.
 
-        Uses multiple strategies in order:
-        1. Try XML parsing with ET
+        Uses multiple strategies, prioritizing regex for malformed XML:
+        1. Regex extraction (most reliable for malformed XML)
         2. Try with lxml (if available)
-        3. Fall back to regex extraction (always works)
+        3. Try standard XML parsing
 
         Returns:
             List of unique product IDs (order preserved by first appearance).
@@ -51,15 +51,16 @@ class XMLReader:
         SUPPLIER_PIDs: List[str] = []
         seen: Set[str] = set()
 
-        # Strategy 1: Try standard XML parsing
+        # Strategy 1: Regex-based extraction (most reliable for malformed XML)
         try:
-            print("🔍 Attempting standard XML parsing...")
-            SUPPLIER_PIDs = self._extract_via_xml_parsing()
+            print("🔍 Using regex-based extraction (most reliable)...")
+            SUPPLIER_PIDs = self._extract_via_regex()
             if SUPPLIER_PIDs:
-                print(f"✅ Successfully extracted {len(SUPPLIER_PIDs)} SUPPLIER_PIDs via XML parsing")
+                print(f"✅ Successfully extracted {len(SUPPLIER_PIDs)} SUPPLIER_PIDs via regex")
+                print(f"   Product IDs: {', '.join(SUPPLIER_PIDs)}")
                 return SUPPLIER_PIDs
         except Exception as e:
-            print(f"⚠️  XML parsing failed: {e}")
+            print(f"⚠️  Regex extraction failed: {e}")
 
         # Strategy 2: Try lxml with recovery mode (more lenient)
         try:
@@ -68,21 +69,23 @@ class XMLReader:
             SUPPLIER_PIDs = self._extract_via_lxml()
             if SUPPLIER_PIDs:
                 print(f"✅ Successfully extracted {len(SUPPLIER_PIDs)} SUPPLIER_PIDs via lxml recovery")
+                print(f"   Product IDs: {', '.join(SUPPLIER_PIDs)}")
                 return SUPPLIER_PIDs
         except ImportError:
             print("⚠️  lxml not available, skipping...")
         except Exception as e:
             print(f"⚠️  lxml parsing failed: {e}")
 
-        # Strategy 3: Regex-based extraction (always works, even with malformed XML)
+        # Strategy 3: Try standard XML parsing
         try:
-            print("🔍 Falling back to regex-based extraction...")
-            SUPPLIER_PIDs = self._extract_via_regex()
+            print("🔍 Attempting standard XML parsing...")
+            SUPPLIER_PIDs = self._extract_via_xml_parsing()
             if SUPPLIER_PIDs:
-                print(f"✅ Successfully extracted {len(SUPPLIER_PIDs)} SUPPLIER_PIDs via regex")
+                print(f"✅ Successfully extracted {len(SUPPLIER_PIDs)} SUPPLIER_PIDs via XML parsing")
+                print(f"   Product IDs: {', '.join(SUPPLIER_PIDs)}")
                 return SUPPLIER_PIDs
         except Exception as e:
-            print(f"❌ Regex extraction failed: {e}")
+            print(f"⚠️  XML parsing failed: {e}")
 
         if not SUPPLIER_PIDs:
             print("⚠️  Warning: No SUPPLIER_PID elements found in the provided XML.")
@@ -165,14 +168,15 @@ class XMLReader:
             content = f.read()
 
         # Pattern to match <SUPPLIER_PID>VALUE</SUPPLIER_PID>
-        # Works with or without namespace
-        pattern = r'<(?:\w+:)?SUPPLIER_PID[^>]*>(.*?)</(?:\w+:)?SUPPLIER_PID>'
+        # Works with or without namespace, handles whitespace
+        pattern = r'<(?:\w+:)?SUPPLIER_PID[^>]*>\s*([^<]+?)\s*</(?:\w+:)?SUPPLIER_PID>'
         
-        matches = re.findall(pattern, content, re.DOTALL)
+        matches = re.findall(pattern, content, re.DOTALL | re.IGNORECASE)
         
         for match in matches:
             val = match.strip()
-            if val and val not in seen:
+            # Filter out empty or whitespace-only values
+            if val and not val.isspace() and val not in seen:
                 seen.add(val)
                 SUPPLIER_PIDs.append(val)
 
