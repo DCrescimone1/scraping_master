@@ -27,6 +27,10 @@ LANGUAGES: dict[str, int] = {
 # Output directory for saved JSON
 OUTPUT_DIR: str = os.getenv("BME_OUTPUT_DIR", "outputs/")
 
+# Master JSON settings
+MASTER_JSON_FILENAME: str = os.getenv("MASTER_JSON_FILENAME", "master_bmecat_dabag.json")
+MASTER_JSON_BACKUP_COUNT: int = int(os.getenv("MASTER_JSON_BACKUP_COUNT", "2"))
+
 # Optional keys depending on method
 FIRECRAWL_API_KEY: str | None = os.getenv("FIRECRAWL_API_KEY")
 

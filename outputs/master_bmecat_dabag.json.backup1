@@ -1,0 +1,246 @@
+{
+  "metadata": {
+    "created_at": "2025-10-16T11:38:43.726045",
+    "last_updated": "2025-10-16T11:39:36.676459",
+    "total_products": 6
+  },
+  "products": {
+    "DCH273NT-XJ": {
+      "SUPPLIER_PID": "DCH273NT-XJ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCH273NT-XJ&markId=DCH273NT-XJ&artId=100292296&trefferUUID=73B4DDF0-869B-48B5-86D42A4407354CF8",
+      "languages": {
+        "de": {
+          "Spannung": "18 V",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Leerlaufdrehzahl": "0-1100 min-1",
+          "Drehstopp": "ja",
+          "Schlagzahl": "0-4600 min-1",
+          "Einzelschlagenergie": "2.1 J (EPTA)",
+          "Bohrleistung Beton": "24 mm",
+          "LED-Leuchte": "mit",
+          "Akku": "-- Stück",
+          "Ladegerät": "--",
+          "Verpackung": "T-STAK",
+          "Gewicht": "2.50 kg"
+        },
+        "fr": {
+          "tension": "18 V",
+          "type d’accu": "--",
+          "capacité de l’accu": "-- Ah",
+          "nombre de tours à vide": "0-1100 min-1",
+          "arrêt de frappe": "oui",
+          "fréquence de frappe": "0-4600 min-1",
+          "energie de frappe": "2.1 J (EPTA)",
+          "cap. béton": "24 mm",
+          "lampe DEL": "avec",
+          "accu": "-- pièce",
+          "chargeur": "--",
+          "emballage": "T-STAK",
+          "poids": "2.50 kg"
+        },
+        "it": {
+          "tensione": "18 V",
+          "tipo di batteria": "--",
+          "capacità batteria": "-- Ah",
+          "numero di giri a vuoto": "0-1100 min-1",
+          "arresto di rotazione": "sì",
+          "frequenza colpo al minuto": "0-4600 min-1",
+          "energia percussione singola": "2.1 J (EPTA)",
+          "cap. calcestruzzo": "24 mm",
+          "lampada LED": "con",
+          "batteria": "-- pezzo",
+          "caricabatterie": "--",
+          "imballaggio": "T-STAK",
+          "peso": "2.50 kg"
+        }
+      },
+      "scraped_at": "2025-10-16T11:38:56.544330"
+    },
+    "DCG405NT-XJ": {
+      "SUPPLIER_PID": "DCG405NT-XJ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCG405NT-XJ&markId=DCG405NT-XJ&artId=100321765&trefferUUID=D315C16A-D4EA-4D1B-8FF9BF9F8F6D43E4",
+      "languages": {
+        "de": {
+          "Spannung": "18 V",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Scheiben-Ø": "125 mm",
+          "Leerlaufdrehzahl": "9000 min-1",
+          "Akku": "-- Stück",
+          "Ladegerät": "--",
+          "Verpackung": "T-STAK",
+          "Gewicht": "1.80 kg"
+        },
+        "fr": {
+          "tension": "18 V",
+          "type d’accu": "--",
+          "capacité de l’accu": "-- Ah",
+          "Ø disques": "125 mm",
+          "nombre de tours à vide": "9000 min-1",
+          "accu": "-- pièce",
+          "chargeur": "--",
+          "emballage": "T-STAK",
+          "poids": "1.80 kg"
+        },
+        "it": {
+          "tensione": "18 V",
+          "tipo di batteria": "--",
+          "capacità batteria": "-- Ah",
+          "Ø dischi": "125 mm",
+          "numero di giri a vuoto": "9000 min-1",
+          "batteria": "-- pezzo",
+          "caricabatterie": "--",
+          "imballaggio": "T-STAK",
+          "peso": "1.80 kg"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:03.420664"
+    },
+    "DCK329P2T-QW": {
+      "SUPPLIER_PID": "DCK329P2T-QW",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCK329P2T-QW&markId=DCK329P2T-QW&artId=100683390&trefferUUID=15A26530-F3A5-4A78-884602D12ABD18D2",
+      "languages": {
+        "de": {
+          "Spannung": "18 V",
+          "Akku-Typ": "Li-Ion",
+          "Akku-Kapazität": "5 Ah",
+          "Akku": "2 Stück",
+          "Ladegerät": "DCB1104",
+          "Verpackung": "T STAK-Box VI / T STAK-Box II"
+        },
+        "fr": {
+          "tension": "18 V",
+          "type d’accu": "Li-Ion",
+          "capacité de l’accu": "5 Ah",
+          "accu": "2 pièce",
+          "chargeur": "DCB1104",
+          "emballage": "T STAK-Box VI / T STAK-Box II"
+        },
+        "it": {
+          "tensione": "18 V",
+          "tipo di batteria": "Li-Ion",
+          "capacità batteria": "5 Ah",
+          "batteria": "2 pezzo",
+          "caricabatterie": "DCB1104",
+          "imballaggio": "T STAK-Box VI / T STAK-Box II"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:10.157359"
+    },
+    "DCS573NT-XJ": {
+      "SUPPLIER_PID": "DCS573NT-XJ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCS573NT-XJ&markId=DCS573NT-XJ&artId=100571860&trefferUUID=46DDD712-4A88-4D51-88021A3495BD79D7",
+      "languages": {
+        "de": {
+          "Spannung": "18 V",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Sägeblatt-Ø": "190 mm",
+          "Sägeblatt-Ø Bohrung": "30 mm",
+          "Schnittleistung 45°": "51 mm",
+          "Schnittleistung 90°": "67 mm",
+          "Drehzahl": "5500 min-1",
+          "LED-Leuchte": "mit",
+          "Akku": "-- Stück",
+          "Ladegerät": "--",
+          "Verpackung": "T-STAK",
+          "Gewicht": "3.60 kg"
+        },
+        "fr": {
+          "tension": "18 V",
+          "type d’accu": "--",
+          "capacité de l’accu": "-- Ah",
+          "Ø de la lame de scie": "190 mm",
+          "Ø de forage de la lame de scie": "30 mm",
+          "profondeur de coupe 45°": "51 mm",
+          "profondeur de coupe à 90°": "67 mm",
+          "vitesse": "5500 min-1",
+          "lampe DEL": "avec",
+          "accu": "-- pièce",
+          "chargeur": "--",
+          "emballage": "T-STAK",
+          "poids": "3.60 kg"
+        },
+        "it": {
+          "tensione": "18 V",
+          "tipo di batteria": "--",
+          "capacità batteria": "-- Ah",
+          "Ø della lama": "190 mm",
+          "Ø lama da sega, foro": "30 mm",
+          "profondità taglio 45°": "51 mm",
+          "profondità taglio a 90°": "67 mm",
+          "numero di giri": "5500 min-1",
+          "lampada LED": "con",
+          "batteria": "-- pezzo",
+          "caricabatterie": "--",
+          "imballaggio": "T-STAK",
+          "peso": "3.60 kg"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:20.815164"
+    },
+    "DT1953-QZ": {
+      "SUPPLIER_PID": "DT1953-QZ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1953-QZ&markId=DT1953-QZ&artId=100255912&trefferUUID=A626F45F-87B8-44F1-93F95608C46F4DF7",
+      "languages": {
+        "de": {
+          "Aussen-Ø": "216 mm",
+          "Boh­rungs-Ø": "30 mm",
+          "Schnitt­breite": "2.6 mm",
+          "Stamm­blatt­stärke": "1.7 mm",
+          "Span­winkel": "-5 °",
+          "Zahn­form": "WZ"
+        },
+        "fr": {
+          "Ø ex­té­rieur": "216 mm",
+          "Ø perçage": "30 mm",
+          "largeur de coupe": "2.6 mm",
+          "épaisseur du corps de lame": "1.7 mm",
+          "angle": "-5 °",
+          "denture": "WZ"
+        },
+        "it": {
+          "Ø esterno": "216 mm",
+          "Ø foro": "30 mm",
+          "larghezza del taglio": "2.6 mm",
+          "spessore lama": "1.7 mm",
+          "angolo di spoglia superiore": "-5 °",
+          "forma del dente": "WZ"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:29.230573"
+    },
+    "DT1952-QZ": {
+      "SUPPLIER_PID": "DT1952-QZ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1952-QZ&markId=DT1952-QZ&artId=100255912&trefferUUID=06749BE5-CA8A-4501-81644005B0BBFB13",
+      "languages": {
+        "de": {
+          "Aussen-Ø": "216 mm",
+          "Boh­rungs-Ø": "30 mm",
+          "Schnitt­breite": "2.6 mm",
+          "Stamm­blatt­stärke": "1.7 mm",
+          "Span­winkel": "-5 °",
+          "Zahn­form": "WZ"
+        },
+        "fr": {
+          "Ø ex­té­rieur": "216 mm",
+          "Ø perçage": "30 mm",
+          "largeur de coupe": "2.6 mm",
+          "épaisseur du corps de lame": "1.7 mm",
+          "angle": "-5 °",
+          "denture": "WZ"
+        },
+        "it": {
+          "Ø esterno": "216 mm",
+          "Ø foro": "30 mm",
+          "larghezza del taglio": "2.6 mm",
+          "spessore lama": "1.7 mm",
+          "angolo di spoglia superiore": "-5 °",
+          "forma del dente": "WZ"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:36.676448"
+    }
+  }
+}

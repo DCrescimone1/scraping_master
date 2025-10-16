@@ -95,6 +95,61 @@ Example JSON structure:
 }
 ```
 
+## Master JSON Tracking
+
+The scraper maintains a persistent `master_bmecat_dabag.json` file in the `outputs/` directory that accumulates all scraped products across runs.
+
+### How It Works
+
+1. **First Run**: All products are scraped and added to the master JSON
+2. **Subsequent Runs**:
+   - If a product ID already exists, you'll see a comparison and be prompted to update or skip
+   - New products are automatically added
+   - Updates are tracked with timestamps
+
+### Master JSON Structure
+
+```json
+{
+  "metadata": {
+    "created_at": "2025-10-16T10:00:00",
+    "last_updated": "2025-10-16T14:30:00",
+    "total_products": 150
+  },
+  "products": {
+    "PRODUCT_ID": {
+      "scraped_at": "2025-10-16T10:15:00",
+      "updated_at": "2025-10-16T14:25:00",
+      "product_url": "https://...",
+      "languages": {
+        "de": { },
+        "fr": { },
+        "it": { }
+      }
+    }
+  }
+}
+```
+
+### Backup System
+
+- Automatically maintains 2 backup versions of the master JSON
+- Backups are named: `master_bmecat_dabag.json.backup1` and `master_bmecat_dabag.json.backup2`
+- Each save rotates backups automatically
+
+### Per-Run Exports
+
+In addition to the master JSON, each run still creates a timestamped export file (e.g., `bmecat_dabag_results_20251016_104334.json`) containing only the products processed in that specific run.
+
+### Configuration
+
+You can customize master JSON behavior in `.env`:
+
+```bash
+MASTER_JSON_FILENAME=master_bmecat_dabag.json
+MASTER_JSON_BACKUP_COUNT=2
+```
+
 ## Project Structure
 
 ```
