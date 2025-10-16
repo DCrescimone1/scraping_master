@@ -1,5 +1,15 @@
 Folder structure:
 .
+├── BMEcat_transformer
+│   ├── config.py
+│   ├── main.py
+│   ├── README.md
+│   └── src
+│       ├── __init__.py
+│       ├── dabag_scraper.py
+│       ├── output_formatter.py
+│       ├── table_extractor.py
+│       └── xml_reader.py
 ├── dabag_ch_20251010_183516
 │   ├── www_dabag_ch__data.json
 │   └── www_dabag_ch_.md
@@ -11,12 +21,12 @@ Folder structure:
 │   ├── requirements.txt
 │   └── src
 │       ├── __init__.py
+│       ├── bmecat_parser.py
 │       ├── firecrawl_parser.py
 │       ├── json_generator.py
 │       ├── llm_processor.py
 │       ├── pdf_handler.py
 │       └── user_prompt.py
-├── doc_scraper
 ├── easy_rich
 │   ├── config.py
 │   ├── main.py
@@ -49,7 +59,8 @@ Folder structure:
 │       ├── serp_api_client.py
 │       └── web_scraper.py
 ├── outputs
-│   └── Stihl_Version DABAG_summary_20251010_183123.json
+│   ├── Stihl_Version DABAG_summary_20251010_183123.json
+│   └── Stihl_Version DABAG_summary_20251013_100932.json
 ├── project_dump.sh
 ├── requirements.txt
 ├── scraping_master_dump.txt
@@ -57,7 +68,7 @@ Folder structure:
     ├── spider_man_results_data.json
     └── spider_man_results.md
 
-16 directories, 41 files
+17 directories, 51 files
 
 
 --- File Contents ---
@@ -404,6 +415,7 @@ from firecrawl import Firecrawl
 import fitz  # PyMuPDF
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as minidom
+from .bmecat_parser import BMEcatParser
 
 class FirecrawlParser:
     """Handles PDF and XML to text conversion using Firecrawl and local parsers."""
@@ -479,8 +491,8 @@ class FirecrawlParser:
 
     def _parse_local_xml(self, file_path: str) -> Optional[Dict[str, object]]:
         """
-        Parse local XML file and convert to readable text format.
-        
+        Parse local XML file using enhanced BMEcat parser.
+
         Args:
             file_path: Path to local XML file
             
@@ -488,30 +500,32 @@ class FirecrawlParser:
             Dict with parsed content or None if failed
         """
         try:
-            # Read XML file
-            tree = ET.parse(file_path)
-            root = tree.getroot()
-
-            # Convert to pretty-printed string
-            xml_string = ET.tostring(root, encoding='unicode')
-            pretty_xml = minidom.parseString(xml_string).toprettyxml(indent="  ")
-
-            # Extract text content for analysis
-            text_content = self._extract_xml_text(root)
-
-            # Combine structure and content
-            markdown_text = f"# XML Document Structure\n\n```xml\n{pretty_xml}\n```\n\n# Extracted Text Content\n\n{text_content}"
-
-            word_count = len(text_content.split())
-
+            print("📄 Parsing BMEcat XML with enhanced parser...")
+            
+            # Use BMEcat-specific parser
+            bmecat_parser = BMEcatParser()
+            parsed_data = bmecat_parser.parse_bmecat_file(file_path)
+            
+            if not parsed_data:
+                print("⚠️  Failed to parse BMEcat XML")
+                return None
+            
+            # Convert to markdown for AI processing
+            markdown_content = bmecat_parser.to_markdown(parsed_data)
+            word_count = len(markdown_content.split())
+            
+            print(f"✅ Extracted {word_count:,} words")
+            print(f"   - {parsed_data['metadata']['total_catalog_structures']} catalog structures")
+            print(f"   - {parsed_data['metadata']['root_categories']} root categories")
+            
             return {
-                "markdown": markdown_text,
+                "markdown": markdown_content,
                 "word_count": word_count,
-                "method": "xml_parser"
+                "method": "bmecat_parser"
             }
         
         except Exception as e:
-            print(f"❌ Error parsing local XML: {e}")
+            print(f"❌ Error parsing BMEcat XML: {e}")
             return None
 
     def _parse_url_pdf(self, pdf_url: str) -> Optional[Dict[str, object]]:
@@ -579,13 +593,10 @@ class FirecrawlParser:
             xml_string = ET.tostring(root, encoding='unicode')
             pretty_xml = minidom.parseString(xml_string).toprettyxml(indent="  ")
             
-            # Extract text content
-            text_content = self._extract_xml_text(root)
+            # Combine structure content (pretty XML only)
+            markdown_text = f"# XML Document Structure\n\n```xml\n{pretty_xml}\n```"
             
-            # Combine structure and content
-            markdown_text = f"# XML Document Structure\n\n```xml\n{pretty_xml}\n```\n\n# Extracted Text Content\n\n{text_content}"
-            
-            word_count = len(text_content.split())
+            word_count = len(pretty_xml.split())
             
             return {
                 "markdown": markdown_text,
@@ -597,34 +608,7 @@ class FirecrawlParser:
             print(f"❌ Error parsing XML URL: {e}")
             return None
 
-    def _extract_xml_text(self, element, level: int = 0) -> str:
-        """
-        Recursively extract text content from XML elements.
-        
-        Args:
-            element: XML element
-            level: Indentation level
-            
-        Returns:
-            Formatted text content
-        """
-        text_parts = []
-        indent = "  " * level
-        
-        # Add element tag and attributes
-        if getattr(element, 'tag', None):
-            attrs = " ".join([f"{k}='{v}'" for k, v in getattr(element, 'attrib', {}).items()])
-            text_parts.append(f"{indent}<{element.tag}{' ' + attrs if attrs else ''}>")
-        
-        # Add text content if present
-        if getattr(element, 'text', None) and element.text.strip():
-            text_parts.append(f"{indent}  {element.text.strip()}")
-        
-        # Process children
-        for child in list(element):
-            text_parts.append(self._extract_xml_text(child, level + 1))
-        
-        return "\n".join(text_parts)
+
 
     def parse_document(self, file_path: str, file_type: str = 'pdf') -> Optional[Dict[str, object]]:
         """
@@ -881,6 +865,241 @@ class JSONGenerator:
             print(f"Complexity: {complexity}")
         
         print("\n" + "="*60 + "\n")
+
+------------------------------------------------- ./doc_processor/src/bmecat_parser.py --------------------------------------------------
+
+"""
+BMEcat XML Parser - Specialized parser for BMEcat catalog format.
+Captures all attributes, relationships, and multi-language content.
+"""
+
+import xml.etree.ElementTree as ET
+import codecs
+from typing import Dict, List, Optional, Any
+
+
+class BMEcatParser:
+    """Enhanced parser specifically designed for BMEcat format."""
+    
+    def __init__(self):
+        """Initialize the BMEcat parser."""
+        self.namespaces = {
+            'bme': 'http://www.bmecat.org/bmecat/2005fd'
+        }
+    
+    def parse_bmecat_file(self, file_path: str) -> Dict[str, Any]:
+        """
+        Parse BMEcat XML file and extract all structured data.
+        
+        Args:
+            file_path: Path to BMEcat XML file
+            
+        Returns:
+            Dictionary with complete structured data or None if failed
+        """
+        try:
+            # Read and sanitize XML to handle BOM and leading whitespace before declaration
+            with open(file_path, 'rb') as f:
+                raw = f.read()
+
+            # Remove UTF-8 BOM if present
+            if raw.startswith(codecs.BOM_UTF8):
+                raw = raw[len(codecs.BOM_UTF8):]
+
+            # Decode and strip leading whitespace/newlines before the first '<'
+            text = raw.decode('utf-8', errors='replace')
+            text = text.lstrip()  # remove leading spaces/newlines/tabs
+
+            # Parse from string (handles cases where declaration isn't at pos 0 originally)
+            root = ET.fromstring(text)
+            
+            # Handle namespace
+            if root.tag.startswith('{'):
+                ns = root.tag.split('}')[0] + '}'
+            else:
+                ns = ''
+            
+            result = {
+                'header': self._parse_header(root, ns),
+                'catalog_groups': self._parse_catalog_groups(root, ns),
+                'metadata': {
+                    'total_catalog_structures': 0,
+                    'root_categories': 0,
+                    'node_categories': 0,
+                    'leaf_categories': 0
+                }
+            }
+            
+            # Count structures
+            for group in result['catalog_groups']:
+                for struct in group['structures']:
+                    result['metadata']['total_catalog_structures'] += 1
+                    struct_type = struct.get('type', '')
+                    if struct_type == 'root':
+                        result['metadata']['root_categories'] += 1
+                    elif struct_type == 'node':
+                        result['metadata']['node_categories'] += 1
+                    elif struct_type == 'leaf':
+                        result['metadata']['leaf_categories'] += 1
+            
+            return result
+            
+        except Exception as e:
+            print(f"❌ Error parsing BMEcat file: {e}")
+            return None
+    
+    def _parse_header(self, root: ET.Element, ns: str) -> Dict[str, Any]:
+        """Extract header information."""
+        header = {}
+        header_elem = root.find(f'.//{ns}HEADER')
+        
+        if header_elem is not None:
+            # Catalog info
+            catalog_elem = header_elem.find(f'{ns}CATALOG')
+            if catalog_elem is not None:
+                header['catalog'] = {
+                    'languages': [lang.text for lang in catalog_elem.findall(f'{ns}LANGUAGE')],
+                    'catalog_id': self._get_text(catalog_elem, f'{ns}CATALOG_ID'),
+                    'catalog_version': self._get_text(catalog_elem, f'{ns}CATALOG_VERSION')
+                }
+            
+            # Supplier info
+            supplier_elem = header_elem.find(f'{ns}SUPPLIER')
+            if supplier_elem is not None:
+                header['supplier'] = {
+                    'name': self._get_text(supplier_elem, f'{ns}SUPPLIER_NAME')
+                }
+            
+            # Parties info
+            parties = []
+            for party in header_elem.findall(f'.//{ns}PARTY'):
+                party_id = party.find(f'{ns}PARTY_ID')
+                if party_id is not None:
+                    parties.append({
+                        'id': party_id.text,
+                        'type': party_id.get('type')
+                    })
+            header['parties'] = parties
+        
+        return header
+    
+    def _parse_catalog_groups(self, root: ET.Element, ns: str) -> List[Dict[str, Any]]:
+        """Extract all catalog group systems."""
+        groups = []
+        
+        for group_system in root.findall(f'.//{ns}CATALOG_GROUP_SYSTEM'):
+            group_data = {
+                'group_system_id': self._get_text(group_system, f'{ns}GROUP_SYSTEM_ID'),
+                'group_system_name': self._get_text(group_system, f'{ns}GROUP_SYSTEM_NAME'),
+                'structures': []
+            }
+            
+            # Parse all catalog structures
+            for struct in group_system.findall(f'{ns}CATALOG_STRUCTURE'):
+                structure_data = self._parse_catalog_structure(struct, ns)
+                group_data['structures'].append(structure_data)
+            
+            groups.append(group_data)
+        
+        return groups
+    
+    def _parse_catalog_structure(self, struct: ET.Element, ns: str) -> Dict[str, Any]:
+        """Parse a single CATALOG_STRUCTURE element with all details."""
+        data = {
+            'type': struct.get('type'),
+            'group_id': self._get_text(struct, f'{ns}GROUP_ID'),
+            'parent_id': self._get_text(struct, f'{ns}PARENT_ID'),
+            'group_order': self._get_text(struct, f'{ns}GROUP_ORDER'),
+            'names': {},
+            'descriptions': {}
+        }
+        
+        # Get all GROUP_NAME elements (multi-language)
+        for name_elem in struct.findall(f'{ns}GROUP_NAME'):
+            lang = name_elem.get('lang', 'default')
+            data['names'][lang] = name_elem.text
+        
+        # Get all GROUP_DESCRIPTION elements (multi-language)
+        for desc_elem in struct.findall(f'{ns}GROUP_DESCRIPTION'):
+            lang = desc_elem.get('lang', 'default')
+            # Preserve full description text including line breaks
+            desc_text = desc_elem.text or ''
+            data['descriptions'][lang] = desc_text.strip()
+        
+        return data
+    
+    def _get_text(self, element: ET.Element, path: str) -> Optional[str]:
+        """Safely extract text from element."""
+        elem = element.find(path)
+        return elem.text if elem is not None else None
+    
+    def to_markdown(self, parsed_data: Dict[str, Any]) -> str:
+        """
+        Convert parsed BMEcat data to well-structured markdown for AI processing.
+        
+        Args:
+            parsed_data: Output from parse_bmecat_file()
+            
+        Returns:
+            Formatted markdown string
+        """
+        md_lines = []
+        
+        # Header section
+        md_lines.append("# BMEcat Catalog Document\n")
+        
+        if parsed_data.get('header'):
+            md_lines.append("## Catalog Information\n")
+            header = parsed_data['header']
+            
+            if 'catalog' in header:
+                cat = header['catalog']
+                md_lines.append(f"**Catalog ID:** {cat.get('catalog_id', 'N/A')}")
+                md_lines.append(f"**Version:** {cat.get('catalog_version', 'N/A')}")
+                md_lines.append(f"**Languages:** {', '.join(cat.get('languages', []))}\n")
+            
+            if 'supplier' in header:
+                md_lines.append(f"**Supplier:** {header['supplier'].get('name', 'N/A')}\n")
+        
+        # Metadata
+        if parsed_data.get('metadata'):
+            meta = parsed_data['metadata']
+            md_lines.append("## Catalog Statistics\n")
+            md_lines.append(f"- Total catalog structures: {meta['total_catalog_structures']}")
+            md_lines.append(f"- Root categories: {meta['root_categories']}")
+            md_lines.append(f"- Node categories: {meta['node_categories']}")
+            md_lines.append(f"- Leaf categories: {meta['leaf_categories']}\n")
+        
+        # Catalog structures
+        md_lines.append("## Catalog Structure Details\n")
+        
+        for group in parsed_data.get('catalog_groups', []):
+            md_lines.append(f"### Group System: {group.get('group_system_name', 'N/A')}\n")
+            md_lines.append(f"**System ID:** {group.get('group_system_id', 'N/A')}\n")
+            
+            for idx, struct in enumerate(group.get('structures', []), 1):
+                md_lines.append(f"#### Structure {idx}: {struct.get('type', 'unknown').upper()}\n")
+                md_lines.append(f"**Group ID:** `{struct.get('group_id', 'N/A')}` ")
+                md_lines.append(f"**Parent ID:** `{struct.get('parent_id', 'N/A')}` ")
+                md_lines.append(f"**Order:** {struct.get('group_order', 'N/A')}\n")
+                
+                # Names (all languages)
+                if struct.get('names'):
+                    md_lines.append("**Names:**")
+                    for lang, name in struct['names'].items():
+                        md_lines.append(f"- [{lang}] {name}")
+                    md_lines.append("")
+                
+                # Descriptions (all languages)
+                if struct.get('descriptions'):
+                    md_lines.append("**Descriptions:**")
+                    for lang, desc in struct['descriptions'].items():
+                        if desc:  # Only show if description exists
+                            md_lines.append(f"\n*[{lang}]*")
+                            md_lines.append(desc)
+                    md_lines.append("\n---\n")
+        
+        return "\n".join(md_lines)
 
 ------------------------------------------------- ./doc_processor/src/llm_processor.py --------------------------------------------------
 
@@ -2910,3 +3129,592 @@ class SerpAPIClient:
         except Exception as e:  # noqa: BLE001 - broad except with logging for robustness
             print(f"Error extracting URL: {e}")
             return None
+
+------------------------------------------------- ./BMEcat_transformer/config.py --------------------------------------------------
+
+from __future__ import annotations
+
+"""
+Configuration settings for BMEcat_transformer.
+Follows the style of existing configs in `doc_processor/` and `easy_rich/`.
+"""
+
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from root .env
+load_dotenv()
+
+# Scraping method selection: "firecrawl" or "playwright"
+SCRAPING_METHOD: str = os.getenv("SCRAPING_METHOD", "firecrawl").strip().lower()
+
+# DABAG settings
+DABAG_BASE_URL: str = os.getenv("DABAG_BASE_URL", "https://www.dabag.ch")
+
+# Language mapping for DABAG (de=1, fr=2, it=3)
+LANGUAGES: dict[str, int] = {
+    "de": 1,
+    "fr": 2,
+    "it": 3,
+}
+
+# Output directory for saved JSON
+OUTPUT_DIR: str = os.getenv("BME_OUTPUT_DIR", "outputs/")
+
+# Optional keys depending on method
+FIRECRAWL_API_KEY: str | None = os.getenv("FIRECRAWL_API_KEY")
+
+# Validation
+if SCRAPING_METHOD not in {"firecrawl", "playwright"}:
+    raise ValueError(
+        "SCRAPING_METHOD must be either 'firecrawl' or 'playwright'"
+    )
+
+if SCRAPING_METHOD == "firecrawl" and not FIRECRAWL_API_KEY:
+    raise ValueError("FIRECRAWL_API_KEY not found in environment variables for firecrawl mode")
+
+# Normalize OUTPUT_DIR to have trailing slash
+if not OUTPUT_DIR.endswith("/"):
+    OUTPUT_DIR = OUTPUT_DIR + "/"
+
+
+------------------------------------------------- ./BMEcat_transformer/main.py --------------------------------------------------
+
+"""Main entry point for BMEcat_transformer.
+
+Pipeline:
+- Parse XML path from args/user input
+- Extract SUPPLIER_PIDs
+- For each SUPPLIER_PID, search and scrape DABAG in DE/FR/IT
+- Print tables, save JSON, display summary
+"""
+
+from __future__ import annotations
+
+import sys
+import time
+from pathlib import Path
+from typing import Dict, Any
+
+import config
+from src.xml_reader import XMLReader
+from src.dabag_scraper import DABAGScraper
+from src.output_formatter import OutputFormatter
+
+
+def get_xml_path() -> str:
+    """Get XML file path from command-line args or prompt user.
+
+    Returns:
+        Validated path string.
+    """
+    path: str | None = None
+    if len(sys.argv) > 1:
+        path = sys.argv[1]
+    else:
+        path = input("Enter path to BMEcat XML file: ").strip()
+
+    if not path:
+        print("⚠️ No XML path provided.")
+        sys.exit(1)
+
+    p = Path(path)
+    if not p.exists() or not p.is_file():
+        print(f"⚠️ XML path does not exist or is not a file: {path}")
+        sys.exit(1)
+    return str(p)
+
+
+def main() -> None:
+    start = time.time()
+    print("=" * 80)
+    print("BMEcat_transformer - DABAG Spec Scraper")
+    print(f"Scraping method: {config.SCRAPING_METHOD}")
+    print("=" * 80)
+
+    xml_path = get_xml_path()
+
+    # Extract product IDs
+    reader = XMLReader(xml_path)
+    SUPPLIER_PIDs = reader.extract_SUPPLIER_PIDs()
+    print(f"Found {len(SUPPLIER_PIDs)} SUPPLIER_PID(s) to process.")
+    if not SUPPLIER_PIDs:
+        print("Nothing to do. Exiting.")
+        return
+
+    scraper = DABAGScraper()
+    results: Dict[str, Dict[str, Any]] = {}
+
+    for idx, pid in enumerate(SUPPLIER_PIDs, 1):
+        print("-" * 80)
+        print(f"[{idx}/{len(SUPPLIER_PIDs)}] Processing SUPPLIER_PID: {pid}")
+        try:
+            data = scraper.process_product(pid)
+            results[pid] = data
+        except Exception as e:
+            print(f"⚠️ Warning: Error processing {pid}: {e}")
+            results[pid] = {"SUPPLIER_PID": pid, "product_url": None, "languages": {}}
+
+    formatter = OutputFormatter(output_dir=config.OUTPUT_DIR)
+    formatter.print_results(results)
+    formatter.save_to_json(results)
+    formatter.display_summary(results)
+
+    elapsed = time.time() - start
+    print("-" * 80)
+    print(f"Elapsed time: {elapsed:.2f}s")
+
+
+if __name__ == "__main__":
+    main()
+
+------------------------------------------------- ./BMEcat_transformer/src/xml_reader.py --------------------------------------------------
+
+"""XML Reader for BMEcat_transformer.
+
+Provides `XMLReader` that extracts unique `SUPPLIER_PID`s from a BMEcat XML file.
+Attempts to leverage `doc_processor/src/bmecat_parser.BMEcatParser` and falls
+back to direct XML scanning when needed. Errors are logged as warnings and do
+not crash the process.
+"""
+
+from __future__ import annotations
+
+from typing import List, Set
+import sys
+from pathlib import Path
+import xml.etree.ElementTree as ET
+
+
+# Ensure we can import the BMEcatParser from the sibling module `doc_processor`
+DOC_PROCESSOR_PATH = Path(__file__).parent.parent.parent / "doc_processor"
+sys.path.append(str(DOC_PROCESSOR_PATH))
+try:
+    from src.bmecat_parser import BMEcatParser  # type: ignore
+except Exception as e:  # pragma: no cover - import guard
+    BMEcatParser = None  # Fallback if import fails; we'll handle at runtime
+
+
+class XMLReader:
+    """Read BMEcat XML and extract product IDs.
+
+    Attributes:
+        xml_path: Path to the BMEcat XML file.
+    """
+
+    def __init__(self, xml_path: str) -> None:
+        """Initialize with the XML file path.
+
+        Args:
+            xml_path: Path to the BMEcat XML file.
+        """
+        self.xml_path = xml_path
+
+    def extract_SUPPLIER_PIDs(self) -> List[str]:
+        """Extract a list of unique SUPPLIER_PID strings from the XML file.
+
+        Returns:
+            List of unique product IDs (order preserved by first appearance).
+            If errors occur, returns an empty list and prints warnings.
+        """
+        SUPPLIER_PIDs: List[str] = []
+        seen: Set[str] = set()
+
+        # First attempt: use the project's BMEcatParser if available
+        try:
+            if BMEcatParser is not None:
+                parser = BMEcatParser()
+                parsed = parser.parse_bmecat_file(self.xml_path)
+                # If parser returns None, fall back
+                if parsed:
+                    # The current parser focuses on catalog structures and may
+                    # not expose product-level data. Fall back to direct scan.
+                    pass
+        except Exception as e:
+            print(f"⚠️ Warning: BMEcatParser failed or returned unexpected data: {e}")
+
+        # Fallback: Directly scan the XML for any elements named SUPPLIER_PID
+        try:
+            # Load file similarly to the project's parser to handle BOM/whitespace
+            with open(self.xml_path, 'rb') as f:
+                raw = f.read()
+
+            # Parse leniently by decoding and stripping leading whitespace
+            text = raw.decode('utf-8', errors='replace').lstrip()
+            root = ET.fromstring(text)
+
+            # Determine namespace prefix if present
+            if root.tag.startswith('{'):
+                ns = root.tag.split('}')[0] + '}'
+            else:
+                ns = ''
+
+            # Gather elements that are SUPPLIER_PID with or without namespace
+            # 1) Namespaced search
+            for elem in root.findall(f'.//{ns}SUPPLIER_PID'):
+                if elem is not None and elem.text:
+                    val = elem.text.strip()
+                    if val and val not in seen:
+                        seen.add(val)
+                        SUPPLIER_PIDs.append(val)
+
+            # 2) Non-namespaced search as a safety net
+            for elem in root.findall('.//SUPPLIER_PID'):
+                if elem is not None and elem.text:
+                    val = elem.text.strip()
+                    if val and val not in seen:
+                        seen.add(val)
+                        SUPPLIER_PIDs.append(val)
+
+            # 3) Very defensive: scan all elements whose tag endswith 'SUPPLIER_PID'
+            if not SUPPLIER_PIDs:
+                for elem in root.iter():
+                    tag = elem.tag
+                    if isinstance(tag, str) and tag.endswith('SUPPLIER_PID') and elem.text:
+                        val = elem.text.strip()
+                        if val and val not in seen:
+                            seen.add(val)
+                            SUPPLIER_PIDs.append(val)
+
+            if not SUPPLIER_PIDs:
+                print("⚠️ Warning: No SUPPLIER_PID elements found in the provided XML.")
+
+        except Exception as e:
+            print(f"⚠️ Warning: Failed to extract SUPPLIER_PIDs from XML: {e}")
+            return []
+
+        return SUPPLIER_PIDs
+
+
+------------------------------------------------- ./BMEcat_transformer/src/output_formatter.py --------------------------------------------------
+
+"""Output formatter for BMEcat_transformer.
+
+- Pretty-prints per-product, per-language specification tables to terminal.
+- Saves complete results to JSON in configured output directory.
+- Displays a processing summary.
+"""
+
+from __future__ import annotations
+
+from typing import Dict, Any
+import os
+import time
+import json
+import sys
+from pathlib import Path
+from tabulate import tabulate  # type: ignore
+
+# Import config from the module root (BMEcat_transformer)
+MODULE_ROOT = Path(__file__).resolve().parent.parent
+if str(MODULE_ROOT) not in sys.path:
+    sys.path.append(str(MODULE_ROOT))
+import config  # type: ignore
+
+
+class OutputFormatter:
+    """Format and output scraping results."""
+
+    def __init__(self, output_dir: str | None = None) -> None:
+        """Initialize with an output directory.
+
+        Args:
+            output_dir: Directory to save JSON outputs. Defaults to config.OUTPUT_DIR
+        """
+        self.output_dir = output_dir or config.OUTPUT_DIR
+        os.makedirs(self.output_dir, exist_ok=True)
+
+    def print_results(self, results: Dict[str, Dict[str, Any]]) -> None:
+        """Print tables for each product.
+
+        Args:
+            results: Mapping of SUPPLIER_PID -> {"product_url": str|None, "languages": {de|fr|it: specs dict}}
+        """
+        for SUPPLIER_PID, data in results.items():
+            print("\n" + "=" * 80)
+            print(f"Product: {SUPPLIER_PID}")
+            url = data.get("product_url")
+            if url:
+                print(f"URL: {url}")
+            print("-" * 80)
+
+            # Build row keys from union of all labels across languages
+            langs = data.get("languages", {})
+            labels = set()
+            for lang_dict in langs.values():
+                labels.update(lang_dict.keys())
+            ordered_labels = sorted(labels)
+
+            table_rows = []
+            for label in ordered_labels:
+                row = [label]
+                row.append(langs.get("de", {}).get(label, ""))
+                row.append(langs.get("fr", {}).get(label, ""))
+                row.append(langs.get("it", {}).get(label, ""))
+                table_rows.append(row)
+
+            print(tabulate(table_rows, headers=["Spec Label", "DE", "FR", "IT"], tablefmt="grid"))
+
+    def save_to_json(self, results: Dict[str, Dict[str, Any]], filename: str | None = None) -> str:
+        """Save results to a timestamped JSON file in the output directory.
+
+        Args:
+            results: The complete results dict.
+            filename: Optional base filename without extension.
+
+        Returns:
+            The full path of the saved JSON file.
+        """
+        ts = time.strftime("%Y%m%d_%H%M%S")
+        base = filename or f"bmecat_dabag_results_{ts}"
+        path = os.path.join(self.output_dir, f"{base}.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2, ensure_ascii=False)
+        print(f"Saved JSON: {path}")
+        return path
+
+    def display_summary(self, results: Dict[str, Dict[str, Any]]) -> None:
+        """Print a summary of processed products and specs per language."""
+        total_products = len(results)
+        lang_counts = {"de": 0, "fr": 0, "it": 0}
+
+        for data in results.values():
+            langs = data.get("languages", {})
+            for lang in lang_counts.keys():
+                lang_counts[lang] += len(langs.get(lang, {}))
+
+        print("\n" + "=" * 80)
+        print("Summary")
+        print("-" * 80)
+        print(f"Total products processed: {total_products}")
+        print(f"Total specs extracted - DE: {lang_counts['de']}, FR: {lang_counts['fr']}, IT: {lang_counts['it']}")
+
+
+------------------------------------------------- ./BMEcat_transformer/src/__init__.py --------------------------------------------------
+
+"""BMEcat_transformer package."""
+
+------------------------------------------------- ./BMEcat_transformer/src/dabag_scraper.py --------------------------------------------------
+
+"""DABAG scraper for BMEcat_transformer.
+
+Selects scraping backend based on config (firecrawl or playwright) to locate
+product pages, then fetches product page HTML and extracts specification tables
+for multiple languages.
+"""
+
+from __future__ import annotations
+
+from typing import Dict, Optional
+import sys
+from pathlib import Path
+from urllib.parse import urljoin
+import requests
+
+# Import config from the module root (BMEcat_transformer)
+MODULE_ROOT = Path(__file__).resolve().parent.parent
+if str(MODULE_ROOT) not in sys.path:
+    sys.path.append(str(MODULE_ROOT))
+import config  # type: ignore
+
+# Import appropriate scraper based on config
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+sys.path.append(str(PROJECT_ROOT))
+
+if config.SCRAPING_METHOD == "firecrawl":
+    from easy_rich.src.web_scraper import WebScraper  # type: ignore
+elif config.SCRAPING_METHOD == "playwright":
+    from manual_scrape.src.web_scraper import WebScraper  # type: ignore
+else:  # Defensive
+    from easy_rich.src.web_scraper import WebScraper  # type: ignore
+
+# Local imports
+from .table_extractor import TableExtractor
+
+
+class DABAGScraper:
+    """Search and scrape DABAG product pages in multiple languages."""
+
+    def __init__(self) -> None:
+        """Initialize scraper backend and table extractor."""
+        try:
+            self.scraper = WebScraper()
+        except Exception as e:
+            print(f"⚠️ Warning: Failed to initialize scraper backend: {e}")
+            self.scraper = None
+        self.table_extractor = TableExtractor()
+
+    def search_product(self, SUPPLIER_PID: str) -> Optional[str]:
+        """Search DABAG for a product and return the product detail URL.
+
+        Args:
+            SUPPLIER_PID: The product identifier to search.
+
+        Returns:
+            Full URL to the product detail page, or None if not found.
+        """
+        try:
+            search_url = f"{config.DABAG_BASE_URL}/?q={SUPPLIER_PID}&srv=search"
+            if not self.scraper:
+                print("⚠️ Warning: Scraper not initialized; cannot perform search.")
+                return None
+
+            result = self.scraper.scrape_page(search_url)
+            if not result:
+                print(f"⚠️ Warning: Search failed for SUPPLIER_PID={SUPPLIER_PID}")
+                return None
+
+            markdown = result.get("markdown_content", "")
+            # Reuse link extractor from the backend if available
+            try:
+                links = self.scraper.extract_links_from_markdown(markdown, search_url)  # type: ignore[attr-defined]
+            except Exception:
+                links = []
+
+            # Find product detail link with expected pattern
+            target: Optional[str] = None
+            for _title, href in links:
+                if "srv=search&pg=det&q=" in href:
+                    target = href
+                    break
+
+            if not target:
+                print(f"⚠️ Warning: Product detail link not found for SUPPLIER_PID={SUPPLIER_PID}")
+                return None
+
+            # Ensure full URL
+            full_url = target if target.startswith("http") else urljoin(config.DABAG_BASE_URL, target)
+            return full_url
+
+        except Exception as e:
+            print(f"⚠️ Warning: Error during product search for {SUPPLIER_PID}: {e}")
+            return None
+
+    def scrape_product_languages(self, base_url: str, SUPPLIER_PID: str) -> Dict[str, Dict[str, str]]:
+        """Scrape product specs for all configured languages.
+
+        Args:
+            base_url: The base product detail page URL (likely in default language).
+            SUPPLIER_PID: The product identifier for logging only.
+
+        Returns:
+            Mapping of language code (de/fr/it) to specs dict.
+        """
+        results: Dict[str, Dict[str, str]] = {}
+        headers = {"User-Agent": "Mozilla/5.0 (compatible; BMEcatTransformer/1.0)"}
+
+        for lang_code, lang_id in config.LANGUAGES.items():
+            try:
+                url = f"{base_url}&&&lngId={lang_id}"
+                resp = requests.get(url, headers=headers, timeout=30)
+                if resp.status_code >= 400:
+                    print(f"⚠️ Warning: {lang_code.upper()} page HTTP {resp.status_code} for {SUPPLIER_PID}")
+                    results[lang_code] = {}
+                    continue
+
+                html = resp.text
+                specs = self.table_extractor.extract_specs_table(html)
+                results[lang_code] = specs
+            except Exception as e:
+                print(f"⚠️ Warning: Failed to scrape {lang_code.upper()} for {SUPPLIER_PID}: {e}")
+                results[lang_code] = {}
+
+        return results
+
+    def process_product(self, SUPPLIER_PID: str) -> Dict[str, object]:
+        """Search and scrape a single product across languages.
+
+        Returns a dict with structure:
+        {
+            "SUPPLIER_PID": str,
+            "product_url": str | None,
+            "languages": {"de": {...}, "fr": {...}, "it": {...}}
+        }
+        """
+        product_url = self.search_product(SUPPLIER_PID)
+        lang_data: Dict[str, Dict[str, str]] = {}
+        if product_url:
+            lang_data = self.scrape_product_languages(product_url, SUPPLIER_PID)
+        else:
+            print(f"⚠️ Warning: Skipping language scrape; no product URL for {SUPPLIER_PID}")
+
+        return {
+            "SUPPLIER_PID": SUPPLIER_PID,
+            "product_url": product_url,
+            "languages": lang_data,
+        }
+
+
+------------------------------------------------- ./BMEcat_transformer/src/table_extractor.py --------------------------------------------------
+
+"""Table extractor for BMEcat_transformer.
+
+Parses DABAG product pages' specification table into a dictionary mapping
+label -> value. Designed to be resilient to minor HTML variations.
+"""
+
+from __future__ import annotations
+
+from typing import Dict
+from bs4 import BeautifulSoup  # type: ignore
+
+
+class TableExtractor:
+    """Extract specification tables from DABAG HTML content.
+
+    Methods:
+        extract_specs_table(html_content): Return dict of spec label -> value.
+    """
+
+    def __init__(self) -> None:
+        """Initialize the extractor (no state required)."""
+        pass
+
+    def extract_specs_table(self, html_content: str) -> Dict[str, str]:
+        """Extract specifications table from given HTML.
+
+        The table is expected to have class
+        "w-100 table table-striped m-0". Each row should contain two
+        <td> cells: label and value.
+
+        Args:
+            html_content: Full HTML content of the product page.
+
+        Returns:
+            Dictionary mapping label -> value. Empty if table not found
+            or on parse errors.
+        """
+        specs: Dict[str, str] = {}
+        try:
+            soup = BeautifulSoup(html_content or "", "html.parser")
+            table = soup.find("table", class_="w-100 table table-striped m-0")
+            if table is None:
+                # Attempt a broader match if exact class chain changes order
+                # or is partially applied by the site.
+                candidate_tables = soup.find_all("table")
+                for t in candidate_tables:
+                    classes = set((t.get("class") or []))
+                    needed = {"w-100", "table", "table-striped", "m-0"}
+                    if needed.issubset(classes):
+                        table = t
+                        break
+
+            if table is None:
+                print("⚠️ Warning: Specification table not found in HTML.")
+                return specs
+
+            for tr in table.find_all("tr"):
+                tds = tr.find_all("td")
+                if len(tds) < 2:
+                    continue
+                label = (tds[0].get_text(strip=True) or "").strip()
+                value = (tds[1].get_text(strip=True) or "").strip()
+                if label:
+                    specs[label] = value
+
+        except Exception as e:
+            print(f"⚠️ Warning: Failed to parse specification table: {e}")
+            return {}
+
+        return specs
+
