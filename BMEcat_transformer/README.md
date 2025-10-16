@@ -53,7 +53,26 @@ From repo root or `BMEcat_transformer/`:
 python3 BMEcat_transformer/main.py /path/to/your_bmecat.xml
 ```
 
+JSON input is also supported with a simple array of SUPPLIER_PIDs:
+
+```bash
+python3 BMEcat_transformer/main.py /path/to/manual_ids.json
+```
+
 You can also run without args and enter the path when prompted.
+
+### Input File Formats
+
+- **XML Format**: Extracts `SUPPLIER_PID` values from BMEcat XML files (see `src/xml_reader.py` for details).
+- **JSON Format**: Simple array of strings. Example:
+
+```json
+[
+  "ID1",
+  "ID2",
+  "ID3"
+]
+```
 
 ## Output
 

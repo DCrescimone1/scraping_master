@@ -15,16 +15,16 @@ from pathlib import Path
 from typing import Dict, Any
 
 import config
-from src.xml_reader import XMLReader
 from src.dabag_scraper import DABAGScraper
 from src.output_formatter import OutputFormatter
+from src.input_handler import InputHandler
 
 
-def get_xml_path() -> str:
-    """Get XML file path from command-line args or prompt user.
+def get_input_path() -> str:
+    """Get input file path from command-line args or prompt user.
 
     Returns:
-        Validated path string.
+        Validated path string to input file.
     """
     path: str | None = None
     if len(sys.argv) > 1:
@@ -33,12 +33,12 @@ def get_xml_path() -> str:
         path = input("Enter path to BMEcat XML file: ").strip()
 
     if not path:
-        print("⚠️ No XML path provided.")
+        print("⚠️ No input file path provided.")
         sys.exit(1)
 
     p = Path(path)
     if not p.exists() or not p.is_file():
-        print(f"⚠️ XML path does not exist or is not a file: {path}")
+        print(f"⚠️ Input file path does not exist or is not a file: {path}")
         sys.exit(1)
     return str(p)
 
@@ -50,11 +50,10 @@ def main() -> None:
     print(f"Scraping method: {config.SCRAPING_METHOD}")
     print("=" * 80)
 
-    xml_path = get_xml_path()
+    input_path = get_input_path()
 
     # Extract product IDs
-    reader = XMLReader(xml_path)
-    SUPPLIER_PIDs = reader.extract_SUPPLIER_PIDs()
+    SUPPLIER_PIDs = InputHandler.load_supplier_ids(input_path)
     print(f"Found {len(SUPPLIER_PIDs)} SUPPLIER_PID(s) to process.")
     if not SUPPLIER_PIDs:
         print("Nothing to do. Exiting.")

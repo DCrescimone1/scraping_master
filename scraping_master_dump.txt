@@ -10,9 +10,6 @@ Folder structure:
 │       ├── output_formatter.py
 │       ├── table_extractor.py
 │       └── xml_reader.py
-├── dabag_ch_20251010_183516
-│   ├── www_dabag_ch__data.json
-│   └── www_dabag_ch_.md
 ├── doc_processor
 │   ├── config.py
 │   ├── main.py
@@ -59,6 +56,8 @@ Folder structure:
 │       ├── serp_api_client.py
 │       └── web_scraper.py
 ├── outputs
+│   ├── bmecat_dabag_results_20251016_104334.json
+│   ├── bmecat_dabag_results_20251016_105350.json
 │   ├── Stihl_Version DABAG_summary_20251010_183123.json
 │   └── Stihl_Version DABAG_summary_20251013_100932.json
 ├── project_dump.sh
@@ -68,7 +67,7 @@ Folder structure:
     ├── spider_man_results_data.json
     └── spider_man_results.md
 
-17 directories, 51 files
+16 directories, 51 files
 
 
 --- File Contents ---
@@ -3273,15 +3272,14 @@ if __name__ == "__main__":
 """XML Reader for BMEcat_transformer.
 
 Provides `XMLReader` that extracts unique `SUPPLIER_PID`s from a BMEcat XML file.
-Attempts to leverage `doc_processor/src/bmecat_parser.BMEcatParser` and falls
-back to direct XML scanning when needed. Errors are logged as warnings and do
-not crash the process.
+Uses multiple fallback strategies to handle malformed XML.
 """
 
 from __future__ import annotations
 
 from typing import List, Set
 import sys
+import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -3313,84 +3311,153 @@ class XMLReader:
     def extract_SUPPLIER_PIDs(self) -> List[str]:
         """Extract a list of unique SUPPLIER_PID strings from the XML file.
 
+        Uses multiple strategies, prioritizing regex for malformed XML:
+        1. Regex extraction (most reliable for malformed XML)
+        2. Try with lxml (if available)
+        3. Try standard XML parsing
+
         Returns:
             List of unique product IDs (order preserved by first appearance).
-            If errors occur, returns an empty list and prints warnings.
         """
         SUPPLIER_PIDs: List[str] = []
         seen: Set[str] = set()
 
-        # First attempt: use the project's BMEcatParser if available
+        # Strategy 1: Regex-based extraction (most reliable for malformed XML)
         try:
-            if BMEcatParser is not None:
-                parser = BMEcatParser()
-                parsed = parser.parse_bmecat_file(self.xml_path)
-                # If parser returns None, fall back
-                if parsed:
-                    # The current parser focuses on catalog structures and may
-                    # not expose product-level data. Fall back to direct scan.
-                    pass
+            print("🔍 Using regex-based extraction (most reliable)...")
+            SUPPLIER_PIDs = self._extract_via_regex()
+            if SUPPLIER_PIDs:
+                print(f"✅ Successfully extracted {len(SUPPLIER_PIDs)} SUPPLIER_PIDs via regex")
+                print(f"   Product IDs: {', '.join(SUPPLIER_PIDs)}")
+                return SUPPLIER_PIDs
         except Exception as e:
-            print(f"⚠️ Warning: BMEcatParser failed or returned unexpected data: {e}")
+            print(f"⚠️  Regex extraction failed: {e}")
 
-        # Fallback: Directly scan the XML for any elements named SUPPLIER_PID
+        # Strategy 2: Try lxml with recovery mode (more lenient)
         try:
-            # Load file similarly to the project's parser to handle BOM/whitespace
-            with open(self.xml_path, 'rb') as f:
-                raw = f.read()
-
-            # Parse leniently by decoding and stripping leading whitespace
-            text = raw.decode('utf-8', errors='replace').lstrip()
-            root = ET.fromstring(text)
-
-            # Determine namespace prefix if present
-            if root.tag.startswith('{'):
-                ns = root.tag.split('}')[0] + '}'
-            else:
-                ns = ''
-
-            # Gather elements that are SUPPLIER_PID with or without namespace
-            # 1) Namespaced search
-            for elem in root.findall(f'.//{ns}SUPPLIER_PID'):
-                if elem is not None and elem.text:
-                    val = elem.text.strip()
-                    if val and val not in seen:
-                        seen.add(val)
-                        SUPPLIER_PIDs.append(val)
-
-            # 2) Non-namespaced search as a safety net
-            for elem in root.findall('.//SUPPLIER_PID'):
-                if elem is not None and elem.text:
-                    val = elem.text.strip()
-                    if val and val not in seen:
-                        seen.add(val)
-                        SUPPLIER_PIDs.append(val)
-
-            # 3) Very defensive: scan all elements whose tag endswith 'SUPPLIER_PID'
-            if not SUPPLIER_PIDs:
-                for elem in root.iter():
-                    tag = elem.tag
-                    if isinstance(tag, str) and tag.endswith('SUPPLIER_PID') and elem.text:
-                        val = elem.text.strip()
-                        if val and val not in seen:
-                            seen.add(val)
-                            SUPPLIER_PIDs.append(val)
-
-            if not SUPPLIER_PIDs:
-                print("⚠️ Warning: No SUPPLIER_PID elements found in the provided XML.")
-
+            print("🔍 Attempting lxml parsing with recovery mode...")
+            from lxml import etree as LXML_ET
+            SUPPLIER_PIDs = self._extract_via_lxml()
+            if SUPPLIER_PIDs:
+                print(f"✅ Successfully extracted {len(SUPPLIER_PIDs)} SUPPLIER_PIDs via lxml recovery")
+                print(f"   Product IDs: {', '.join(SUPPLIER_PIDs)}")
+                return SUPPLIER_PIDs
+        except ImportError:
+            print("⚠️  lxml not available, skipping...")
         except Exception as e:
-            print(f"⚠️ Warning: Failed to extract SUPPLIER_PIDs from XML: {e}")
-            return []
+            print(f"⚠️  lxml parsing failed: {e}")
+
+        # Strategy 3: Try standard XML parsing
+        try:
+            print("🔍 Attempting standard XML parsing...")
+            SUPPLIER_PIDs = self._extract_via_xml_parsing()
+            if SUPPLIER_PIDs:
+                print(f"✅ Successfully extracted {len(SUPPLIER_PIDs)} SUPPLIER_PIDs via XML parsing")
+                print(f"   Product IDs: {', '.join(SUPPLIER_PIDs)}")
+                return SUPPLIER_PIDs
+        except Exception as e:
+            print(f"⚠️  XML parsing failed: {e}")
+
+        if not SUPPLIER_PIDs:
+            print("⚠️  Warning: No SUPPLIER_PID elements found in the provided XML.")
 
         return SUPPLIER_PIDs
 
+    def _extract_via_xml_parsing(self) -> List[str]:
+        """Extract SUPPLIER_PIDs using standard XML parsing."""
+        SUPPLIER_PIDs: List[str] = []
+        seen: Set[str] = set()
 
+        with open(self.xml_path, 'rb') as f:
+            raw = f.read()
+
+        # Remove BOM and strip leading whitespace
+        if raw.startswith(b'\xef\xbb\xbf'):
+            raw = raw[3:]
+        text = raw.decode('utf-8', errors='replace').lstrip()
+        
+        root = ET.fromstring(text)
+
+        # Determine namespace
+        if root.tag.startswith('{'):
+            ns = root.tag.split('}')[0] + '}'
+        else:
+            ns = ''
+
+        # Search for SUPPLIER_PID elements
+        for elem in root.findall(f'.//{ns}SUPPLIER_PID'):
+            if elem is not None and elem.text:
+                val = elem.text.strip()
+                if val and val not in seen:
+                    seen.add(val)
+                    SUPPLIER_PIDs.append(val)
+
+        # Also try without namespace
+        for elem in root.findall('.//SUPPLIER_PID'):
+            if elem is not None and elem.text:
+                val = elem.text.strip()
+                if val and val not in seen:
+                    seen.add(val)
+                    SUPPLIER_PIDs.append(val)
+
+        return SUPPLIER_PIDs
+
+    def _extract_via_lxml(self) -> List[str]:
+        """Extract SUPPLIER_PIDs using lxml with recovery mode."""
+        from lxml import etree as LXML_ET
+        
+        SUPPLIER_PIDs: List[str] = []
+        seen: Set[str] = set()
+
+        with open(self.xml_path, 'rb') as f:
+            raw = f.read()
+
+        # Create parser with recovery mode (tolerates malformed XML)
+        parser = LXML_ET.XMLParser(recover=True, encoding='utf-8')
+        root = LXML_ET.fromstring(raw, parser)
+
+        # Find all SUPPLIER_PID elements
+        for elem in root.xpath('.//SUPPLIER_PID | .//*[local-name()="SUPPLIER_PID"]'):
+            if elem.text:
+                val = elem.text.strip()
+                if val and val not in seen:
+                    seen.add(val)
+                    SUPPLIER_PIDs.append(val)
+
+        return SUPPLIER_PIDs
+
+    def _extract_via_regex(self) -> List[str]:
+        """Extract SUPPLIER_PIDs using regex pattern matching.
+        
+        This method is resilient to XML structure errors and will work
+        even with malformed XML, as long as the tags exist.
+        """
+        SUPPLIER_PIDs: List[str] = []
+        seen: Set[str] = set()
+
+        with open(self.xml_path, 'r', encoding='utf-8', errors='replace') as f:
+            content = f.read()
+
+        # Pattern to match <SUPPLIER_PID>VALUE</SUPPLIER_PID>
+        # Works with or without namespace, handles whitespace
+        pattern = r'<(?:\w+:)?SUPPLIER_PID[^>]*>\s*([^<]+?)\s*</(?:\w+:)?SUPPLIER_PID>'
+        
+        matches = re.findall(pattern, content, re.DOTALL | re.IGNORECASE)
+        
+        for match in matches:
+            val = match.strip()
+            # Filter out empty or whitespace-only values
+            if val and not val.isspace() and val not in seen:
+                seen.add(val)
+                SUPPLIER_PIDs.append(val)
+
+        return SUPPLIER_PIDs
 ------------------------------------------------- ./BMEcat_transformer/src/output_formatter.py --------------------------------------------------
 
 """Output formatter for BMEcat_transformer.
 
 - Pretty-prints per-product, per-language specification tables to terminal.
+- Displays stats for each product (specs per language)
 - Saves complete results to JSON in configured output directory.
 - Displays a processing summary.
 """
@@ -3425,7 +3492,7 @@ class OutputFormatter:
         os.makedirs(self.output_dir, exist_ok=True)
 
     def print_results(self, results: Dict[str, Dict[str, Any]]) -> None:
-        """Print tables for each product.
+        """Print tables for each product with per-language statistics.
 
         Args:
             results: Mapping of SUPPLIER_PID -> {"product_url": str|None, "languages": {de|fr|it: specs dict}}
@@ -3454,6 +3521,13 @@ class OutputFormatter:
                 table_rows.append(row)
 
             print(tabulate(table_rows, headers=["Spec Label", "DE", "FR", "IT"], tablefmt="grid"))
+            
+            # Add per-product statistics
+            de_specs = len([v for v in langs.get("de", {}).values() if v and v.strip()])
+            fr_specs = len([v for v in langs.get("fr", {}).values() if v and v.strip()])
+            it_specs = len([v for v in langs.get("it", {}).values() if v and v.strip()])
+            
+            print(f"\n📊 Stats: DE: {de_specs} specs | FR: {fr_specs} specs | IT: {it_specs} specs")
 
     def save_to_json(self, results: Dict[str, Dict[str, Any]], filename: str | None = None) -> str:
         """Save results to a timestamped JSON file in the output directory.
@@ -3465,31 +3539,46 @@ class OutputFormatter:
         Returns:
             The full path of the saved JSON file.
         """
-        ts = time.strftime("%Y%m%d_%H%M%S")
-        base = filename or f"bmecat_dabag_results_{ts}"
-        path = os.path.join(self.output_dir, f"{base}.json")
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(results, f, indent=2, ensure_ascii=False)
-        print(f"Saved JSON: {path}")
-        return path
+        if filename is None:
+            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            filename = f"bmecat_dabag_results_{timestamp}.json"
+
+        if not filename.endswith(".json"):
+            filename += ".json"
+
+        filepath = os.path.join(self.output_dir, filename)
+
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
+
+        print(f"Saved JSON: {filepath}")
+        return filepath
 
     def display_summary(self, results: Dict[str, Dict[str, Any]]) -> None:
-        """Print a summary of processed products and specs per language."""
-        total_products = len(results)
-        lang_counts = {"de": 0, "fr": 0, "it": 0}
+        """Display a summary of the scraping session.
 
+        Args:
+            results: The complete results dict.
+        """
+        total_products = len(results)
+        
+        # Count total unique specs per language across all products
+        all_de_specs = set()
+        all_fr_specs = set()
+        all_it_specs = set()
+        
         for data in results.values():
             langs = data.get("languages", {})
-            for lang in lang_counts.keys():
-                lang_counts[lang] += len(langs.get(lang, {}))
+            all_de_specs.update(langs.get("de", {}).keys())
+            all_fr_specs.update(langs.get("fr", {}).keys())
+            all_it_specs.update(langs.get("it", {}).keys())
 
         print("\n" + "=" * 80)
         print("Summary")
         print("-" * 80)
         print(f"Total products processed: {total_products}")
-        print(f"Total specs extracted - DE: {lang_counts['de']}, FR: {lang_counts['fr']}, IT: {lang_counts['it']}")
-
-
+        print(f"Total unique spec fields - DE: {len(all_de_specs)}, FR: {len(all_fr_specs)}, IT: {len(all_it_specs)}")
+        print("-" * 80)
 ------------------------------------------------- ./BMEcat_transformer/src/__init__.py --------------------------------------------------
 
 """BMEcat_transformer package."""
