@@ -173,6 +173,37 @@ Managed at project root in `requirements.txt`:
 - `firecrawl-py` (for Firecrawl mode)
 - `playwright` (for Playwright mode)
 
+## 🔧 Feature Name Extractor
+
+Extract a database of unique feature names (fname) across all languages from the master JSON.
+
+### Purpose
+Creates a reference CSV file showing how each product feature is named in German (de), French (fr), and Italian (it).
+
+### Usage
+
+```bash
+cd BMEcat_transformer
+python3 extract_features.py
+```
+
+### Output
+- **File**: `outputs/unique_features.csv`
+- **Format**: 6 columns (fname_de, fvalue_de, fname_fr, fvalue_fr, fname_it, fvalue_it)
+- **Content**: Unique feature mappings with example values
+
+### Example Output
+```csv
+fname_de,fvalue_de,fname_fr,fvalue_fr,fname_it,fvalue_it
+Spannung,18 V,tension,18 V,tensione,18 V
+Akku-Typ,--,type d'accu,--,tipo di batteria,--
+```
+
+### Notes
+- Features are matched by position (assumes same order across languages)
+- Only first occurrence is stored as example value
+- Requires `master_bmecat_dabag.json` to exist (run main scraper first)
+
 ## Notes
 
 - On Firecrawl mode, `FIRECRAWL_API_KEY` is required; otherwise startup will fail with a clear message.

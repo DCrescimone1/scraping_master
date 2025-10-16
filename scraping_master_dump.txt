@@ -9,8 +9,10 @@ Folder structure:
 │       ├── __init__.py
 │       ├── dabag_scraper.py
 │       ├── input_handler.py
+│       ├── master_json_manager.py
 │       ├── output_formatter.py
 │       ├── table_extractor.py
+│       ├── user_prompt.py
 │       └── xml_reader.py
 ├── doc_processor
 │   ├── config.py
@@ -53,6 +55,10 @@ Folder structure:
 ├── outputs
 │   ├── bmecat_dabag_results_20251016_104334.json
 │   ├── bmecat_dabag_results_20251016_105350.json
+│   ├── bmecat_dabag_results_20251016_113936.json
+│   ├── bmecat_dabag_results_20251016_114927.json
+│   ├── master_bmecat_dabag.json
+│   ├── master_bmecat_dabag.json.backup1
 │   ├── Stihl_Version DABAG_summary_20251010_183123.json
 │   └── Stihl_Version DABAG_summary_20251013_100932.json
 ├── project_dump.sh
@@ -62,7 +68,7 @@ Folder structure:
     ├── spider_man_results_data.json
     └── spider_man_results.md
 
-13 directories, 49 files
+13 directories, 55 files
 
 
 --- File Contents ---
@@ -3124,6 +3130,254 @@ class SerpAPIClient:
             print(f"Error extracting URL: {e}")
             return None
 
+------------------------------------------------- ./outputs/master_bmecat_dabag.json.backup1 --------------------------------------------------
+
+{
+  "metadata": {
+    "created_at": "2025-10-16T11:38:43.726045",
+    "last_updated": "2025-10-16T11:39:36.676459",
+    "total_products": 6
+  },
+  "products": {
+    "DCH273NT-XJ": {
+      "SUPPLIER_PID": "DCH273NT-XJ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCH273NT-XJ&markId=DCH273NT-XJ&artId=100292296&trefferUUID=73B4DDF0-869B-48B5-86D42A4407354CF8",
+      "languages": {
+        "de": {
+          "Spannung": "18 V",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Leerlaufdrehzahl": "0-1100 min-1",
+          "Drehstopp": "ja",
+          "Schlagzahl": "0-4600 min-1",
+          "Einzelschlagenergie": "2.1 J (EPTA)",
+          "Bohrleistung Beton": "24 mm",
+          "LED-Leuchte": "mit",
+          "Akku": "-- Stück",
+          "Ladegerät": "--",
+          "Verpackung": "T-STAK",
+          "Gewicht": "2.50 kg"
+        },
+        "fr": {
+          "tension": "18 V",
+          "type d’accu": "--",
+          "capacité de l’accu": "-- Ah",
+          "nombre de tours à vide": "0-1100 min-1",
+          "arrêt de frappe": "oui",
+          "fréquence de frappe": "0-4600 min-1",
+          "energie de frappe": "2.1 J (EPTA)",
+          "cap. béton": "24 mm",
+          "lampe DEL": "avec",
+          "accu": "-- pièce",
+          "chargeur": "--",
+          "emballage": "T-STAK",
+          "poids": "2.50 kg"
+        },
+        "it": {
+          "tensione": "18 V",
+          "tipo di batteria": "--",
+          "capacità batteria": "-- Ah",
+          "numero di giri a vuoto": "0-1100 min-1",
+          "arresto di rotazione": "sì",
+          "frequenza colpo al minuto": "0-4600 min-1",
+          "energia percussione singola": "2.1 J (EPTA)",
+          "cap. calcestruzzo": "24 mm",
+          "lampada LED": "con",
+          "batteria": "-- pezzo",
+          "caricabatterie": "--",
+          "imballaggio": "T-STAK",
+          "peso": "2.50 kg"
+        }
+      },
+      "scraped_at": "2025-10-16T11:38:56.544330"
+    },
+    "DCG405NT-XJ": {
+      "SUPPLIER_PID": "DCG405NT-XJ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCG405NT-XJ&markId=DCG405NT-XJ&artId=100321765&trefferUUID=D315C16A-D4EA-4D1B-8FF9BF9F8F6D43E4",
+      "languages": {
+        "de": {
+          "Spannung": "18 V",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Scheiben-Ø": "125 mm",
+          "Leerlaufdrehzahl": "9000 min-1",
+          "Akku": "-- Stück",
+          "Ladegerät": "--",
+          "Verpackung": "T-STAK",
+          "Gewicht": "1.80 kg"
+        },
+        "fr": {
+          "tension": "18 V",
+          "type d’accu": "--",
+          "capacité de l’accu": "-- Ah",
+          "Ø disques": "125 mm",
+          "nombre de tours à vide": "9000 min-1",
+          "accu": "-- pièce",
+          "chargeur": "--",
+          "emballage": "T-STAK",
+          "poids": "1.80 kg"
+        },
+        "it": {
+          "tensione": "18 V",
+          "tipo di batteria": "--",
+          "capacità batteria": "-- Ah",
+          "Ø dischi": "125 mm",
+          "numero di giri a vuoto": "9000 min-1",
+          "batteria": "-- pezzo",
+          "caricabatterie": "--",
+          "imballaggio": "T-STAK",
+          "peso": "1.80 kg"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:03.420664"
+    },
+    "DCK329P2T-QW": {
+      "SUPPLIER_PID": "DCK329P2T-QW",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCK329P2T-QW&markId=DCK329P2T-QW&artId=100683390&trefferUUID=15A26530-F3A5-4A78-884602D12ABD18D2",
+      "languages": {
+        "de": {
+          "Spannung": "18 V",
+          "Akku-Typ": "Li-Ion",
+          "Akku-Kapazität": "5 Ah",
+          "Akku": "2 Stück",
+          "Ladegerät": "DCB1104",
+          "Verpackung": "T STAK-Box VI / T STAK-Box II"
+        },
+        "fr": {
+          "tension": "18 V",
+          "type d’accu": "Li-Ion",
+          "capacité de l’accu": "5 Ah",
+          "accu": "2 pièce",
+          "chargeur": "DCB1104",
+          "emballage": "T STAK-Box VI / T STAK-Box II"
+        },
+        "it": {
+          "tensione": "18 V",
+          "tipo di batteria": "Li-Ion",
+          "capacità batteria": "5 Ah",
+          "batteria": "2 pezzo",
+          "caricabatterie": "DCB1104",
+          "imballaggio": "T STAK-Box VI / T STAK-Box II"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:10.157359"
+    },
+    "DCS573NT-XJ": {
+      "SUPPLIER_PID": "DCS573NT-XJ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCS573NT-XJ&markId=DCS573NT-XJ&artId=100571860&trefferUUID=46DDD712-4A88-4D51-88021A3495BD79D7",
+      "languages": {
+        "de": {
+          "Spannung": "18 V",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Sägeblatt-Ø": "190 mm",
+          "Sägeblatt-Ø Bohrung": "30 mm",
+          "Schnittleistung 45°": "51 mm",
+          "Schnittleistung 90°": "67 mm",
+          "Drehzahl": "5500 min-1",
+          "LED-Leuchte": "mit",
+          "Akku": "-- Stück",
+          "Ladegerät": "--",
+          "Verpackung": "T-STAK",
+          "Gewicht": "3.60 kg"
+        },
+        "fr": {
+          "tension": "18 V",
+          "type d’accu": "--",
+          "capacité de l’accu": "-- Ah",
+          "Ø de la lame de scie": "190 mm",
+          "Ø de forage de la lame de scie": "30 mm",
+          "profondeur de coupe 45°": "51 mm",
+          "profondeur de coupe à 90°": "67 mm",
+          "vitesse": "5500 min-1",
+          "lampe DEL": "avec",
+          "accu": "-- pièce",
+          "chargeur": "--",
+          "emballage": "T-STAK",
+          "poids": "3.60 kg"
+        },
+        "it": {
+          "tensione": "18 V",
+          "tipo di batteria": "--",
+          "capacità batteria": "-- Ah",
+          "Ø della lama": "190 mm",
+          "Ø lama da sega, foro": "30 mm",
+          "profondità taglio 45°": "51 mm",
+          "profondità taglio a 90°": "67 mm",
+          "numero di giri": "5500 min-1",
+          "lampada LED": "con",
+          "batteria": "-- pezzo",
+          "caricabatterie": "--",
+          "imballaggio": "T-STAK",
+          "peso": "3.60 kg"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:20.815164"
+    },
+    "DT1953-QZ": {
+      "SUPPLIER_PID": "DT1953-QZ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1953-QZ&markId=DT1953-QZ&artId=100255912&trefferUUID=A626F45F-87B8-44F1-93F95608C46F4DF7",
+      "languages": {
+        "de": {
+          "Aussen-Ø": "216 mm",
+          "Boh­rungs-Ø": "30 mm",
+          "Schnitt­breite": "2.6 mm",
+          "Stamm­blatt­stärke": "1.7 mm",
+          "Span­winkel": "-5 °",
+          "Zahn­form": "WZ"
+        },
+        "fr": {
+          "Ø ex­té­rieur": "216 mm",
+          "Ø perçage": "30 mm",
+          "largeur de coupe": "2.6 mm",
+          "épaisseur du corps de lame": "1.7 mm",
+          "angle": "-5 °",
+          "denture": "WZ"
+        },
+        "it": {
+          "Ø esterno": "216 mm",
+          "Ø foro": "30 mm",
+          "larghezza del taglio": "2.6 mm",
+          "spessore lama": "1.7 mm",
+          "angolo di spoglia superiore": "-5 °",
+          "forma del dente": "WZ"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:29.230573"
+    },
+    "DT1952-QZ": {
+      "SUPPLIER_PID": "DT1952-QZ",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1952-QZ&markId=DT1952-QZ&artId=100255912&trefferUUID=06749BE5-CA8A-4501-81644005B0BBFB13",
+      "languages": {
+        "de": {
+          "Aussen-Ø": "216 mm",
+          "Boh­rungs-Ø": "30 mm",
+          "Schnitt­breite": "2.6 mm",
+          "Stamm­blatt­stärke": "1.7 mm",
+          "Span­winkel": "-5 °",
+          "Zahn­form": "WZ"
+        },
+        "fr": {
+          "Ø ex­té­rieur": "216 mm",
+          "Ø perçage": "30 mm",
+          "largeur de coupe": "2.6 mm",
+          "épaisseur du corps de lame": "1.7 mm",
+          "angle": "-5 °",
+          "denture": "WZ"
+        },
+        "it": {
+          "Ø esterno": "216 mm",
+          "Ø foro": "30 mm",
+          "larghezza del taglio": "2.6 mm",
+          "spessore lama": "1.7 mm",
+          "angolo di spoglia superiore": "-5 °",
+          "forma del dente": "WZ"
+        }
+      },
+      "scraped_at": "2025-10-16T11:39:36.676448"
+    }
+  }
+}
 ------------------------------------------------- ./BMEcat_transformer/config.py --------------------------------------------------
 
 from __future__ import annotations
@@ -3154,6 +3408,10 @@ LANGUAGES: dict[str, int] = {
 
 # Output directory for saved JSON
 OUTPUT_DIR: str = os.getenv("BME_OUTPUT_DIR", "outputs/")
+
+# Master JSON settings
+MASTER_JSON_FILENAME: str = os.getenv("MASTER_JSON_FILENAME", "master_bmecat_dabag.json")
+MASTER_JSON_BACKUP_COUNT: int = int(os.getenv("MASTER_JSON_BACKUP_COUNT", "2"))
 
 # Optional keys depending on method
 FIRECRAWL_API_KEY: str | None = os.getenv("FIRECRAWL_API_KEY")
@@ -3194,6 +3452,8 @@ import config
 from src.dabag_scraper import DABAGScraper
 from src.output_formatter import OutputFormatter
 from src.input_handler import InputHandler
+from src.master_json_manager import MasterJSONManager
+from src.user_prompt import UserPrompt
 
 
 def get_input_path() -> str:
@@ -3235,31 +3495,238 @@ def main() -> None:
         print("Nothing to do. Exiting.")
         return
 
+    # Initialize master JSON manager
+    master_manager = MasterJSONManager(
+        master_filename=config.MASTER_JSON_FILENAME,
+        output_dir=config.OUTPUT_DIR,
+        backup_count=config.MASTER_JSON_BACKUP_COUNT
+    )
+    master_manager.load()
+
+    # Show master JSON statistics
+    stats = master_manager.get_statistics()
+    print(f"\n📊 Master JSON Status:")
+    print(f"  Total products: {stats['total_products']}")
+    print(f"  Last updated: {stats['last_updated']}")
+    print()
+
     scraper = DABAGScraper()
     results: Dict[str, Dict[str, Any]] = {}
+    
+    # Counters for summary
+    new_count = 0
+    updated_count = 0
+    skipped_count = 0
 
     for idx, pid in enumerate(SUPPLIER_PIDs, 1):
         print("-" * 80)
         print(f"[{idx}/{len(SUPPLIER_PIDs)}] Processing SUPPLIER_PID: {pid}")
-        try:
-            data = scraper.process_product(pid)
-            results[pid] = data
-        except Exception as e:
-            print(f"⚠️ Warning: Error processing {pid}: {e}")
-            results[pid] = {"SUPPLIER_PID": pid, "product_url": None, "languages": {}}
 
+        # Check if ID exists in master JSON
+        exists, existing_data = master_manager.check_id_exists(pid)
+
+        if exists:
+            # Show existing data WITHOUT scraping
+            UserPrompt.show_existing_data(pid, existing_data)
+
+            # Ask user for decision BEFORE scraping
+            decision = UserPrompt.prompt_update_decision(pid)
+
+            if decision == "update":
+                # Only scrape if user wants to update
+                try:
+                    new_data = scraper.process_product(pid)
+                    master_manager.update_product(pid, new_data)
+                    results[pid] = new_data
+                    updated_count += 1
+                except Exception as e:
+                    print(f"⚠️  Warning: Error processing {pid}: {e}")
+                    results[pid] = existing_data  # Keep existing on error
+            else:
+                print(f"⏭️  Skipping {pid} (keeping existing data)")
+                results[pid] = existing_data
+                skipped_count += 1
+
+        else:
+            # New ID - scrape and append
+            try:
+                data = scraper.process_product(pid)
+                master_manager.append_product(pid, data)
+                results[pid] = data
+                new_count += 1
+            except Exception as e:
+                print(f"⚠️  Warning: Error processing {pid}: {e}")
+                results[pid] = {"SUPPLIER_PID": pid, "product_url": None, "languages": {}}
+
+    # Save master JSON
+    master_manager.save()
+
+    # Display results and save timestamped export
     formatter = OutputFormatter(output_dir=config.OUTPUT_DIR)
     formatter.print_results(results)
-    formatter.save_to_json(results)
+    formatter.save_to_json(results)  # Keeps timestamped export functionality
     formatter.display_summary(results)
 
-    elapsed = time.time() - start
+    # Display master JSON update summary
+    print("\n" + "=" * 80)
+    print("Master JSON Update Summary")
     print("-" * 80)
+    print(f"New products added: {new_count}")
+    print(f"Products updated: {updated_count}")
+    print(f"Products skipped: {skipped_count}")
+    print(f"Total in master: {master_manager.get_statistics()['total_products']}")
+    print("-" * 80)
+
+    elapsed = time.time() - start
     print(f"Elapsed time: {elapsed:.2f}s")
 
 
 if __name__ == "__main__":
     main()
+
+------------------------------------------------- ./BMEcat_transformer/src/master_json_manager.py --------------------------------------------------
+
+"""Master JSON manager for BMEcat_transformer.
+
+Manages a persistent master JSON file that tracks all scraped products.
+Provides functionality to check existence, append new entries, update existing ones,
+and maintain backup versions.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import shutil
+from datetime import datetime
+from typing import Dict, Any, Optional, Tuple
+
+
+class MasterJSONManager:
+    """Manage the master JSON file for scraped product data."""
+
+    def __init__(self, master_filename: str, output_dir: str, backup_count: int = 2) -> None:
+        """Initialize the master JSON manager.
+
+        Args:
+            master_filename: Name of the master JSON file.
+            output_dir: Directory where master JSON is stored.
+            backup_count: Number of backup versions to keep.
+        """
+        self.master_filename = master_filename
+        self.output_dir = output_dir
+        self.backup_count = backup_count
+        self.master_path = os.path.join(output_dir, master_filename)
+        self.data: Dict[str, Any] = {"metadata": {}, "products": {}}
+        os.makedirs(output_dir, exist_ok=True)
+
+    def load(self) -> None:
+        """Load the master JSON file. Creates new if doesn't exist."""
+        if os.path.exists(self.master_path):
+            try:
+                with open(self.master_path, "r", encoding="utf-8") as f:
+                    self.data = json.load(f)
+                print(f"✓ Loaded master JSON from: {self.master_path}")
+            except (json.JSONDecodeError, IOError) as e:
+                print(f"⚠️  Warning: Failed to load master JSON ({e}). Starting fresh.")
+                self._initialize_fresh()
+        else:
+            print(f"✓ Master JSON not found. Starting fresh: {self.master_path}")
+            self._initialize_fresh()
+
+    def _initialize_fresh(self) -> None:
+        """Initialize a fresh master JSON structure."""
+        self.data = {
+            "metadata": {
+                "created_at": datetime.now().isoformat(),
+                "last_updated": datetime.now().isoformat(),
+                "total_products": 0,
+            },
+            "products": {},
+        }
+
+    def check_id_exists(self, supplier_pid: str) -> Tuple[bool, Optional[Dict[str, Any]]]:
+        """Check if a SUPPLIER_PID exists in master JSON.
+
+        Args:
+            supplier_pid: The product ID to check.
+
+        Returns:
+            Tuple of (exists: bool, existing_data: dict or None)
+        """
+        exists = supplier_pid in self.data.get("products", {})
+        existing_data = self.data["products"].get(supplier_pid) if exists else None
+        return exists, existing_data
+
+    def append_product(self, supplier_pid: str, product_data: Dict[str, Any]) -> None:
+        """Append a new product to the master JSON.
+
+        Args:
+            supplier_pid: The product ID.
+            product_data: The scraped product data.
+        """
+        enriched_data = product_data.copy()
+        enriched_data["scraped_at"] = datetime.now().isoformat()
+        self.data["products"][supplier_pid] = enriched_data
+        self.data["metadata"]["total_products"] = len(self.data["products"])
+        self.data["metadata"]["last_updated"] = datetime.now().isoformat()
+        print(f"✓ Appended {supplier_pid} to master JSON")
+
+    def update_product(self, supplier_pid: str, product_data: Dict[str, Any]) -> None:
+        """Update an existing product in the master JSON.
+
+        Args:
+            supplier_pid: The product ID.
+            product_data: The new scraped product data.
+        """
+        enriched_data = product_data.copy()
+        enriched_data["scraped_at"] = datetime.now().isoformat()
+        enriched_data["updated_at"] = datetime.now().isoformat()
+        self.data["products"][supplier_pid] = enriched_data
+        self.data["metadata"]["last_updated"] = datetime.now().isoformat()
+        print(f"✓ Updated {supplier_pid} in master JSON")
+
+    def save(self) -> None:
+        """Save the master JSON with backup rotation."""
+        self._rotate_backups()
+        try:
+            with open(self.master_path, "w", encoding="utf-8") as f:
+                json.dump(self.data, f, ensure_ascii=False, indent=2)
+            print(f"✓ Saved master JSON to: {self.master_path}")
+        except IOError as e:
+            print(f"❌ Error saving master JSON: {e}")
+
+    def _rotate_backups(self) -> None:
+        """Rotate backup files, keeping only the specified number of backups."""
+        if not os.path.exists(self.master_path):
+            return
+
+        # Shift existing backups
+        for i in range(self.backup_count - 1, 0, -1):
+            old_backup = f"{self.master_path}.backup{i}"
+            new_backup = f"{self.master_path}.backup{i+1}"
+            if os.path.exists(old_backup):
+                if i == self.backup_count - 1:
+                    # Remove oldest backup if at limit
+                    if os.path.exists(new_backup):
+                        os.remove(new_backup)
+                shutil.move(old_backup, new_backup)
+
+        # Create backup of current master
+        backup_path = f"{self.master_path}.backup1"
+        shutil.copy2(self.master_path, backup_path)
+
+    def get_statistics(self) -> Dict[str, Any]:
+        """Get statistics about the master JSON.
+
+        Returns:
+            Dictionary with statistics.
+        """
+        return {
+            "total_products": len(self.data.get("products", {})),
+            "created_at": self.data.get("metadata", {}).get("created_at", "N/A"),
+            "last_updated": self.data.get("metadata", {}).get("last_updated", "N/A"),
+        }
 
 ------------------------------------------------- ./BMEcat_transformer/src/xml_reader.py --------------------------------------------------
 
@@ -3576,6 +4043,73 @@ class OutputFormatter:
 ------------------------------------------------- ./BMEcat_transformer/src/__init__.py --------------------------------------------------
 
 """BMEcat_transformer package."""
+
+------------------------------------------------- ./BMEcat_transformer/src/user_prompt.py --------------------------------------------------
+
+"""User prompt handler for BMEcat_transformer.
+
+Handles user interaction when an existing product is found in master JSON.
+Shows existing data and prompts for update decision.
+"""
+
+from __future__ import annotations
+
+from typing import Dict, Any, Literal
+
+
+class UserPrompt:
+    """Handle user prompts and display existing data."""
+
+    @staticmethod
+    def show_existing_data(supplier_pid: str, existing_data: Dict[str, Any]) -> None:
+        """Display existing data from master JSON.
+
+        Args:
+            supplier_pid: The product ID.
+            existing_data: Data currently in master JSON.
+        """
+        print("\n" + "=" * 80)
+        print(f"🔍 Product {supplier_pid} already exists in master JSON")
+        print("-" * 80)
+
+        # Show timestamps
+        scraped_at = existing_data.get("scraped_at", "N/A")
+        updated_at = existing_data.get("updated_at", scraped_at)
+        print(f"Last scraped: {scraped_at}")
+        if updated_at != scraped_at:
+            print(f"Last updated: {updated_at}")
+
+        # Show language coverage
+        existing_langs = existing_data.get("languages", {})
+        print("\nLanguage Coverage:")
+        for lang in ["de", "fr", "it"]:
+            spec_count = len(existing_langs.get(lang, {}))
+            print(f"  {lang.upper()}: {spec_count} specs")
+
+        # Show URL
+        existing_url = existing_data.get("product_url", "N/A")
+        print(f"\nURL: {existing_url}")
+
+        print("-" * 80)
+
+    @staticmethod
+    def prompt_update_decision(supplier_pid: str) -> Literal["update", "skip"]:
+        """Prompt user to decide whether to update or skip.
+
+        Args:
+            supplier_pid: The product ID.
+
+        Returns:
+            'update' if user wants to update, 'skip' otherwise.
+        """
+        while True:
+            response = input(f"Update {supplier_pid}? [y/n]: ").strip().lower()
+            if response in ["y", "yes"]:
+                return "update"
+            elif response in ["n", "no"]:
+                return "skip"
+            else:
+                print("⚠️  Invalid input. Please enter 'y' or 'n'.")
 
 ------------------------------------------------- ./BMEcat_transformer/src/dabag_scraper.py --------------------------------------------------
 
