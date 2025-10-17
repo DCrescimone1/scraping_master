@@ -13,15 +13,15 @@ from pathlib import Path
 from urllib.parse import urljoin
 import requests
 
-# Import config from the module root (BMEcat_transformer)
-MODULE_ROOT = Path(__file__).resolve().parent.parent
-if str(MODULE_ROOT) not in sys.path:
-    sys.path.append(str(MODULE_ROOT))
+# Import config from project root
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.append(str(PROJECT_ROOT))
 import config  # type: ignore
 
 # Import appropriate scraper based on config
-PROJECT_ROOT = Path(__file__).parent.parent.parent
-sys.path.append(str(PROJECT_ROOT))
+PARENT_PROJECT = PROJECT_ROOT.parent
+sys.path.append(str(PARENT_PROJECT))
 
 if config.SCRAPING_METHOD == "firecrawl":
     from easy_rich.src.web_scraper import WebScraper  # type: ignore
@@ -31,7 +31,7 @@ else:  # Defensive
     from easy_rich.src.web_scraper import WebScraper  # type: ignore
 
 # Local imports
-from .table_extractor import TableExtractor
+from scrapers.table_extractor import TableExtractor
 
 
 class DABAGScraper:

@@ -14,12 +14,17 @@ import time
 from pathlib import Path
 from typing import Dict, Any
 
+# Add parent directory to path for imports
+SCRIPT_DIR = Path(__file__).parent
+PROJECT_ROOT = SCRIPT_DIR.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
 import config
-from src.dabag_scraper import DABAGScraper
-from src.output_formatter import OutputFormatter
-from src.input_handler import InputHandler
-from src.master_json_manager import MasterJSONManager
-from src.user_prompt import UserPrompt
+from scrapers.dabag_scraper import DABAGScraper
+from output.output_formatter import OutputFormatter
+from core.input_handler import InputHandler
+from core.master_json_manager import MasterJSONManager
+from ui.user_prompt import UserPrompt
 
 
 def get_input_path() -> str:

@@ -1,1 +1,0 @@
-"""BMEcat_transformer package."""

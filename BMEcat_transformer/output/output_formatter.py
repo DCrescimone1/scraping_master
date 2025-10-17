@@ -16,10 +16,11 @@ import sys
 from pathlib import Path
 from tabulate import tabulate  # type: ignore
 
-# Import config from the module root (BMEcat_transformer)
-MODULE_ROOT = Path(__file__).resolve().parent.parent
-if str(MODULE_ROOT) not in sys.path:
-    sys.path.append(str(MODULE_ROOT))
+
+# Import config from project root
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.append(str(PROJECT_ROOT))
 import config  # type: ignore
 
 

@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import List
 import json
 
-from src.xml_reader import XMLReader
+from core.xml_reader import XMLReader
 
 
 class InputHandler:

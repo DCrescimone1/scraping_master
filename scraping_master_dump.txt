@@ -3,17 +3,22 @@ Folder structure:
 ├── BMEcat_transformer
 │   ├── config.py
 │   ├── example_supplier_ids.json
+│   ├── extract_features.py
 │   ├── main.py
 │   ├── README.md
 │   └── src
 │       ├── __init__.py
 │       ├── dabag_scraper.py
+│       ├── feature_extractor.py
 │       ├── input_handler.py
 │       ├── master_json_manager.py
 │       ├── output_formatter.py
 │       ├── table_extractor.py
 │       ├── user_prompt.py
 │       └── xml_reader.py
+├── dabag_ch_20251016_161607
+│   ├── www_dabag_ch__data.json
+│   └── www_dabag_ch_.md
 ├── doc_processor
 │   ├── config.py
 │   ├── main.py
@@ -60,7 +65,8 @@ Folder structure:
 │   ├── master_bmecat_dabag.json
 │   ├── master_bmecat_dabag.json.backup1
 │   ├── Stihl_Version DABAG_summary_20251010_183123.json
-│   └── Stihl_Version DABAG_summary_20251013_100932.json
+│   ├── Stihl_Version DABAG_summary_20251013_100932.json
+│   └── unique_features.csv
 ├── project_dump.sh
 ├── requirements.txt
 ├── scraping_master_dump.txt
@@ -68,7 +74,7 @@ Folder structure:
     ├── spider_man_results_data.json
     └── spider_man_results.md
 
-13 directories, 55 files
+14 directories, 60 files
 
 
 --- File Contents ---
@@ -3130,6 +3136,35 @@ class SerpAPIClient:
             print(f"Error extracting URL: {e}")
             return None
 
+------------------------------------------------- ./outputs/unique_features.csv --------------------------------------------------
+
+fname_de,fvalue_de,fname_fr,fvalue_fr,fname_it,fvalue_it
+Akku,-- Stück,accu,-- pièce,batteria,-- pezzo
+Akku-Kapazität,-- Ah,capacité de l’accu,-- Ah,capacità batteria,-- Ah
+Akku-Typ,--,type d’accu,--,tipo di batteria,--
+Aussen-Ø,216 mm,Ø ex­té­rieur,216 mm,Ø esterno,216 mm
+Bohrleistung Beton,24 mm,cap. béton,24 mm,cap. calcestruzzo,24 mm
+Boh­rungs-Ø,30 mm,Ø perçage,30 mm,Ø foro,30 mm
+Drehstopp,ja,arrêt de frappe,oui,arresto di rotazione,sì
+Drehzahl,5500 min-1,vitesse,5500 min-1,numero di giri,5500 min-1
+Einzelschlagenergie,2.1 J (EPTA),energie de frappe,2.1 J (EPTA),energia percussione singola,2.1 J (EPTA)
+Gewicht,2.50 kg,poids,2.50 kg,peso,2.50 kg
+LED-Leuchte,mit,lampe DEL,avec,lampada LED,con
+Ladegerät,--,chargeur,--,caricabatterie,--
+Leerlaufdrehzahl,0-1100 min-1,nombre de tours à vide,0-1100 min-1,numero di giri a vuoto,0-1100 min-1
+Scheiben-Ø,125 mm,Ø disques,125 mm,Ø dischi,125 mm
+Schlagzahl,0-4600 min-1,fréquence de frappe,0-4600 min-1,frequenza colpo al minuto,0-4600 min-1
+Schnittleistung 45°,51 mm,profondeur de coupe 45°,51 mm,profondità taglio 45°,51 mm
+Schnittleistung 90°,67 mm,profondeur de coupe à 90°,67 mm,profondità taglio a 90°,67 mm
+Schnitt­breite,2.6 mm,largeur de coupe,2.6 mm,larghezza del taglio,2.6 mm
+Spannung,18 V,tension,18 V,tensione,18 V
+Span­winkel,-5 °,angle,-5 °,angolo di spoglia superiore,-5 °
+Stamm­blatt­stärke,1.7 mm,épaisseur du corps de lame,1.7 mm,spessore lama,1.7 mm
+Sägeblatt-Ø,190 mm,Ø de la lame de scie,190 mm,Ø della lama,190 mm
+Sägeblatt-Ø Bohrung,30 mm,Ø de forage de la lame de scie,30 mm,"Ø lama da sega, foro",30 mm
+Verpackung,T-STAK,emballage,T-STAK,imballaggio,T-STAK
+Zahn­form,WZ,denture,WZ,forma del dente,WZ
+
 ------------------------------------------------- ./outputs/master_bmecat_dabag.json.backup1 --------------------------------------------------
 
 {
@@ -3429,6 +3464,49 @@ if SCRAPING_METHOD == "firecrawl" and not FIRECRAWL_API_KEY:
 if not OUTPUT_DIR.endswith("/"):
     OUTPUT_DIR = OUTPUT_DIR + "/"
 
+
+------------------------------------------------- ./BMEcat_transformer/extract_features.py --------------------------------------------------
+
+"""Standalone script to extract unique feature names from master JSON.
+
+Usage:
+    python3 extract_features.py
+"""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+# Add src to path
+sys.path.insert(0, str(Path(__file__).parent))
+
+import config
+from src.feature_extractor import FeatureExtractor
+
+
+def main() -> None:
+    """Run feature extraction."""
+    # Construct master JSON path
+    master_json_path = Path(config.OUTPUT_DIR) / config.MASTER_JSON_FILENAME
+    
+    if not master_json_path.exists():
+        print(f"❌ Error: Master JSON not found at {master_json_path}")
+        print(f"Please run the main scraper first to generate {config.MASTER_JSON_FILENAME}")
+        sys.exit(1)
+    
+    # Run extractor
+    extractor = FeatureExtractor(
+        master_json_path=str(master_json_path),
+        output_dir=config.OUTPUT_DIR
+    )
+    
+    success = extractor.run()
+    sys.exit(0 if success else 1)
+
+
+if __name__ == "__main__":
+    main()
 
 ------------------------------------------------- ./BMEcat_transformer/main.py --------------------------------------------------
 
@@ -4110,6 +4188,160 @@ class UserPrompt:
                 return "skip"
             else:
                 print("⚠️  Invalid input. Please enter 'y' or 'n'.")
+
+------------------------------------------------- ./BMEcat_transformer/src/feature_extractor.py --------------------------------------------------
+
+"""Feature extractor for BMEcat_transformer.
+
+Extracts unique feature names (fname) and example values (fvalue) from 
+master_bmecat_dabag.json across all languages (de, fr, it).
+Creates a 6-column matrix for feature name mapping reference.
+"""
+
+from __future__ import annotations
+
+import json
+import csv
+import os
+from typing import Dict, List, Tuple, Any
+from pathlib import Path
+
+
+class FeatureExtractor:
+    """Extract and export unique feature names from master JSON."""
+
+    def __init__(self, master_json_path: str, output_dir: str) -> None:
+        """Initialize with paths.
+
+        Args:
+            master_json_path: Path to master_bmecat_dabag.json
+            output_dir: Directory to save output CSV
+        """
+        self.master_json_path = master_json_path
+        self.output_dir = output_dir
+        self.data: Dict[str, Any] = {}
+        
+        # Store unique features as: {(fname_de, fname_fr, fname_it): (fvalue_de, fvalue_fr, fvalue_it)}
+        self.unique_features: Dict[Tuple[str, str, str], Tuple[str, str, str]] = {}
+
+    def load_master_json(self) -> bool:
+        """Load the master JSON file.
+
+        Returns:
+            True if successful, False otherwise.
+        """
+        try:
+            with open(self.master_json_path, 'r', encoding='utf-8') as f:
+                self.data = json.load(f)
+            print(f"✅ Loaded master JSON: {len(self.data.get('products', {}))} products")
+            return True
+        except FileNotFoundError:
+            print(f"❌ Error: Master JSON not found at {self.master_json_path}")
+            return False
+        except json.JSONDecodeError as e:
+            print(f"❌ Error: Invalid JSON: {e}")
+            return False
+
+    def extract_features(self) -> None:
+        """Extract unique features from all products.
+        
+        Matches features by position index across languages.
+        """
+        products = self.data.get('products', {})
+        
+        for pid, product_data in products.items():
+            languages = product_data.get('languages', {})
+            
+            de_features = languages.get('de', {})
+            fr_features = languages.get('fr', {})
+            it_features = languages.get('it', {})
+            
+            # Convert to lists to maintain order
+            de_items = list(de_features.items())
+            fr_items = list(fr_features.items())
+            it_items = list(it_features.items())
+            
+            # Match by position index
+            max_len = max(len(de_items), len(fr_items), len(it_items))
+            
+            for i in range(max_len):
+                fname_de = de_items[i][0] if i < len(de_items) else ""
+                fvalue_de = de_items[i][1] if i < len(de_items) else ""
+                
+                fname_fr = fr_items[i][0] if i < len(fr_items) else ""
+                fvalue_fr = fr_items[i][1] if i < len(fr_items) else ""
+                
+                fname_it = it_items[i][0] if i < len(it_items) else ""
+                fvalue_it = it_items[i][1] if i < len(it_items) else ""
+                
+                # Create unique key and store
+                feature_key = (fname_de, fname_fr, fname_it)
+                
+                # Skip if all empty
+                if not any([fname_de, fname_fr, fname_it]):
+                    continue
+                
+                # Store first occurrence as example
+                if feature_key not in self.unique_features:
+                    self.unique_features[feature_key] = (fvalue_de, fvalue_fr, fvalue_it)
+        
+        print(f"✅ Extracted {len(self.unique_features)} unique feature mappings")
+
+    def export_to_csv(self, filename: str = "unique_features.csv") -> str:
+        """Export unique features to CSV file.
+
+        Args:
+            filename: Output CSV filename.
+
+        Returns:
+            Full path to the saved CSV file.
+        """
+        os.makedirs(self.output_dir, exist_ok=True)
+        output_path = os.path.join(self.output_dir, filename)
+        
+        with open(output_path, 'w', encoding='utf-8', newline='') as f:
+            writer = csv.writer(f)
+            
+            # Write header
+            writer.writerow([
+                'fname_de', 'fvalue_de',
+                'fname_fr', 'fvalue_fr',
+                'fname_it', 'fvalue_it'
+            ])
+            
+            # Write data rows
+            for feature_key, feature_values in sorted(self.unique_features.items()):
+                row = [
+                    feature_key[0], feature_values[0],  # de
+                    feature_key[1], feature_values[1],  # fr
+                    feature_key[2], feature_values[2]   # it
+                ]
+                writer.writerow(row)
+        
+        print(f"✅ Saved CSV: {output_path}")
+        return output_path
+
+    def run(self) -> bool:
+        """Run the complete feature extraction pipeline.
+
+        Returns:
+            True if successful, False otherwise.
+        """
+        print("="*80)
+        print("Feature Extractor - Unique Feature Name Database")
+        print("="*80)
+        
+        if not self.load_master_json():
+            return False
+        
+        self.extract_features()
+        self.export_to_csv()
+        
+        print("="*80)
+        print("✅ Feature extraction complete!")
+        print("="*80)
+        
+        return True
 
 ------------------------------------------------- ./BMEcat_transformer/src/dabag_scraper.py --------------------------------------------------
 

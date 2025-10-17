@@ -47,23 +47,27 @@ Selection logic:
 
 ## Usage
 
-From repo root or `BMEcat_transformer/`:
+From `BMEcat_transformer/` directory:
 
 ```bash
-python3 BMEcat_transformer/main.py /path/to/your_bmecat.xml
-```
+# Main scraper
+python3 scripts/main.py /path/to/your_bmecat.xml
 
-JSON input is also supported with a simple array of SUPPLIER_PIDs:
+# Or JSON input with a simple array of SUPPLIER_PIDs
+python3 scripts/main.py /path/to/manual_ids.json
 
-```bash
-python3 BMEcat_transformer/main.py /path/to/manual_ids.json
+# Feature extraction
+python3 scripts/extract_features.py
+
+# Testing imports
+python3 test_imports.py
 ```
 
 You can also run without args and enter the path when prompted.
 
 ### Input File Formats
 
-- **XML Format**: Extracts `SUPPLIER_PID` values from BMEcat XML files (see `src/xml_reader.py` for details).
+- **XML Format**: Extracts `SUPPLIER_PID` values from BMEcat XML files (see `core/xml_reader.py` for details).
 - **JSON Format**: Simple array of strings. Example:
 
 ```json
@@ -154,15 +158,39 @@ MASTER_JSON_BACKUP_COUNT=2
 
 ```
 BMEcat_transformer/
-├── config.py                 # Settings & validation
-├── main.py                   # Orchestrator
-├── README.md                 # This file
-└── src/
+├── config.py
+├── README.md
+├── test_imports.py
+│
+├── scripts/
+│   ├── main.py
+│   └── extract_features.py
+│
+├── inputs/
+│   └── example_supplier_ids.json
+│
+├── core/
+│   ├── __init__.py
+│   ├── input_handler.py
+│   ├── xml_reader.py
+│   └── master_json_manager.py
+│
+├── scrapers/
+│   ├── __init__.py
+│   ├── dabag_scraper.py
+│   └── table_extractor.py
+│
+├── processors/
+│   ├── __init__.py
+│   └── feature_extractor.py
+│
+├── output/
+│   ├── __init__.py
+│   └── output_formatter.py
+│
+└── ui/
     ├── __init__.py
-    ├── xml_reader.py         # Extracts SUPPLIER_PID from BMEcat XML
-    ├── dabag_scraper.py      # Searches & scrapes DABAG in DE/FR/IT
-    ├── table_extractor.py    # BeautifulSoup table parsing
-    └── output_formatter.py   # Printing tables & JSON saving
+    └── user_prompt.py
 ```
 
 ## Dependencies
@@ -184,7 +212,7 @@ Creates a reference CSV file showing how each product feature is named in German
 
 ```bash
 cd BMEcat_transformer
-python3 extract_features.py
+python3 scripts/extract_features.py
 ```
 
 ### Output
