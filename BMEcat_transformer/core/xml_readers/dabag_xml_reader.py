@@ -82,7 +82,7 @@ class DABAGXMLReader:
         product_nodes_list = root.findall(f".//{ns}PRODUCT") + root.findall(".//PRODUCT")
         self.logger.debug(f"DABAG found {len(product_nodes_list)} PRODUCT nodes")
         for prod in product_nodes_list:
-            pid = self._get_first_text(prod, [f"{ns}SUPPLIER_PID", "SUPPLIER_PID"]) or ""
+            pid = self._get_first_text(prod, [f"{ns}MANUFACTURER_PID", "MANUFACTURER_PID"]) or ""
             if not pid:
                 continue
 
@@ -133,7 +133,7 @@ class DABAGXMLReader:
         product_nodes = root.xpath('.//PRODUCT | .//*[local-name()="PRODUCT"]')
         self.logger.debug(f"DABAG lxml found {len(product_nodes)} PRODUCT nodes")
         for prod in product_nodes:
-            pid_nodes = prod.xpath('.//SUPPLIER_PID | .//*[local-name()="SUPPLIER_PID"]')
+            pid_nodes = prod.xpath('.//MANUFACTURER_PID | .//*[local-name()="MANUFACTURER_PID"]')
             pid = pid_nodes[0].text.strip() if pid_nodes and pid_nodes[0].text else ""
             if not pid:
                 continue

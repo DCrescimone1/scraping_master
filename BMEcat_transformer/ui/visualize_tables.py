@@ -47,7 +47,7 @@ def load_master_catalog(base_dir: str = "outputs/comparison_tables") -> Dict[str
         return json.load(f)
 
 
-def visualize_table(data: Dict[str, Any], show_units: bool = True) -> None:
+def visualize_table(data: Dict[str, Any], show_units: bool = False) -> None:
     """Pretty-print a comparison table to terminal."""
     supplier_id = data.get("supplier_id", "Unknown")
     lang = data.get("lang", "xx")
@@ -82,49 +82,69 @@ def visualize_table(data: Dict[str, Any], show_units: bool = True) -> None:
                 row.get("dabag_fname") or 
                 row.get("web_fname") or 
                 row.get("ai_fname", ""))
-        
+
+        row_unit = units[i] if i < len(units) else {}
+
+        def format_value_with_unit(value, unit, has_fname):
+            # If no feature name exists, return empty string
+            if not has_fname:
+                return ""
+            # If no value, show -- with unit if available
+            if not value or value == "":
+                unit_str = str(unit).strip() if unit is not None else ""
+                if unit_str:
+                    return f"-- {unit_str}"
+                return "--"
+            # Normal case: value exists
+            val_str = str(value).strip()
+            unit_str = str(unit).strip() if unit is not None else ""
+            if unit_str:
+                return f"{val_str} {unit_str}"
+            return val_str
+
         table_row = [
             fname,
             row.get("original_fname", ""),
-            row.get("original_fvalue", ""),
+            format_value_with_unit(
+                row.get("original_fvalue"),
+                row_unit.get("original_funit"),
+                has_fname=bool(row.get("original_fname"))
+            ),
             row.get("dabag_fname", ""),
-            row.get("dabag_fvalue", ""),
+            format_value_with_unit(
+                row.get("dabag_fvalue"),
+                row_unit.get("dabag_funit"),
+                has_fname=bool(row.get("dabag_fname"))
+            ),
             row.get("web_fname", ""),
-            row.get("web_fvalue", ""),
+            format_value_with_unit(
+                row.get("web_fvalue"),
+                None,
+                has_fname=bool(row.get("web_fname"))
+            ),
             row.get("ai_fname", ""),
-            row.get("ai_fvalue", "")
+            format_value_with_unit(
+                row.get("ai_fvalue"),
+                None,
+                has_fname=bool(row.get("ai_fname"))
+            )
         ]
         table_data.append(table_row)
     
     # Print main table
     print(tabulate(table_data, headers=headers, tablefmt="grid", maxcolwidths=[20, 15, 20, 15, 20, 15, 20, 15, 20]))
     
-    # Print units if requested
-    if show_units and units:
-        print("\n" + "-" * 120)
-        print("UNITS:")
-        print("-" * 120)
-        unit_data = []
-        for u in units:
-            if u.get("original_funit") or u.get("dabag_funit"):
-                unit_data.append([
-                    u.get("name", ""),
-                    u.get("original_funit", ""),
-                    u.get("dabag_funit", "")
-                ])
-        
-        if unit_data:
-            print(tabulate(unit_data, headers=["Feature", "Original Unit", "DABAG Unit"], tablefmt="simple"))
+    
     
     # Print statistics
     print("\n" + "-" * 120)
     print("STATISTICS:")
     print("-" * 120)
     
-    orig_count = sum(1 for r in rows if r.get("original_fvalue"))
-    dabag_count = sum(1 for r in rows if r.get("dabag_fvalue"))
-    web_count = sum(1 for r in rows if r.get("web_fvalue"))
-    ai_count = sum(1 for r in rows if r.get("ai_fvalue"))
+    orig_count = sum(1 for r in rows if r.get("original_fname"))
+    dabag_count = sum(1 for r in rows if r.get("dabag_fname"))
+    web_count = sum(1 for r in rows if r.get("web_fname"))
+    ai_count = sum(1 for r in rows if r.get("ai_fname"))
     
     print(f"Original features: {orig_count}")
     print(f"DABAG features: {dabag_count}")
@@ -147,10 +167,34 @@ def export_to_excel(data: Dict[str, Any], output_path: str = None) -> None:
     
     rows = data.get("rows", [])
     units = data.get("units", [])
-    
+
+    enhanced_rows = []
+    for i, row in enumerate(rows):
+        row_unit = units[i] if i < len(units) else {}
+        enhanced_row = dict(row)
+        # Determine primary feature name for placeholder behavior
+        fname = (row.get("original_fname") or 
+                 row.get("dabag_fname") or 
+                 row.get("web_fname") or 
+                 row.get("ai_fname", ""))
+        placeholder = "" if (not fname or str(fname).strip() == "") else "--"
+        if row.get("original_fvalue"):
+            unit = row_unit.get("original_funit", "")
+            combined = f"{row['original_fvalue']} {unit}".strip()
+            enhanced_row["original_fvalue"] = combined if combined else placeholder
+        else:
+            enhanced_row["original_fvalue"] = placeholder
+        if row.get("dabag_fvalue"):
+            unit = row_unit.get("dabag_funit", "")
+            combined = f"{row['dabag_fvalue']} {unit}".strip()
+            enhanced_row["dabag_fvalue"] = combined if combined else placeholder
+        else:
+            enhanced_row["dabag_fvalue"] = placeholder
+        enhanced_rows.append(enhanced_row)
+
     # Create main dataframe
-    df_main = pd.DataFrame(rows)
-    
+    df_main = pd.DataFrame(enhanced_rows)
+
     # Reorder columns for readability
     col_order = [
         "original_fname", "original_fvalue",
@@ -160,14 +204,9 @@ def export_to_excel(data: Dict[str, Any], output_path: str = None) -> None:
     ]
     df_main = df_main[[c for c in col_order if c in df_main.columns]]
     
-    # Create units dataframe
-    df_units = pd.DataFrame(units)
-    
     # Write to Excel with multiple sheets
     with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
         df_main.to_excel(writer, sheet_name='Comparison', index=False)
-        if not df_units.empty:
-            df_units.to_excel(writer, sheet_name='Units', index=False)
         
         # Add metadata sheet
         metadata = pd.DataFrame({
@@ -188,17 +227,42 @@ def export_to_csv(data: Dict[str, Any], output_path: str = None) -> None:
         output_path = f"comparison_{supplier_id}_{lang}.csv"
     
     rows = data.get("rows", [])
-    
+    units = data.get("units", [])
+
+    enhanced_rows = []
+    for i, row in enumerate(rows):
+        row_unit = units[i] if i < len(units) else {}
+        enhanced_row = dict(row)
+        # Determine primary feature name for placeholder behavior
+        fname = (row.get("original_fname") or 
+                 row.get("dabag_fname") or 
+                 row.get("web_fname") or 
+                 row.get("ai_fname", ""))
+        placeholder = "" if (not fname or str(fname).strip() == "") else "--"
+        if row.get("original_fvalue"):
+            unit = row_unit.get("original_funit", "")
+            combined = f"{row['original_fvalue']} {unit}".strip()
+            enhanced_row["original_fvalue"] = combined if combined else placeholder
+        else:
+            enhanced_row["original_fvalue"] = placeholder
+        if row.get("dabag_fvalue"):
+            unit = row_unit.get("dabag_funit", "")
+            combined = f"{row['dabag_fvalue']} {unit}".strip()
+            enhanced_row["dabag_fvalue"] = combined if combined else placeholder
+        else:
+            enhanced_row["dabag_fvalue"] = placeholder
+        enhanced_rows.append(enhanced_row)
+
     if PANDAS_AVAILABLE:
-        df = pd.DataFrame(rows)
+        df = pd.DataFrame(enhanced_rows)
         df.to_csv(output_path, index=False, encoding='utf-8')
     else:
         import csv
         with open(output_path, 'w', newline='', encoding='utf-8') as f:
-            if rows:
-                writer = csv.DictWriter(f, fieldnames=rows[0].keys())
+            if enhanced_rows:
+                writer = csv.DictWriter(f, fieldnames=enhanced_rows[0].keys())
                 writer.writeheader()
-                writer.writerows(rows)
+                writer.writerows(enhanced_rows)
     
     print(f"✅ Exported to CSV: {output_path}")
 
