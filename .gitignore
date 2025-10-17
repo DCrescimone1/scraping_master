@@ -75,7 +75,6 @@ logs/
 .yoyo/
 *.json
 *.html
-*.csv
 !user_preferences.json
 
 .env
