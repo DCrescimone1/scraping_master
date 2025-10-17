@@ -75,6 +75,6 @@ logs/
 .yoyo/
 *.json
 *.html
-!user_preferences.json
+!outputs/comparison_tables/master_comparison_catalog.json
 
 .env

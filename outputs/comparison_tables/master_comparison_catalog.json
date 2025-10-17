@@ -1,0 +1,2542 @@
+{
+  "products": {
+    "DCG405NT-XJ": {
+      "languages": {
+        "de": {
+          "supplier_id": "DCG405NT-XJ",
+          "lang": "de",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCG405NT-XJ&markId=DCG405NT-XJ&artId=100321765&trefferUUID=D315C16A-D4EA-4D1B-8FF9BF9F8F6D43E4",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Akku",
+              "dabag_fvalue": "--",
+              "web_fname": "Akku",
+              "web_fvalue": "-- Stück",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Akku-Kapazität",
+              "dabag_fvalue": "--",
+              "web_fname": "Akku-Kapazität",
+              "web_fvalue": "-- Ah",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Akku-Typ",
+              "dabag_fvalue": "--",
+              "web_fname": "Akku-Typ",
+              "web_fvalue": "--",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Akkukapazität",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Akkuspannung",
+              "original_fvalue": "18000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "140000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Gewicht",
+              "dabag_fvalue": "1.80",
+              "web_fname": "Gewicht",
+              "web_fvalue": "1.80 kg",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Gewicht mit Akkupack",
+              "original_fvalue": "1900",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Höhe",
+              "original_fvalue": "99000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ladegerät",
+              "dabag_fvalue": "--",
+              "web_fname": "Ladegerät",
+              "web_fvalue": "--",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Leerlaufdrehzahl",
+              "dabag_fvalue": "9000",
+              "web_fname": "Leerlaufdrehzahl",
+              "web_fvalue": "9000 min-1",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Lieferumfang",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Länge",
+              "original_fvalue": "305000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Max. Leerlaufdrehzahl",
+              "original_fvalue": "9000.000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Max. Schleifscheibendurchmesser",
+              "original_fvalue": "125000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Min. Leerlaufdrehzahl",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Scheiben-Ø",
+              "dabag_fvalue": "125",
+              "web_fname": "Scheiben-Ø",
+              "web_fvalue": "125 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Spannung",
+              "dabag_fvalue": "18",
+              "web_fname": "Spannung",
+              "web_fvalue": "18 V",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Verpackung",
+              "dabag_fvalue": "T-STAK",
+              "web_fname": "Verpackung",
+              "web_fvalue": "T-STAK",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": "Stück"
+            },
+            {
+              "name": "Akku-Kapazität",
+              "original_funit": null,
+              "dabag_funit": "Ah"
+            },
+            {
+              "name": "Akku-Typ",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akkukapazität",
+              "original_funit": "Ah",
+              "dabag_funit": null
+            },
+            {
+              "name": "Akkuspannung",
+              "original_funit": "V",
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Gewicht",
+              "original_funit": null,
+              "dabag_funit": "kg"
+            },
+            {
+              "name": "Gewicht mit Akkupack",
+              "original_funit": "kg",
+              "dabag_funit": null
+            },
+            {
+              "name": "Höhe",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Ladegerät",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Leerlaufdrehzahl",
+              "original_funit": null,
+              "dabag_funit": "min{m}"
+            },
+            {
+              "name": "Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Länge",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Max. Leerlaufdrehzahl",
+              "original_funit": "U/min",
+              "dabag_funit": null
+            },
+            {
+              "name": "Max. Schleifscheibendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Min. Leerlaufdrehzahl",
+              "original_funit": "U/min",
+              "dabag_funit": null
+            },
+            {
+              "name": "Scheiben-Ø",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Spannung",
+              "original_funit": null,
+              "dabag_funit": "V"
+            },
+            {
+              "name": "Verpackung",
+              "original_funit": null,
+              "dabag_funit": null
+            }
+          ]
+        },
+        "fr": {
+          "supplier_id": "DCG405NT-XJ",
+          "lang": "fr",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCG405NT-XJ&markId=DCG405NT-XJ&artId=100321765&trefferUUID=D315C16A-D4EA-4D1B-8FF9BF9F8F6D43E4",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "Akkukapazität",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Akkuspannung",
+              "original_fvalue": "18000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "140000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Gewicht mit Akkupack",
+              "original_fvalue": "1900",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Höhe",
+              "original_fvalue": "99000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Länge",
+              "original_fvalue": "305000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Max. Leerlaufdrehzahl",
+              "original_fvalue": "9000.000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Max. Schleifscheibendurchmesser",
+              "original_fvalue": "125000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Min. Leerlaufdrehzahl",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "accu",
+              "dabag_fvalue": "--",
+              "web_fname": "accu",
+              "web_fvalue": "-- pièce",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "capacité de l'accu",
+              "dabag_fvalue": "--",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "capacité de l’accu",
+              "web_fvalue": "-- Ah",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "chargeur",
+              "dabag_fvalue": "--",
+              "web_fname": "chargeur",
+              "web_fvalue": "--",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "emballage",
+              "dabag_fvalue": "T-STAK",
+              "web_fname": "emballage",
+              "web_fvalue": "T-STAK",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "nombre de tours à vide",
+              "dabag_fvalue": "9000",
+              "web_fname": "nombre de tours à vide",
+              "web_fvalue": "9000 min-1",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "poids",
+              "dabag_fvalue": "1.80",
+              "web_fname": "poids",
+              "web_fvalue": "1.80 kg",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "tension",
+              "dabag_fvalue": "18",
+              "web_fname": "tension",
+              "web_fvalue": "18 V",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "type d'accu",
+              "dabag_fvalue": "--",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "type d’accu",
+              "web_fvalue": "--",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Étendue de la livraison",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø disques",
+              "dabag_fvalue": "125",
+              "web_fname": "Ø disques",
+              "web_fvalue": "125 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Akkukapazität",
+              "original_funit": "Ah",
+              "dabag_funit": null
+            },
+            {
+              "name": "Akkuspannung",
+              "original_funit": "V",
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Gewicht mit Akkupack",
+              "original_funit": "kg",
+              "dabag_funit": null
+            },
+            {
+              "name": "Höhe",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Länge",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Max. Leerlaufdrehzahl",
+              "original_funit": "U/min",
+              "dabag_funit": null
+            },
+            {
+              "name": "Max. Schleifscheibendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Min. Leerlaufdrehzahl",
+              "original_funit": "U/min",
+              "dabag_funit": null
+            },
+            {
+              "name": "accu",
+              "original_funit": null,
+              "dabag_funit": "pièce"
+            },
+            {
+              "name": "capacité de l'accu",
+              "original_funit": null,
+              "dabag_funit": "Ah"
+            },
+            {
+              "name": "capacité de l’accu",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "chargeur",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "emballage",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "nombre de tours à vide",
+              "original_funit": null,
+              "dabag_funit": "min{m}"
+            },
+            {
+              "name": "poids",
+              "original_funit": null,
+              "dabag_funit": "kg"
+            },
+            {
+              "name": "tension",
+              "original_funit": null,
+              "dabag_funit": "V"
+            },
+            {
+              "name": "type d'accu",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "type d’accu",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Étendue de la livraison",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Ø disques",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            }
+          ]
+        },
+        "it": {
+          "supplier_id": "DCG405NT-XJ",
+          "lang": "it",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCG405NT-XJ&markId=DCG405NT-XJ&artId=100321765&trefferUUID=D315C16A-D4EA-4D1B-8FF9BF9F8F6D43E4",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "Akkukapazität",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Akkuspannung",
+              "original_fvalue": "18000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ambito di consegna",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "140000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Gewicht mit Akkupack",
+              "original_fvalue": "1900",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Höhe",
+              "original_fvalue": "99000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Länge",
+              "original_fvalue": "305000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Max. Leerlaufdrehzahl",
+              "original_fvalue": "9000.000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Max. Schleifscheibendurchmesser",
+              "original_fvalue": "125000",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Min. Leerlaufdrehzahl",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "batteria",
+              "dabag_fvalue": "--",
+              "web_fname": "batteria",
+              "web_fvalue": "-- pezzo",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "capacità batteria",
+              "dabag_fvalue": "--",
+              "web_fname": "capacità batteria",
+              "web_fvalue": "-- Ah",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "caricabatterie",
+              "dabag_fvalue": "--",
+              "web_fname": "caricabatterie",
+              "web_fvalue": "--",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "imballaggio",
+              "dabag_fvalue": "T-STAK",
+              "web_fname": "imballaggio",
+              "web_fvalue": "T-STAK",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "numero di giri a vuoto",
+              "dabag_fvalue": "9000",
+              "web_fname": "numero di giri a vuoto",
+              "web_fvalue": "9000 min-1",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "peso",
+              "dabag_fvalue": "1.80",
+              "web_fname": "peso",
+              "web_fvalue": "1.80 kg",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "tensione",
+              "dabag_fvalue": "18",
+              "web_fname": "tensione",
+              "web_fvalue": "18 V",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "tipo di batteria",
+              "dabag_fvalue": "--",
+              "web_fname": "tipo di batteria",
+              "web_fvalue": "--",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø dischi",
+              "dabag_fvalue": "125",
+              "web_fname": "Ø dischi",
+              "web_fvalue": "125 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Akkukapazität",
+              "original_funit": "Ah",
+              "dabag_funit": null
+            },
+            {
+              "name": "Akkuspannung",
+              "original_funit": "V",
+              "dabag_funit": null
+            },
+            {
+              "name": "Ambito di consegna",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Gewicht mit Akkupack",
+              "original_funit": "kg",
+              "dabag_funit": null
+            },
+            {
+              "name": "Höhe",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Länge",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Max. Leerlaufdrehzahl",
+              "original_funit": "U/min",
+              "dabag_funit": null
+            },
+            {
+              "name": "Max. Schleifscheibendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Min. Leerlaufdrehzahl",
+              "original_funit": "U/min",
+              "dabag_funit": null
+            },
+            {
+              "name": "batteria",
+              "original_funit": null,
+              "dabag_funit": "pezzo"
+            },
+            {
+              "name": "capacità batteria",
+              "original_funit": null,
+              "dabag_funit": "Ah"
+            },
+            {
+              "name": "caricabatterie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "imballaggio",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "numero di giri a vuoto",
+              "original_funit": null,
+              "dabag_funit": "min{m}"
+            },
+            {
+              "name": "peso",
+              "original_funit": null,
+              "dabag_funit": "kg"
+            },
+            {
+              "name": "tensione",
+              "original_funit": null,
+              "dabag_funit": "V"
+            },
+            {
+              "name": "tipo di batteria",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Ø dischi",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            }
+          ]
+        }
+      }
+    },
+    "DT1953-QZ": {
+      "languages": {
+        "de": {
+          "supplier_id": "DT1953-QZ",
+          "lang": "de",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1953-QZ&markId=DT1953-QZ&artId=100255912&trefferUUID=A626F45F-87B8-44F1-93F95608C46F4DF7",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "Anzahl Zähne",
+              "original_fvalue": "",
+              "dabag_fname": "Anzahl Zähne",
+              "dabag_fvalue": "40",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Aussen-Ø",
+              "dabag_fvalue": "216",
+              "web_fname": "Aussen-Ø",
+              "web_fvalue": "216 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Außendurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrung",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Bohrungs-Ø",
+              "dabag_fvalue": "30",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrungsdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Boh­rungs-Ø",
+              "web_fvalue": "30 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Lieferumfang",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Schnittbreite",
+              "original_fvalue": "",
+              "dabag_fname": "Schnittbreite",
+              "dabag_fvalue": "2.6",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Schnitt­breite",
+              "web_fvalue": "2.6 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Spanwinkel",
+              "dabag_fvalue": "-5",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Span­winkel",
+              "web_fvalue": "-5 °",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Stammblattstärke",
+              "dabag_fvalue": "1.7",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Stamm­blatt­stärke",
+              "web_fvalue": "1.7 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Sägeblattdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Zahnform",
+              "dabag_fvalue": "WZ",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Zahn­form",
+              "web_fvalue": "WZ",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Anzahl Zähne",
+              "original_funit": "St",
+              "dabag_funit": "Stück"
+            },
+            {
+              "name": "Aussen-Ø",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Außendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrung",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrungs-Ø",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Bohrungsdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Boh­rungs-Ø",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Schnittbreite",
+              "original_funit": "mm",
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Schnitt­breite",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Spanwinkel",
+              "original_funit": null,
+              "dabag_funit": "°"
+            },
+            {
+              "name": "Span­winkel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Stammblattstärke",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Stamm­blatt­stärke",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Sägeblattdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Zahnform",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Zahn­form",
+              "original_funit": null,
+              "dabag_funit": null
+            }
+          ]
+        },
+        "fr": {
+          "supplier_id": "DT1953-QZ",
+          "lang": "fr",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1953-QZ&markId=DT1953-QZ&artId=100255912&trefferUUID=A626F45F-87B8-44F1-93F95608C46F4DF7",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "Anzahl Zähne",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Außendurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrung",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrungsdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Schnittbreite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Sägeblattdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "angle",
+              "dabag_fvalue": "-5",
+              "web_fname": "angle",
+              "web_fvalue": "-5 °",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "dents",
+              "dabag_fvalue": "40",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "denture",
+              "dabag_fvalue": "WZ",
+              "web_fname": "denture",
+              "web_fvalue": "WZ",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "largeur de coupe",
+              "dabag_fvalue": "2.6",
+              "web_fname": "largeur de coupe",
+              "web_fvalue": "2.6 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Étendue de la livraison",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø extérieur",
+              "dabag_fvalue": "216",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Ø ex­té­rieur",
+              "web_fvalue": "216 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø perçage",
+              "dabag_fvalue": "30",
+              "web_fname": "Ø perçage",
+              "web_fvalue": "30 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "épaisseur du corps de lame",
+              "dabag_fvalue": "1.7",
+              "web_fname": "épaisseur du corps de lame",
+              "web_fvalue": "1.7 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Anzahl Zähne",
+              "original_funit": "St",
+              "dabag_funit": null
+            },
+            {
+              "name": "Außendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrung",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrungsdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Schnittbreite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Sägeblattdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "angle",
+              "original_funit": null,
+              "dabag_funit": "°"
+            },
+            {
+              "name": "dents",
+              "original_funit": null,
+              "dabag_funit": "pièce"
+            },
+            {
+              "name": "denture",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "largeur de coupe",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Étendue de la livraison",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Ø extérieur",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Ø ex­té­rieur",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Ø perçage",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "épaisseur du corps de lame",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            }
+          ]
+        },
+        "it": {
+          "supplier_id": "DT1953-QZ",
+          "lang": "it",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1953-QZ&markId=DT1953-QZ&artId=100255912&trefferUUID=A626F45F-87B8-44F1-93F95608C46F4DF7",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ambito di consegna",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Anzahl Zähne",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Außendurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrung",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrungsdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Schnittbreite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Sägeblattdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "angolo di spoglia superiore",
+              "dabag_fvalue": "-5",
+              "web_fname": "angolo di spoglia superiore",
+              "web_fvalue": "-5 °",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "denti",
+              "dabag_fvalue": "40",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "forma del dente",
+              "dabag_fvalue": "WZ",
+              "web_fname": "forma del dente",
+              "web_fvalue": "WZ",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "larghezza del taglio",
+              "dabag_fvalue": "2.6",
+              "web_fname": "larghezza del taglio",
+              "web_fvalue": "2.6 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "spessore lama",
+              "dabag_fvalue": "1.7",
+              "web_fname": "spessore lama",
+              "web_fvalue": "1.7 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø esterno",
+              "dabag_fvalue": "216",
+              "web_fname": "Ø esterno",
+              "web_fvalue": "216 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø foro",
+              "dabag_fvalue": "30",
+              "web_fname": "Ø foro",
+              "web_fvalue": "30 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Ambito di consegna",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Anzahl Zähne",
+              "original_funit": "St",
+              "dabag_funit": null
+            },
+            {
+              "name": "Außendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrung",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrungsdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Schnittbreite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Sägeblattdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "angolo di spoglia superiore",
+              "original_funit": null,
+              "dabag_funit": "°"
+            },
+            {
+              "name": "denti",
+              "original_funit": null,
+              "dabag_funit": "pezzo"
+            },
+            {
+              "name": "forma del dente",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "larghezza del taglio",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "spessore lama",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Ø esterno",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Ø foro",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            }
+          ]
+        }
+      }
+    },
+    "DT1952-QZ": {
+      "languages": {
+        "de": {
+          "supplier_id": "DT1952-QZ",
+          "lang": "de",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1952-QZ&markId=DT1952-QZ&artId=100255912&trefferUUID=06749BE5-CA8A-4501-81644005B0BBFB13",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "Anzahl Zähne",
+              "original_fvalue": "",
+              "dabag_fname": "Anzahl Zähne",
+              "dabag_fvalue": "24",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Aussen-Ø",
+              "dabag_fvalue": "216",
+              "web_fname": "Aussen-Ø",
+              "web_fvalue": "216 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Außendurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrung",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Bohrungs-Ø",
+              "dabag_fvalue": "30",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrungsdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Boh­rungs-Ø",
+              "web_fvalue": "30 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Lieferumfang",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Schnittbreite",
+              "original_fvalue": "",
+              "dabag_fname": "Schnittbreite",
+              "dabag_fvalue": "2.6",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Schnitt­breite",
+              "web_fvalue": "2.6 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Spanwinkel",
+              "dabag_fvalue": "-5",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Span­winkel",
+              "web_fvalue": "-5 °",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Stammblattstärke",
+              "dabag_fvalue": "1.7",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Stamm­blatt­stärke",
+              "web_fvalue": "1.7 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Sägeblattdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Zahnform",
+              "dabag_fvalue": "WZ",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Zahn­form",
+              "web_fvalue": "WZ",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Anzahl Zähne",
+              "original_funit": "St",
+              "dabag_funit": "Stück"
+            },
+            {
+              "name": "Aussen-Ø",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Außendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrung",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrungs-Ø",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Bohrungsdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Boh­rungs-Ø",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Schnittbreite",
+              "original_funit": "mm",
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Schnitt­breite",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Spanwinkel",
+              "original_funit": null,
+              "dabag_funit": "°"
+            },
+            {
+              "name": "Span­winkel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Stammblattstärke",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Stamm­blatt­stärke",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Sägeblattdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Zahnform",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Zahn­form",
+              "original_funit": null,
+              "dabag_funit": null
+            }
+          ]
+        },
+        "fr": {
+          "supplier_id": "DT1952-QZ",
+          "lang": "fr",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1952-QZ&markId=DT1952-QZ&artId=100255912&trefferUUID=06749BE5-CA8A-4501-81644005B0BBFB13",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "Anzahl Zähne",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Außendurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrung",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrungsdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Schnittbreite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Sägeblattdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "angle",
+              "dabag_fvalue": "-5",
+              "web_fname": "angle",
+              "web_fvalue": "-5 °",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "dents",
+              "dabag_fvalue": "24",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "denture",
+              "dabag_fvalue": "WZ",
+              "web_fname": "denture",
+              "web_fvalue": "WZ",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "largeur de coupe",
+              "dabag_fvalue": "2.6",
+              "web_fname": "largeur de coupe",
+              "web_fvalue": "2.6 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Étendue de la livraison",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø extérieur",
+              "dabag_fvalue": "216",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "Ø ex­té­rieur",
+              "web_fvalue": "216 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø perçage",
+              "dabag_fvalue": "30",
+              "web_fname": "Ø perçage",
+              "web_fvalue": "30 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "épaisseur du corps de lame",
+              "dabag_fvalue": "1.7",
+              "web_fname": "épaisseur du corps de lame",
+              "web_fvalue": "1.7 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Anzahl Zähne",
+              "original_funit": "St",
+              "dabag_funit": null
+            },
+            {
+              "name": "Außendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrung",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrungsdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Schnittbreite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Sägeblattdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "angle",
+              "original_funit": null,
+              "dabag_funit": "°"
+            },
+            {
+              "name": "dents",
+              "original_funit": null,
+              "dabag_funit": "pièce"
+            },
+            {
+              "name": "denture",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "largeur de coupe",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Étendue de la livraison",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Ø extérieur",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Ø ex­té­rieur",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Ø perçage",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "épaisseur du corps de lame",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            }
+          ]
+        },
+        "it": {
+          "supplier_id": "DT1952-QZ",
+          "lang": "it",
+          "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DT1952-QZ&markId=DT1952-QZ&artId=100255912&trefferUUID=06749BE5-CA8A-4501-81644005B0BBFB13",
+          "columns": [
+            "original_fname",
+            "original_fvalue",
+            "dabag_fname",
+            "dabag_fvalue",
+            "web_fname",
+            "web_fvalue",
+            "ai_fname",
+            "ai_fvalue"
+          ],
+          "rows": [
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ambito di consegna",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Anzahl Zähne",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Außendurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrung",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Bohrungsdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Breite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Schnittbreite",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "Sägeblattdurchmesser",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "angolo di spoglia superiore",
+              "dabag_fvalue": "-5",
+              "web_fname": "angolo di spoglia superiore",
+              "web_fvalue": "-5 °",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "denti",
+              "dabag_fvalue": "24",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "forma del dente",
+              "dabag_fvalue": "WZ",
+              "web_fname": "forma del dente",
+              "web_fvalue": "WZ",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "larghezza del taglio",
+              "dabag_fvalue": "2.6",
+              "web_fname": "larghezza del taglio",
+              "web_fvalue": "2.6 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "spessore lama",
+              "dabag_fvalue": "1.7",
+              "web_fname": "spessore lama",
+              "web_fvalue": "1.7 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø esterno",
+              "dabag_fvalue": "216",
+              "web_fname": "Ø esterno",
+              "web_fvalue": "216 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "Ø foro",
+              "dabag_fvalue": "30",
+              "web_fname": "Ø foro",
+              "web_fvalue": "30 mm",
+              "ai_fname": "",
+              "ai_fvalue": ""
+            }
+          ],
+          "units": [
+            {
+              "name": "Ambito di consegna",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Anzahl Zähne",
+              "original_funit": "St",
+              "dabag_funit": null
+            },
+            {
+              "name": "Außendurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrung",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Bohrungsdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Breite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Schnittbreite",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "Sägeblattdurchmesser",
+              "original_funit": "mm",
+              "dabag_funit": null
+            },
+            {
+              "name": "angolo di spoglia superiore",
+              "original_funit": null,
+              "dabag_funit": "°"
+            },
+            {
+              "name": "denti",
+              "original_funit": null,
+              "dabag_funit": "pezzo"
+            },
+            {
+              "name": "forma del dente",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "larghezza del taglio",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "spessore lama",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Ø esterno",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            },
+            {
+              "name": "Ø foro",
+              "original_funit": null,
+              "dabag_funit": "mm"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
