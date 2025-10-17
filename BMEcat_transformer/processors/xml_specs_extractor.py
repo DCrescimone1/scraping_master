@@ -1,15 +1,13 @@
+from __future__ import annotations
+
 """XML Technical Specs Extractor for BMEcat_transformer.
 
 Extracts unstructured technical specifications from UDX.EDXF.* XML fields.
 Handles HTML entities and preserves formatting for AI processing.
 """
 
-from __future__ import annotations
-
 import re
-import xml.etree.ElementTree as ET
 from typing import Dict, Optional
-
 from utils.logger import setup_logger
 
 
@@ -24,15 +22,14 @@ class XMLSpecsExtractor:
         """
         self.xml_path = xml_path
         self.logger = setup_logger(__name__)
-        self.tree: Optional[ET.ElementTree] = None
-        self.root: Optional[ET.Element] = None
+        self.root: Optional[any] = None
 
     def load_xml(self) -> bool:
         """Load and parse the XML file using multiple fallback strategies.
 
         Parsing priority:
         1. lxml with recovery mode (most reliable)
-        2. Standard ET parsing (fallback)
+        2. Regex-based extraction (ultimate fallback)
 
         Returns:
             True if successful, False otherwise.
@@ -45,90 +42,19 @@ class XMLSpecsExtractor:
                 raw = f.read()
             parser = LXML_ET.XMLParser(recover=True, encoding='utf-8')
             self.root = LXML_ET.fromstring(raw, parser)
-            self.tree = None  # Not needed for lxml approach
             self.logger.info("Successfully loaded XML with lxml recovery mode")
             return True
         except ImportError:
-            self.logger.debug("lxml not available, trying standard ET parsing")
-        except Exception as e:
-            self.logger.warning(f"lxml parsing failed: {e}, trying standard ET")
-
-        # Strategy 2: Try standard ET parsing
-        try:
-            self.logger.debug("Attempting standard ET parsing")
-            self.tree = ET.parse(self.xml_path)
-            self.root = self.tree.getroot()
-            self.logger.info("Successfully loaded XML with standard ET parsing")
+            self.logger.debug("lxml not available, using regex-based extraction")
+            self.root = None  # Will use regex
             return True
         except Exception as e:
-            self.logger.error(f"All XML parsing strategies failed: {e}")
-            return False
-
-    def extract_udx_fields(self, supplier_pid: str, field_mapping: Dict[str, str]) -> Dict[str, str]:
-        """Extract UDX.EDXF fields for a specific product.
-
-        Args:
-            supplier_pid: Product ID to extract fields for.
-            field_mapping: Dict mapping friendly names to XML tag names.
-
-        Returns:
-            Dict with field names as keys and cleaned text as values.
-        """
-        if self.root is None:
-            self.logger.error("XML not loaded. Call load_xml() first.")
-            return {}
-
-        result: Dict[str, str] = {}
-
-        # Try XML-based extraction first
-        try:
-            # Find the product by SUPPLIER_PID using XPath (lxml) or findall (ET)
-            if hasattr(self.root, 'xpath'):
-                products = self.root.xpath(f'.//PRODUCT[.//SUPPLIER_PID[text()="{supplier_pid}"]]')
-            else:
-                products = [p for p in self.root.findall('.//PRODUCT')
-                           if p.find('.//SUPPLIER_PID') is not None
-                           and p.find('.//SUPPLIER_PID').text == supplier_pid]
-
-            if not products:
-                self.logger.debug(f"Product {supplier_pid} not found in XML")
-                return result
-
-            product = products[0]
-
-            # Find USER_DEFINED_EXTENSIONS section
-            if hasattr(product, 'xpath'):
-                udx_nodes = product.xpath('.//USER_DEFINED_EXTENSIONS')
-                udx_section = udx_nodes[0] if udx_nodes else None
-            else:
-                udx_section = product.find('.//USER_DEFINED_EXTENSIONS')
-
-            if udx_section is None:
-                self.logger.debug(f"No USER_DEFINED_EXTENSIONS for {supplier_pid}")
-                return result
-
-            # Extract each requested field
-            for field_name, xml_tag in field_mapping.items():
-                if hasattr(udx_section, 'xpath'):
-                    nodes = udx_section.xpath(f'.//{xml_tag}/text()')
-                    raw_text = nodes[0] if nodes else None
-                else:
-                    field_elem = udx_section.find(f'.//{xml_tag}')
-                    raw_text = field_elem.text if field_elem is not None else None
-
-                if raw_text:
-                    clean_text = self._clean_html_entities(raw_text)
-                    result[field_name] = clean_text
-                    self.logger.debug(f"Extracted {field_name}: {len(clean_text)} chars")
-
-        except Exception as e:
-            self.logger.warning(f"XML extraction failed for {supplier_pid}: {e}, trying regex fallback")
-            result = self._extract_via_regex(supplier_pid, field_mapping)
-
-        return result
+            self.logger.warning(f"lxml parsing failed: {e}, falling back to regex")
+            self.root = None
+            return True
 
     def _clean_html_entities(self, text: str) -> str:
-        """Clean HTML entities and formatting from text.
+        """Clean HTML entities from text.
 
         Args:
             text: Raw text with HTML entities.
@@ -152,11 +78,14 @@ class XMLSpecsExtractor:
         
         return text
 
-    def _extract_via_regex(self, supplier_pid: str, field_mapping: Dict[str, str]) -> Dict[str, str]:
-        """Extract UDX fields using regex patterns (fallback for malformed XML).
+    def _extract_udx_block_regex(self, product_xml: str, field_mapping: Dict[str, str]) -> Dict[str, str]:
+        """Extract all UDX.EDXF fields from a product's USER_DEFINED_EXTENSIONS block.
+
+        Uses regex to extract the entire UDX section and then parse each field.
+        Handles both empty and populated fields.
 
         Args:
-            supplier_pid: Product ID to extract fields for.
+            product_xml: XML content of a single PRODUCT block.
             field_mapping: Dict mapping friendly names to XML tag names.
 
         Returns:
@@ -164,6 +93,50 @@ class XMLSpecsExtractor:
         """
         result: Dict[str, str] = {}
 
+        # Extract the USER_DEFINED_EXTENSIONS block
+        udx_pattern = r'<USER_DEFINED_EXTENSIONS>(.*?)</USER_DEFINED_EXTENSIONS>'
+        udx_match = re.search(udx_pattern, product_xml, re.DOTALL | re.IGNORECASE)
+
+        if not udx_match:
+            self.logger.debug("No USER_DEFINED_EXTENSIONS block found")
+            return result
+
+        udx_content = udx_match.group(1)
+
+        # Extract each UDX field from the field_mapping
+        for field_name, xml_tag in field_mapping.items():
+            # Pattern handles both self-closing tags (<TAG/>) and tags with content
+            pattern = f'<{re.escape(xml_tag)}(?:\\s[^>]*)?>\\s*(.*?)\\s*</{re.escape(xml_tag)}>'
+            match = re.search(pattern, udx_content, re.DOTALL | re.IGNORECASE)
+
+            if match:
+                raw_text = match.group(1).strip()
+                if raw_text:  # Only add non-empty content
+                    clean_text = self._clean_html_entities(raw_text)
+                    result[field_name] = clean_text
+                    self.logger.debug(f"Extracted {field_name}: {len(clean_text)} chars")
+                else:
+                    self.logger.debug(f"{field_name} is empty")
+            else:
+                # Check if it's a self-closing tag
+                self_closing_pattern = f'<{re.escape(xml_tag)}\\s*/>'
+                if re.search(self_closing_pattern, udx_content, re.IGNORECASE):
+                    self.logger.debug(f"{field_name} is self-closing (empty)")
+                else:
+                    self.logger.debug(f"{field_name} not found in UDX block")
+
+        return result
+
+    def extract_udx_fields(self, supplier_pid: str, field_mapping: Dict[str, str]) -> Dict[str, str]:
+        """Extract UDX.EDXF fields for a specific product.
+
+        Args:
+            supplier_pid: Product ID to extract fields for.
+            field_mapping: Dict mapping friendly names to XML tag names.
+
+        Returns:
+            Dict with field names as keys and cleaned text as values.
+        """
         try:
             with open(self.xml_path, 'r', encoding='utf-8', errors='replace') as f:
                 content = f.read()
@@ -173,30 +146,22 @@ class XMLSpecsExtractor:
             product_match = re.search(product_pattern, content, re.DOTALL | re.IGNORECASE)
 
             if not product_match:
-                self.logger.debug(f"Product {supplier_pid} not found via regex")
-                return result
+                self.logger.debug(f"Product {supplier_pid} not found")
+                return {}
 
             product_xml = product_match.group(0)
-
-            # Extract each UDX field
-            for field_name, xml_tag in field_mapping.items():
-                pattern = f'<{re.escape(xml_tag)}>\\s*(.*?)\\s*</{re.escape(xml_tag)}>'
-                match = re.search(pattern, product_xml, re.DOTALL | re.IGNORECASE)
-
-                if match:
-                    raw_text = match.group(1).strip()
-                    if raw_text:
-                        clean_text = self._clean_html_entities(raw_text)
-                        result[field_name] = clean_text
-                        self.logger.debug(f"Extracted {field_name} via regex: {len(clean_text)} chars")
+            return self._extract_udx_block_regex(product_xml, field_mapping)
 
         except Exception as e:
-            self.logger.error(f"Regex extraction failed for {supplier_pid}: {e}")
-
-        return result
+            self.logger.error(f"Extraction failed for {supplier_pid}: {e}")
+            return {}
 
     def extract_all_products(self, field_mapping: Dict[str, str]) -> Dict[str, Dict[str, str]]:
         """Extract UDX fields for all products in XML.
+
+        CRITICAL: This method now loads ALL products with valid PIDs,
+        even if their UDX fields are empty. Products without any UDX data
+        will have empty dictionaries, but they will still be in the results.
 
         Args:
             field_mapping: Dict mapping friendly names to XML tag names.
@@ -204,33 +169,41 @@ class XMLSpecsExtractor:
         Returns:
             Dict with SUPPLIER_PID as keys and field data as values.
         """
-        if self.root is None:
-            self.logger.error("XML not loaded. Call load_xml() first.")
-            return {}
-
         results = {}
 
-        # Find all PRODUCT elements (works with both lxml and ET)
-        if hasattr(self.root, 'xpath'):
-            products = self.root.xpath('.//PRODUCT')
-        else:
-            products = self.root.findall('.//PRODUCT')
+        try:
+            with open(self.xml_path, 'r', encoding='utf-8', errors='replace') as f:
+                content = f.read()
 
-        for product in products:
-            # Extract SUPPLIER_PID (works with both lxml and ET)
-            if hasattr(product, 'xpath'):
-                pid_elems = product.xpath('.//SUPPLIER_PID/text()')
-                supplier_pid = pid_elems[0] if pid_elems else None
-            else:
-                pid_elem = product.find('.//SUPPLIER_PID')
-                supplier_pid = pid_elem.text if pid_elem is not None else None
+            # Find all PRODUCT blocks
+            product_pattern = r'<PRODUCT[^>]*>(.*?)</PRODUCT>'
+            products = re.findall(product_pattern, content, re.DOTALL)
 
-            if not supplier_pid:
-                continue
+            self.logger.debug(f"Found {len(products)} PRODUCT blocks")
 
-            product_data = self.extract_udx_fields(supplier_pid, field_mapping)
-            if any(product_data.values()):  # Only add if has data
+            for product_xml in products:
+                # Extract SUPPLIER_PID
+                pid_match = re.search(r'<SUPPLIER_PID>\s*([^<]+?)\s*</SUPPLIER_PID>', product_xml)
+                
+                if not pid_match:
+                    self.logger.debug("Skipping product without SUPPLIER_PID")
+                    continue
+
+                supplier_pid = pid_match.group(1).strip()
+                
+                # Extract UDX fields for this product
+                product_data = self._extract_udx_block_regex(product_xml, field_mapping)
+                
+                # This ensures consistency with product counts across all XML readers
                 results[supplier_pid] = product_data
+                
+                if product_data:
+                    self.logger.debug(f"Product {supplier_pid}: extracted {len(product_data)} UDX fields")
+                else:
+                    self.logger.debug(f"Product {supplier_pid}: no UDX data (empty fields)")
+
+        except Exception as e:
+            self.logger.error(f"Extraction failed: {e}")
 
         self.logger.info(f"Extracted UDX fields for {len(results)} products")
         return results

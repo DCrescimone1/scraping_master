@@ -37,6 +37,9 @@ class OriginalXMLReader:
 
         Uses regex parsing to handle malformed XML.
         Priority: SUPPLIER_AID checked first, SUPPLIER_PID as fallback.
+        
+        IMPORTANT: ALL products with valid PIDs are loaded, even if they have
+        no structured FEATURE data. Products without features get empty lists.
 
         Returns:
             Mapping: {supplier_id: [{"fname": str, "fvalue": str, "funit": str|None}, ...]}
@@ -70,6 +73,7 @@ class OriginalXMLReader:
                 else:
                     self.logger.debug("Skipping product without SUPPLIER_AID or SUPPLIER_PID")
                     continue
+                
                 self.logger.debug(f"Processing product: {supplier_id}")
                 
                 # Extract all FEATURE blocks
@@ -103,9 +107,14 @@ class OriginalXMLReader:
                             "funit": funit,
                         })
                 
+                # CRITICAL FIX: Add ALL products with valid PIDs, even if no features
+                # This ensures the count matches PRODUCT blocks and DABAG XML
+                results[supplier_id] = features
+                
                 if features:
-                    results[supplier_id] = features
                     self.logger.debug(f"Product {supplier_id}: extracted {len(features)} features")
+                else:
+                    self.logger.debug(f"Product {supplier_id}: no structured FEATURE data (will be empty)")
             
             self.logger.info(f"Successfully extracted features for {len(results)} products")
             
