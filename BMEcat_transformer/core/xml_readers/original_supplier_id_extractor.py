@@ -1,6 +1,6 @@
 """XML Reader for BMEcat_transformer.
 
-Provides `XMLReader` that extracts unique `SUPPLIER_PID`s from a BMEcat XML file.
+Provides `OriginalSupplierIDExtractor` that extracts unique `SUPPLIER_PID`s from a BMEcat XML file.
 Uses multiple fallback strategies to handle malformed XML.
 """
 
@@ -22,7 +22,7 @@ except Exception as e:  # pragma: no cover - import guard
     BMEcatParser = None  # Fallback if import fails; we'll handle at runtime
 
 
-class XMLReader:
+class OriginalSupplierIDExtractor:
     """Read BMEcat XML and extract product IDs.
 
     Attributes:

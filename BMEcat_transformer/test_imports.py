@@ -31,11 +31,11 @@ def test_imports():
         print(f"✗ core.input_handler: {e}")
     
     try:
-        from core.xml_reader import XMLReader
-        print("✓ core.xml_reader imported successfully")
+        from core.xml_readers.original_supplier_id_extractor import OriginalSupplierIDExtractor
+        print("✓ core.xml_readers.original_supplier_id_extractor imported successfully")
     except Exception as e:
-        errors.append(f"✗ core.xml_reader: {e}")
-        print(f"✗ core.xml_reader: {e}")
+        errors.append(f"✗ core.xml_readers.original_supplier_id_extractor: {e}")
+        print(f"✗ core.xml_readers.original_supplier_id_extractor: {e}")
     
     try:
         from core.master_json_manager import MasterJSONManager

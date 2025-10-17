@@ -27,6 +27,17 @@ LANGUAGES: dict[str, int] = {
 # Output directory for saved JSON
 OUTPUT_DIR: str = os.getenv("BME_OUTPUT_DIR", "outputs/")
 
+# Comparison tables output directory and master filename
+# Default COMPARISON_TABLES_DIR nests under OUTPUT_DIR
+COMPARISON_TABLES_DIR: str = os.getenv(
+    "COMPARISON_TABLES_DIR",
+    os.path.join(OUTPUT_DIR, "comparison_tables/")
+)
+MASTER_COMPARISON_FILENAME: str = os.getenv(
+    "MASTER_COMPARISON_FILENAME",
+    "master_comparison_catalog.json"
+)
+
 # Master JSON settings
 MASTER_JSON_FILENAME: str = os.getenv("MASTER_JSON_FILENAME", "master_bmecat_dabag.json")
 MASTER_JSON_BACKUP_COUNT: int = int(os.getenv("MASTER_JSON_BACKUP_COUNT", "2"))
@@ -43,7 +54,9 @@ if SCRAPING_METHOD not in {"firecrawl", "playwright"}:
 if SCRAPING_METHOD == "firecrawl" and not FIRECRAWL_API_KEY:
     raise ValueError("FIRECRAWL_API_KEY not found in environment variables for firecrawl mode")
 
-# Normalize OUTPUT_DIR to have trailing slash
+# Normalize directories to have trailing slash
 if not OUTPUT_DIR.endswith("/"):
     OUTPUT_DIR = OUTPUT_DIR + "/"
+if not COMPARISON_TABLES_DIR.endswith("/"):
+    COMPARISON_TABLES_DIR = COMPARISON_TABLES_DIR + "/"
 

@@ -8,7 +8,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Any
+from typing import Dict, Any, List
 import os
 import time
 import json
@@ -124,3 +124,104 @@ class OutputFormatter:
         print(f"Total products processed: {total_products}")
         print(f"Total unique spec fields - DE: {len(all_de_specs)}, FR: {len(all_fr_specs)}, IT: {len(all_it_specs)}")
         print("-" * 80)
+
+    def format_comparison_table(self, data: Dict[str, Any], supplier_id: str, lang: str) -> Dict[str, Any]:
+        """Format merged comparison data for a single product/language into 8-column rows.
+
+        Args:
+            data: Merged data for one supplier from orchestrator (`comparison_table_builder`).
+            supplier_id: The SUPPLIER_PID for identification.
+            lang: Language code (de|fr|it).
+
+        Returns:
+            Structured dict containing columns, rows (8 columns only), and units handled separately.
+        """
+        lang_block = data.get("languages", {}).get(lang, {})
+        rows_in = lang_block.get("rows", [])
+
+        columns = [
+            "original_fname", "original_fvalue",
+            "dabag_fname", "dabag_fvalue",
+            "web_fname", "web_fvalue",
+            "ai_fname", "ai_fvalue",
+        ]
+
+        rows: List[Dict[str, Any]] = []
+        units: List[Dict[str, Any]] = []
+        for r in rows_in:
+            rows.append({
+                "original_fname": r.get("original_fname", ""),
+                "original_fvalue": r.get("original_fvalue", ""),
+                "dabag_fname": r.get("dabag_fname", ""),
+                "dabag_fvalue": r.get("dabag_fvalue", ""),
+                "web_fname": r.get("web_fname", ""),
+                "web_fvalue": r.get("web_fvalue", ""),
+                "ai_fname": r.get("ai_fname", ""),
+                "ai_fvalue": r.get("ai_fvalue", ""),
+            })
+            units.append({
+                "name": r.get("original_fname") or r.get("dabag_fname") or r.get("web_fname") or r.get("ai_fname", ""),
+                "original_funit": r.get("original_funit"),
+                "dabag_funit": r.get("dabag_funit"),
+            })
+
+        return {
+            "supplier_id": supplier_id,
+            "lang": lang,
+            "product_url": data.get("product_url"),
+            "columns": columns,
+            "rows": rows,
+            "units": units,
+        }
+
+    def save_comparison_table(self, table: Dict[str, Any], output_path: str | None = None) -> str:
+        """Save a single comparison table to JSON.
+
+        Args:
+            table: The formatted comparison table dict.
+            output_path: Optional directory to save into. Defaults to OUTPUT_DIR/comparison_tables/.
+
+        Returns:
+            Full path of the saved file.
+        """
+        base_dir = output_path or config.COMPARISON_TABLES_DIR
+        os.makedirs(base_dir, exist_ok=True)
+
+        supplier_id = table.get("supplier_id", "unknown")
+        lang = table.get("lang", "xx")
+        filename = f"comparison_{supplier_id}_{lang}.json"
+        filepath = os.path.join(base_dir, filename)
+
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(table, f, ensure_ascii=False, indent=2)
+        print(f"Saved comparison table: {filepath}")
+        return filepath
+
+    def save_master_comparison_catalog(self, tables: List[Dict[str, Any]], output_path: str | None = None) -> str:
+        """Save a master catalog consolidating all comparison tables.
+
+        Deduplicates by supplier_id and organizes by language.
+
+        Args:
+            tables: List of formatted comparison tables.
+            output_path: Optional directory to save into. Defaults to OUTPUT_DIR/comparison_tables/.
+
+        Returns:
+            Full path of the saved master catalog JSON file.
+        """
+        base_dir = output_path or config.COMPARISON_TABLES_DIR
+        os.makedirs(base_dir, exist_ok=True)
+
+        master: Dict[str, Any] = {"products": {}}
+        for t in tables:
+            sid = t.get("supplier_id", "unknown")
+            lang = t.get("lang", "xx")
+            entry = master["products"].setdefault(sid, {"languages": {}})
+            entry["languages"][lang] = t
+
+        filename = config.MASTER_COMPARISON_FILENAME
+        filepath = os.path.join(base_dir, filename)
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(master, f, ensure_ascii=False, indent=2)
+        print(f"Saved master comparison catalog: {filepath}")
+        return filepath

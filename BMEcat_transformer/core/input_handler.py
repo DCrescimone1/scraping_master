@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import List
 import json
 
-from core.xml_reader import XMLReader
+from core.xml_readers.original_supplier_id_extractor import OriginalSupplierIDExtractor
 
 
 class InputHandler:
@@ -41,7 +41,7 @@ class InputHandler:
         suffix = path.suffix.lower()
         if suffix == ".xml":
             print("🔍 Detected XML file, extracting SUPPLIER_PIDs...")
-            reader = XMLReader(str(path))
+            reader = OriginalSupplierIDExtractor(str(path))
             ids = reader.extract_SUPPLIER_PIDs()
             # Ensure uniqueness and cleanliness
             seen = set()

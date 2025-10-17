@@ -201,6 +201,34 @@ Managed at project root in `requirements.txt`:
 - `firecrawl-py` (for Firecrawl mode)
 - `playwright` (for Playwright mode)
 
+## Logging
+
+The project uses a centralized logging system via `utils/logger.py`.
+
+**Usage:**
+```python
+from utils.logger import setup_logger
+
+logger = setup_logger(__name__)
+logger.info("Information message")
+logger.debug("Debug message")
+logger.warning("Warning message")
+logger.error("Error message")
+```
+
+**Log Levels:**
+- DEBUG: Detailed diagnostic information
+- INFO: General informational messages (default)
+- WARNING: Warning messages
+- ERROR: Error messages
+
+**Configuration:**
+- Logs are written to stdout by default.
+- To enable file logging:
+```python
+logger = setup_logger(__name__, log_file="logs/app.log")
+```
+
 ## 🔧 Feature Name Extractor
 
 Extract a database of unique feature names (fname) across all languages from the master JSON.
@@ -236,4 +264,70 @@ Akku-Typ,--,type d'accu,--,tipo di batteria,--
 
 - On Firecrawl mode, `FIRECRAWL_API_KEY` is required; otherwise startup will fail with a clear message.
 - The tool continues processing other products/languages even when some steps fail, logging warnings.
+
+
+## Comparison Table Generation
+
+Generate comparison tables merging Original XML (DEWALT), DABAG XML (multi-language), web-scraped data (from master JSON), and AI mappings (placeholder).
+
+### Usage
+
+```bash
+python3 scripts/create_comparison_tables.py \
+  --original data/DEWALT_BMEcat_Original.xml \
+  --dabag data/DEWALT_Version_DABAG.xml
+
+# With auto-scraping
+python3 scripts/create_comparison_tables.py \
+  --original data/DEWALT_BMEcat_Original.xml \
+  --dabag data/DEWALT_Version_DABAG.xml \
+  --auto-scrape
+```
+
+### Input Requirements
+
+- `original_xml`: BMEcat XML (original source). Features read from `FDESCR`, `FVALUE`, `FUNIT` per `<FEATURE>` within `<PRODUCT>` by `SUPPLIER_PID`.
+- `dabag_xml`: BMEcat XML (DABAG enriched). Features read per language via `FNAME lang=deu|fra|ita`, `FVALUE lang=...`, and `FUNIT`.
+- Optional `--auto-scrape`: If enabled, missing `SUPPLIER_PID`s in the master JSON will be scraped using `scrapers/dabag_scraper.py` and appended/updated.
+
+### Output
+
+- Individual tables:
+  - Directory: `outputs/comparison_tables/`
+  - File: `comparison_{supplier_id}_{lang}.json`
+  - Columns: `original_fname, original_fvalue, dabag_fname, dabag_fvalue, web_fname, web_fvalue, ai_fname, ai_fvalue`
+  - Units are saved separately per row (`original_funit`, `dabag_funit`).
+- Master catalog:
+  - File: `outputs/comparison_tables/master_comparison_catalog.json`
+  - Structure:
+
+```json
+{
+  "products": {
+    "SUPPLIER_PID": {
+      "languages": {
+        "de": { "columns": [...], "rows": [...], "units": [...] },
+        "fr": { "columns": [...], "rows": [...], "units": [...] },
+        "it": { "columns": [...], "rows": [...], "units": [...] }
+      }
+    }
+  }
+}
+```
+
+### Example
+
+After running the command, expect per-language files like:
+
+```
+outputs/comparison_tables/comparison_123456_de.json
+outputs/comparison_tables/comparison_123456_fr.json
+outputs/comparison_tables/comparison_123456_it.json
+```
+
+and a consolidated:
+
+```
+outputs/comparison_tables/master_comparison_catalog.json
+```
 
