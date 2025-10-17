@@ -74,7 +74,7 @@ class XMLSpecsExtractor:
         Returns:
             Dict with field names as keys and cleaned text as values.
         """
-        if not self.root:
+        if self.root is None:
             self.logger.error("XML not loaded. Call load_xml() first.")
             return {}
 
@@ -204,19 +204,33 @@ class XMLSpecsExtractor:
         Returns:
             Dict with SUPPLIER_PID as keys and field data as values.
         """
-        if not self.root:
+        if self.root is None:
             self.logger.error("XML not loaded. Call load_xml() first.")
             return {}
 
         results = {}
 
-        for product in self.root.findall('.//PRODUCT'):
-            pid_elem = product.find('.//SUPPLIER_PID')
-            if pid_elem is not None and pid_elem.text:
-                supplier_pid = pid_elem.text
-                product_data = self.extract_udx_fields(supplier_pid, field_mapping)
-                if any(product_data.values()):  # Only add if has data
-                    results[supplier_pid] = product_data
+        # Find all PRODUCT elements (works with both lxml and ET)
+        if hasattr(self.root, 'xpath'):
+            products = self.root.xpath('.//PRODUCT')
+        else:
+            products = self.root.findall('.//PRODUCT')
+
+        for product in products:
+            # Extract SUPPLIER_PID (works with both lxml and ET)
+            if hasattr(product, 'xpath'):
+                pid_elems = product.xpath('.//SUPPLIER_PID/text()')
+                supplier_pid = pid_elems[0] if pid_elems else None
+            else:
+                pid_elem = product.find('.//SUPPLIER_PID')
+                supplier_pid = pid_elem.text if pid_elem is not None else None
+
+            if not supplier_pid:
+                continue
+
+            product_data = self.extract_udx_fields(supplier_pid, field_mapping)
+            if any(product_data.values()):  # Only add if has data
+                results[supplier_pid] = product_data
 
         self.logger.info(f"Extracted UDX fields for {len(results)} products")
         return results

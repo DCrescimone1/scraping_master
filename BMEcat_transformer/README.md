@@ -345,7 +345,6 @@ After running the command, expect per-language files like:
 outputs/comparison_tables/comparison_123456_de.json
 outputs/comparison_tables/comparison_123456_fr.json
 outputs/comparison_tables/comparison_123456_it.json
-```
 
 and a consolidated:
 
@@ -353,3 +352,37 @@ and a consolidated:
 outputs/comparison_tables/master_comparison_catalog.json
 ```
 
+
+## XML Specs Extractor
+
+**File:** `processors/xml_specs_extractor.py`
+
+**Purpose:** Extracts unstructured technical specifications from `UDX.EDXF.*` XML fields for AI processing.
+
+**Key Features:**
+- **Multi-strategy parsing:** Uses fallback approach for maximum reliability
+  1. lxml with recovery mode (handles malformed XML)
+  2. Standard ElementTree parsing (fallback)
+  3. Regex extraction (fallback for severe XML errors)
+- **HTML entity decoding:** Converts `&lt;br&gt;` to readable format
+- **Field mapping:** Configurable via `config.UDX_FIELD_MAPPING`
+
+**Extracted Fields:**
+- `UDX.EDXF.LANGTEXT` (Product strengths)
+- `UDX.EDXF.TECHNISCHE_DATEN` (Technical data)
+- `UDX.EDXF.LIEFERUMFANG` (Scope of delivery)
+- `UDX.EDXF.GARANTIEBEDINGUNGEN` (Warranty conditions)
+- `UDX.EDXF.ANWENDUNGSBEISPIELE` (Application examples)
+
+**Usage:**
+```python
+from processors.xml_specs_extractor import XMLSpecsExtractor
+
+extractor = XMLSpecsExtractor("path/to/original.xml")
+if extractor.load_xml():
+    udx_data = extractor.extract_all_products(config.UDX_FIELD_MAPPING)
+    # Returns: {supplier_pid: {field_name: text, ...}, ...}
+```
+
+**Recent Changes:**
+- **2025-10-17:** Enhanced with multi-strategy parsing (lxml → ET → regex fallback) to handle malformed XML
