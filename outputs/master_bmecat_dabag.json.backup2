@@ -1,13 +1,13 @@
 {
   "metadata": {
     "created_at": "2025-10-16T11:38:43.726045",
-    "last_updated": "2025-10-16T11:48:51.723652",
+    "last_updated": "2025-10-17T11:22:22.290522",
     "total_products": 6
   },
   "products": {
     "DCH273NT-XJ": {
       "SUPPLIER_PID": "DCH273NT-XJ",
-      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCH273NT-XJ&markId=DCH273NT-XJ&artId=100292296&trefferUUID=73B4DDF0-869B-48B5-86D42A4407354CF8",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=DCH273NT-XJ&markId=DCH273NT-XJ&artId=100292296&trefferUUID=939A9D21-61A6-4C4D-9CD919E95FCA05A7",
       "languages": {
         "de": {
           "Spannung": "18 V",
@@ -55,7 +55,8 @@
           "peso": "2.50 kg"
         }
       },
-      "scraped_at": "2025-10-16T11:38:56.544330"
+      "scraped_at": "2025-10-17T11:22:22.290511",
+      "updated_at": "2025-10-17T11:22:22.290519"
     },
     "DCG405NT-XJ": {
       "SUPPLIER_PID": "DCG405NT-XJ",

@@ -1,8 +1,8 @@
 {
   "metadata": {
     "created_at": "2025-10-16T11:38:43.726045",
-    "last_updated": "2025-10-17T11:22:22.290522",
-    "total_products": 6
+    "last_updated": "2025-10-17T17:15:20.761046",
+    "total_products": 14
   },
   "products": {
     "DCH273NT-XJ": {
@@ -243,6 +243,290 @@
         }
       },
       "scraped_at": "2025-10-16T11:39:36.676448"
+    },
+    "00008840364": {
+      "SUPPLIER_PID": "00008840364",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=00008840364&markId=00008840364&artId=100322385&trefferUUID=93AF684A-3DAC-4F71-A0A704949AAE0BA4",
+      "languages": {
+        "de": {
+          "Schei­ben­material": "PC (Polycarbonat)",
+          "Schei­ben­beschich­tung": "kratzfest, beschlagfrei",
+          "UV-Schutz": "ja",
+          "Blendschutz": "nein"
+        },
+        "fr": {
+          "matériau des verres": "polycarbonate (PC)",
+          "revêtement des verre": "résistant aux rayures, antibuée",
+          "protection contre les UV": "oui",
+          "protection contre l'éblouissement": "non"
+        },
+        "it": {
+          "materiale del disco": "polycarbonato (PC)",
+          "rivestimento del disco": "antigraffi, antiappannante",
+          "protezione dai raggi UV": "sì"
+        }
+      },
+      "scraped_at": "2025-10-17T17:13:53.533489"
+    },
+    "00008840365": {
+      "SUPPLIER_PID": "00008840365",
+      "product_url": null,
+      "languages": {},
+      "scraped_at": "2025-10-17T17:14:04.942165"
+    },
+    "00008840366": {
+      "SUPPLIER_PID": "00008840366",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=00008840366&markId=00008840366&artId=100322385&trefferUUID=B6A7E29B-F8E1-4583-A9A54FC06BDA5D6E",
+      "languages": {
+        "de": {
+          "Schei­ben­material": "PC (Polycarbonat)",
+          "Schei­ben­beschich­tung": "kratzfest, beschlagfrei",
+          "UV-Schutz": "ja",
+          "Blendschutz": "nein"
+        },
+        "fr": {
+          "matériau des verres": "polycarbonate (PC)",
+          "revêtement des verre": "résistant aux rayures, antibuée",
+          "protection contre les UV": "oui",
+          "protection contre l'éblouissement": "non"
+        },
+        "it": {
+          "materiale del disco": "polycarbonato (PC)",
+          "rivestimento del disco": "antigraffi, antiappannante",
+          "protezione dai raggi UV": "sì"
+        }
+      },
+      "scraped_at": "2025-10-17T17:14:17.501249"
+    },
+    "42410110932": {
+      "SUPPLIER_PID": "42410110932",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=42410110932&markId=42410110932&artId=100027592&trefferUUID=2387C24E-D914-48BE-B13EFD12AE2EA290",
+      "languages": {
+        "de": {
+          "Motortechnik": "2-MIX",
+          "Saugleistung mit Runddüse": "770 m³ / h",
+          "Hubraum": "27.2 cm³",
+          "Gewicht": "5.70 kg"
+        },
+        "fr": {
+          "technique du moteur": "2-MIX",
+          "capacité d’aspiration avec buse ronde": "770 m³ / h",
+          "cylindrée": "27.2 cm³",
+          "poids": "5.70 kg"
+        },
+        "it": {
+          "tecnica del motore": "2-MIX",
+          "capacità d’aspirazione con ugello rotondo": "770 m³ / e",
+          "cilindrata": "27.2 cm³",
+          "peso": "5.70 kg"
+        }
+      },
+      "scraped_at": "2025-10-17T17:14:30.170351"
+    },
+    "MA032000021": {
+      "SUPPLIER_PID": "MA032000021",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=MA032000021&markId=MA032000021&artId=100785489&trefferUUID=B76AEEF2-63F1-47F0-A9C97D53062638BB",
+      "languages": {
+        "de": {
+          "Spannung": "36 V",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Schienenlänge": "40 cm",
+          "Sägekettentyp": "PS3 Pro",
+          "Sägekettenteilung": "3/8 P Zoll",
+          "Treibglieddicke/Nutbreite": "1.1 mm",
+          "Treibglieder": "55 Stück",
+          "Schalldruckpegel (10 m) (LpA)": "89 dB(A)",
+          "Schallleistungspegel (LwA)": "100 dB(A)",
+          "Akku-System": "AP-System",
+          "Akku": "-- Stück",
+          "Ladegerät": "--",
+          "Gewicht": "3.10 kg"
+        },
+        "fr": {
+          "tension": "36 V",
+          "type d’accu": "--",
+          "capacité de l’accu": "-- Ah",
+          "longueur du rail": "40 cm",
+          "type de chaîne de scie": "PS3 Pro",
+          "pas de la chaîne de scie": "3/8 P pouces",
+          "épaisseur du maillon/largeur de la rainure": "1.1 mm",
+          "maillons de poussée": "55 pièce",
+          "niveau de pression acoustique (10 m) (LpA)": "89 dB(A)",
+          "niveau de puissance acoustique (LwA)": "100 dB(A)",
+          "système à accu": "système AP",
+          "accu": "-- pièce",
+          "chargeur": "--",
+          "poids": "3.10 kg"
+        },
+        "it": {
+          "tensione": "36 V",
+          "tipo di batteria": "--",
+          "capacità batteria": "-- Ah",
+          "lunghezza rotaia": "40 cm",
+          "tipo di catena da sega": "PS3 Pro",
+          "passo della catena deiie sega": "3/8 P pollice",
+          "spessore maglia catena/larghezza incastro": "1.1 mm",
+          "maglie catena": "55 pezzo",
+          "livello di pressione acustica (10 m) (LpA)": "89 dB(A)",
+          "livello di potenza acustica (LwA)": "100 dB(A)",
+          "sistema a batterie": "sistema AP",
+          "batteria": "-- pezzo",
+          "caricabatterie": "--",
+          "peso": "3.10 kg"
+        }
+      },
+      "scraped_at": "2025-10-17T17:14:42.130518"
+    },
+    "SA040117310": {
+      "SUPPLIER_PID": "SA040117310",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=SA040117310&markId=SA040117310&artId=101141773&trefferUUID=565F5FFC-55CE-44CB-8F5AEA5594A522E3",
+      "languages": {
+        "de": {
+          "Spannung": "36 V",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Akku": "-- Stück",
+          "Ladegerät": "--",
+          "Luftmenge": "3284 l / min.",
+          "Saugkraft / Vakuum": "200 mbar",
+          "Behältervolumen": "12 l",
+          "Nenn-Ø DN (Schlauch, Rohr, Düse)": "32 mm",
+          "Saugschlauchlänge": "2.4 m",
+          "Staubklasse": "L",
+          "Akku-System": "AP-System",
+          "Gewicht (ohne Akkupack)": "7.6 kg",
+          "Orig. Nr.": "SA04-011-7311"
+        },
+        "fr": {
+          "tension": "36 V",
+          "type d’accu": "--",
+          "capacité de l’accu": "-- Ah",
+          "accu": "-- pièce",
+          "chargeur": "--",
+          "débit air": "3284 l / min.",
+          "puissance d’aspiration / sous-vide": "200 mbar",
+          "volume du récipient": "12 l",
+          "Ø nominal DN (tuyau, tube, buse)": "32 mm",
+          "longueur du tuyau d’aspiration": "2.4 m",
+          "classe de poussière": "L",
+          "système à accu": "système AP",
+          "poids (sans accu)": "7.6 kg",
+          "no. orig.": "SA04-011-7311"
+        },
+        "it": {
+          "tensione": "36 V",
+          "tipo di batteria": "--",
+          "capacità batteria": "-- Ah",
+          "batteria": "-- pezzo",
+          "caricabatterie": "--",
+          "volume d’aria": "3284 l / min.",
+          "forza d’aspirazione / sotto vuoto": "200 mbar",
+          "volume del recipiente": "12 l",
+          "Ø nominale DN (tubo flessibile, tubo, ugello)": "32 mm",
+          "lunghezza tubo aspirazione": "2.4 m",
+          "classe di polveri": "L",
+          "sistema a batterie": "sistema AP",
+          "peso (senza pacco batterie)": "7.6 kg",
+          "no. orig.": "SA04-011-7311"
+        }
+      },
+      "scraped_at": "2025-10-17T17:14:55.723146"
+    },
+    "WA412000002": {
+      "SUPPLIER_PID": "WA412000002",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=WA412000002&markId=WA412000002&artId=101075327&trefferUUID=C01F1033-B3B8-40E0-85279B2936019036",
+      "languages": {
+        "de": {
+          "Spannung": "36 V",
+          "Akku-Typ": "Li-Ion",
+          "Akku-Kapazität": "7.2 Ah",
+          "Schalldruckpegel": "82 dB(A)",
+          "Antrieb": "Vario",
+          "Schnittbreite": "460 mm",
+          "Schnitthöhe": "20-100 mm",
+          "Schnittpositionen": "7",
+          "Fangvolumen": "52 l",
+          "Akku": "1 Stück",
+          "Ladegerät": "AL 301",
+          "Akku-System": "AP-System",
+          "Gewicht": "27.00 kg"
+        },
+        "fr": {
+          "tension": "36 V",
+          "type d’accu": "Li-Ion",
+          "capacité de l’accu": "7.2 Ah",
+          "niveau de pression acoustique": "82 dB(A)",
+          "entraînement": "vario",
+          "largeur de coupe": "460 mm",
+          "hauteur de coupe": "20-100 mm",
+          "positions de coupe": "7",
+          "volume de réception": "52 l",
+          "accu": "1 pièce",
+          "chargeur": "AL 301",
+          "système à accu": "système AP",
+          "poids": "27.00 kg"
+        },
+        "it": {
+          "tensione": "36 V",
+          "tipo di batteria": "Li-Ion",
+          "capacità batteria": "7.2 Ah",
+          "livello di pressione acustica": "82 dB(A)",
+          "azionamento": "vario",
+          "larghezza del taglio": "460 mm",
+          "altezza taglio": "20-100 mm",
+          "posizioni di taglio": "7",
+          "volume di raccolta": "52 l",
+          "batteria": "1 pezzo",
+          "caricabatterie": "AL 301",
+          "sistema a batterie": "sistema AP",
+          "peso": "27.00 kg"
+        }
+      },
+      "scraped_at": "2025-10-17T17:15:08.784664"
+    },
+    "SA090117010": {
+      "SUPPLIER_PID": "SA090117010",
+      "product_url": "https://www.dabag.ch/?srv=search&pg=det&q=SA090117010&markId=SA090117010&artId=101157877&trefferUUID=4A4E2C53-B8BD-42CB-A686F36BF38DB1E3",
+      "languages": {
+        "de": {
+          "Spannung": "10.8 V",
+          "Akku-Typ": "Li-Ion",
+          "Akku-Kapazität": "2.1 Ah",
+          "Akku": "1 Stück",
+          "Inhalt": "5 l",
+          "Arbeitsdruck max.": "1.5-2.5 bar",
+          "Ladegerät": "AL 1",
+          "Akku-System": "AS-System",
+          "Gewicht (ohne Akkupack)": "2.1 kg",
+          "Orig. Nr.": "SA09-011-7010"
+        },
+        "fr": {
+          "tension": "10.8 V",
+          "type d’accu": "Li-Ion",
+          "capacité de l’accu": "2.1 Ah",
+          "accu": "1 pièce",
+          "contenu": "5 l",
+          "pression de travail max.": "1.5-2.5 bar",
+          "chargeur": "AL 1",
+          "système à accu": "système AS",
+          "poids (sans accu)": "2.1 kg",
+          "no. orig.": "SA09-011-7010"
+        },
+        "it": {
+          "tensione": "10.8 V",
+          "tipo di batteria": "Li-Ion",
+          "capacità batteria": "2.1 Ah",
+          "batteria": "1 pezzo",
+          "contenuto": "5 l",
+          "pressione di lavoro mas.": "1.5-2.5 bar",
+          "caricabatterie": "AL 1",
+          "sistema a batterie": "sistema AS",
+          "peso (senza pacco batterie)": "2.1 kg",
+          "no. orig.": "SA09-011-7010"
+        }
+      },
+      "scraped_at": "2025-10-17T17:15:20.761034"
     }
   }
 }

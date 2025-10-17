@@ -1,26 +1,91 @@
 fname_de,fvalue_de,fname_fr,fvalue_fr,fname_it,fvalue_it
+Ader-Querschnitt,1 mm²,section des conducteurs,1 mm²,sezione del conduttore,1 mm²
+Ader-Quer­schnitt,1.5 mm²,section des conducteurs,1.5 mm²,sezione del conduttore,1.5 mm²
+Adern,3 Stück,fils,3 pièce,vene,3 pezzo
 Akku,-- Stück,accu,-- pièce,batteria,-- pezzo
 Akku-Kapazität,-- Ah,capacité de l’accu,-- Ah,capacità batteria,-- Ah
+Akku-System,AP-System,système à accu,système AP,sistema a batterie,sistema AP
 Akku-Typ,--,type d’accu,--,tipo di batteria,--
+Antrieb,Vario,entraînement,vario,azionamento,vario
+Arbeitsdruck max.,1.5-2.5 bar,pression de travail max.,1.5-2.5 bar,pressione di lavoro mas.,1.5-2.5 bar
+Auf­bau,rund,structure,ronde,struttura,rotondo
 Aussen-Ø,216 mm,Ø ex­té­rieur,216 mm,Ø esterno,216 mm
+Behältervolumen,12 l,volume du récipient,12 l,volume del recipiente,12 l
+Blendschutz,nein,protection contre l'éblouissement,non,,
 Bohrleistung Beton,24 mm,cap. béton,24 mm,cap. calcestruzzo,24 mm
 Boh­rungs-Ø,30 mm,Ø perçage,30 mm,Ø foro,30 mm
+Breite,400 mm,largeur,400 mm,larghezza,400 mm
 Drehstopp,ja,arrêt de frappe,oui,arresto di rotazione,sì
 Drehzahl,5500 min-1,vitesse,5500 min-1,numero di giri,5500 min-1
+Ein-/Ausschalter,ja,interrupteur marche/arrêt,oui,interruttore on/off,sì
+Einsatz­bereich,innen,secteur d'opération,intérieur,campo d'impiego,interno
 Einzelschlagenergie,2.1 J (EPTA),energie de frappe,2.1 J (EPTA),energia percussione singola,2.1 J (EPTA)
+Fangvolumen,52 l,volume de réception,52 l,volume di raccolta,52 l
+Farbe,schwarz,couleur,noir,colore,nero
+Farbe Gehäuse,weiss,couleur du boîtier,blanc,colore della scatola,bianco
+Funktion,Überlastschutz,fonction,protection anti-surchage,funzione,protezione dal sovraccarico
+Gehäuse,Kunststoff,boîtier,mat. synthétique,scatola,plastica
+Gehäuse­material,Kunststoff,matériau du boîtier,mat. synthétique,materiale involucro,plastica
 Gewicht,2.50 kg,poids,2.50 kg,peso,2.50 kg
+Gewicht (ohne Akkupack),7.6 kg,poids (sans accu),7.6 kg,peso (senza pacco batterie),7.6 kg
+Hubraum,27.2 cm³,cylindrée,27.2 cm³,cilindrata,27.2 cm³
+Höhe,80 mm,hauteur,80 mm,altezza,80 mm
+IP Schutzart,20,type de protection IP,20,tipo di protezione IP,20
+IP Schutzart Steckdosen,20,type de protection IP prises,20,tipo di protezione IP prese,20
+IP Schutzart Stecker,20,type de protection IP prise,20,tipo di protezione IP spina,20
+Inhalt,5 l,contenu,5 l,contenuto,5 l
+Kabelfarbe,weiss,couleur câble,blanc,colore cavo,bianco
+Kabellänge,1.5 m,longueur du câble,1.5 m,lunghezza cavo,1.5 m
+Kabelqualität,TD,qualité du câble,TD,qualità cavo,TD
+Kabel­qualität,TD,qualité du câble,TD,qualità cavo,TD
+Kabel­qualität HAR,H05RR-F,qualité du câble HAR,H05RR-F,qualità cavo HAR,H05RR-F
+Kinderschutz,ja,protection pour enfants,oui,protezione per bambini,sì
 LED-Leuchte,mit,lampe DEL,avec,lampada LED,con
 Ladegerät,--,chargeur,--,caricabatterie,--
 Leerlaufdrehzahl,0-1100 min-1,nombre de tours à vide,0-1100 min-1,numero di giri a vuoto,0-1100 min-1
+Leiter­art,feindr,type de conducteur,fil d'acier fin,tipo di conduttore,filo d'acciaio fine
+Luftmenge,3284 l / min.,débit air,3284 l / min.,volume d’aria,3284 l / min.
+Motortechnik,2-MIX,technique du moteur,2-MIX,tecnica del motore,2-MIX
+"Nenn-Ø DN (Schlauch, Rohr, Düse)",32 mm,"Ø nominal DN (tuyau, tube, buse)",32 mm,"Ø nominale DN (tubo flessibile, tubo, ugello)",32 mm
+Orig. Nr.,SA04-011-7311,no. orig.,SA04-011-7311,no. orig.,SA04-011-7311
+Saugkraft / Vakuum,200 mbar,puissance d’aspiration / sous-vide,200 mbar,forza d’aspirazione / sotto vuoto,200 mbar
+Saugleistung mit Runddüse,770 m³ / h,capacité d’aspiration avec buse ronde,770 m³ / h,capacità d’aspirazione con ugello rotondo,770 m³ / e
+Saugschlauchlänge,2.4 m,longueur du tuyau d’aspiration,2.4 m,lunghezza tubo aspirazione,2.4 m
+Schalldruckpegel,82 dB(A),niveau de pression acoustique,82 dB(A),livello di pressione acustica,82 dB(A)
+Schalldruckpegel (10 m) (LpA),89 dB(A),niveau de pression acoustique (10 m) (LpA),89 dB(A),livello di pressione acustica (10 m) (LpA),89 dB(A)
+Schallleistungspegel (LwA),100 dB(A),niveau de puissance acoustique (LwA),100 dB(A),livello di potenza acustica (LwA),100 dB(A)
 Scheiben-Ø,125 mm,Ø disques,125 mm,Ø dischi,125 mm
+Schei­ben­beschich­tung,"kratzfest, beschlagfrei",revêtement des verre,"résistant aux rayures, antibuée",rivestimento del disco,"antigraffi, antiappannante"
+Schei­ben­material,PC (Polycarbonat),matériau des verres,polycarbonate (PC),materiale del disco,polycarbonato (PC)
+Schienenlänge,40 cm,longueur du rail,40 cm,lunghezza rotaia,40 cm
 Schlagzahl,0-4600 min-1,fréquence de frappe,0-4600 min-1,frequenza colpo al minuto,0-4600 min-1
+Schnittbreite,460 mm,largeur de coupe,460 mm,larghezza del taglio,460 mm
+Schnitthöhe,20-100 mm,hauteur de coupe,20-100 mm,altezza taglio,20-100 mm
 Schnittleistung 45°,51 mm,profondeur de coupe 45°,51 mm,profondità taglio 45°,51 mm
 Schnittleistung 90°,67 mm,profondeur de coupe à 90°,67 mm,profondità taglio a 90°,67 mm
+Schnittpositionen,7,positions de coupe,7,posizioni di taglio,7
 Schnitt­breite,2.6 mm,largeur de coupe,2.6 mm,larghezza del taglio,2.6 mm
 Spannung,18 V,tension,18 V,tensione,18 V
+Span­nung,220-240 V,ten­si­on,220-240 V,ten­sio­ne,220-240 V
 Span­winkel,-5 °,angle,-5 °,angolo di spoglia superiore,-5 °
 Stamm­blatt­stärke,1.7 mm,épaisseur du corps de lame,1.7 mm,spessore lama,1.7 mm
+Staubklasse,L,classe de poussière,L,classe di polveri,L
+Steckdosen,6 Stück,prises,6 pièce,prese,6 pezzo
+Steckdosen Typ,T13,prises type,T13,tipo presa,T13
+Steckdosen-Ausrichtung,quer,direction de la prise,de travers,allineamento presa,di traverso
+Stecker Typ,T12,fiche type,T12,tipo spina,T12
+Steck­dosen Typ,4xT13,prises type,4xT13,tipo presa,4xT13
+Stromstärke,10 A,ampèrage,10 A,amperaggio,10 A
+Strom­stärke,10 A,ampèrage,10 A,amperaggio,10 A
 Sägeblatt-Ø,190 mm,Ø de la lame de scie,190 mm,Ø della lama,190 mm
 Sägeblatt-Ø Bohrung,30 mm,Ø de forage de la lame de scie,30 mm,"Ø lama da sega, foro",30 mm
+Sägekettenteilung,3/8 P Zoll,pas de la chaîne de scie,3/8 P pouces,passo della catena deiie sega,3/8 P pollice
+Sägekettentyp,PS3 Pro,type de chaîne de scie,PS3 Pro,tipo di catena da sega,PS3 Pro
+Tiefe,50 mm,profondeur,50 mm,profondità,50 mm
+Treibglieddicke/Nutbreite,1.1 mm,épaisseur du maillon/largeur de la rainure,1.1 mm,spessore maglia catena/larghezza incastro,1.1 mm
+Treibglieder,55 Stück,maillons de poussée,55 pièce,maglie catena,55 pezzo
+Trom­mel­farbe,blau / grau,couleur du tambour,bleu / gris,colore del tamburo,blu / grigio
+UV-Schutz,ja,protection contre les UV,oui,protezione dai raggi UV,sì
 Verpackung,T-STAK,emballage,T-STAK,imballaggio,T-STAK
 Zahn­form,WZ,denture,WZ,forma del dente,WZ
+halogen­frei,nein,exempt d'halogène,non,,
