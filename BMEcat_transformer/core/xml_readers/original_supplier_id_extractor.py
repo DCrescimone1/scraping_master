@@ -38,12 +38,16 @@ class OriginalSupplierIDExtractor:
         self.xml_path = xml_path
 
     def extract_SUPPLIER_PIDs(self) -> List[str]:
-        """Extract a list of unique SUPPLIER_PID strings from the XML file.
+        """Extract a list of unique SUPPLIER_PID/SUPPLIER_AID strings from the XML file.
 
         Uses multiple strategies, prioritizing regex for malformed XML:
-        1. Regex extraction (most reliable for malformed XML)
-        2. Try with lxml (if available)
-        3. Try standard XML parsing
+        1. Regex extraction for SUPPLIER_AID (primary)
+        2. Regex extraction for SUPPLIER_PID (fallback)
+        3. Try with lxml (if available)
+        4. Try standard XML parsing
+
+        Priority: SUPPLIER_AID is checked first, then SUPPLIER_PID.
+        Both are treated as equivalent product identifiers.
 
         Returns:
             List of unique product IDs (order preserved by first appearance).
@@ -167,17 +171,32 @@ class OriginalSupplierIDExtractor:
         with open(self.xml_path, 'r', encoding='utf-8', errors='replace') as f:
             content = f.read()
 
-        # Pattern to match <SUPPLIER_PID>VALUE</SUPPLIER_PID>
+        # Patterns to match SUPPLIER_AID (primary) and SUPPLIER_PID (fallback)
         # Works with or without namespace, handles whitespace
-        pattern = r'<(?:\w+:)?SUPPLIER_PID[^>]*>\s*([^<]+?)\s*</(?:\w+:)?SUPPLIER_PID>'
-        
-        matches = re.findall(pattern, content, re.DOTALL | re.IGNORECASE)
-        
-        for match in matches:
+        pattern_aid = r'<(?:\w+:)?SUPPLIER_AID[^>]*>\s*([^<]+?)\s*</(?:\w+:)?SUPPLIER_AID>'
+        pattern_pid = r'<(?:\w+:)?SUPPLIER_PID[^>]*>\s*([^<]+?)\s*</(?:\w+:)?SUPPLIER_PID>'
+
+        # Try SUPPLIER_AID first (primary)
+        matches_aid = re.findall(pattern_aid, content, re.DOTALL | re.IGNORECASE)
+
+        for match in matches_aid:
             val = match.strip()
             # Filter out empty or whitespace-only values
             if val and not val.isspace() and val not in seen:
                 seen.add(val)
                 SUPPLIER_PIDs.append(val)
 
+        # Fallback to SUPPLIER_PID if no AIDs found or to catch additional PIDs
+        matches_pid = re.findall(pattern_pid, content, re.DOTALL | re.IGNORECASE)
+
+        for match in matches_pid:
+            val = match.strip()
+            # Filter out empty or whitespace-only values
+            if val and not val.isspace() and val not in seen:
+                seen.add(val)
+                SUPPLIER_PIDs.append(val)
+
+        # Optional: Print extraction summary (for debugging)
+        # Uncomment if needed for troubleshooting
+        # print(f"Extracted {len(SUPPLIER_PIDs)} unique IDs (AID+PID combined)")
         return SUPPLIER_PIDs

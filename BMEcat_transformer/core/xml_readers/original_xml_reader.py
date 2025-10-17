@@ -17,6 +17,7 @@ class OriginalXMLReader:
     """Read Original BMEcat XML and extract per-product features.
 
     Uses regex-based extraction to handle malformed XML that lxml/ElementTree can't parse.
+    Product identification: checks SUPPLIER_AID first, falls back to SUPPLIER_PID.
     
     Attributes:
         xml_path: Path to the BMEcat XML file.
@@ -32,9 +33,10 @@ class OriginalXMLReader:
         self.logger = setup_logger(__name__)
 
     def extract_features(self) -> Dict[str, List[Dict[str, Any]]]:
-        """Extract features per product keyed by `SUPPLIER_PID`.
+        """Extract features per product keyed by SUPPLIER_AID or SUPPLIER_PID.
 
         Uses regex parsing to handle malformed XML.
+        Priority: SUPPLIER_AID checked first, SUPPLIER_PID as fallback.
 
         Returns:
             Mapping: {supplier_id: [{"fname": str, "fvalue": str, "funit": str|None}, ...]}
@@ -56,13 +58,18 @@ class OriginalXMLReader:
             self.logger.info(f"Found {len(products)} PRODUCT blocks")
             
             for product_xml in products:
-                # Extract SUPPLIER_PID
+                # Extract SUPPLIER_AID first (primary), fallback to SUPPLIER_PID
+                aid_match = re.search(r'<SUPPLIER_AID>\s*([^<]+?)\s*</SUPPLIER_AID>', product_xml)
                 pid_match = re.search(r'<SUPPLIER_PID>\s*([^<]+?)\s*</SUPPLIER_PID>', product_xml)
-                if not pid_match:
-                    self.logger.debug("Skipping product without SUPPLIER_PID")
+
+                # Priority: AID first, then PID
+                if aid_match:
+                    supplier_id = aid_match.group(1).strip()
+                elif pid_match:
+                    supplier_id = pid_match.group(1).strip()
+                else:
+                    self.logger.debug("Skipping product without SUPPLIER_AID or SUPPLIER_PID")
                     continue
-                
-                supplier_id = pid_match.group(1).strip()
                 self.logger.debug(f"Processing product: {supplier_id}")
                 
                 # Extract all FEATURE blocks

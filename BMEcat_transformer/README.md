@@ -13,6 +13,8 @@ Extracts product IDs (SUPPLIER_PID) from BMEcat XML files, searches DABAG.ch, sc
 - **Readable terminal tables** using `tabulate`
 - **JSON output** saved to `outputs/`
 - **Graceful error handling** with warnings
+- **XML UDX specs extraction** from Original XML (`UDX.EDXF.*` fields)
+- **AI-powered feature matching** (optional, via Grok) maps unstructured XML text to structured features
 
 ## Requirements
 
@@ -39,6 +41,10 @@ FIRECRAWL_API_KEY=fc-your-key
 SCRAPING_METHOD=firecrawl   # or: playwright
 DABAG_BASE_URL=https://www.dabag.ch
 BME_OUTPUT_DIR=outputs/
+
+# Optional: Enable AI-powered XML specs extraction/matching
+GROK_API_KEY=xa-your-key
+GROK_MODEL=grok-4-fast-reasoning
 ```
 
 Selection logic:
@@ -77,6 +83,27 @@ You can also run without args and enter the path when prompted.
   "ID3"
 ]
 ```
+
+## Product ID Extraction
+
+The system extracts product identifiers from BMEcat XML files with the following priority:
+
+1. **SUPPLIER_AID** (checked first)
+2. **SUPPLIER_PID** (fallback if AID not found)
+
+Both tags are treated as equivalent product identifiers. The extractor:
+- Uses regex for robustness with malformed XML
+- Deduplicates automatically
+- Preserves order of first appearance
+- Works with or without XML namespaces
+
+**Example XML tags recognized:**
+```xml
+<SUPPLIER_AID>207603216S</SUPPLIER_AID>
+<SUPPLIER_PID>DCG405NT-XJ</SUPPLIER_PID>
+```
+
+Note: Variable names in code still use `SUPPLIER_PID` for backward compatibility.
 
 ## Output
 
@@ -200,6 +227,7 @@ Managed at project root in `requirements.txt`:
 - `beautifulsoup4`, `tabulate`, `requests`, `python-dotenv`
 - `firecrawl-py` (for Firecrawl mode)
 - `playwright` (for Playwright mode)
+- `pyyaml>=6.0.1` (AI prompt configuration)
 
 ## Logging
 
@@ -259,12 +287,6 @@ Akku-Typ,--,type d'accu,--,tipo di batteria,--
 - Features are matched by position (assumes same order across languages)
 - Only first occurrence is stored as example value
 - Requires `master_bmecat_dabag.json` to exist (run main scraper first)
-
-## Notes
-
-- On Firecrawl mode, `FIRECRAWL_API_KEY` is required; otherwise startup will fail with a clear message.
-- The tool continues processing other products/languages even when some steps fail, logging warnings.
-
 
 ## Comparison Table Generation
 

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "created_at": "2025-10-16T11:38:43.726045",
-    "last_updated": "2025-10-16T11:39:36.676459",
+    "last_updated": "2025-10-16T11:48:51.723652",
     "total_products": 6
   },
   "products": {
@@ -126,7 +126,8 @@
           "imballaggio": "T STAK-Box VI / T STAK-Box II"
         }
       },
-      "scraped_at": "2025-10-16T11:39:10.157359"
+      "scraped_at": "2025-10-16T11:48:51.723644",
+      "updated_at": "2025-10-16T11:48:51.723650"
     },
     "DCS573NT-XJ": {
       "SUPPLIER_PID": "DCS573NT-XJ",

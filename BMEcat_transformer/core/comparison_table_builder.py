@@ -25,6 +25,8 @@ if str(SCRAPERS_DIR.parent) not in sys.path:
     sys.path.append(str(SCRAPERS_DIR.parent))
 from scrapers.dabag_scraper import DABAGScraper  # type: ignore
 from utils.logger import setup_logger
+from processors.xml_specs_extractor import XMLSpecsExtractor  # type: ignore
+from processors.ai_feature_matcher import AIFeatureMatcher  # type: ignore
 
 
 class ComparisonTableBuilder:
@@ -82,6 +84,46 @@ class ComparisonTableBuilder:
         dabag_features = self.dabag_reader.extract_features()        # {pid: {lang: [ {fname,fvalue,funit} ]} }
         self.logger.info(f"DABAG XML: loaded {len(dabag_features)} products")
 
+        # NEW: Extract XML specs from UDX fields and match via AI (optional)
+        ai_specs_by_pid: Dict[str, List[Dict[str, Any]]] = {}
+        if getattr(config, "GROK_API_KEY", None):
+            try:
+                self.logger.info("Extracting UDX XML specifications and matching with AI...")
+                extractor = XMLSpecsExtractor(self.original_xml_path)
+                if extractor.load_xml():
+                    udx_map = getattr(config, "UDX_FIELD_MAPPING", {})
+                    all_udx = extractor.extract_all_products(udx_map)  # {pid: {field: text}}
+
+                    prompt_path = PROJECT_ROOT / "prompts" / "xml_specs_mapping.yaml"
+                    csv_path = Path(config.OUTPUT_DIR) / "unique_features.csv"
+                    ai_matcher = AIFeatureMatcher(
+                        api_key=config.GROK_API_KEY,
+                        model=getattr(config, "GROK_MODEL", "grok-4-fast-reasoning"),
+                        base_url=getattr(config, "GROK_BASE_URL", "https://api.x.ai/v1"),
+                        confidence_threshold=float(getattr(config, "GROK_CONFIDENCE_THRESHOLD", 0.70)),
+                        prompt_path=str(prompt_path),
+                        csv_path=str(csv_path),
+                        ai_features_path=getattr(config, "AI_FEATURES_PATH", str(Path(config.OUTPUT_DIR) / "ai_generated_features.json")),
+                    )
+
+                    if not csv_path.exists():
+                        self.logger.warning(f"unique_features.csv not found at {csv_path} — AI matching may be limited")
+
+                    if ai_matcher.load_references() and ai_matcher.load_prompt():
+                        for pid, raw_text in all_udx.items():
+                            feats = ai_matcher.match_features(raw_text, pid)
+                            if feats:
+                                ai_specs_by_pid[pid] = feats
+                        self.logger.info(f"AI-matched XML specs for {len(ai_specs_by_pid)} products")
+                    else:
+                        self.logger.warning("AI matcher references or prompt failed to load; skipping AI matching")
+                else:
+                    self.logger.warning("Could not load Original XML for UDX extraction; skipping AI matching")
+            except Exception as e:
+                self.logger.error(f"XML specs extraction/matching failed: {e}")
+        else:
+            self.logger.info("Grok API key not configured — skipping XML specs extraction")
+
         # Prepare web data from master JSON
         web_products = self.master_manager.data.get("products", {})
         self.logger.info(f"Master JSON: loaded {len(web_products)} products")
@@ -119,7 +161,8 @@ class ComparisonTableBuilder:
             for lang in langs:
                 dabag_list = pid_dabag.get(lang, [])
                 web_specs = web_langs.get(lang, {})  # dict label->value
-                rows = self._align_features(orig_list, dabag_list, web_specs)
+                ai_list = ai_specs_by_pid.get(pid, [])
+                rows = self._align_features(orig_list, dabag_list, web_specs, ai_list)
                 lang_data[lang] = {"rows": rows}
 
             merged[pid] = {
@@ -141,6 +184,7 @@ class ComparisonTableBuilder:
         original_list: List[Dict[str, Any]],
         dabag_list: List[Dict[str, Any]],
         web_specs: Dict[str, str],
+        ai_list: List[Dict[str, Any]],
     ) -> List[Dict[str, Any]]:
         """Align features across sources by simple exact-name matching.
 
@@ -154,16 +198,19 @@ class ComparisonTableBuilder:
         names.update([f.get("fname", "") for f in original_list if f.get("fname")])
         names.update([f.get("fname", "") for f in dabag_list if f.get("fname")])
         names.update([k for k in web_specs.keys() if k])
+        names.update([f.get("fname", "") for f in ai_list if f.get("fname")])
 
         # Build quick lookups
         orig_map = {f.get("fname", ""): f for f in original_list if f.get("fname")}
         dabag_map = {f.get("fname", ""): f for f in dabag_list if f.get("fname")}
+        ai_map = {f.get("fname", ""): f for f in ai_list if f.get("fname")}
 
         rows: List[Dict[str, Any]] = []
         for name in sorted(names):
             o = orig_map.get(name, {})
             d = dabag_map.get(name, {})
             w_val = web_specs.get(name, "")
+            a = ai_map.get(name, {})
             rows.append({
                 "original_fname": name if o else "",
                 "original_fvalue": o.get("fvalue", ""),
@@ -173,7 +220,7 @@ class ComparisonTableBuilder:
                 "dabag_funit": d.get("funit"),
                 "web_fname": name if w_val else "",
                 "web_fvalue": w_val,
-                "ai_fname": "",
-                "ai_fvalue": "",
+                "ai_fname": name if a else "",
+                "ai_fvalue": a.get("fvalue", "") if a else "",
             })
         return rows
