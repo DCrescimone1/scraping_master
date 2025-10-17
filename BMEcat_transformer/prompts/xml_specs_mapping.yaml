@@ -56,7 +56,7 @@ prompt: |
 Example 2: Unit Normalization Input: "Akku-Spannung: 18 Volt" Output:
 {
   "fname": "Spannung",
-  "fvalue": "18V",
+  "fvalue": "18 V",
   "funit": null,
   "source": "TECHNISCHE_DATEN",
   "ai_generated": false,
@@ -86,7 +86,7 @@ Example 4: AI-Generated Field (no CSV match) Input: "Innovative dreistufige LED-
 Example 5: Multi-Item List Input: "Lieferumfang: 1x T STAK-Box II, 1x Zusatzhandgriff, 1x Bohrtiefenanschlag" Output:
 {
   "fname": "Verpackung",
-  "fvalue": "T STAK-Box II",
+  "fvalue": "T-STAK-Box II",
   "funit": null,
   "source": "LIEFERUMFANG",
   "ai_generated": false,
