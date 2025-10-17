@@ -10,13 +10,14 @@ Returns data grouped by `SUPPLIER_PID`.
 
 from typing import Dict, List, Any
 import re
-import xml.etree.ElementTree as ET
 from utils.logger import setup_logger
 
 
 class OriginalXMLReader:
     """Read Original BMEcat XML and extract per-product features.
 
+    Uses regex-based extraction to handle malformed XML that lxml/ElementTree can't parse.
+    
     Attributes:
         xml_path: Path to the BMEcat XML file.
     """
@@ -33,134 +34,78 @@ class OriginalXMLReader:
     def extract_features(self) -> Dict[str, List[Dict[str, Any]]]:
         """Extract features per product keyed by `SUPPLIER_PID`.
 
+        Uses regex parsing to handle malformed XML.
+
         Returns:
             Mapping: {supplier_id: [{"fname": str, "fvalue": str, "funit": str|None}, ...]}
         """
         self.logger.info(f"Starting feature extraction from: {self.xml_path}")
         
-        try:
-            from lxml import etree as LXML_ET  # type: ignore
-            self.logger.debug("Attempting extraction with lxml")
-            result = self._extract_via_lxml()
-            self.logger.info(f"lxml extraction: found {len(result)} products")
-            return result
-        except Exception as e:
-            self.logger.warning(f"lxml extraction failed: {e}")
-            self.logger.debug("Falling back to xml.etree.ElementTree")
-            result = self._extract_via_xml_parsing()
-            self.logger.info(f"ElementTree extraction: found {len(result)} products")
-            return result
-
-    def _extract_via_xml_parsing(self) -> Dict[str, List[Dict[str, Any]]]:
         results: Dict[str, List[Dict[str, Any]]] = {}
-
+        
         try:
-            self.logger.debug("Reading XML file")
-            with open(self.xml_path, "rb") as f:
-                raw = f.read()
-            self.logger.debug(f"XML file size: {len(raw)} bytes")
-
-            if raw.startswith(b"\xef\xbb\xbf"):
-                raw = raw[3:]
-            text = raw.decode("utf-8", errors="replace").lstrip()
-
-            root = ET.fromstring(text)
+            with open(self.xml_path, 'r', encoding='utf-8', errors='replace') as f:
+                content = f.read()
+            
+            self.logger.debug(f"File size: {len(content)} characters")
+            
+            # Find all PRODUCT blocks using regex
+            product_pattern = r'<PRODUCT[^>]*>(.*?)</PRODUCT>'
+            products = re.findall(product_pattern, content, re.DOTALL)
+            
+            self.logger.info(f"Found {len(products)} PRODUCT blocks")
+            
+            for product_xml in products:
+                # Extract SUPPLIER_PID
+                pid_match = re.search(r'<SUPPLIER_PID>\s*([^<]+?)\s*</SUPPLIER_PID>', product_xml)
+                if not pid_match:
+                    self.logger.debug("Skipping product without SUPPLIER_PID")
+                    continue
+                
+                supplier_id = pid_match.group(1).strip()
+                self.logger.debug(f"Processing product: {supplier_id}")
+                
+                # Extract all FEATURE blocks
+                feature_pattern = r'<FEATURE>(.*?)</FEATURE>'
+                features_xml = re.findall(feature_pattern, product_xml, re.DOTALL)
+                
+                features: List[Dict[str, Any]] = []
+                
+                for feature_xml in features_xml:
+                    # Extract FDESCR (feature name)
+                    fname_match = re.search(r'<FDESCR>\s*([^<]+?)\s*</FDESCR>', feature_xml)
+                    fname = fname_match.group(1).strip() if fname_match else ""
+                    
+                    # Extract FVALUE (feature value)
+                    fvalue_match = re.search(r'<FVALUE>\s*([^<]+?)\s*</FVALUE>', feature_xml)
+                    fvalue = fvalue_match.group(1).strip() if fvalue_match else ""
+                    
+                    # Extract FUNIT (feature unit)
+                    funit_match = re.search(r'<FUNIT>\s*([^<]+?)\s*</FUNIT>', feature_xml)
+                    funit = funit_match.group(1).strip() if funit_match else None
+                    
+                    # Normalize German number format
+                    if fvalue:
+                        fvalue = self._normalize_number(fvalue)
+                    
+                    # Only add if we have at least a name or value
+                    if fname or fvalue or funit:
+                        features.append({
+                            "fname": fname,
+                            "fvalue": fvalue,
+                            "funit": funit,
+                        })
+                
+                if features:
+                    results[supplier_id] = features
+                    self.logger.debug(f"Product {supplier_id}: extracted {len(features)} features")
+            
+            self.logger.info(f"Successfully extracted features for {len(results)} products")
+            
         except Exception as e:
-            self.logger.error(f"XML parsing failed: {e}")
-            return results
-
-        # Namespace if present
-        if root.tag.startswith("{"):
-            ns = root.tag.split("}")[0] + "}"
-        else:
-            ns = ""
-        self.logger.debug(f"Root tag: {root.tag}, namespace: {ns if ns else 'none'}")
-
-        # Iterate products
-        product_nodes = root.findall(f".//{ns}PRODUCT") + root.findall(".//PRODUCT")
-        self.logger.debug(f"Found {len(product_nodes)} PRODUCT nodes")
-        for prod in product_nodes:
-            supplier_id = self._get_first_text(prod, [f"{ns}SUPPLIER_PID", "SUPPLIER_PID"]) or ""
-            if not supplier_id:
-                continue
-
-            features: List[Dict[str, Any]] = []
-            feature_nodes = (
-                prod.findall(f".//{ns}FEATURE") + prod.findall(".//FEATURE")
-            )
-            for feat in feature_nodes:
-                fname = self._get_first_text(feat, [f"{ns}FDESCR", "FDESCR"]) or ""
-                fvalue = self._get_first_text(feat, [f"{ns}FVALUE", "FVALUE"]) or ""
-                funit = self._get_first_text(feat, [f"{ns}FUNIT", "FUNIT"]) or None
-
-                if fvalue:
-                    fvalue = self._normalize_number(fvalue)
-
-                if fname or fvalue or funit:
-                    features.append({
-                        "fname": fname.strip(),
-                        "fvalue": (fvalue.strip() if isinstance(fvalue, str) else fvalue),
-                        "funit": (funit.strip() if isinstance(funit, str) else funit),
-                    })
-
-            if features:
-                results[supplier_id] = features
-
+            self.logger.error(f"Feature extraction failed: {e}")
+        
         return results
-
-    def _extract_via_lxml(self) -> Dict[str, List[Dict[str, Any]]]:
-        from lxml import etree as LXML_ET  # type: ignore
-
-        results: Dict[str, List[Dict[str, Any]]] = {}
-
-        with open(self.xml_path, "rb") as f:
-            raw = f.read()
-
-        parser = LXML_ET.XMLParser(recover=True, encoding="utf-8")
-        root = LXML_ET.fromstring(raw, parser)
-
-        # PRODUCT nodes (with or without namespace)
-        product_nodes = root.xpath('.//PRODUCT | .//*[local-name()="PRODUCT"]')
-        self.logger.debug(f"lxml found {len(product_nodes)} PRODUCT nodes")
-        for prod in product_nodes:
-            # SUPPLIER_PID
-            pid_nodes = prod.xpath('.//SUPPLIER_PID | .//*[local-name()="SUPPLIER_PID"]')
-            supplier_id = pid_nodes[0].text.strip() if pid_nodes and pid_nodes[0].text else ""
-            if not supplier_id:
-                continue
-
-            features: List[Dict[str, Any]] = []
-            feat_nodes = prod.xpath('.//FEATURE | .//*[local-name()="FEATURE"]')
-            for feat in feat_nodes:
-                fname_nodes = feat.xpath('.//FDESCR | .//*[local-name()="FDESCR"]')
-                fvalue_nodes = feat.xpath('.//FVALUE | .//*[local-name()="FVALUE"]')
-                funit_nodes = feat.xpath('.//FUNIT | .//*[local-name()="FUNIT"]')
-
-                fname = (fname_nodes[0].text or "").strip() if fname_nodes and fname_nodes[0].text else ""
-                fvalue = (fvalue_nodes[0].text or "").strip() if fvalue_nodes and fvalue_nodes[0].text else ""
-                funit = (funit_nodes[0].text or "").strip() if funit_nodes and funit_nodes[0].text else None
-
-                if fvalue:
-                    fvalue = self._normalize_number(fvalue)
-
-                if fname or fvalue or funit:
-                    features.append({
-                        "fname": fname,
-                        "fvalue": fvalue,
-                        "funit": funit,
-                    })
-
-            if features:
-                results[supplier_id] = features
-
-        return results
-
-    def _get_first_text(self, node: Any, tags: List[str]) -> str | None:
-        for tag in tags:
-            elem = node.find(f".//{tag}")
-            if elem is not None and elem.text:
-                return elem.text
-        return None
 
     def _normalize_number(self, value: str) -> str:
         """Normalize German-formatted numbers to dot-decimal.
