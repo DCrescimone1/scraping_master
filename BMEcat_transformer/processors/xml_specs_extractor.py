@@ -6,6 +6,7 @@ Extracts unstructured technical specifications from UDX.EDXF.* XML fields.
 Handles HTML entities and preserves formatting for AI processing.
 """
 
+import os
 import re
 from typing import Dict, Optional
 from utils.logger import setup_logger
@@ -194,6 +195,10 @@ class XMLSpecsExtractor:
                 # Extract UDX fields for this product
                 product_data = self._extract_udx_block_regex(product_xml, field_mapping)
                 
+                # NEW: Save to text file
+                if product_data:
+                    self.save_to_text_file(supplier_pid, product_data)
+                
                 # This ensures consistency with product counts across all XML readers
                 results[supplier_pid] = product_data
                 
@@ -207,3 +212,54 @@ class XMLSpecsExtractor:
 
         self.logger.info(f"Extracted UDX fields for {len(results)} products")
         return results
+
+    def save_to_text_file(self, supplier_pid: str, udx_fields: Dict[str, str]) -> str:
+        """Save extracted UDX fields to a text file for AI processing.
+        
+        Creates human-readable text file with section headers.
+        Overwrites existing file on each run.
+        
+        Args:
+            supplier_pid: Product identifier for filename.
+            udx_fields: Dict with field names and extracted text.
+            
+        Returns:
+            Full path to saved text file.
+        """
+        import sys
+        from pathlib import Path
+        
+        # Import config
+        PROJECT_ROOT = Path(__file__).resolve().parent.parent
+        if str(PROJECT_ROOT) not in sys.path:
+            sys.path.append(str(PROJECT_ROOT))
+        import config
+        
+        # Create directory if not exists
+        output_dir = config.SCRAPED_TEXT_DIR
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Build file path
+        filename = f"{supplier_pid}.txt"
+        filepath = os.path.join(output_dir, filename)
+        
+        # Build content with section headers
+        content_parts = [
+            f"Product: {supplier_pid}",
+            f"Extracted from: Original XML (DEWALT BMEcat)\n"
+        ]
+        
+        for field_name, text in udx_fields.items():
+            if text:  # Only add non-empty sections
+                section_header = field_name.upper().replace("_", " ")
+                content_parts.append(f"=== {section_header} ===")
+                content_parts.append(text)
+                content_parts.append("")  # Empty line between sections
+        
+        # Write to file (overwrite mode)
+        full_content = "\n".join(content_parts)
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(full_content)
+        
+        self.logger.info(f"Saved scraped text: {filepath}")
+        return filepath

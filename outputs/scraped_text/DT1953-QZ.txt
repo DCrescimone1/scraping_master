@@ -1,0 +1,6 @@
+Product: DT1953-QZ
+Extracted from: Original XML (DEWALT BMEcat)
+
+=== GARANTIE ===
+Garantieumfang:
+Keine DEWALT Garantie

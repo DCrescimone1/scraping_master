@@ -15,11 +15,17 @@ prompt: |
   {AI_FEATURES_FALLBACK}
   
   ## EXTRACTION RULES
-  1. **Feature Name Matching**:
-     - ALWAYS try to match to the PRIMARY allowed features list first
+  1. **Feature Name Matching** (CRITICAL - FOLLOW STRICTLY):
+     - ALWAYS try to match to the PRIMARY allowed features list FIRST
+     - The PRIMARY list is your source of truth - prefer it over creating new features
      - Use semantic similarity, not exact string matching
      - Consider abbreviations, units, and variations (e.g., "Ø" = "Durchmesser", "V" = "Volt")
-     - Only use FALLBACK list if confidence in PRIMARY match is <50%
+     - ONLY use FALLBACK list if confidence in PRIMARY match is < 40%
+     - NEVER create new feature names if a reasonable PRIMARY match exists (>40% confidence)
+     - Examples of good matches:
+       * "Garantie" in text → match to "Garantie" in CSV (exact)
+       * "Akkukapazität" in text → match to "Akku-Kapazität" in CSV (similar)
+       * "Gewicht mit Akku" in text → match to "Gewicht" in CSV (substring)
   
   2. **Value Extraction**:
      - Extract ONLY values explicitly stated in the text
@@ -27,11 +33,13 @@ prompt: |
      - Preserve units (mm, V, kg, W, min⁻¹, etc.)
      - Normalize formats: "2,5 kg" → "2.5 kg", "1.200 W" → "1200 W"
   
-  3. **AI-Generated Fields** (confidence ≥ {CONFIDENCE_THRESHOLD}):
-     - If no match in PRIMARY or FALLBACK, create new feature name
+  3. **AI-Generated Fields** (USE SPARINGLY - confidence ≥ {CONFIDENCE_THRESHOLD}):
+     - ONLY create new feature names if NO match in PRIMARY (>40% confidence) OR FALLBACK
+     - Before creating new feature, double-check PRIMARY list one more time
      - Use same naming style as existing features (German, technical, concise)
      - Mark with ai_generated: true
-     - Include confidence score
+     - Include confidence score (must be ≥ {CONFIDENCE_THRESHOLD})
+     - Example: If text says "Garantie" and CSV has "Garantie", DO NOT create new feature
   
   4. **Source Tracking**:
      - Track which section text came from (LANGTEXT, TECHNISCHE_DATEN, etc.)

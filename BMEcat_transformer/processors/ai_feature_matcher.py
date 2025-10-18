@@ -12,6 +12,7 @@ import os
 from typing import Dict, List, Any
 from datetime import datetime
 import requests
+import re
 
 from utils.logger import setup_logger
 
@@ -127,6 +128,7 @@ class AIFeatureMatcher:
         try:
             response = self._call_grok_api(prompt)
             features = self._parse_grok_response(response, product_id)
+            features = self._add_warning_if_needed(features)  # NEW: Add validation
             self.logger.info(f"Matched {len(features)} features for {product_id}")
             return features
         except Exception as e:
@@ -289,3 +291,55 @@ class AIFeatureMatcher:
         }
         self._save_ai_features_json()
         self.logger.info("Initialized ai_generated_features.json")
+
+    def _is_feature_in_csv(self, feature_name: str) -> bool:
+        """Check if feature name exists in unique_features.csv.
+        
+        Normalizes by removing hyphens/spaces and comparing exactly.
+        This prevents false positives like "Akku" matching "Akku-Kompatibilität".
+        
+        Args:
+            feature_name: Feature name to check (German).
+            
+        Returns:
+            True if found in CSV, False otherwise.
+        """
+        if not self.allowed_features:
+            return False
+        
+        import re
+        
+        # Normalize: lowercase, remove hyphens and spaces
+        def normalize(s: str) -> str:
+            s = s.lower().strip()
+            s = re.sub(r'[-\s]+', '', s)
+            return s
+        
+        feature_normalized = normalize(feature_name)
+        
+        # Check exact match after normalization
+        for row in self.allowed_features:
+            csv_name = row.get('fname_de', '')
+            if normalize(csv_name) == feature_normalized:
+                return True
+        
+        return False
+
+    def _add_warning_if_needed(self, features: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Add ⚠️ prefix to features NOT in unique_features.csv.
+        
+        Args:
+            features: List of feature dicts from AI.
+            
+        Returns:
+            Same list with warning prefixes added where needed.
+        """
+        for feature in features:
+            fname = feature.get('fname', '')
+            if fname and not self._is_feature_in_csv(fname):
+                # Add warning prefix if not already present
+                if not fname.startswith('⚠️ '):
+                    feature['fname'] = f"⚠️ {fname}"
+                    self.logger.warning(f"Feature NOT in CSV taxonomy: {fname}")
+        
+        return features

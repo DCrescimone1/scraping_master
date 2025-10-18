@@ -1,0 +1,118 @@
+Product: DCK329P2T-QW
+Extracted from: Original XML (DEWALT BMEcat)
+
+=== PRODUKTSTAERKEN ===
+Produktstärken:
+DCD 796:
+Höhere Leistung, kompaktere Abmessungen, 57% längere Laufzeit pro Akku-Ladung sowie höhere Lebensdauer durch neueste Generation bürstenloser Motor-Technologie
+Äußerst kompakte und ausbalancierte Bauweise mit geringem Gewicht
+Gürtelhaken und magnetischer Bithalter garantieren in allen Situationen einen sicheren und schnellen Einsatz
+Ergonomisches Design mit vollgummiertem Handgriff für ein Maximum an Sicherheit und Arbeitskomfort
+18 Volt XR Bohrschrauber mit neuer XR Li-Ion Akku-Technologie
+Vielseitig einsetzbar durch zuschaltbares Schlagwerk für schwere Bohrarbeiten in Stein und Mauerwerk
+Problemloser Langzeiteinsatz durch Sicherheitselektronik (permanente Überprüfung von Akku-Temperatur, Stromentnahme und Entladeschutz)
+Optimal abgestimmtes 2-Gang-Vollmetallgetriebe für perfekte Kraftübertragung
+Leicht dosierbare Schalterelektronik für exaktes Anbohren und präzises Schrauben
+13 mm Schnellspann-Bohrfutter aus Vollmetall und automatische Spindelarretierung
+Innovative dreistufige LED-Leuchte mit sehr hoher Leuchtkraft von bis zu 77 Lumen für problemlosen Arbeiten bei allen Lichtverhältnissen
+DCG 405:
+Innovative, bürstenlose Motor-Technologie - höhere Leistung, kompaktere Abmessungen, längere Laufzeit pro Akkuladung sowie höhere Lebensdauer
+Epoxyd-Harz gepanzerte Wicklungen schützen den Motor vor abrasiven Staubpartikeln
+Optimiertes Lüftersystem – kühlt Winkelschleifer und Elektronik effektiv während der Anwendung und erhöht die Lebensdauer
+Perform & Protect: Elektronische Bremse stoppt die Scheibe zuverlässig in Sekundenschnelle
+Perform & Protect: Elektronische Kupplung schaltet das Gerät bei Blockieren automatisch ab und schützt so Anwender und Maschine
+Kombination aus elektronischer Kupplung und Bremse minimiert die Gefahren bei Kickbacks noch effektiver
+Überlastschutz zum Schutz von Anwender und Maschine
+Wiederanlaufschutz – versehentliches Anlaufen des Winkelschleifers bei Akkuwechsel ausgeschlossen
+Schutzgitter für Kühlluftschlitze– schützen den Motor vor groben Staubpartikeln
+Schnellspannmutter - für einen schnellen, werkzeuglosen Zubehörwechsel
+Werkzeuglose Schutzhauben-Schnellverstellung
+Kompatibel mit allen 18,0 Volt XR Akku-Maschinen von DEWALT
+DCS 335:
+Leistungsstarke Akku-Pendelhub-Stichsäge mit ergonomischem Motorgriff
+Längere Laufzeit pro Akku-Ladung sowie höhere Lebensdauer durch innovative, bürstenlose Motor-Technologie
+Lüftergekühlter Hochleistungsmotor mit elektronischer Hubzahlregulierung
+Exakte Hubzahlvorwahl über Rändelrad für materialgerechtes Arbeiten
+Einfache Bedienung durch großdimensionierten Feststellschalter
+Sägeschuh über präzise Arretiermechanik beidseitig bis 45° Neigung exakt und werkzeuglos einstellbar
+Neu entwickelte Aufnahme garantiert sicheren und spielfreien Sitz der Sägeblätter
+Schneller, sicherer und problemloser Sägeblattwechsel durch werkzeugloses Wechselsystem
+Dreistufige Pendelhubsteuerung gewährleistet optimale Schnittleistung bei allen Anwendungen
+Neu konzipierter Hubstangenantrieb mit patentiertem Ausgleichsgewicht reduziert spürbar die Vibrationen
+Robuster Sägeschuh aus Alu-Druckguss mit Stahleinlagen und abnehmbarem Werkstückschutz
+Sicherer Einsatz durch elektronische Motorbremse
+Kompakte Bauweise mit ergonomisch gummierten Motorgriff gewährleistet sichere und präzise Maschinenführung
+Freie Sicht auf den Anriss durch effektive Späneblasvorrichtung sowie beidseitig positionierte LEDs
+Optimale Handhabung durch kompakte und leichte Bauweise sowie ergonomisch gummierte Griffbereiche
+Effektive Staubabsaugung, direkt kompatibel mit dem DeWALT Airlock-System für einfache, schnelle und sichere Saugschlauch-Verbindung
+Sehr vielseitige und präzise Arbeiten durch zusätzlichen Einsatz von Parallelanschlag (DE 3241-XJ) und Zirkel (DE 3242-XJ) – als Zubehör erhältlich
+Einsetzbar mit allen 18 Volt XR- oder 54 Volt XR FLEXVOLT-Akkus
+DCB 184:
+Lange Laufzeit und hohe Lebensdauer
+LED Akku Ladestandsanzeige
+Kein Memory-Effekt und keine Selbstentladung
+Kompatibel mit allen 18,0 Volt XR Akku-Maschinen von DEWALT
+Kein Memory-Effekt
+Wirkungsvoller Schutz vor Überlastung, Überhitzung und Tiefenentladung durch spezielle Elektronik
+
+=== LIEFERUMFANG ===
+Lieferumfang:
+1 x Akku-Schlagbohrschrauber DCD 796
+1x 125mm Akku-Winkelschleifer DCG 405
+1x Akku-Pendelhub-Stichsäge
+2 x XR-Akkus DCB 184: 18 Volt / 5 Ah-Akkus (Li-Ion) mit LED-Kapazitätsanzeige, einsetzbar in alle 18 Volt XR Akku-Maschinen
+1 x System-Schnellladegerät DCB 115: Geeignet für alle XR-Akkus von 10,8 bis 18 Volt
+1x T STAK-Box II
+1 x T STAK-Box VI
+
+=== TECHNISCHE DATEN ===
+Technische Daten:
+DCD 796:
+Akku-Technologie: 18 Volt XR Li-Ion
+Akku-Kompatibilität alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse
+Leerlaufdrehzahl: 0 - 550 / 2.000 min-1
+Leerlaufschlagzahl: 0 - 9.350 / 34.000 min-1
+max. Drehmoment (h/w): 70 / 27 Nm
+max. Bohrleistung in Holz / Metall / Stein: 40 / 13 / 13 mm
+Bohrfutterspannweite: 1,5 - 13 mm
+Gewicht (inkl. 2,0 Ah-Akku): 1,6 kg
+Vibrationen Bohren in Metall (m/s²): < 2,5
+Unsicherheitsfaktor K (m/s²): 1,5
+Schalldruckpegel LPA (dB(A): 89
+Schallleistungspegel LWA (dB(A): 100
+Unsicherheitsfaktor K (dB(A)): 3,0
+DCG 405:
+Akku-Technologie 18 Volt XR Li-Ion Akku-Kompatibilität alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse
+Leerlaufdrehzahl (min-1): 9.000
+Antriebsspindel: M14
+Scheibendurchmesser (mm): 125
+Gewicht (inkl. 5 Ah Akku in kg): 2,4
+Triaxiale Vibration Oberflächenschleifen (m/s²): 4,4
+Unsicherheitsfaktor K1 (m/s²): 1,5
+Schalldruckpegel LPA (dB(A)): 85,0
+Schalleistungspegel LWA (dB(A)): 96,0
+Unsicherheitsfaktor (dB(A)): 3,0
+DCS 335:
+Akku-Technologie: alle 18 Volt und 54 Volt Flexvolt XR-Akkus jeder Ah-Klasse
+Leerlaufhubzahl: 1.000 - 3.200 min-1
+Hublänge: 26 mm
+Neigungseinstellung (beidseitig): 45 °
+max. Schnitttiefe in Holz / Alu / Stahl: 135 / 25 / 10 mm
+Gewicht (bei Einsatz eines 18 Volt / 2,0 bzw. 5,0 Ah-Akkus): 2,5 bzw. 2,7 kg
+Schalldruckpegel (LPA): 86 dB(A)
+Schallleistungspegel (LWA): 97 dB(A)
+K-Wert (Schalldruck): 3,0 dB(A)
+Triaxiale Vibration: 5,3 m/s²
+K-Wert (Vibrationen): 1,5 m/s²
+DCB 184:
+Akku-Kapazität: 5.0 Ah
+Akku-Spannung: 18 Volt
+Höhe: 65 mm
+Länge: 110 mm
+Gewicht: 0.62 kg
+Sonderausstattung: Li-Ion Schiebe-Akku
+Kompatibel mit: allen DEWALT 18,0 Volt XR Maschinen
+
+=== GARANTIE ===
+Garantieumfang:
+DEWALT Garantie: 3 Jahre (bei Online-Registrierung) – hiervon ausgeschlossen sind Akkus und Ladegeräte, die zum serienmäßigen Lieferumfang gehören und für die generell eine Garantie von einem Jahr gilt

@@ -1,0 +1,44 @@
+Product: DCH273NT-XJ
+Extracted from: Original XML (DEWALT BMEcat)
+
+=== PRODUKTSTAERKEN ===
+Produktstärken:
+Innovative, bürstenlose Motor-Technologie - höhere Leistung, kompaktere Abmessungen sowie längere Lebensdauer
+Sehr hoher Bohrfortschritt durch optimal abgestimmtes elektropneumatisches Hammerwerk
+Perform & Protect: Sicheres und ermüdungsarmes Arbeiten bei geringen Vibrationen durch spezielle Dämpfungsmechanik von Motor, Getriebe und Schlagwerk
+Elektronische Kupplung für ein gleichmäßig hohes Drehmoment und eine noch höhere Lebensdauer
+Sicherer Maschineneinsatz durch elektronische Motorbremse
+Elektronische Dreh- und Schlagzahlregulierung erlaubt ein perfektes Anpassen an das zu bearbeitende Material
+Dreh- und Schlagstopp zur Durchführung von bspw. leichten Meißelarbeiten in Putz/Fliesen
+Modularer Maschinenaufbau gewährleistet schnelle und problemlose Servicearbeiten
+Leistungsstarke, hellweiße LED-Leuchte mit optimal ausgerichtetem Lichtkegel
+Gummierter Handgriff, sehr geringes Gewicht und ausbalancierte Bauweise für ermüdungsarmes Arbeiten auch bei längeren Einsätzen
+Serienmäßig in T STAK™-Box II und als Basistype (ohne Akkus und Ladegerät) optimal geeignet bei bereits vorhandenen 18 Volt oder 54 Volt XR FLEXVOLT-Akkus
+
+=== LIEFERUMFANG ===
+Lieferumfang:
+SDS-plus Akku-Kombihammer
+Gummierter Zusatzhandgriff
+Bohrtiefenanschlag
+T STAK™-Box II
+
+=== TECHNISCHE DATEN ===
+Technische Daten:
+Akku-Technologie: 18 V XR Li-Ion
+Akku-Kompatibilität: alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse
+Leerlaufdrehzahl: 0 – 1.100 min-1
+Leerlaufschlagzahl: 0 – 4.600 min-1
+Einzelschlagenergie (EPTA 05/2009): 2,1 Joule
+Werkzeugaufnahme: SDS-plus
+Optimaler Durchmesserbereich Beton (mm): 6 – 12
+Max. Bohrleistung in Beton/Metall/Holz: 24/13/26 mm
+Gewicht (inkl. 5 Ah-Akku): 3,1 kg
+Triaxiale Vibration Hammerbohren in Beton: 6,6 m/s²
+Unsicherheitsfaktor K: 1,5 m/s²
+Schalldruckpegel LPA: 86 dB(A)
+Schallleistungspegel LWA: 97 dB(A)
+Unsicherheitsfaktor K: 3,0 dB(A)
+
+=== GARANTIE ===
+Garantieumfang:
+DEWALT Garantie: 3 Jahre (bei Online-Registrierung) – hiervon ausgeschlossen sind Akkus und Ladegeräte, die zum serienmäßigen Lieferumfang gehören und für die generell eine Garantie von einem Jahr gilt

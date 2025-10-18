@@ -1,0 +1,45 @@
+Product: DCS573NT-XJ
+Extracted from: Original XML (DEWALT BMEcat)
+
+=== PRODUKTSTAERKEN ===
+Produktstärken:
+Doppelter Vorteil beim Einsatz von Flexvolt-Akkus: Durch geringere Innenwiderstände der Akku-Zellen erfolgt ein schnellerer Stromfluss zum Motor, sodass bereits beim Einsatz eines 6 Ah Flexvolt-Akkus dieser eine bis zu 77% höhere Abgabeleistung und somit in der Praxis einer entsprechend stärkere Durchzugskraft liefert. Darüber hinaus steht dem Anwender eine extrem lange Laufzeit durch eine sehr hohe Akku-Kapazität von bis zu 12 Ah zur Verfügung
+Bürstenlose Motor-Technologie ermöglicht kompaktere Abmessungen, längere Laufzeit pro Akkuladung sowie längere Lebensdauer
+Problemloser Langzeiteinsatz durch Sicherheitselektronik (permanente Überprüfung von Akku-Temperatur, Stromentnahme und Entladeschutz)
+Sicherer Einsatz durch elektronische Motorbremse und Verrieglungsschalter
+Vielseitig einsetzbar durch präzise, schnelle und werkzeuglose Einstellung der Schnitttiefe sowie der Neigungswinkel über exakte Skalierungen
+Einfacher und schneller Sägeblattwechsel durch Spindelarretierung
+Robuster, verwindungssteifer und plangefräster Alu-Sägeschuh
+Im Frontbereich gekürzte Schutzhaube sowie integrierte LED und Blasvor-richtung erlauben selbst bei schlechten Lichtverhältnissen uneingeschränkten Blick auf den Anriss
+Robuste, aber dennoch leichte Bauweise mit Getriebegehäuse und Schutzhaube aus hochwertigem Aluminium
+Kompakte und ausbalancierte Bauweise sowie gummierte, ergonomische Hand- und Zusatzhandgriffe für Sicherheit und Arbeitskomfort
+Effiziente und Airlock-kompatible Staubabsaugung
+Rechtsseitig positioniertes Sägeblatt ermöglicht perfekte Maschinenführung durch freie Sicht auf die Schnittlinie
+Einsetzbar mit alle 18 Volt XR- oder 54 Volt XR FLEXVOLT-Akkus (nicht im Lieferumfang enthalten)
+
+=== LIEFERUMFANG ===
+Lieferumfang:
+Akku-Handkreissäge
+24 Zahn HM-Sägeblatt
+Parallelanschlag
+Airlock Absaug-Adapter
+T STAK-Box VI
+
+=== TECHNISCHE DATEN ===
+Technische Daten:
+Akku-Technologie: alle 18 Volt und 54 Volt Flexvolt XR-Akkus jeder Ah-Klasse
+Leerlaufdrehzahl: 5.500 min-1
+Max. Neigungseinstellung: 57°
+Sägeblatt-Ø: 190 x 30 mm
+Max. Schnitttiefe bei 90°: 67 mm
+Max. Schnitttiefe bei 45°: 49 mm
+Gewicht (bei Einsatz eines 18 Volt / 5 bzw. 6 Ah-Akkus): 3,7 bzw. 4,1 kg
+Schalldruckpegel LPA: 89 dB(A)
+Schallleistungspegel LWA: 100 dB(A)
+K-Wert (Schallleistung): 3 dB(A)
+Vibrationen: 2,8 (m/s²)
+K-Wert (Vibrationen): 1,5 (m/s²)
+
+=== GARANTIE ===
+Garantieumfang:
+DEWALT Garantie: 3 Jahre (bei Online-Registrierung)

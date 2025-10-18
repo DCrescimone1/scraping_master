@@ -33,6 +33,11 @@ COMPARISON_TABLES_DIR: str = os.getenv(
     "COMPARISON_TABLES_DIR",
     os.path.join(OUTPUT_DIR, "comparison_tables/")
 )
+# Scraped text output directory for intermediate UDX XML text extraction
+SCRAPED_TEXT_DIR: str = os.getenv(
+    "SCRAPED_TEXT_DIR",
+    os.path.join(OUTPUT_DIR, "scraped_text/")
+)
 MASTER_COMPARISON_FILENAME: str = os.getenv(
     "MASTER_COMPARISON_FILENAME",
     "master_comparison_catalog.json"
@@ -82,3 +87,5 @@ if not OUTPUT_DIR.endswith("/"):
     OUTPUT_DIR = OUTPUT_DIR + "/"
 if not COMPARISON_TABLES_DIR.endswith("/"):
     COMPARISON_TABLES_DIR = COMPARISON_TABLES_DIR + "/"
+if not SCRAPED_TEXT_DIR.endswith("/"):
+    SCRAPED_TEXT_DIR = SCRAPED_TEXT_DIR + "/"

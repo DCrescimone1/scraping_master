@@ -54,6 +54,54 @@ class ComparisonTableBuilder:
         self.dabag_reader = DABAGXMLReader(dabag_xml_path)
         self.scraper = DABAGScraper()
 
+    def _read_scraped_text(self, supplier_pid: str) -> Dict[str, str]:
+        """Read scraped text file for a product if it exists.
+        
+        Args:
+            supplier_pid: Product identifier.
+            
+        Returns:
+            Dict with field names and text, empty dict if file not found.
+        """
+        from pathlib import Path
+        
+        text_file = Path(config.SCRAPED_TEXT_DIR) / f"{supplier_pid}.txt"
+        
+        if not text_file.exists():
+            self.logger.debug(f"No scraped text file for {supplier_pid}")
+            return {}
+        
+        try:
+            with open(text_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Parse sections back into dict
+            result = {}
+            current_section = None
+            current_text = []
+            
+            for line in content.split('\n'):
+                if line.startswith('=== ') and line.endswith(' ==='):
+                    # Save previous section
+                    if current_section:
+                        result[current_section.lower().replace(' ', '_')] = '\n'.join(current_text).strip()
+                    # Start new section
+                    current_section = line.strip('= ').strip()
+                    current_text = []
+                elif current_section and line.strip():
+                    current_text.append(line)
+            
+            # Save last section
+            if current_section:
+                result[current_section.lower().replace(' ', '_')] = '\n'.join(current_text).strip()
+            
+            self.logger.debug(f"Read {len(result)} sections from {text_file}")
+            return result
+            
+        except Exception as e:
+            self.logger.warning(f"Failed to read scraped text for {supplier_pid}: {e}")
+            return {}
+
     def build_comparison_tables(self, auto_scrape: bool = False) -> Dict[str, Dict[str, Any]]:
         """Build merged comparison data per supplier ID and language.
 
@@ -110,7 +158,17 @@ class ComparisonTableBuilder:
                         self.logger.warning(f"unique_features.csv not found at {csv_path} — AI matching may be limited")
 
                     if ai_matcher.load_references() and ai_matcher.load_prompt():
-                        for pid, raw_text in all_udx.items():
+                        for pid in all_udx.keys():
+                            # Try to read from saved text file first
+                            raw_text = self._read_scraped_text(pid)
+                            
+                            # Fallback to memory if file doesn't exist
+                            if not raw_text:
+                                raw_text = all_udx.get(pid, {})
+                            
+                            if not raw_text:
+                                continue
+                            
                             feats = ai_matcher.match_features(raw_text, pid)
                             if feats:
                                 ai_specs_by_pid[pid] = feats

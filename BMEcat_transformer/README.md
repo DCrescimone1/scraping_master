@@ -41,6 +41,7 @@ FIRECRAWL_API_KEY=fc-your-key
 SCRAPING_METHOD=firecrawl   # or: playwright
 DABAG_BASE_URL=https://www.dabag.ch
 BME_OUTPUT_DIR=outputs/
+SCRAPED_TEXT_DIR=outputs/scraped_text/  # NEW: Directory for intermediate text extraction
 
 # Optional: Enable AI-powered XML specs extraction/matching
 GROK_API_KEY=xa-your-key
@@ -211,9 +212,16 @@ BMEcat_transformer/
 │   ├── __init__.py
 │   └── feature_extractor.py
 │
-├── output/
-│   ├── __init__.py
-│   └── output_formatter.py
+├── outputs/
+│   ├── scraped_text/ # Intermediate UDX XML text extraction
+│   │   ├── DCG405NT-XJ.txt # Human-readable text per product
+│   │   └── [product_id].txt # Organized by section headers
+│   ├── comparison_tables/
+│   │   ├── DCG405NT-XJ_de.json
+│   │   └── master_comparison_catalog.json
+│   ├── ai_generated_features.json # AI-discovered features (not in CSV)
+│   ├── unique_features.csv # Feature taxonomy (German/French/Italian)
+│   └── master_bmecat_dabag.json # Master product database
 │
 └── ui/
     ├── __init__.py
@@ -352,6 +360,40 @@ and a consolidated:
 outputs/comparison_tables/master_comparison_catalog.json
 ```
 
+## Scraped Text Files
+
+**Directory:** `outputs/scraped_text/`
+
+**Purpose:** Intermediate UDX XML text extraction for AI processing.
+
+**Files:** One `.txt` file per product (German only)
+- **Naming:** `{supplier_pid}.txt`
+- **Format:** Human-readable text organized by section headers
+
+**Sections:**
+- `PRODUKTSTÄRKEN` (Product strengths)
+- `LIEFERUMFANG` (Scope of delivery)
+- `TECHNISCHE DATEN` (Technical data)
+- `GARANTIE` (Warranty)
+- `ANWENDUNGSBEISPIELE` (Application examples)
+
+**Usage:** Automatically generated during XML specs extraction. Used as input for AI feature matching.
+
+**Behavior:** Files are overwritten on each run to stay synchronized with XML changes.
+
+**Example File Content:**
+```
+Product: DCG405NT-XJ
+Extracted from: Original XML (DEWALT BMEcat)
+
+=== PRODUKTSTÄRKEN ===
+Brushless motor for extended runtime and durability.
+Variable speed for optimal performance.
+
+=== TECHNISCHE DATEN ===
+Max. disc diameter: 125 mm
+No-load speed: 9000 min⁻¹
+```
 
 ## XML Specs Extractor
 

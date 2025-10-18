@@ -40,22 +40,12 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Akku-Typ",
               "dabag_fvalue": "--",
               "web_fname": "Akku-Typ",
               "web_fvalue": "--",
-              "ai_fname": "Akku-Typ",
-              "ai_fvalue": "18 V XR Li-Ion"
+              "ai_fname": "",
+              "ai_fvalue": ""
             },
             {
               "original_fname": "",
@@ -66,36 +56,6 @@
               "web_fvalue": "24 mm",
               "ai_fname": "Bohrleistung Beton",
               "ai_fvalue": "24 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Holz",
-              "ai_fvalue": "26 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Metall",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -120,52 +80,12 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie Akkus",
-              "ai_fvalue": "1 Jahr"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Gewicht",
               "dabag_fvalue": "2.50",
               "web_fname": "Gewicht",
               "web_fvalue": "2.50 kg",
               "ai_fname": "Gewicht",
               "ai_fvalue": "3.1 kg"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Gummierter Handgriff",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -200,32 +120,12 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Leerlaufschlagzahl",
-              "ai_fvalue": "0-4600 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Lieferumfang",
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Lieferumfang",
-              "ai_fvalue": "SDS-plus Akku-Kombihammer, Gummierter Zusatzhandgriff, Bohrtiefenanschlag, T STAK™-Box II"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Optimaler Bohr-Durchmesser Beton",
-              "ai_fvalue": "6-12 mm"
+              "ai_fname": "",
+              "ai_fvalue": ""
             },
             {
               "original_fname": "",
@@ -236,26 +136,6 @@
               "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
               "ai_fvalue": "86 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schlagstopp",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -280,26 +160,6 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Verpackung",
               "dabag_fvalue": "T-STAK",
               "web_fname": "Verpackung",
@@ -314,7 +174,167 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Vibration Hammerbohren Beton",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "18 V XR Li-Ion"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrleistung Holz",
+              "ai_fvalue": "26 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrleistung Metall",
+              "ai_fvalue": "13 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie Akkus",
+              "ai_fvalue": "1 Jahr"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Leerlaufschlagzahl",
+              "ai_fvalue": "0-4600 min⁻¹"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Lieferumfang",
+              "ai_fvalue": "SDS-plus Akku-Kombihammer, Gummierter Zusatzhandgriff, Bohrtiefenanschlag, T STAK™-Box II"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Optimaler Bohr-Durchmesser Beton",
+              "ai_fvalue": "6-12 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "97 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schlagstopp",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3.0 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Vibration Hammerbohren Beton",
               "ai_fvalue": "6.6 m/s²"
             },
             {
@@ -324,7 +344,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Werkzeugaufnahme",
+              "ai_fname": "⚠️ Werkzeugaufnahme",
               "ai_fvalue": "SDS-plus"
             }
           ],
@@ -340,11 +360,6 @@
               "dabag_funit": "Ah"
             },
             {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Akku-Typ",
               "original_funit": null,
               "dabag_funit": null
@@ -353,21 +368,6 @@
               "name": "Bohrleistung Beton",
               "original_funit": null,
               "dabag_funit": "mm"
-            },
-            {
-              "name": "Bohrleistung Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bürstenloser Motor",
-              "original_funit": null,
-              "dabag_funit": null
             },
             {
               "name": "Drehstopp",
@@ -380,29 +380,9 @@
               "dabag_funit": "J (EPTA)"
             },
             {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie Akkus",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Gewicht",
               "original_funit": null,
               "dabag_funit": "kg"
-            },
-            {
-              "name": "Gummierter Handgriff",
-              "original_funit": null,
-              "dabag_funit": null
             },
             {
               "name": "LED-Leuchte",
@@ -420,32 +400,12 @@
               "dabag_funit": "min{m}"
             },
             {
-              "name": "Leerlaufschlagzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Lieferumfang",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Optimaler Bohr-Durchmesser Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schallleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schlagstopp",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -460,27 +420,97 @@
               "dabag_funit": "V"
             },
             {
-              "name": "Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Vibration",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Verpackung",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Vibration Hammerbohren Beton",
+              "name": "⚠️ Akku-Kompatibilität",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Werkzeugaufnahme",
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrleistung Holz",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrleistung Metall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie Akkus",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Leerlaufschlagzahl",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Optimaler Bohr-Durchmesser Beton",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schallleistungspegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schlagstopp",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Schall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Vibration Hammerbohren Beton",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Werkzeugaufnahme",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -508,58 +538,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Typ",
-              "ai_fvalue": "18 V XR Li-Ion"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "Bohrleistung Beton",
               "ai_fvalue": "24 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Holz",
-              "ai_fvalue": "26 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Metall",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -588,48 +568,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie Akkus",
-              "ai_fvalue": "1 Jahr"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "Gewicht",
               "ai_fvalue": "3.1 kg"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Gummierter Handgriff",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -658,98 +598,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Leerlaufschlagzahl",
-              "ai_fvalue": "0-4600 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Lieferumfang",
-              "ai_fvalue": "SDS-plus Akku-Kombihammer, Gummierter Zusatzhandgriff, Bohrtiefenanschlag, T STAK™-Box II"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Optimaler Bohr-Durchmesser Beton",
-              "ai_fvalue": "6-12 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
               "ai_fvalue": "86 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schlagstopp",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Vibration Hammerbohren Beton",
-              "ai_fvalue": "6.6 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Werkzeugaufnahme",
-              "ai_fvalue": "SDS-plus"
             },
             {
               "original_fname": "",
@@ -910,36 +760,191 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "18 V XR Li-Ion"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrleistung Holz",
+              "ai_fvalue": "26 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrleistung Metall",
+              "ai_fvalue": "13 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie Akkus",
+              "ai_fvalue": "1 Jahr"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Leerlaufschlagzahl",
+              "ai_fvalue": "0-4600 min⁻¹"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Lieferumfang",
+              "ai_fvalue": "SDS-plus Akku-Kombihammer, Gummierter Zusatzhandgriff, Bohrtiefenanschlag, T STAK™-Box II"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Optimaler Bohr-Durchmesser Beton",
+              "ai_fvalue": "6-12 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "97 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schlagstopp",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3.0 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Vibration Hammerbohren Beton",
+              "ai_fvalue": "6.6 m/s²"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Werkzeugaufnahme",
+              "ai_fvalue": "SDS-plus"
             }
           ],
           "units": [
             {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Akku-Typ",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Bohrleistung Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bürstenloser Motor",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -954,27 +959,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie Akkus",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Gewicht",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -989,52 +974,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Leerlaufschlagzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Lieferumfang",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Optimaler Bohr-Durchmesser Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schallleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schlagstopp",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Vibration",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Vibration Hammerbohren Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Werkzeugaufnahme",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -1117,6 +1057,96 @@
               "name": "Étendue de la livraison",
               "original_funit": null,
               "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrleistung Holz",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrleistung Metall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie Akkus",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Leerlaufschlagzahl",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Optimaler Bohr-Durchmesser Beton",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schallleistungspegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schlagstopp",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Schall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Vibration Hammerbohren Beton",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Werkzeugaufnahme",
+              "original_funit": null,
+              "dabag_funit": null
             }
           ]
         },
@@ -1138,26 +1168,6 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Typ",
-              "ai_fvalue": "18 V XR Li-Ion"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Ambito di consegna",
               "dabag_fvalue": "",
               "web_fname": "",
@@ -1174,36 +1184,6 @@
               "web_fvalue": "",
               "ai_fname": "Bohrleistung Beton",
               "ai_fvalue": "24 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Holz",
-              "ai_fvalue": "26 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Metall",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -1232,48 +1212,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie Akkus",
-              "ai_fvalue": "1 Jahr"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "Gewicht",
               "ai_fvalue": "3.1 kg"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Gummierter Handgriff",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -1302,98 +1242,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Leerlaufschlagzahl",
-              "ai_fvalue": "0-4600 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Lieferumfang",
-              "ai_fvalue": "SDS-plus Akku-Kombihammer, Gummierter Zusatzhandgriff, Bohrtiefenanschlag, T STAK™-Box II"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Optimaler Bohr-Durchmesser Beton",
-              "ai_fvalue": "6-12 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
               "ai_fvalue": "86 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schlagstopp",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Vibration Hammerbohren Beton",
-              "ai_fvalue": "6.6 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Werkzeugaufnahme",
-              "ai_fvalue": "SDS-plus"
             },
             {
               "original_fname": "",
@@ -1524,19 +1374,189 @@
               "web_fvalue": "--",
               "ai_fname": "",
               "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "18 V XR Li-Ion"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrleistung Holz",
+              "ai_fvalue": "26 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrleistung Metall",
+              "ai_fvalue": "13 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie Akkus",
+              "ai_fvalue": "1 Jahr"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Leerlaufschlagzahl",
+              "ai_fvalue": "0-4600 min⁻¹"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Lieferumfang",
+              "ai_fvalue": "SDS-plus Akku-Kombihammer, Gummierter Zusatzhandgriff, Bohrtiefenanschlag, T STAK™-Box II"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Optimaler Bohr-Durchmesser Beton",
+              "ai_fvalue": "6-12 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "97 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schlagstopp",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3.0 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Vibration Hammerbohren Beton",
+              "ai_fvalue": "6.6 m/s²"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Werkzeugaufnahme",
+              "ai_fvalue": "SDS-plus"
             }
           ],
           "units": [
-            {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Akku-Typ",
-              "original_funit": null,
-              "dabag_funit": null
-            },
             {
               "name": "Ambito di consegna",
               "original_funit": null,
@@ -1544,21 +1564,6 @@
             },
             {
               "name": "Bohrleistung Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bürstenloser Motor",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -1573,27 +1578,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie Akkus",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Gewicht",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -1608,52 +1593,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Leerlaufschlagzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Lieferumfang",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Optimaler Bohr-Durchmesser Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schallleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schlagstopp",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Vibration",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Vibration Hammerbohren Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Werkzeugaufnahme",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -1721,6 +1661,96 @@
               "name": "tipo di batteria",
               "original_funit": null,
               "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrleistung Holz",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrleistung Metall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie Akkus",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Leerlaufschlagzahl",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Optimaler Bohr-Durchmesser Beton",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schallleistungspegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schlagstopp",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Schall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Vibration Hammerbohren Beton",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Werkzeugaufnahme",
+              "original_funit": null,
+              "dabag_funit": null
             }
           ]
         }
@@ -1762,16 +1792,6 @@
               "web_fvalue": "-- Ah",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
             },
             {
               "original_fname": "",
@@ -1820,28 +1840,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+              "ai_fname": "Funktion",
+              "ai_fvalue": "Überlastschutz"
             },
             {
               "original_fname": "",
@@ -1851,7 +1851,7 @@
               "web_fname": "Gewicht",
               "web_fvalue": "1.80 kg",
               "ai_fname": "Gewicht",
-              "ai_fvalue": "2.4 kg (inkl. 5 Ah Akku)"
+              "ai_fvalue": "2.4 kg"
             },
             {
               "original_fname": "Gewicht mit Akkupack",
@@ -1900,8 +1900,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Lieferumfang",
-              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
+              "ai_fname": "",
+              "ai_fvalue": ""
             },
             {
               "original_fname": "Länge",
@@ -1951,17 +1951,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "85.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalleistungspegel",
-              "ai_fvalue": "96.0 dB(A)"
+              "ai_fvalue": "85 dB(A)"
             },
             {
               "original_fname": "",
@@ -2000,6 +1990,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Akku-Technologie",
               "ai_fvalue": "18 Volt XR Li-Ion"
             },
@@ -2020,8 +2020,48 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Elektronische Kupplung",
+              "ai_fname": "⚠️ Bürstenloser Motor",
               "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Lieferumfang",
+              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "96 dB(A)"
             },
             {
               "original_fname": "",
@@ -2040,46 +2080,6 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnellspannmutter",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Schutzgitter Kühlluftschlitze",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Triaxiale Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor K1",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
               "ai_fvalue": "3.0 dB(A)"
             },
@@ -2090,8 +2090,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Werkzeuglose Schutzhauben-Schnellverstellung",
-              "ai_fvalue": "ja"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
             },
             {
               "original_fname": "",
@@ -2100,18 +2100,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Wiederanlaufschutz",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Überlastschutz",
-              "ai_fvalue": "ja"
+              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
+              "ai_fvalue": "4.4 m/s²"
             }
           ],
           "units": [
@@ -2124,11 +2114,6 @@
               "name": "Akku-Kapazität",
               "original_funit": null,
               "dabag_funit": "Ah"
-            },
-            {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
             },
             {
               "name": "Akku-Typ",
@@ -2151,17 +2136,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Bürstenloser Motor",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
+              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -2221,11 +2196,6 @@
               "dabag_funit": null
             },
             {
-              "name": "Schalleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Scheiben-Ø",
               "original_funit": null,
               "dabag_funit": "mm"
@@ -2241,6 +2211,11 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Akku-Technologie",
               "original_funit": null,
               "dabag_funit": null
@@ -2251,7 +2226,27 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Elektronische Kupplung",
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -2261,42 +2256,17 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnellspannmutter",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Schutzgitter Kühlluftschlitze",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Triaxiale Vibration Oberflächenschleifen",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor K1",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Werkzeuglose Schutzhauben-Schnellverstellung",
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Wiederanlaufschutz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Überlastschutz",
+              "name": "⚠️ Vibration Oberflächenschleifen",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -2317,16 +2287,6 @@
             "ai_fvalue"
           ],
           "rows": [
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
-            },
             {
               "original_fname": "Akkukapazität",
               "original_fvalue": "",
@@ -2364,28 +2324,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+              "ai_fname": "Funktion",
+              "ai_fvalue": "Überlastschutz"
             },
             {
               "original_fname": "",
@@ -2395,7 +2335,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Gewicht",
-              "ai_fvalue": "2.4 kg (inkl. 5 Ah Akku)"
+              "ai_fvalue": "2.4 kg"
             },
             {
               "original_fname": "Gewicht mit Akkupack",
@@ -2426,16 +2366,6 @@
               "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
               "ai_fvalue": "9000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Lieferumfang",
-              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
             },
             {
               "original_fname": "Länge",
@@ -2485,17 +2415,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "85.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalleistungspegel",
-              "ai_fvalue": "96.0 dB(A)"
+              "ai_fvalue": "85 dB(A)"
             },
             {
               "original_fname": "",
@@ -2624,6 +2544,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Akku-Technologie",
               "ai_fvalue": "18 Volt XR Li-Ion"
             },
@@ -2644,8 +2574,48 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Elektronische Kupplung",
+              "ai_fname": "⚠️ Bürstenloser Motor",
               "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Lieferumfang",
+              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "96 dB(A)"
             },
             {
               "original_fname": "",
@@ -2664,46 +2634,6 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnellspannmutter",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Schutzgitter Kühlluftschlitze",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Triaxiale Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor K1",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
               "ai_fvalue": "3.0 dB(A)"
             },
@@ -2714,8 +2644,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Werkzeuglose Schutzhauben-Schnellverstellung",
-              "ai_fvalue": "ja"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
             },
             {
               "original_fname": "",
@@ -2724,26 +2654,11 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Wiederanlaufschutz",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Überlastschutz",
-              "ai_fvalue": "ja"
+              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
+              "ai_fvalue": "4.4 m/s²"
             }
           ],
           "units": [
-            {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
             {
               "name": "Akkukapazität",
               "original_funit": "Ah",
@@ -2760,17 +2675,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Bürstenloser Motor",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
+              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -2791,11 +2696,6 @@
             },
             {
               "name": "Leerlaufdrehzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Lieferumfang",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -2821,11 +2721,6 @@
             },
             {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schalleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -2890,6 +2785,11 @@
               "dabag_funit": "mm"
             },
             {
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Akku-Technologie",
               "original_funit": null,
               "dabag_funit": null
@@ -2900,7 +2800,27 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Elektronische Kupplung",
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -2910,42 +2830,17 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnellspannmutter",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Schutzgitter Kühlluftschlitze",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Triaxiale Vibration Oberflächenschleifen",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor K1",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Werkzeuglose Schutzhauben-Schnellverstellung",
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Wiederanlaufschutz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Überlastschutz",
+              "name": "⚠️ Vibration Oberflächenschleifen",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -2966,16 +2861,6 @@
             "ai_fvalue"
           ],
           "rows": [
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
-            },
             {
               "original_fname": "Akkukapazität",
               "original_fvalue": "",
@@ -3023,28 +2908,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+              "ai_fname": "Funktion",
+              "ai_fvalue": "Überlastschutz"
             },
             {
               "original_fname": "",
@@ -3054,7 +2919,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Gewicht",
-              "ai_fvalue": "2.4 kg (inkl. 5 Ah Akku)"
+              "ai_fvalue": "2.4 kg"
             },
             {
               "original_fname": "Gewicht mit Akkupack",
@@ -3085,16 +2950,6 @@
               "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
               "ai_fvalue": "9000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Lieferumfang",
-              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
             },
             {
               "original_fname": "Länge",
@@ -3144,17 +2999,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "85.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalleistungspegel",
-              "ai_fvalue": "96.0 dB(A)"
+              "ai_fvalue": "85 dB(A)"
             },
             {
               "original_fname": "",
@@ -3253,6 +3098,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Akku-Technologie",
               "ai_fvalue": "18 Volt XR Li-Ion"
             },
@@ -3273,8 +3128,48 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Elektronische Kupplung",
+              "ai_fname": "⚠️ Bürstenloser Motor",
               "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Lieferumfang",
+              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "96 dB(A)"
             },
             {
               "original_fname": "",
@@ -3293,46 +3188,6 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnellspannmutter",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Schutzgitter Kühlluftschlitze",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Triaxiale Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor K1",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
               "ai_fvalue": "3.0 dB(A)"
             },
@@ -3343,8 +3198,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Werkzeuglose Schutzhauben-Schnellverstellung",
-              "ai_fvalue": "ja"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
             },
             {
               "original_fname": "",
@@ -3353,26 +3208,11 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Wiederanlaufschutz",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Überlastschutz",
-              "ai_fvalue": "ja"
+              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
+              "ai_fvalue": "4.4 m/s²"
             }
           ],
           "units": [
-            {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
             {
               "name": "Akkukapazität",
               "original_funit": "Ah",
@@ -3394,17 +3234,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Bürstenloser Motor",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
+              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3425,11 +3255,6 @@
             },
             {
               "name": "Leerlaufdrehzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Lieferumfang",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3455,11 +3280,6 @@
             },
             {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schalleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3509,6 +3329,11 @@
               "dabag_funit": "mm"
             },
             {
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Akku-Technologie",
               "original_funit": null,
               "dabag_funit": null
@@ -3519,7 +3344,27 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Elektronische Kupplung",
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Lieferumfang",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3529,42 +3374,17 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnellspannmutter",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Schutzgitter Kühlluftschlitze",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Triaxiale Vibration Oberflächenschleifen",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor K1",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Werkzeuglose Schutzhauben-Schnellverstellung",
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Wiederanlaufschutz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Überlastschutz",
+              "name": "⚠️ Vibration Oberflächenschleifen",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -3596,8 +3416,8 @@
               "dabag_fvalue": "2",
               "web_fname": "Akku",
               "web_fvalue": "2 Stück",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku",
+              "ai_fvalue": "2 Stück"
             },
             {
               "original_fname": "",
@@ -3607,27 +3427,7 @@
               "web_fname": "Akku-Kapazität",
               "web_fvalue": "5 Ah",
               "ai_fname": "Akku-Kapazität",
-              "ai_fvalue": "5.0 Ah"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "allen DEWALT 18 Volt XR Maschinen"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Technologie",
-              "ai_fvalue": "18 Volt XR Li-Ion"
+              "ai_fvalue": "5 Ah"
             },
             {
               "original_fname": "",
@@ -3636,8 +3436,8 @@
               "dabag_fvalue": "Li-Ion",
               "web_fname": "Akku-Typ",
               "web_fvalue": "Li-Ion",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "Li-Ion"
             },
             {
               "original_fname": "",
@@ -3646,8 +3446,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Antriebsspindel",
-              "ai_fvalue": "M14"
+              "ai_fname": "Drehzahl",
+              "ai_fvalue": "9000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -3656,48 +3456,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Bohrleistung Beton",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Holz",
-              "ai_fvalue": "40 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Metall",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie Akkus",
-              "ai_fvalue": "1 Jahr"
+              "ai_fname": "Funktion",
+              "ai_fvalue": "Überlastschutz"
             },
             {
               "original_fname": "",
@@ -3722,12 +3482,22 @@
             {
               "original_fname": "",
               "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "LED-Leuchte",
+              "ai_fvalue": "mit"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
               "dabag_fname": "Ladegerät",
               "dabag_fvalue": "DCB1104",
               "web_fname": "Ladegerät",
               "web_fvalue": "DCB1104",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "DCB 115"
             },
             {
               "original_fname": "",
@@ -3737,7 +3507,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "9000 min⁻¹"
+              "ai_fvalue": "0-550/2000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -3762,42 +3532,12 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Spannung",
               "dabag_fvalue": "18",
               "web_fname": "Spannung",
               "web_fvalue": "18 V",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
             },
             {
               "original_fname": "",
@@ -3816,8 +3556,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Vibration",
-              "ai_fvalue": "5.3 m/s²"
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "allen DEWALT 18,0 Volt XR Maschinen"
             },
             {
               "original_fname": "",
@@ -3836,8 +3576,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Typ",
-              "ai_fvalue": "Li-Ion Schiebe-Akku"
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "18 Volt XR Li-Ion"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Antriebsspindel",
+              "ai_fvalue": "M14"
             },
             {
               "original_fname": "",
@@ -3856,8 +3606,58 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Drehmoment max",
-              "ai_fvalue": "70 / 27 Nm"
+              "ai_fname": "⚠️ Bohrleistung Metall",
+              "ai_fvalue": "13 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie Akkus",
+              "ai_fvalue": "1 Jahr"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -3876,38 +3676,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ K-Wert Schalldruck",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ K-Wert Vibration",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "⚠️ LED-Leuchtkraft",
-              "ai_fvalue": "bis zu 77 Lumen"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Leerlaufhubzahl",
-              "ai_fvalue": "1000-3200 min⁻¹"
+              "ai_fvalue": "77 Lumen"
             },
             {
               "original_fname": "",
@@ -3917,17 +3687,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Leerlaufschlagzahl",
-              "ai_fvalue": "0-9350 / 34000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Länge",
-              "ai_fvalue": "110 mm"
+              "ai_fvalue": "0-9350/34000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -3946,6 +3706,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "97 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Scheibendurchmesser",
               "ai_fvalue": "125 mm"
             },
@@ -3956,8 +3726,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Alu",
-              "ai_fvalue": "25 mm"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3.0 dB(A)"
             },
             {
               "original_fname": "",
@@ -3966,38 +3736,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Holz",
-              "ai_fvalue": "135 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Stahl",
-              "ai_fvalue": "10 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Bohren Metall",
-              "ai_fvalue": "<2.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
             }
           ],
           "units": [
@@ -4012,47 +3752,17 @@
               "dabag_funit": "Ah"
             },
             {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Akku-Technologie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Akku-Typ",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Antriebsspindel",
+              "name": "Drehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Bohrleistung Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie Akkus",
+              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4063,6 +3773,11 @@
             },
             {
               "name": "Höhe",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "LED-Leuchte",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4087,24 +3802,9 @@
               "dabag_funit": null
             },
             {
-              "name": "Schallleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Spannung",
               "original_funit": null,
               "dabag_funit": "V"
-            },
-            {
-              "name": "Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Vibration",
-              "original_funit": null,
-              "dabag_funit": null
             },
             {
               "name": "Verpackung",
@@ -4112,7 +3812,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Vibration",
+              "name": "⚠️ Akku-Kompatibilität",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4122,7 +3822,12 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Akku-Typ",
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Antriebsspindel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4132,7 +3837,32 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Drehmoment max",
+              "name": "⚠️ Bohrleistung Metall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie Akkus",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4142,22 +3872,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ K-Wert Schalldruck",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ K-Wert Vibration",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ LED-Leuchtkraft",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Leerlaufhubzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4167,12 +3882,12 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Länge",
+              "name": "⚠️ Neigungseinstellung",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Neigungseinstellung",
+              "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4182,27 +3897,12 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnitttiefe Alu",
+              "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnitttiefe Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Schnitttiefe Stahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Vibration Bohren Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Vibration Oberflächenschleifen",
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -4230,8 +3930,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "Akku",
+              "ai_fvalue": "2 Stück"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Akku-Kapazität",
-              "ai_fvalue": "5.0 Ah"
+              "ai_fvalue": "5 Ah"
             },
             {
               "original_fname": "",
@@ -4240,8 +3950,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "allen DEWALT 18 Volt XR Maschinen"
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "Li-Ion"
             },
             {
               "original_fname": "",
@@ -4250,8 +3960,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Akku-Technologie",
-              "ai_fvalue": "18 Volt XR Li-Ion"
+              "ai_fname": "Drehzahl",
+              "ai_fvalue": "9000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -4260,58 +3970,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Antriebsspindel",
-              "ai_fvalue": "M14"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Beton",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Holz",
-              "ai_fvalue": "40 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Metall",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie Akkus",
-              "ai_fvalue": "1 Jahr"
+              "ai_fname": "Funktion",
+              "ai_fvalue": "Überlastschutz"
             },
             {
               "original_fname": "",
@@ -4340,8 +4000,28 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "LED-Leuchte",
+              "ai_fvalue": "mit"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "DCB 115"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "9000 min⁻¹"
+              "ai_fvalue": "0-550/2000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -4352,46 +4032,6 @@
               "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
               "ai_fvalue": "86 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Vibration",
-              "ai_fvalue": "5.3 m/s²"
             },
             {
               "original_fname": "",
@@ -4490,6 +4130,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "allen DEWALT 18,0 Volt XR Maschinen"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Akku-Spannung",
               "ai_fvalue": "18 V"
             },
@@ -4500,8 +4150,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Typ",
-              "ai_fvalue": "Li-Ion Schiebe-Akku"
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "18 Volt XR Li-Ion"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Antriebsspindel",
+              "ai_fvalue": "M14"
             },
             {
               "original_fname": "",
@@ -4520,8 +4180,58 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Drehmoment max",
-              "ai_fvalue": "70 / 27 Nm"
+              "ai_fname": "⚠️ Bohrleistung Metall",
+              "ai_fvalue": "13 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie Akkus",
+              "ai_fvalue": "1 Jahr"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -4540,38 +4250,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ K-Wert Schalldruck",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ K-Wert Vibration",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "⚠️ LED-Leuchtkraft",
-              "ai_fvalue": "bis zu 77 Lumen"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Leerlaufhubzahl",
-              "ai_fvalue": "1000-3200 min⁻¹"
+              "ai_fvalue": "77 Lumen"
             },
             {
               "original_fname": "",
@@ -4581,17 +4261,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Leerlaufschlagzahl",
-              "ai_fvalue": "0-9350 / 34000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Länge",
-              "ai_fvalue": "110 mm"
+              "ai_fvalue": "0-9350/34000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -4610,6 +4280,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "97 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Scheibendurchmesser",
               "ai_fvalue": "125 mm"
             },
@@ -4620,8 +4300,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Alu",
-              "ai_fvalue": "25 mm"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3.0 dB(A)"
             },
             {
               "original_fname": "",
@@ -4630,83 +4310,33 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Holz",
-              "ai_fvalue": "135 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Stahl",
-              "ai_fvalue": "10 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Bohren Metall",
-              "ai_fvalue": "<2.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
             }
           ],
           "units": [
+            {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": null
+            },
             {
               "name": "Akku-Kapazität",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Akku-Kompatibilität",
+              "name": "Akku-Typ",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Akku-Technologie",
+              "name": "Drehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Antriebsspindel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie Akkus",
+              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4721,32 +4351,22 @@
               "dabag_funit": null
             },
             {
+              "name": "LED-Leuchte",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Ladegerät",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "Leerlaufdrehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
             {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schallleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Vibration",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Vibration",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4796,12 +4416,22 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Akku-Spannung",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Akku-Typ",
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Antriebsspindel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4811,7 +4441,32 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Drehmoment max",
+              "name": "⚠️ Bohrleistung Metall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie Akkus",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4821,22 +4476,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ K-Wert Schalldruck",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ K-Wert Vibration",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ LED-Leuchtkraft",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Leerlaufhubzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4846,12 +4486,12 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Länge",
+              "name": "⚠️ Neigungseinstellung",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Neigungseinstellung",
+              "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4861,27 +4501,12 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnitttiefe Alu",
+              "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnitttiefe Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Schnitttiefe Stahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Vibration Bohren Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Vibration Oberflächenschleifen",
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -4909,8 +4534,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "Akku",
+              "ai_fvalue": "2 Stück"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Akku-Kapazität",
-              "ai_fvalue": "5.0 Ah"
+              "ai_fvalue": "5 Ah"
             },
             {
               "original_fname": "",
@@ -4919,18 +4554,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "allen DEWALT 18 Volt XR Maschinen"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Technologie",
-              "ai_fvalue": "18 Volt XR Li-Ion"
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "Li-Ion"
             },
             {
               "original_fname": "",
@@ -4949,8 +4574,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Antriebsspindel",
-              "ai_fvalue": "M14"
+              "ai_fname": "Drehzahl",
+              "ai_fvalue": "9000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -4959,48 +4584,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Bohrleistung Beton",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Holz",
-              "ai_fvalue": "40 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bohrleistung Metall",
-              "ai_fvalue": "13 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie Akkus",
-              "ai_fvalue": "1 Jahr"
+              "ai_fname": "Funktion",
+              "ai_fvalue": "Überlastschutz"
             },
             {
               "original_fname": "",
@@ -5029,8 +4614,28 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "LED-Leuchte",
+              "ai_fvalue": "mit"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "DCB 115"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "9000 min⁻¹"
+              "ai_fvalue": "0-550/2000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -5041,46 +4646,6 @@
               "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
               "ai_fvalue": "86 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Vibration",
-              "ai_fvalue": "5.3 m/s²"
             },
             {
               "original_fname": "",
@@ -5149,6 +4714,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
+              "ai_fvalue": "allen DEWALT 18,0 Volt XR Maschinen"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Akku-Spannung",
               "ai_fvalue": "18 V"
             },
@@ -5159,8 +4734,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Typ",
-              "ai_fvalue": "Li-Ion Schiebe-Akku"
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "18 Volt XR Li-Ion"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Antriebsspindel",
+              "ai_fvalue": "M14"
             },
             {
               "original_fname": "",
@@ -5179,8 +4764,58 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Drehmoment max",
-              "ai_fvalue": "70 / 27 Nm"
+              "ai_fname": "⚠️ Bohrleistung Metall",
+              "ai_fvalue": "13 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie Akkus",
+              "ai_fvalue": "1 Jahr"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -5199,38 +4834,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ K-Wert Schalldruck",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ K-Wert Vibration",
-              "ai_fvalue": "1.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "⚠️ LED-Leuchtkraft",
-              "ai_fvalue": "bis zu 77 Lumen"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Leerlaufhubzahl",
-              "ai_fvalue": "1000-3200 min⁻¹"
+              "ai_fvalue": "77 Lumen"
             },
             {
               "original_fname": "",
@@ -5240,17 +4845,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Leerlaufschlagzahl",
-              "ai_fvalue": "0-9350 / 34000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Länge",
-              "ai_fvalue": "110 mm"
+              "ai_fvalue": "0-9350/34000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -5269,6 +4864,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "97 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Scheibendurchmesser",
               "ai_fvalue": "125 mm"
             },
@@ -5279,8 +4884,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Alu",
-              "ai_fvalue": "25 mm"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3.0 dB(A)"
             },
             {
               "original_fname": "",
@@ -5289,53 +4894,23 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Holz",
-              "ai_fvalue": "135 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Schnitttiefe Stahl",
-              "ai_fvalue": "10 mm"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Bohren Metall",
-              "ai_fvalue": "<2.5 m/s²"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
+              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
+              "ai_fvalue": "1.5 m/s²"
             }
           ],
           "units": [
+            {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": null
+            },
             {
               "name": "Akku-Kapazität",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Akku-Technologie",
+              "name": "Akku-Typ",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5345,32 +4920,12 @@
               "dabag_funit": null
             },
             {
-              "name": "Antriebsspindel",
+              "name": "Drehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Bohrleistung Beton",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bohrleistung Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie Akkus",
+              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5385,32 +4940,22 @@
               "dabag_funit": null
             },
             {
+              "name": "LED-Leuchte",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Ladegerät",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "Leerlaufdrehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
             {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schallleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Vibration",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Vibration",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5445,12 +4990,22 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Akku-Spannung",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Akku-Typ",
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Antriebsspindel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5460,7 +5015,32 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Drehmoment max",
+              "name": "⚠️ Bohrleistung Metall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie Akkus",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5470,22 +5050,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ K-Wert Schalldruck",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ K-Wert Vibration",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ LED-Leuchtkraft",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Leerlaufhubzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5495,12 +5060,12 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Länge",
+              "name": "⚠️ Neigungseinstellung",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Neigungseinstellung",
+              "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5510,27 +5075,12 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnitttiefe Alu",
+              "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schnitttiefe Holz",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Schnitttiefe Stahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Vibration Bohren Metall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Vibration Oberflächenschleifen",
+              "name": "⚠️ Unsicherheitsfaktor Vibration",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -5578,32 +5128,12 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Akku-Typ",
               "dabag_fvalue": "--",
               "web_fname": "Akku-Typ",
               "web_fvalue": "--",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -5618,42 +5148,12 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Gewicht",
               "dabag_fvalue": "3.60",
               "web_fname": "Gewicht",
               "web_fvalue": "3.60 kg",
               "ai_fname": "Gewicht",
               "ai_fvalue": "3.7 bzw. 4.1 kg"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Gummierter Handgriff",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -5708,16 +5208,6 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "100 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Schnittleistung 45°",
               "dabag_fvalue": "51",
               "web_fname": "Schnittleistung 45°",
@@ -5768,22 +5258,62 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Verpackung",
               "dabag_fvalue": "T-STAK",
               "web_fname": "Verpackung",
               "web_fvalue": "T-STAK",
               "ai_fname": "",
               "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "alle 18 Volt und 54 Volt Flexvolt XR-Akkus jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -5832,8 +5362,28 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "100 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Sägeblatt-Ø",
               "ai_fvalue": "190 x 30 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3 dB(A)"
             },
             {
               "original_fname": "",
@@ -5868,17 +5418,7 @@
               "dabag_funit": "Ah"
             },
             {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Akku-Typ",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bürstenloser Motor",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5888,24 +5428,9 @@
               "dabag_funit": "min{m}"
             },
             {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Gewicht",
               "original_funit": null,
               "dabag_funit": "kg"
-            },
-            {
-              "name": "Gummierter Handgriff",
-              "original_funit": null,
-              "dabag_funit": null
             },
             {
               "name": "LED-Leuchte",
@@ -5929,11 +5454,6 @@
             },
             {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5963,12 +5483,32 @@
               "dabag_funit": "mm"
             },
             {
-              "name": "Unsicherheitsfaktor Schall",
+              "name": "Verpackung",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Verpackung",
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5993,7 +5533,17 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Schallleistungspegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Sägeblatt-Ø",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6041,58 +5591,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "Gewicht",
               "ai_fvalue": "3.7 bzw. 4.1 kg"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Gummierter Handgriff",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -6123,26 +5623,6 @@
               "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
               "ai_fvalue": "89 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "100 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3 dB(A)"
             },
             {
               "original_fname": "",
@@ -6311,6 +5791,56 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "alle 18 Volt und 54 Volt Flexvolt XR-Akkus jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Lieferumfang",
               "ai_fvalue": "Akku-Handkreissäge, 24 Zahn HM-Sägeblatt, Parallelanschlag, Airlock Absaug-Adapter, T STAK-Box VI"
             },
@@ -6351,8 +5881,28 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "100 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Sägeblatt-Ø",
               "ai_fvalue": "190 x 30 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3 dB(A)"
             },
             {
               "original_fname": "",
@@ -6382,32 +5932,7 @@
               "dabag_funit": null
             },
             {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Bürstenloser Motor",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Gewicht",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6423,16 +5948,6 @@
             },
             {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schallleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6517,6 +6032,31 @@
               "dabag_funit": "mm"
             },
             {
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Lieferumfang",
               "original_funit": null,
               "dabag_funit": null
@@ -6537,7 +6077,17 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Schallleistungspegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Sägeblatt-Ø",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6581,16 +6131,6 @@
             {
               "original_fname": "",
               "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Akku-Kompatibilität",
-              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
               "dabag_fname": "Ambito di consegna",
               "dabag_fvalue": "",
               "web_fname": "",
@@ -6605,48 +6145,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Bürstenloser Motor",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Elektronische Motorbremse",
-              "ai_fvalue": "ja"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Garantie",
-              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
               "ai_fname": "Gewicht",
               "ai_fvalue": "3.7 bzw. 4.1 kg"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Gummierter Handgriff",
-              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -6677,26 +6177,6 @@
               "web_fvalue": "",
               "ai_fname": "Schalldruckpegel",
               "ai_fvalue": "89 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schallleistungspegel",
-              "ai_fvalue": "100 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3 dB(A)"
             },
             {
               "original_fname": "",
@@ -6835,6 +6315,56 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fvalue": "alle 18 Volt und 54 Volt Flexvolt XR-Akkus jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bürstenloser Motor",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Elektronische Motorbremse",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Garantie",
+              "ai_fvalue": "3 Jahre (bei Online-Registrierung)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Lieferumfang",
               "ai_fvalue": "Akku-Handkreissäge, 24 Zahn HM-Sägeblatt, Parallelanschlag, Airlock Absaug-Adapter, T STAK-Box VI"
             },
@@ -6875,8 +6405,28 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schallleistungspegel",
+              "ai_fvalue": "100 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Sägeblatt-Ø",
               "ai_fvalue": "190 x 30 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
+              "ai_fvalue": "3 dB(A)"
             },
             {
               "original_fname": "",
@@ -6906,37 +6456,12 @@
               "dabag_funit": null
             },
             {
-              "name": "Akku-Kompatibilität",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Ambito di consegna",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Bürstenloser Motor",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Elektronische Motorbremse",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Garantie",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Gewicht",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6952,16 +6477,6 @@
             },
             {
               "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schallleistungspegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -7031,6 +6546,31 @@
               "dabag_funit": "mm"
             },
             {
+              "name": "⚠️ Akku-Technologie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bürstenloser Motor",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Elektronische Motorbremse",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Garantie",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Gummierter Handgriff",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Lieferumfang",
               "original_funit": null,
               "dabag_funit": null
@@ -7051,7 +6591,17 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Schallleistungspegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Sägeblatt-Ø",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Unsicherheitsfaktor Schall",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -7273,7 +6823,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Garantieumfang",
+              "ai_fname": "⚠️ Garantie",
               "ai_fvalue": "Keine DEWALT Garantie"
             }
           ],
@@ -7369,7 +6919,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Garantieumfang",
+              "name": "⚠️ Garantie",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -7557,7 +7107,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Garantieumfang",
+              "ai_fname": "⚠️ Garantie",
               "ai_fvalue": "Keine DEWALT Garantie"
             }
           ],
@@ -7643,7 +7193,7 @@
               "dabag_funit": "mm"
             },
             {
-              "name": "⚠️ Garantieumfang",
+              "name": "⚠️ Garantie",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -7821,7 +7371,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Garantieumfang",
+              "ai_fname": "⚠️ Garantie",
               "ai_fvalue": "Keine DEWALT Garantie"
             }
           ],
@@ -7902,7 +7452,7 @@
               "dabag_funit": "mm"
             },
             {
-              "name": "⚠️ Garantieumfang",
+              "name": "⚠️ Garantie",
               "original_funit": null,
               "dabag_funit": null
             }

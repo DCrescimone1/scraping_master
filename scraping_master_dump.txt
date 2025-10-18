@@ -100,6 +100,15 @@ Folder structure:
 │   │   ├── comparison_DCG405NT-XJ_de.json
 │   │   ├── comparison_DCG405NT-XJ_fr.json
 │   │   ├── comparison_DCG405NT-XJ_it.json
+│   │   ├── comparison_DCH273NT-XJ_de.json
+│   │   ├── comparison_DCH273NT-XJ_fr.json
+│   │   ├── comparison_DCH273NT-XJ_it.json
+│   │   ├── comparison_DCK329P2T-QW_de.json
+│   │   ├── comparison_DCK329P2T-QW_fr.json
+│   │   ├── comparison_DCK329P2T-QW_it.json
+│   │   ├── comparison_DCS573NT-XJ_de.json
+│   │   ├── comparison_DCS573NT-XJ_fr.json
+│   │   ├── comparison_DCS573NT-XJ_it.json
 │   │   ├── comparison_DT1952-QZ_de.json
 │   │   ├── comparison_DT1952-QZ_fr.json
 │   │   ├── comparison_DT1952-QZ_it.json
@@ -110,6 +119,13 @@ Folder structure:
 │   ├── master_bmecat_dabag.json
 │   ├── master_bmecat_dabag.json.backup1
 │   ├── master_bmecat_dabag.json.backup2
+│   ├── scraped_text
+│   │   ├── DCG405NT-XJ.txt
+│   │   ├── DCH273NT-XJ.txt
+│   │   ├── DCK329P2T-QW.txt
+│   │   ├── DCS573NT-XJ.txt
+│   │   ├── DT1952-QZ.txt
+│   │   └── DT1953-QZ.txt
 │   ├── Stihl_Version DABAG_summary_20251010_183123.json
 │   ├── Stihl_Version DABAG_summary_20251013_100932.json
 │   └── unique_features.csv
@@ -120,7 +136,7 @@ Folder structure:
     ├── spider_man_results_data.json
     └── spider_man_results.md
 
-24 directories, 96 files
+25 directories, 111 files
 
 
 --- File Contents ---
@@ -4574,6 +4590,11 @@ COMPARISON_TABLES_DIR: str = os.getenv(
     "COMPARISON_TABLES_DIR",
     os.path.join(OUTPUT_DIR, "comparison_tables/")
 )
+# Scraped text output directory for intermediate UDX XML text extraction
+SCRAPED_TEXT_DIR: str = os.getenv(
+    "SCRAPED_TEXT_DIR",
+    os.path.join(OUTPUT_DIR, "scraped_text/")
+)
 MASTER_COMPARISON_FILENAME: str = os.getenv(
     "MASTER_COMPARISON_FILENAME",
     "master_comparison_catalog.json"
@@ -4623,6 +4644,8 @@ if not OUTPUT_DIR.endswith("/"):
     OUTPUT_DIR = OUTPUT_DIR + "/"
 if not COMPARISON_TABLES_DIR.endswith("/"):
     COMPARISON_TABLES_DIR = COMPARISON_TABLES_DIR + "/"
+if not SCRAPED_TEXT_DIR.endswith("/"):
+    SCRAPED_TEXT_DIR = SCRAPED_TEXT_DIR + "/"
 
 ------------------------------------------------- ./BMEcat_transformer/core/master_json_manager.py --------------------------------------------------
 
@@ -4994,6 +5017,9 @@ class OriginalXMLReader:
 
         Uses regex parsing to handle malformed XML.
         Priority: SUPPLIER_AID checked first, SUPPLIER_PID as fallback.
+        
+        IMPORTANT: ALL products with valid PIDs are loaded, even if they have
+        no structured FEATURE data. Products without features get empty lists.
 
         Returns:
             Mapping: {supplier_id: [{"fname": str, "fvalue": str, "funit": str|None}, ...]}
@@ -5027,6 +5053,7 @@ class OriginalXMLReader:
                 else:
                     self.logger.debug("Skipping product without SUPPLIER_AID or SUPPLIER_PID")
                     continue
+                
                 self.logger.debug(f"Processing product: {supplier_id}")
                 
                 # Extract all FEATURE blocks
@@ -5060,9 +5087,14 @@ class OriginalXMLReader:
                             "funit": funit,
                         })
                 
+                # CRITICAL FIX: Add ALL products with valid PIDs, even if no features
+                # This ensures the count matches PRODUCT blocks and DABAG XML
+                results[supplier_id] = features
+                
                 if features:
-                    results[supplier_id] = features
                     self.logger.debug(f"Product {supplier_id}: extracted {len(features)} features")
+                else:
+                    self.logger.debug(f"Product {supplier_id}: no structured FEATURE data (will be empty)")
             
             self.logger.info(f"Successfully extracted features for {len(results)} products")
             
@@ -5372,6 +5404,54 @@ class ComparisonTableBuilder:
         self.dabag_reader = DABAGXMLReader(dabag_xml_path)
         self.scraper = DABAGScraper()
 
+    def _read_scraped_text(self, supplier_pid: str) -> Dict[str, str]:
+        """Read scraped text file for a product if it exists.
+        
+        Args:
+            supplier_pid: Product identifier.
+            
+        Returns:
+            Dict with field names and text, empty dict if file not found.
+        """
+        from pathlib import Path
+        
+        text_file = Path(config.SCRAPED_TEXT_DIR) / f"{supplier_pid}.txt"
+        
+        if not text_file.exists():
+            self.logger.debug(f"No scraped text file for {supplier_pid}")
+            return {}
+        
+        try:
+            with open(text_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Parse sections back into dict
+            result = {}
+            current_section = None
+            current_text = []
+            
+            for line in content.split('\n'):
+                if line.startswith('=== ') and line.endswith(' ==='):
+                    # Save previous section
+                    if current_section:
+                        result[current_section.lower().replace(' ', '_')] = '\n'.join(current_text).strip()
+                    # Start new section
+                    current_section = line.strip('= ').strip()
+                    current_text = []
+                elif current_section and line.strip():
+                    current_text.append(line)
+            
+            # Save last section
+            if current_section:
+                result[current_section.lower().replace(' ', '_')] = '\n'.join(current_text).strip()
+            
+            self.logger.debug(f"Read {len(result)} sections from {text_file}")
+            return result
+            
+        except Exception as e:
+            self.logger.warning(f"Failed to read scraped text for {supplier_pid}: {e}")
+            return {}
+
     def build_comparison_tables(self, auto_scrape: bool = False) -> Dict[str, Dict[str, Any]]:
         """Build merged comparison data per supplier ID and language.
 
@@ -5428,7 +5508,17 @@ class ComparisonTableBuilder:
                         self.logger.warning(f"unique_features.csv not found at {csv_path} — AI matching may be limited")
 
                     if ai_matcher.load_references() and ai_matcher.load_prompt():
-                        for pid, raw_text in all_udx.items():
+                        for pid in all_udx.keys():
+                            # Try to read from saved text file first
+                            raw_text = self._read_scraped_text(pid)
+                            
+                            # Fallback to memory if file doesn't exist
+                            if not raw_text:
+                                raw_text = all_udx.get(pid, {})
+                            
+                            if not raw_text:
+                                continue
+                            
                             feats = ai_matcher.match_features(raw_text, pid)
                             if feats:
                                 ai_specs_by_pid[pid] = feats
@@ -6284,6 +6374,7 @@ class AIFeatureMatcher:
         try:
             response = self._call_grok_api(prompt)
             features = self._parse_grok_response(response, product_id)
+            features = self._add_warning_if_needed(features)  # NEW: Add validation
             self.logger.info(f"Matched {len(features)} features for {product_id}")
             return features
         except Exception as e:
@@ -6447,6 +6538,56 @@ class AIFeatureMatcher:
         self._save_ai_features_json()
         self.logger.info("Initialized ai_generated_features.json")
 
+    def _is_feature_in_csv(self, feature_name: str) -> bool:
+        """Check if feature name exists in unique_features.csv.
+        
+        Uses fuzzy matching to account for minor variations.
+        
+        Args:
+            feature_name: Feature name to check (German).
+            
+        Returns:
+            True if found in CSV, False otherwise.
+        """
+        if not self.allowed_features:
+            return False
+        
+        # Normalize for comparison
+        feature_normalized = feature_name.lower().strip()
+        
+        # Check exact match first
+        for row in self.allowed_features:
+            csv_name = row.get('fname_de', '').lower().strip()
+            if csv_name == feature_normalized:
+                return True
+        
+        # Check substring match (e.g., "Garantie" in "Garantieumfang")
+        for row in self.allowed_features:
+            csv_name = row.get('fname_de', '').lower().strip()
+            if csv_name and (csv_name in feature_normalized or feature_normalized in csv_name):
+                return True
+        
+        return False
+
+    def _add_warning_if_needed(self, features: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Add ⚠️ prefix to features NOT in unique_features.csv.
+        
+        Args:
+            features: List of feature dicts from AI.
+            
+        Returns:
+            Same list with warning prefixes added where needed.
+        """
+        for feature in features:
+            fname = feature.get('fname', '')
+            if fname and not self._is_feature_in_csv(fname):
+                # Add warning prefix if not already present
+                if not fname.startswith('⚠️ '):
+                    feature['fname'] = f"⚠️ {fname}"
+                    self.logger.warning(f"Feature NOT in CSV taxonomy: {fname}")
+        
+        return features
+
 ------------------------------------------------- ./BMEcat_transformer/processors/feature_extractor.py --------------------------------------------------
 
 """Feature extractor for BMEcat_transformer.
@@ -6603,18 +6744,17 @@ class FeatureExtractor:
 
 ------------------------------------------------- ./BMEcat_transformer/processors/xml_specs_extractor.py --------------------------------------------------
 
+from __future__ import annotations
+
 """XML Technical Specs Extractor for BMEcat_transformer.
 
 Extracts unstructured technical specifications from UDX.EDXF.* XML fields.
 Handles HTML entities and preserves formatting for AI processing.
 """
 
-from __future__ import annotations
-
+import os
 import re
-import xml.etree.ElementTree as ET
 from typing import Dict, Optional
-
 from utils.logger import setup_logger
 
 
@@ -6629,15 +6769,14 @@ class XMLSpecsExtractor:
         """
         self.xml_path = xml_path
         self.logger = setup_logger(__name__)
-        self.tree: Optional[ET.ElementTree] = None
-        self.root: Optional[ET.Element] = None
+        self.root: Optional[any] = None
 
     def load_xml(self) -> bool:
         """Load and parse the XML file using multiple fallback strategies.
 
         Parsing priority:
         1. lxml with recovery mode (most reliable)
-        2. Standard ET parsing (fallback)
+        2. Regex-based extraction (ultimate fallback)
 
         Returns:
             True if successful, False otherwise.
@@ -6650,90 +6789,19 @@ class XMLSpecsExtractor:
                 raw = f.read()
             parser = LXML_ET.XMLParser(recover=True, encoding='utf-8')
             self.root = LXML_ET.fromstring(raw, parser)
-            self.tree = None  # Not needed for lxml approach
             self.logger.info("Successfully loaded XML with lxml recovery mode")
             return True
         except ImportError:
-            self.logger.debug("lxml not available, trying standard ET parsing")
-        except Exception as e:
-            self.logger.warning(f"lxml parsing failed: {e}, trying standard ET")
-
-        # Strategy 2: Try standard ET parsing
-        try:
-            self.logger.debug("Attempting standard ET parsing")
-            self.tree = ET.parse(self.xml_path)
-            self.root = self.tree.getroot()
-            self.logger.info("Successfully loaded XML with standard ET parsing")
+            self.logger.debug("lxml not available, using regex-based extraction")
+            self.root = None  # Will use regex
             return True
         except Exception as e:
-            self.logger.error(f"All XML parsing strategies failed: {e}")
-            return False
-
-    def extract_udx_fields(self, supplier_pid: str, field_mapping: Dict[str, str]) -> Dict[str, str]:
-        """Extract UDX.EDXF fields for a specific product.
-
-        Args:
-            supplier_pid: Product ID to extract fields for.
-            field_mapping: Dict mapping friendly names to XML tag names.
-
-        Returns:
-            Dict with field names as keys and cleaned text as values.
-        """
-        if self.root is None:
-            self.logger.error("XML not loaded. Call load_xml() first.")
-            return {}
-
-        result: Dict[str, str] = {}
-
-        # Try XML-based extraction first
-        try:
-            # Find the product by SUPPLIER_PID using XPath (lxml) or findall (ET)
-            if hasattr(self.root, 'xpath'):
-                products = self.root.xpath(f'.//PRODUCT[.//SUPPLIER_PID[text()="{supplier_pid}"]]')
-            else:
-                products = [p for p in self.root.findall('.//PRODUCT')
-                           if p.find('.//SUPPLIER_PID') is not None
-                           and p.find('.//SUPPLIER_PID').text == supplier_pid]
-
-            if not products:
-                self.logger.debug(f"Product {supplier_pid} not found in XML")
-                return result
-
-            product = products[0]
-
-            # Find USER_DEFINED_EXTENSIONS section
-            if hasattr(product, 'xpath'):
-                udx_nodes = product.xpath('.//USER_DEFINED_EXTENSIONS')
-                udx_section = udx_nodes[0] if udx_nodes else None
-            else:
-                udx_section = product.find('.//USER_DEFINED_EXTENSIONS')
-
-            if udx_section is None:
-                self.logger.debug(f"No USER_DEFINED_EXTENSIONS for {supplier_pid}")
-                return result
-
-            # Extract each requested field
-            for field_name, xml_tag in field_mapping.items():
-                if hasattr(udx_section, 'xpath'):
-                    nodes = udx_section.xpath(f'.//{xml_tag}/text()')
-                    raw_text = nodes[0] if nodes else None
-                else:
-                    field_elem = udx_section.find(f'.//{xml_tag}')
-                    raw_text = field_elem.text if field_elem is not None else None
-
-                if raw_text:
-                    clean_text = self._clean_html_entities(raw_text)
-                    result[field_name] = clean_text
-                    self.logger.debug(f"Extracted {field_name}: {len(clean_text)} chars")
-
-        except Exception as e:
-            self.logger.warning(f"XML extraction failed for {supplier_pid}: {e}, trying regex fallback")
-            result = self._extract_via_regex(supplier_pid, field_mapping)
-
-        return result
+            self.logger.warning(f"lxml parsing failed: {e}, falling back to regex")
+            self.root = None
+            return True
 
     def _clean_html_entities(self, text: str) -> str:
-        """Clean HTML entities and formatting from text.
+        """Clean HTML entities from text.
 
         Args:
             text: Raw text with HTML entities.
@@ -6757,11 +6825,14 @@ class XMLSpecsExtractor:
         
         return text
 
-    def _extract_via_regex(self, supplier_pid: str, field_mapping: Dict[str, str]) -> Dict[str, str]:
-        """Extract UDX fields using regex patterns (fallback for malformed XML).
+    def _extract_udx_block_regex(self, product_xml: str, field_mapping: Dict[str, str]) -> Dict[str, str]:
+        """Extract all UDX.EDXF fields from a product's USER_DEFINED_EXTENSIONS block.
+
+        Uses regex to extract the entire UDX section and then parse each field.
+        Handles both empty and populated fields.
 
         Args:
-            supplier_pid: Product ID to extract fields for.
+            product_xml: XML content of a single PRODUCT block.
             field_mapping: Dict mapping friendly names to XML tag names.
 
         Returns:
@@ -6769,6 +6840,50 @@ class XMLSpecsExtractor:
         """
         result: Dict[str, str] = {}
 
+        # Extract the USER_DEFINED_EXTENSIONS block
+        udx_pattern = r'<USER_DEFINED_EXTENSIONS>(.*?)</USER_DEFINED_EXTENSIONS>'
+        udx_match = re.search(udx_pattern, product_xml, re.DOTALL | re.IGNORECASE)
+
+        if not udx_match:
+            self.logger.debug("No USER_DEFINED_EXTENSIONS block found")
+            return result
+
+        udx_content = udx_match.group(1)
+
+        # Extract each UDX field from the field_mapping
+        for field_name, xml_tag in field_mapping.items():
+            # Pattern handles both self-closing tags (<TAG/>) and tags with content
+            pattern = f'<{re.escape(xml_tag)}(?:\\s[^>]*)?>\\s*(.*?)\\s*</{re.escape(xml_tag)}>'
+            match = re.search(pattern, udx_content, re.DOTALL | re.IGNORECASE)
+
+            if match:
+                raw_text = match.group(1).strip()
+                if raw_text:  # Only add non-empty content
+                    clean_text = self._clean_html_entities(raw_text)
+                    result[field_name] = clean_text
+                    self.logger.debug(f"Extracted {field_name}: {len(clean_text)} chars")
+                else:
+                    self.logger.debug(f"{field_name} is empty")
+            else:
+                # Check if it's a self-closing tag
+                self_closing_pattern = f'<{re.escape(xml_tag)}\\s*/>'
+                if re.search(self_closing_pattern, udx_content, re.IGNORECASE):
+                    self.logger.debug(f"{field_name} is self-closing (empty)")
+                else:
+                    self.logger.debug(f"{field_name} not found in UDX block")
+
+        return result
+
+    def extract_udx_fields(self, supplier_pid: str, field_mapping: Dict[str, str]) -> Dict[str, str]:
+        """Extract UDX.EDXF fields for a specific product.
+
+        Args:
+            supplier_pid: Product ID to extract fields for.
+            field_mapping: Dict mapping friendly names to XML tag names.
+
+        Returns:
+            Dict with field names as keys and cleaned text as values.
+        """
         try:
             with open(self.xml_path, 'r', encoding='utf-8', errors='replace') as f:
                 content = f.read()
@@ -6778,30 +6893,22 @@ class XMLSpecsExtractor:
             product_match = re.search(product_pattern, content, re.DOTALL | re.IGNORECASE)
 
             if not product_match:
-                self.logger.debug(f"Product {supplier_pid} not found via regex")
-                return result
+                self.logger.debug(f"Product {supplier_pid} not found")
+                return {}
 
             product_xml = product_match.group(0)
-
-            # Extract each UDX field
-            for field_name, xml_tag in field_mapping.items():
-                pattern = f'<{re.escape(xml_tag)}>\\s*(.*?)\\s*</{re.escape(xml_tag)}>'
-                match = re.search(pattern, product_xml, re.DOTALL | re.IGNORECASE)
-
-                if match:
-                    raw_text = match.group(1).strip()
-                    if raw_text:
-                        clean_text = self._clean_html_entities(raw_text)
-                        result[field_name] = clean_text
-                        self.logger.debug(f"Extracted {field_name} via regex: {len(clean_text)} chars")
+            return self._extract_udx_block_regex(product_xml, field_mapping)
 
         except Exception as e:
-            self.logger.error(f"Regex extraction failed for {supplier_pid}: {e}")
-
-        return result
+            self.logger.error(f"Extraction failed for {supplier_pid}: {e}")
+            return {}
 
     def extract_all_products(self, field_mapping: Dict[str, str]) -> Dict[str, Dict[str, str]]:
         """Extract UDX fields for all products in XML.
+
+        CRITICAL: This method now loads ALL products with valid PIDs,
+        even if their UDX fields are empty. Products without any UDX data
+        will have empty dictionaries, but they will still be in the results.
 
         Args:
             field_mapping: Dict mapping friendly names to XML tag names.
@@ -6809,37 +6916,99 @@ class XMLSpecsExtractor:
         Returns:
             Dict with SUPPLIER_PID as keys and field data as values.
         """
-        if self.root is None:
-            self.logger.error("XML not loaded. Call load_xml() first.")
-            return {}
-
         results = {}
 
-        # Find all PRODUCT elements (works with both lxml and ET)
-        if hasattr(self.root, 'xpath'):
-            products = self.root.xpath('.//PRODUCT')
-        else:
-            products = self.root.findall('.//PRODUCT')
+        try:
+            with open(self.xml_path, 'r', encoding='utf-8', errors='replace') as f:
+                content = f.read()
 
-        for product in products:
-            # Extract SUPPLIER_PID (works with both lxml and ET)
-            if hasattr(product, 'xpath'):
-                pid_elems = product.xpath('.//SUPPLIER_PID/text()')
-                supplier_pid = pid_elems[0] if pid_elems else None
-            else:
-                pid_elem = product.find('.//SUPPLIER_PID')
-                supplier_pid = pid_elem.text if pid_elem is not None else None
+            # Find all PRODUCT blocks
+            product_pattern = r'<PRODUCT[^>]*>(.*?)</PRODUCT>'
+            products = re.findall(product_pattern, content, re.DOTALL)
 
-            if not supplier_pid:
-                continue
+            self.logger.debug(f"Found {len(products)} PRODUCT blocks")
 
-            product_data = self.extract_udx_fields(supplier_pid, field_mapping)
-            if any(product_data.values()):  # Only add if has data
+            for product_xml in products:
+                # Extract SUPPLIER_PID
+                pid_match = re.search(r'<SUPPLIER_PID>\s*([^<]+?)\s*</SUPPLIER_PID>', product_xml)
+                
+                if not pid_match:
+                    self.logger.debug("Skipping product without SUPPLIER_PID")
+                    continue
+
+                supplier_pid = pid_match.group(1).strip()
+                
+                # Extract UDX fields for this product
+                product_data = self._extract_udx_block_regex(product_xml, field_mapping)
+                
+                # NEW: Save to text file
+                if product_data:
+                    self.save_to_text_file(supplier_pid, product_data)
+                
+                # This ensures consistency with product counts across all XML readers
                 results[supplier_pid] = product_data
+                
+                if product_data:
+                    self.logger.debug(f"Product {supplier_pid}: extracted {len(product_data)} UDX fields")
+                else:
+                    self.logger.debug(f"Product {supplier_pid}: no UDX data (empty fields)")
+
+        except Exception as e:
+            self.logger.error(f"Extraction failed: {e}")
 
         self.logger.info(f"Extracted UDX fields for {len(results)} products")
         return results
 
+    def save_to_text_file(self, supplier_pid: str, udx_fields: Dict[str, str]) -> str:
+        """Save extracted UDX fields to a text file for AI processing.
+        
+        Creates human-readable text file with section headers.
+        Overwrites existing file on each run.
+        
+        Args:
+            supplier_pid: Product identifier for filename.
+            udx_fields: Dict with field names and extracted text.
+            
+        Returns:
+            Full path to saved text file.
+        """
+        import sys
+        from pathlib import Path
+        
+        # Import config
+        PROJECT_ROOT = Path(__file__).resolve().parent.parent
+        if str(PROJECT_ROOT) not in sys.path:
+            sys.path.append(str(PROJECT_ROOT))
+        import config
+        
+        # Create directory if not exists
+        output_dir = config.SCRAPED_TEXT_DIR
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Build file path
+        filename = f"{supplier_pid}.txt"
+        filepath = os.path.join(output_dir, filename)
+        
+        # Build content with section headers
+        content_parts = [
+            f"Product: {supplier_pid}",
+            f"Extracted from: Original XML (DEWALT BMEcat)\n"
+        ]
+        
+        for field_name, text in udx_fields.items():
+            if text:  # Only add non-empty sections
+                section_header = field_name.upper().replace("_", " ")
+                content_parts.append(f"=== {section_header} ===")
+                content_parts.append(text)
+                content_parts.append("")  # Empty line between sections
+        
+        # Write to file (overwrite mode)
+        full_content = "\n".join(content_parts)
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(full_content)
+        
+        self.logger.info(f"Saved scraped text: {filepath}")
+        return filepath
 ------------------------------------------------- ./BMEcat_transformer/processors/feature_mapper.py --------------------------------------------------
 
 from __future__ import annotations
@@ -7269,11 +7438,17 @@ prompt: |
   {AI_FEATURES_FALLBACK}
   
   ## EXTRACTION RULES
-  1. **Feature Name Matching**:
-     - ALWAYS try to match to the PRIMARY allowed features list first
+  1. **Feature Name Matching** (CRITICAL - FOLLOW STRICTLY):
+     - ALWAYS try to match to the PRIMARY allowed features list FIRST
+     - The PRIMARY list is your source of truth - prefer it over creating new features
      - Use semantic similarity, not exact string matching
      - Consider abbreviations, units, and variations (e.g., "Ø" = "Durchmesser", "V" = "Volt")
-     - Only use FALLBACK list if confidence in PRIMARY match is <50%
+     - ONLY use FALLBACK list if confidence in PRIMARY match is < 40%
+     - NEVER create new feature names if a reasonable PRIMARY match exists (>40% confidence)
+     - Examples of good matches:
+       * "Garantie" in text → match to "Garantie" in CSV (exact)
+       * "Akkukapazität" in text → match to "Akku-Kapazität" in CSV (similar)
+       * "Gewicht mit Akku" in text → match to "Gewicht" in CSV (substring)
   
   2. **Value Extraction**:
      - Extract ONLY values explicitly stated in the text
@@ -7281,11 +7456,13 @@ prompt: |
      - Preserve units (mm, V, kg, W, min⁻¹, etc.)
      - Normalize formats: "2,5 kg" → "2.5 kg", "1.200 W" → "1200 W"
   
-  3. **AI-Generated Fields** (confidence ≥ {CONFIDENCE_THRESHOLD}):
-     - If no match in PRIMARY or FALLBACK, create new feature name
+  3. **AI-Generated Fields** (USE SPARINGLY - confidence ≥ {CONFIDENCE_THRESHOLD}):
+     - ONLY create new feature names if NO match in PRIMARY (>40% confidence) OR FALLBACK
+     - Before creating new feature, double-check PRIMARY list one more time
      - Use same naming style as existing features (German, technical, concise)
      - Mark with ai_generated: true
-     - Include confidence score
+     - Include confidence score (must be ≥ {CONFIDENCE_THRESHOLD})
+     - Example: If text says "Garantie" and CSV has "Garantie", DO NOT create new feature
   
   4. **Source Tracking**:
      - Track which section text came from (LANGTEXT, TECHNISCHE_DATEN, etc.)

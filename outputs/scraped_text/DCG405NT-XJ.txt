@@ -1,0 +1,42 @@
+Product: DCG405NT-XJ
+Extracted from: Original XML (DEWALT BMEcat)
+
+=== PRODUKTSTAERKEN ===
+Produktstärken:
+Innovative, bürstenlose Motor-Technologie - höhere Leistung, kompaktere Abmessungen, längere Laufzeit pro Akkuladung sowie höhere Lebensdauer
+Epoxyd-Harz gepanzerte Wicklungen schützen den Motor vor abrasiven Staubpartikeln
+Optimiertes Lüftersystem – kühlt Winkelschleifer und Elektronik effektiv während der Anwendung und erhöht die Lebensdauer
+Perform & Protect: Elektronische Bremse stoppt die Scheibe zuverlässig in Sekundenschnelle (
+Perform & Protect: Elektronische Kupplung schaltet das Gerät bei Blockieren automatisch ab und schützt so Anwender und Maschine
+Kombination aus elektronischer Kupplung und Bremse minimiert die Gefahren bei Kickbacks noch effektiver
+Überlastschutz zum Schutz von Anwender und Maschine
+Wiederanlaufschutz – versehentliches Anlaufen des Winkelschleifers bei Akkuwechsel ausgeschlossen
+Schutzgitter für Kühlluftschlitze– schützen den Motor vor groben Staubpartikeln
+Schnellspannmutter - für einen schnellen, werkzeuglosen Zubehörwechsel
+Werkzeuglose Schutzhauben-Schnellverstellung
+Serienmäßig in T STAK-Box II und als Basistype (ohne Akkus und Ladegerät) optimal geeignet bei bereits vorhandenen 18 Volt XR- oder 54 Volt XR FLEXVOLT-Akkus oder für das DEWALT „Akku Plus“-System
+
+=== LIEFERUMFANG ===
+Lieferumfang:
+Akku-Winkelschleifer
+Vibrationsdämpfender Zusatzhandgriff
+Schnellspannmutter
+Schutzhaube für Schleifarbeiten
+T STAK-Box II
+
+=== TECHNISCHE DATEN ===
+Technische Daten:
+Akku-Technologie 18 Volt XR Li-Ion Akku-Kompatibilität alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse
+Leerlaufdrehzahl (min-1): 9.000
+Antriebsspindel: M14
+Scheibendurchmesser (mm): 125
+Gewicht (inkl. 5 Ah Akku in kg): 2,4
+Triaxiale Vibration Oberflächenschleifen (m/s²): 4,4
+Unsicherheitsfaktor K1 (m/s²): 1,5
+Schalldruckpegel LPA (dB(A)): 85,0
+Schalleistungspegel LWA (dB(A)): 96,0
+Unsicherheitsfaktor (dB(A)): 3,0
+
+=== GARANTIE ===
+Garantieumfang:
+DEWALT Garantie: 3 Jahre (bei Online-Registrierung)
