@@ -106,6 +106,8 @@ prompt: |
     "confidence": 0.92
   }
   
+  {CUSTOM_RULES}
+  
   ## OUTPUT FORMAT
   Respond with valid JSON only in this structure:
   {

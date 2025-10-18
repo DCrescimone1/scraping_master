@@ -78,3 +78,4 @@ logs/
 !outputs/comparison_tables/master_comparison_catalog.json
 
 .env
+!ai_extraction_rules.json

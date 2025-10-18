@@ -15,6 +15,7 @@ import requests
 import re
 
 from utils.logger import setup_logger
+from processors.rules_processor import RulesProcessor
 
 
 class AIFeatureMatcher:
@@ -53,6 +54,10 @@ class AIFeatureMatcher:
         self.allowed_features: List[Dict[str, str]] = []
         self.ai_features: Dict[str, Any] = {"metadata": {}, "features": []}
         self.prompt_template: str = ""
+        
+        # Rules processor (NEW)
+        self.rules_processor: RulesProcessor | None = None
+        self.custom_rules_instructions: str = ""
 
     def load_references(self) -> bool:
         """Load CSV and AI features references.
@@ -92,6 +97,24 @@ class AIFeatureMatcher:
                 prompt_config = yaml.safe_load(f)
                 self.prompt_template = prompt_config.get('prompt', '')
             self.logger.info("Loaded prompt template")
+            
+            # Load custom rules (NEW)
+            rules_path = os.path.join(
+                os.path.dirname(os.path.dirname(__file__)),
+                "config",
+                "ai_extraction_rules.json"
+            )
+            
+            if os.path.exists(rules_path):
+                self.rules_processor = RulesProcessor(rules_path)
+                if self.rules_processor.load_and_validate():
+                    self.custom_rules_instructions = self.rules_processor.convert_to_prompt_instructions()
+                    self.logger.info("✅ Custom rules loaded and converted to prompt instructions")
+                else:
+                    self.logger.warning("⚠️  Rules validation failed - continuing without custom rules")
+            else:
+                self.logger.info("No custom rules file found - using default extraction logic only")
+            
             return True
         except Exception as e:
             self.logger.error(f"Failed to load prompt: {e}")
@@ -160,6 +183,12 @@ class AIFeatureMatcher:
         prompt = prompt.replace("{ALLOWED_FEATURES_CSV}", csv_features)
         prompt = prompt.replace("{AI_FEATURES_FALLBACK}", ai_features_list)
         prompt = prompt.replace("{CONFIDENCE_THRESHOLD}", str(self.confidence_threshold))
+        
+        # Inject custom rules (NEW)
+        if self.custom_rules_instructions:
+            prompt = prompt.replace("{CUSTOM_RULES}", self.custom_rules_instructions)
+        else:
+            prompt = prompt.replace("{CUSTOM_RULES}", "No custom rules defined.")
 
         return prompt
 
@@ -340,6 +369,6 @@ class AIFeatureMatcher:
                 # Add warning prefix if not already present
                 if not fname.startswith('⚠️ '):
                     feature['fname'] = f"⚠️ {fname}"
-                    self.logger.warning(f"Feature NOT in CSV taxonomy: {fname}")
+                    self.logger.info(f"Feature NOT in CSV taxonomy: {fname}")
         
         return features

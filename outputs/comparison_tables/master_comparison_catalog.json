@@ -24,8 +24,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Akku",
               "web_fvalue": "-- Stück",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- Stück"
             },
             {
               "original_fname": "",
@@ -34,8 +34,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Akku-Kapazität",
               "web_fvalue": "-- Ah",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku-Kapazität",
+              "ai_fvalue": "-- Ah"
             },
             {
               "original_fname": "",
@@ -44,8 +44,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Akku-Typ",
               "web_fvalue": "--",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -75,7 +75,7 @@
               "web_fname": "Einzelschlagenergie",
               "web_fvalue": "2.1 J (EPTA)",
               "ai_fname": "Einzelschlagenergie",
-              "ai_fvalue": "2.1 J (EPTA)"
+              "ai_fvalue": "2.1 J (EPTA 05/2009)"
             },
             {
               "original_fname": "",
@@ -104,8 +104,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Ladegerät",
               "web_fvalue": "--",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -126,16 +126,6 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "86 dB(A)"
             },
             {
               "original_fname": "",
@@ -294,6 +284,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "86 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Schallleistungspegel",
               "ai_fvalue": "97 dB(A)"
             },
@@ -326,6 +326,16 @@
               "web_fvalue": "",
               "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
               "ai_fvalue": "1.5 m/s²"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II"
             },
             {
               "original_fname": "",
@@ -405,11 +415,6 @@
               "dabag_funit": null
             },
             {
-              "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Schlagzahl",
               "original_funit": null,
               "dabag_funit": "min{m}"
@@ -485,6 +490,11 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Schalldruckpegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
@@ -501,6 +511,11 @@
             },
             {
               "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -538,6 +553,36 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- Stück"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Kapazität",
+              "ai_fvalue": "-- Ah"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "--"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Bohrleistung Beton",
               "ai_fvalue": "24 mm"
             },
@@ -559,7 +604,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Einzelschlagenergie",
-              "ai_fvalue": "2.1 J (EPTA)"
+              "ai_fvalue": "2.1 J (EPTA 05/2009)"
             },
             {
               "original_fname": "",
@@ -588,8 +633,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "0-1100 min⁻¹"
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -598,8 +643,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "86 dB(A)"
+              "ai_fname": "Leerlaufdrehzahl",
+              "ai_fvalue": "0-1100 min⁻¹"
             },
             {
               "original_fname": "",
@@ -888,6 +933,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "86 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Schallleistungspegel",
               "ai_fvalue": "97 dB(A)"
             },
@@ -928,6 +983,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Vibration Hammerbohren Beton",
               "ai_fvalue": "6.6 m/s²"
             },
@@ -943,6 +1008,21 @@
             }
           ],
           "units": [
+            {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Kapazität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Typ",
+              "original_funit": null,
+              "dabag_funit": null
+            },
             {
               "name": "Bohrleistung Beton",
               "original_funit": null,
@@ -969,12 +1049,12 @@
               "dabag_funit": null
             },
             {
-              "name": "Leerlaufdrehzahl",
+              "name": "Ladegerät",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Schalldruckpegel",
+              "name": "Leerlaufdrehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -1119,6 +1199,11 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Schalldruckpegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
@@ -1135,6 +1220,11 @@
             },
             {
               "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -1165,6 +1255,36 @@
             "ai_fvalue"
           ],
           "rows": [
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- Stück"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Kapazität",
+              "ai_fvalue": "-- Ah"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "--"
+            },
             {
               "original_fname": "",
               "original_fvalue": "",
@@ -1203,7 +1323,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Einzelschlagenergie",
-              "ai_fvalue": "2.1 J (EPTA)"
+              "ai_fvalue": "2.1 J (EPTA 05/2009)"
             },
             {
               "original_fname": "",
@@ -1232,8 +1352,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "0-1100 min⁻¹"
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -1242,8 +1362,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "86 dB(A)"
+              "ai_fname": "Leerlaufdrehzahl",
+              "ai_fvalue": "0-1100 min⁻¹"
             },
             {
               "original_fname": "",
@@ -1502,6 +1622,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "86 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Schallleistungspegel",
               "ai_fvalue": "97 dB(A)"
             },
@@ -1542,6 +1672,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Vibration Hammerbohren Beton",
               "ai_fvalue": "6.6 m/s²"
             },
@@ -1557,6 +1697,21 @@
             }
           ],
           "units": [
+            {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Kapazität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Typ",
+              "original_funit": null,
+              "dabag_funit": null
+            },
             {
               "name": "Ambito di consegna",
               "original_funit": null,
@@ -1588,12 +1743,12 @@
               "dabag_funit": null
             },
             {
-              "name": "Leerlaufdrehzahl",
+              "name": "Ladegerät",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Schalldruckpegel",
+              "name": "Leerlaufdrehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -1723,6 +1878,11 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Schalldruckpegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Schallleistungspegel",
               "original_funit": null,
               "dabag_funit": null
@@ -1739,6 +1899,11 @@
             },
             {
               "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -1780,8 +1945,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Akku",
               "web_fvalue": "-- Stück",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- stück"
             },
             {
               "original_fname": "",
@@ -1790,8 +1955,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Akku-Kapazität",
               "web_fvalue": "-- Ah",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku-Kapazität",
+              "ai_fvalue": "-- "
             },
             {
               "original_fname": "",
@@ -1800,8 +1965,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Akku-Typ",
               "web_fvalue": "--",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "-- ah"
             },
             {
               "original_fname": "Akkukapazität",
@@ -1880,8 +2045,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Ladegerät",
               "web_fvalue": "--",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -1942,16 +2107,6 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "85 dB(A)"
             },
             {
               "original_fname": "",
@@ -2050,8 +2205,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Lieferumfang",
-              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -2060,8 +2215,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schallleistungspegel",
-              "ai_fvalue": "96 dB(A)"
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "85.0 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schalleistungspegel",
+              "ai_fvalue": "96.0 dB(A)"
             },
             {
               "original_fname": "",
@@ -2072,6 +2237,16 @@
               "web_fvalue": "",
               "ai_fname": "⚠️ Scheibendurchmesser",
               "ai_fvalue": "125 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Triaxiale Vibration Oberflächenschleifen",
+              "ai_fvalue": "4.4 m/s²"
             },
             {
               "original_fname": "",
@@ -2100,8 +2275,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II"
             }
           ],
           "units": [
@@ -2191,11 +2366,6 @@
               "dabag_funit": null
             },
             {
-              "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Scheiben-Ø",
               "original_funit": null,
               "dabag_funit": "mm"
@@ -2241,17 +2411,27 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Lieferumfang",
+              "name": "⚠️ Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schallleistungspegel",
+              "name": "⚠️ Schalldruckpegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schalleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
             {
               "name": "⚠️ Scheibendurchmesser",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Triaxiale Vibration Oberflächenschleifen",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -2266,7 +2446,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Vibration Oberflächenschleifen",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -2287,6 +2467,36 @@
             "ai_fvalue"
           ],
           "rows": [
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- stück"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Kapazität",
+              "ai_fvalue": "-- "
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "-- ah"
+            },
             {
               "original_fname": "Akkukapazität",
               "original_fvalue": "",
@@ -2364,6 +2574,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
               "ai_fvalue": "9000 min⁻¹"
             },
@@ -2406,16 +2626,6 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "85 dB(A)"
             },
             {
               "original_fname": "",
@@ -2604,8 +2814,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Lieferumfang",
-              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -2614,8 +2824,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schallleistungspegel",
-              "ai_fvalue": "96 dB(A)"
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "85.0 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schalleistungspegel",
+              "ai_fvalue": "96.0 dB(A)"
             },
             {
               "original_fname": "",
@@ -2626,6 +2846,16 @@
               "web_fvalue": "",
               "ai_fname": "⚠️ Scheibendurchmesser",
               "ai_fvalue": "125 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Triaxiale Vibration Oberflächenschleifen",
+              "ai_fvalue": "4.4 m/s²"
             },
             {
               "original_fname": "",
@@ -2654,11 +2884,26 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II"
             }
           ],
           "units": [
+            {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Kapazität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Typ",
+              "original_funit": null,
+              "dabag_funit": null
+            },
             {
               "name": "Akkukapazität",
               "original_funit": "Ah",
@@ -2695,6 +2940,11 @@
               "dabag_funit": null
             },
             {
+              "name": "Ladegerät",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "Leerlaufdrehzahl",
               "original_funit": null,
               "dabag_funit": null
@@ -2717,11 +2967,6 @@
             {
               "name": "Min. Leerlaufdrehzahl",
               "original_funit": "U/min",
-              "dabag_funit": null
-            },
-            {
-              "name": "Schalldruckpegel",
-              "original_funit": null,
               "dabag_funit": null
             },
             {
@@ -2815,17 +3060,27 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Lieferumfang",
+              "name": "⚠️ Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schallleistungspegel",
+              "name": "⚠️ Schalldruckpegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schalleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
             {
               "name": "⚠️ Scheibendurchmesser",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Triaxiale Vibration Oberflächenschleifen",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -2840,7 +3095,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Vibration Oberflächenschleifen",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -2861,6 +3116,36 @@
             "ai_fvalue"
           ],
           "rows": [
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- stück"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Kapazität",
+              "ai_fvalue": "-- "
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "-- ah"
+            },
             {
               "original_fname": "Akkukapazität",
               "original_fvalue": "",
@@ -2948,6 +3233,16 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
               "ai_fvalue": "9000 min⁻¹"
             },
@@ -2990,16 +3285,6 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "85 dB(A)"
             },
             {
               "original_fname": "",
@@ -3158,8 +3443,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Lieferumfang",
-              "ai_fvalue": "Akku-Winkelschleifer, Vibrationsdämpfender Zusatzhandgriff, Schnellspannmutter, Schutzhaube für Schleifarbeiten, T STAK-Box II"
+              "ai_fname": "⚠️ Gummierter Handgriff",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -3168,8 +3453,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Schallleistungspegel",
-              "ai_fvalue": "96 dB(A)"
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "85.0 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schalleistungspegel",
+              "ai_fvalue": "96.0 dB(A)"
             },
             {
               "original_fname": "",
@@ -3180,6 +3475,16 @@
               "web_fvalue": "",
               "ai_fname": "⚠️ Scheibendurchmesser",
               "ai_fvalue": "125 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Triaxiale Vibration Oberflächenschleifen",
+              "ai_fvalue": "4.4 m/s²"
             },
             {
               "original_fname": "",
@@ -3208,11 +3513,26 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Vibration Oberflächenschleifen",
-              "ai_fvalue": "4.4 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II"
             }
           ],
           "units": [
+            {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Kapazität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Typ",
+              "original_funit": null,
+              "dabag_funit": null
+            },
             {
               "name": "Akkukapazität",
               "original_funit": "Ah",
@@ -3254,6 +3574,11 @@
               "dabag_funit": null
             },
             {
+              "name": "Ladegerät",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "Leerlaufdrehzahl",
               "original_funit": null,
               "dabag_funit": null
@@ -3276,11 +3601,6 @@
             {
               "name": "Min. Leerlaufdrehzahl",
               "original_funit": "U/min",
-              "dabag_funit": null
-            },
-            {
-              "name": "Schalldruckpegel",
-              "original_funit": null,
               "dabag_funit": null
             },
             {
@@ -3359,17 +3679,27 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Lieferumfang",
+              "name": "⚠️ Gummierter Handgriff",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Schallleistungspegel",
+              "name": "⚠️ Schalldruckpegel",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schalleistungspegel",
               "original_funit": null,
               "dabag_funit": null
             },
             {
               "name": "⚠️ Scheibendurchmesser",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Triaxiale Vibration Oberflächenschleifen",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3384,7 +3714,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Vibration Oberflächenschleifen",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -3437,27 +3767,7 @@
               "web_fname": "Akku-Typ",
               "web_fvalue": "Li-Ion",
               "ai_fname": "Akku-Typ",
-              "ai_fvalue": "Li-Ion"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Drehzahl",
-              "ai_fvalue": "9000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Funktion",
-              "ai_fvalue": "Überlastschutz"
+              "ai_fvalue": "XR Li-Ion"
             },
             {
               "original_fname": "",
@@ -3507,7 +3817,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "0-550/2000 min⁻¹"
+              "ai_fvalue": "9000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -3518,16 +3828,6 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "86 dB(A)"
             },
             {
               "original_fname": "",
@@ -3557,17 +3857,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Akku-Kompatibilität",
-              "ai_fvalue": "allen DEWALT 18,0 Volt XR Maschinen"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Spannung",
-              "ai_fvalue": "18 V"
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
             },
             {
               "original_fname": "",
@@ -3596,8 +3886,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Bohrfutterspannweite",
-              "ai_fvalue": "1.5-13 mm"
+              "ai_fname": "⚠️ Bohrleistung Holz",
+              "ai_fvalue": "40 mm"
             },
             {
               "original_fname": "",
@@ -3676,8 +3966,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ LED-Leuchtkraft",
-              "ai_fvalue": "77 Lumen"
+              "ai_fname": "⚠️ Leerlaufhubzahl",
+              "ai_fvalue": "1000-3200 min⁻¹"
             },
             {
               "original_fname": "",
@@ -3696,8 +3986,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Neigungseinstellung",
-              "ai_fvalue": "45 °"
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "89 dB(A)"
             },
             {
               "original_fname": "",
@@ -3707,7 +3997,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
+              "ai_fvalue": "100 dB(A)"
             },
             {
               "original_fname": "",
@@ -3726,18 +4016,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II, T-STAK-Box VI"
             }
           ],
           "units": [
@@ -3753,16 +4033,6 @@
             },
             {
               "name": "Akku-Typ",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Drehzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3797,11 +4067,6 @@
               "dabag_funit": null
             },
             {
-              "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Spannung",
               "original_funit": null,
               "dabag_funit": "V"
@@ -3817,11 +4082,6 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Akku-Spannung",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ Akku-Technologie",
               "original_funit": null,
               "dabag_funit": null
@@ -3832,7 +4092,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Bohrfutterspannweite",
+              "name": "⚠️ Bohrleistung Holz",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3872,7 +4132,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ LED-Leuchtkraft",
+              "name": "⚠️ Leerlaufhubzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3882,7 +4142,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Neigungseinstellung",
+              "name": "⚠️ Schalldruckpegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -3897,12 +4157,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -3951,27 +4206,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Akku-Typ",
-              "ai_fvalue": "Li-Ion"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Drehzahl",
-              "ai_fvalue": "9000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Funktion",
-              "ai_fvalue": "Überlastschutz"
+              "ai_fvalue": "XR Li-Ion"
             },
             {
               "original_fname": "",
@@ -4021,17 +4256,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "0-550/2000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "86 dB(A)"
+              "ai_fvalue": "9000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -4131,17 +4356,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Akku-Kompatibilität",
-              "ai_fvalue": "allen DEWALT 18,0 Volt XR Maschinen"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Spannung",
-              "ai_fvalue": "18 V"
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
             },
             {
               "original_fname": "",
@@ -4170,8 +4385,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Bohrfutterspannweite",
-              "ai_fvalue": "1.5-13 mm"
+              "ai_fname": "⚠️ Bohrleistung Holz",
+              "ai_fvalue": "40 mm"
             },
             {
               "original_fname": "",
@@ -4250,8 +4465,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ LED-Leuchtkraft",
-              "ai_fvalue": "77 Lumen"
+              "ai_fname": "⚠️ Leerlaufhubzahl",
+              "ai_fvalue": "1000-3200 min⁻¹"
             },
             {
               "original_fname": "",
@@ -4270,8 +4485,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Neigungseinstellung",
-              "ai_fvalue": "45 °"
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "89 dB(A)"
             },
             {
               "original_fname": "",
@@ -4281,7 +4496,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
+              "ai_fvalue": "100 dB(A)"
             },
             {
               "original_fname": "",
@@ -4300,18 +4515,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II, T-STAK-Box VI"
             }
           ],
           "units": [
@@ -4327,16 +4532,6 @@
             },
             {
               "name": "Akku-Typ",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Drehzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4362,11 +4557,6 @@
             },
             {
               "name": "Leerlaufdrehzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schalldruckpegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4421,11 +4611,6 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Akku-Spannung",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ Akku-Technologie",
               "original_funit": null,
               "dabag_funit": null
@@ -4436,7 +4621,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Bohrfutterspannweite",
+              "name": "⚠️ Bohrleistung Holz",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4476,7 +4661,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ LED-Leuchtkraft",
+              "name": "⚠️ Leerlaufhubzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4486,7 +4671,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Neigungseinstellung",
+              "name": "⚠️ Schalldruckpegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4501,12 +4686,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -4555,7 +4735,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Akku-Typ",
-              "ai_fvalue": "Li-Ion"
+              "ai_fvalue": "XR Li-Ion"
             },
             {
               "original_fname": "",
@@ -4566,26 +4746,6 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Drehzahl",
-              "ai_fvalue": "9000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Funktion",
-              "ai_fvalue": "Überlastschutz"
             },
             {
               "original_fname": "",
@@ -4635,17 +4795,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "0-550/2000 min⁻¹"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "86 dB(A)"
+              "ai_fvalue": "9000 min⁻¹"
             },
             {
               "original_fname": "",
@@ -4715,17 +4865,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Akku-Kompatibilität",
-              "ai_fvalue": "allen DEWALT 18,0 Volt XR Maschinen"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Spannung",
-              "ai_fvalue": "18 V"
+              "ai_fvalue": "alle 18 Volt XR- und 54 Volt XR FLEXVOLT-Akkus jeweils jeder Ah-Klasse"
             },
             {
               "original_fname": "",
@@ -4754,8 +4894,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Bohrfutterspannweite",
-              "ai_fvalue": "1.5-13 mm"
+              "ai_fname": "⚠️ Bohrleistung Holz",
+              "ai_fvalue": "40 mm"
             },
             {
               "original_fname": "",
@@ -4834,8 +4974,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ LED-Leuchtkraft",
-              "ai_fvalue": "77 Lumen"
+              "ai_fname": "⚠️ Leerlaufhubzahl",
+              "ai_fvalue": "1000-3200 min⁻¹"
             },
             {
               "original_fname": "",
@@ -4854,8 +4994,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Neigungseinstellung",
-              "ai_fvalue": "45 °"
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "89 dB(A)"
             },
             {
               "original_fname": "",
@@ -4865,7 +5005,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Schallleistungspegel",
-              "ai_fvalue": "97 dB(A)"
+              "ai_fvalue": "100 dB(A)"
             },
             {
               "original_fname": "",
@@ -4884,18 +5024,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3.0 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box II, T-STAK-Box VI"
             }
           ],
           "units": [
@@ -4916,16 +5046,6 @@
             },
             {
               "name": "Ambito di consegna",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Drehzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Funktion",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4951,11 +5071,6 @@
             },
             {
               "name": "Leerlaufdrehzahl",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "Schalldruckpegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -4995,11 +5110,6 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Akku-Spannung",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "⚠️ Akku-Technologie",
               "original_funit": null,
               "dabag_funit": null
@@ -5010,7 +5120,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Bohrfutterspannweite",
+              "name": "⚠️ Bohrleistung Holz",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5050,7 +5160,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ LED-Leuchtkraft",
+              "name": "⚠️ Leerlaufhubzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5060,7 +5170,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Neigungseinstellung",
+              "name": "⚠️ Schalldruckpegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5075,12 +5185,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -5112,8 +5217,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Akku",
               "web_fvalue": "-- Stück",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- Stück"
             },
             {
               "original_fname": "",
@@ -5123,7 +5228,7 @@
               "web_fname": "Akku-Kapazität",
               "web_fvalue": "-- Ah",
               "ai_fname": "Akku-Kapazität",
-              "ai_fvalue": "bis zu 12 Ah"
+              "ai_fvalue": "-- Ah"
             },
             {
               "original_fname": "",
@@ -5132,8 +5237,18 @@
               "dabag_fvalue": "--",
               "web_fname": "Akku-Typ",
               "web_fvalue": "--",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "--"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Drehstopp",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -5172,8 +5287,8 @@
               "dabag_fvalue": "--",
               "web_fname": "Ladegerät",
               "web_fvalue": "--",
-              "ai_fname": "",
-              "ai_fvalue": ""
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -5194,16 +5309,6 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "89 dB(A)"
             },
             {
               "original_fname": "",
@@ -5272,8 +5377,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
               "ai_fvalue": "alle 18 Volt und 54 Volt Flexvolt XR-Akkus jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrungs-Ø",
+              "ai_fvalue": "30 mm"
             },
             {
               "original_fname": "",
@@ -5312,8 +5427,38 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Gehäusematerial",
+              "ai_fvalue": "Aluminium"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Gummierter Handgriff",
               "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ K-Wert Schall",
+              "ai_fvalue": "3 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ K-Wert Vibrationen",
+              "ai_fvalue": "1.5 m/s²"
             },
             {
               "original_fname": "",
@@ -5342,7 +5487,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Max. Schnitttiefe bei 45°",
+              "ai_fname": "⚠️ Max. Schnitttiefe 45°",
               "ai_fvalue": "49 mm"
             },
             {
@@ -5352,8 +5497,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Max. Schnitttiefe bei 90°",
+              "ai_fname": "⚠️ Max. Schnitttiefe 90°",
               "ai_fvalue": "67 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "89 dB(A)"
             },
             {
               "original_fname": "",
@@ -5373,7 +5528,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Sägeblatt-Ø",
-              "ai_fvalue": "190 x 30 mm"
+              "ai_fvalue": "190 mm"
             },
             {
               "original_fname": "",
@@ -5382,18 +5537,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box VI"
             },
             {
               "original_fname": "",
@@ -5419,6 +5564,11 @@
             },
             {
               "name": "Akku-Typ",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Drehstopp",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5453,11 +5603,6 @@
               "dabag_funit": null
             },
             {
-              "name": "Schalldruckpegel",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
               "name": "Schnittleistung 45°",
               "original_funit": null,
               "dabag_funit": "mm"
@@ -5488,7 +5633,12 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Akku-Technologie",
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrungs-Ø",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5508,7 +5658,22 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Gehäusematerial",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Gummierter Handgriff",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ K-Wert Schall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ K-Wert Vibrationen",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5523,12 +5688,17 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Max. Schnitttiefe bei 45°",
+              "name": "⚠️ Max. Schnitttiefe 45°",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Max. Schnitttiefe bei 90°",
+              "name": "⚠️ Max. Schnitttiefe 90°",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schalldruckpegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5543,12 +5713,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5581,8 +5746,38 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- Stück"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Akku-Kapazität",
-              "ai_fvalue": "bis zu 12 Ah"
+              "ai_fvalue": "-- Ah"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "--"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Drehstopp",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -5611,8 +5806,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "5500 min⁻¹"
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -5621,8 +5816,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "89 dB(A)"
+              "ai_fname": "Leerlaufdrehzahl",
+              "ai_fvalue": "5500 min⁻¹"
             },
             {
               "original_fname": "",
@@ -5791,8 +5986,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
               "ai_fvalue": "alle 18 Volt und 54 Volt Flexvolt XR-Akkus jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrungs-Ø",
+              "ai_fvalue": "30 mm"
             },
             {
               "original_fname": "",
@@ -5831,8 +6036,38 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Gehäusematerial",
+              "ai_fvalue": "Aluminium"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Gummierter Handgriff",
               "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ K-Wert Schall",
+              "ai_fvalue": "3 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ K-Wert Vibrationen",
+              "ai_fvalue": "1.5 m/s²"
             },
             {
               "original_fname": "",
@@ -5861,7 +6096,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Max. Schnitttiefe bei 45°",
+              "ai_fname": "⚠️ Max. Schnitttiefe 45°",
               "ai_fvalue": "49 mm"
             },
             {
@@ -5871,8 +6106,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Max. Schnitttiefe bei 90°",
+              "ai_fname": "⚠️ Max. Schnitttiefe 90°",
               "ai_fvalue": "67 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "89 dB(A)"
             },
             {
               "original_fname": "",
@@ -5892,7 +6137,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Sägeblatt-Ø",
-              "ai_fvalue": "190 x 30 mm"
+              "ai_fvalue": "190 mm"
             },
             {
               "original_fname": "",
@@ -5901,18 +6146,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box VI"
             },
             {
               "original_fname": "",
@@ -5927,7 +6162,22 @@
           ],
           "units": [
             {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "Akku-Kapazität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Akku-Typ",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Drehstopp",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -5942,12 +6192,12 @@
               "dabag_funit": null
             },
             {
-              "name": "Leerlaufdrehzahl",
+              "name": "Ladegerät",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Schalldruckpegel",
+              "name": "Leerlaufdrehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6032,7 +6282,12 @@
               "dabag_funit": "mm"
             },
             {
-              "name": "⚠️ Akku-Technologie",
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrungs-Ø",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6052,7 +6307,22 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Gehäusematerial",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Gummierter Handgriff",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ K-Wert Schall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ K-Wert Vibrationen",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6067,12 +6337,17 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Max. Schnitttiefe bei 45°",
+              "name": "⚠️ Max. Schnitttiefe 45°",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Max. Schnitttiefe bei 90°",
+              "name": "⚠️ Max. Schnitttiefe 90°",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schalldruckpegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6087,12 +6362,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6125,8 +6395,28 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "Akku",
+              "ai_fvalue": "-- Stück"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "Akku-Kapazität",
-              "ai_fvalue": "bis zu 12 Ah"
+              "ai_fvalue": "-- Ah"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Akku-Typ",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -6137,6 +6427,16 @@
               "web_fvalue": "",
               "ai_fname": "",
               "ai_fvalue": ""
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "Drehstopp",
+              "ai_fvalue": "ja"
             },
             {
               "original_fname": "",
@@ -6165,8 +6465,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Leerlaufdrehzahl",
-              "ai_fvalue": "5500 min⁻¹"
+              "ai_fname": "Ladegerät",
+              "ai_fvalue": "--"
             },
             {
               "original_fname": "",
@@ -6175,8 +6475,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "Schalldruckpegel",
-              "ai_fvalue": "89 dB(A)"
+              "ai_fname": "Leerlaufdrehzahl",
+              "ai_fvalue": "5500 min⁻¹"
             },
             {
               "original_fname": "",
@@ -6315,8 +6615,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Akku-Technologie",
+              "ai_fname": "⚠️ Akku-Kompatibilität",
               "ai_fvalue": "alle 18 Volt und 54 Volt Flexvolt XR-Akkus jeder Ah-Klasse"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Bohrungs-Ø",
+              "ai_fvalue": "30 mm"
             },
             {
               "original_fname": "",
@@ -6355,8 +6665,38 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
+              "ai_fname": "⚠️ Gehäusematerial",
+              "ai_fvalue": "Aluminium"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
               "ai_fname": "⚠️ Gummierter Handgriff",
               "ai_fvalue": "ja"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ K-Wert Schall",
+              "ai_fvalue": "3 dB(A)"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ K-Wert Vibrationen",
+              "ai_fvalue": "1.5 m/s²"
             },
             {
               "original_fname": "",
@@ -6385,7 +6725,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Max. Schnitttiefe bei 45°",
+              "ai_fname": "⚠️ Max. Schnitttiefe 45°",
               "ai_fvalue": "49 mm"
             },
             {
@@ -6395,8 +6735,18 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Max. Schnitttiefe bei 90°",
+              "ai_fname": "⚠️ Max. Schnitttiefe 90°",
               "ai_fvalue": "67 mm"
+            },
+            {
+              "original_fname": "",
+              "original_fvalue": "",
+              "dabag_fname": "",
+              "dabag_fvalue": "",
+              "web_fname": "",
+              "web_fvalue": "",
+              "ai_fname": "⚠️ Schalldruckpegel",
+              "ai_fvalue": "89 dB(A)"
             },
             {
               "original_fname": "",
@@ -6416,7 +6766,7 @@
               "web_fname": "",
               "web_fvalue": "",
               "ai_fname": "⚠️ Sägeblatt-Ø",
-              "ai_fvalue": "190 x 30 mm"
+              "ai_fvalue": "190 mm"
             },
             {
               "original_fname": "",
@@ -6425,18 +6775,8 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Schall",
-              "ai_fvalue": "3 dB(A)"
-            },
-            {
-              "original_fname": "",
-              "original_fvalue": "",
-              "dabag_fname": "",
-              "dabag_fvalue": "",
-              "web_fname": "",
-              "web_fvalue": "",
-              "ai_fname": "⚠️ Unsicherheitsfaktor Vibration",
-              "ai_fvalue": "1.5 m/s²"
+              "ai_fname": "⚠️ Verpackung",
+              "ai_fvalue": "T-STAK-Box VI"
             },
             {
               "original_fname": "",
@@ -6451,12 +6791,27 @@
           ],
           "units": [
             {
+              "name": "Akku",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "Akku-Kapazität",
               "original_funit": null,
               "dabag_funit": null
             },
             {
+              "name": "Akku-Typ",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "Ambito di consegna",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "Drehstopp",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6471,12 +6826,12 @@
               "dabag_funit": null
             },
             {
-              "name": "Leerlaufdrehzahl",
+              "name": "Ladegerät",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "Schalldruckpegel",
+              "name": "Leerlaufdrehzahl",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6546,7 +6901,12 @@
               "dabag_funit": "mm"
             },
             {
-              "name": "⚠️ Akku-Technologie",
+              "name": "⚠️ Akku-Kompatibilität",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Bohrungs-Ø",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6566,7 +6926,22 @@
               "dabag_funit": null
             },
             {
+              "name": "⚠️ Gehäusematerial",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
               "name": "⚠️ Gummierter Handgriff",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ K-Wert Schall",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ K-Wert Vibrationen",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6581,12 +6956,17 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Max. Schnitttiefe bei 45°",
+              "name": "⚠️ Max. Schnitttiefe 45°",
               "original_funit": null,
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Max. Schnitttiefe bei 90°",
+              "name": "⚠️ Max. Schnitttiefe 90°",
+              "original_funit": null,
+              "dabag_funit": null
+            },
+            {
+              "name": "⚠️ Schalldruckpegel",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -6601,12 +6981,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Unsicherheitsfaktor Schall",
-              "original_funit": null,
-              "dabag_funit": null
-            },
-            {
-              "name": "⚠️ Unsicherheitsfaktor Vibration",
+              "name": "⚠️ Verpackung",
               "original_funit": null,
               "dabag_funit": null
             },
@@ -7664,7 +8039,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Garantieumfang",
+              "ai_fname": "⚠️ Garantie",
               "ai_fvalue": "Keine DEWALT Garantie"
             }
           ],
@@ -7760,7 +8135,7 @@
               "dabag_funit": null
             },
             {
-              "name": "⚠️ Garantieumfang",
+              "name": "⚠️ Garantie",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -7948,7 +8323,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Garantieumfang",
+              "ai_fname": "⚠️ Garantie",
               "ai_fvalue": "Keine DEWALT Garantie"
             }
           ],
@@ -8034,7 +8409,7 @@
               "dabag_funit": "mm"
             },
             {
-              "name": "⚠️ Garantieumfang",
+              "name": "⚠️ Garantie",
               "original_funit": null,
               "dabag_funit": null
             }
@@ -8212,7 +8587,7 @@
               "dabag_fvalue": "",
               "web_fname": "",
               "web_fvalue": "",
-              "ai_fname": "⚠️ Garantieumfang",
+              "ai_fname": "⚠️ Garantie",
               "ai_fvalue": "Keine DEWALT Garantie"
             }
           ],
@@ -8293,7 +8668,7 @@
               "dabag_funit": "mm"
             },
             {
-              "name": "⚠️ Garantieumfang",
+              "name": "⚠️ Garantie",
               "original_funit": null,
               "dabag_funit": null
             }

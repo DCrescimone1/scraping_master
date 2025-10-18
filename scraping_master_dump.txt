@@ -1,6 +1,8 @@
 Folder structure:
 .
 ├── BMEcat_transformer
+│   ├── config
+│   │   └── ai_extraction_rules.json
 │   ├── config.py
 │   ├── core
 │   │   ├── __init__.py
@@ -23,6 +25,7 @@ Folder structure:
 │   │   ├── ai_feature_matcher.py
 │   │   ├── feature_extractor.py
 │   │   ├── feature_mapper.py
+│   │   ├── rules_processor.py
 │   │   └── xml_specs_extractor.py
 │   ├── prompts
 │   │   └── xml_specs_mapping.yaml
@@ -35,6 +38,9 @@ Folder structure:
 │   │   ├── create_comparison_tables.py
 │   │   ├── extract_features_StandAlone.py
 │   │   └── main.py
+│   ├── test
+│   │   ├── check_csv_content.py
+│   │   └── test_feature_matcher.py
 │   ├── test_debug.py
 │   ├── test_debug2.py
 │   ├── test_imports.py
@@ -136,7 +142,7 @@ Folder structure:
     ├── spider_man_results_data.json
     └── spider_man_results.md
 
-25 directories, 111 files
+27 directories, 115 files
 
 
 --- File Contents ---
@@ -4614,6 +4620,13 @@ GROK_CONFIDENCE_THRESHOLD: float = 0.70
 AI_FEATURES_FILENAME: str = "ai_generated_features.json"
 AI_FEATURES_PATH: str = os.path.join(OUTPUT_DIR, AI_FEATURES_FILENAME)
 
+# Custom extraction rules configuration
+AI_EXTRACTION_RULES_PATH: str = os.path.join(
+    os.path.dirname(__file__),
+    "config",
+    "ai_extraction_rules.json"
+)
+
 # UDX XML Fields Mapping
 UDX_FIELD_MAPPING: dict[str, str] = {
     "produktstaerken": "UDX.EDXF.LANGTEXT",
@@ -5821,6 +5834,249 @@ else:
 
 print("="*70)
 
+------------------------------------------------- ./BMEcat_transformer/test/check_csv_content.py --------------------------------------------------
+
+#!/usr/bin/env python3
+"""Debug script to check if Verpackung is in unique_features.csv"""
+
+import csv
+import os
+import sys
+from pathlib import Path
+
+# Get paths (go up 2 levels from test/ to project root)
+SCRIPT_DIR = Path(__file__).parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+
+# Path to your CSV file (relative to project root)
+csv_path = PROJECT_ROOT / "outputs" / "unique_features.csv"
+
+print("="*80)
+print("CSV DEBUG CHECKER - Verpackung Issue")
+print("="*80)
+print(f"📁 Script location: {SCRIPT_DIR}")
+print(f"📁 Project root: {PROJECT_ROOT}")
+print(f"📁 CSV path: {csv_path}")
+print()
+
+# Check if file exists
+if not csv_path.exists():
+    print(f"❌ ERROR: File not found: {csv_path}")
+    print(f"   Current directory: {Path.cwd()}")
+    print(f"   Expected location: {csv_path.absolute()}")
+    print()
+    print("💡 SOLUTION: Run this command to generate the CSV:")
+    print(f"   cd {PROJECT_ROOT}")
+    print("   python3 BMEcat_transformer/scripts/extract_features_StandAlone.py")
+    exit(1)
+
+print(f"✅ File exists: {csv_path}")
+print(f"   File size: {csv_path.stat().st_size} bytes")
+print()
+
+# Read CSV and check for Verpackung
+found_verpackung = False
+all_features = []
+
+try:
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        
+        # Get header
+        fieldnames = reader.fieldnames
+        print(f"📋 CSV Headers: {fieldnames}")
+        print()
+        
+        # Read all rows
+        for row in reader:
+            fname_de = row.get('fname_de', '')
+            all_features.append(fname_de)
+            
+            if 'verpackung' in fname_de.lower():
+                found_verpackung = True
+                print(f"✅ FOUND: Verpackung in CSV!")
+                print(f"   Row: {row}")
+                print()
+        
+        print(f"📊 Total features in CSV: {len(all_features)}")
+        
+        if not found_verpackung:
+            print()
+            print("❌ ERROR: 'Verpackung' NOT FOUND in CSV!")
+            print()
+            print("🔍 Features containing 'pack' or similar:")
+            similar = [f for f in all_features if 'pack' in f.lower() or 'box' in f.lower()]
+            for feat in similar[:10]:
+                print(f"   - {feat}")
+            
+            if not similar:
+                print("   (none found)")
+        
+except Exception as e:
+    print(f"❌ ERROR reading CSV: {e}")
+    exit(1)
+
+print()
+print("="*80)
+print("NORMALIZATION TEST")
+print("="*80)
+
+import re
+
+def normalize(s: str) -> str:
+    """Same normalize function as in ai_feature_matcher.py"""
+    s = s.lower().strip()
+    s = re.sub(r'[-\s]+', '', s)
+    return s
+
+test_names = ["Verpackung", "verpackung", "VERPACKUNG", " Verpackung "]
+
+print("Testing normalization:")
+for name in test_names:
+    normalized = normalize(name)
+    print(f"   '{name}' → '{normalized}'")
+
+print()
+print("Testing CSV matching:")
+csv_verpackung = "Verpackung"  # From CSV
+test_input = "Verpackung"      # From AI
+
+print(f"   CSV:   '{csv_verpackung}' → '{normalize(csv_verpackung)}'")
+print(f"   Input: '{test_input}' → '{normalize(test_input)}'")
+print(f"   Match: {normalize(csv_verpackung) == normalize(test_input)}")
+
+print()
+print("="*80)
+------------------------------------------------- ./BMEcat_transformer/test/test_feature_matcher.py --------------------------------------------------
+
+#!/usr/bin/env python3
+"""Test if AIFeatureMatcher correctly loads and checks Verpackung"""
+
+import sys
+from pathlib import Path
+
+# Add project root to path (go up 2 levels from test/ to project root)
+SCRIPT_DIR = Path(__file__).parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+# Also add the BMEcat_transformer package directory so 'utils' absolute import resolves
+BMECAT_DIR = PROJECT_ROOT / "BMEcat_transformer"
+if str(BMECAT_DIR) not in sys.path:
+    sys.path.insert(0, str(BMECAT_DIR))
+
+print("="*80)
+print("AI FEATURE MATCHER DEBUG TEST")
+print("="*80)
+print(f"📁 Script location: {SCRIPT_DIR}")
+print(f"📁 Project root: {PROJECT_ROOT}")
+print()
+
+# Import the matcher
+try:
+    from BMEcat_transformer.processors.ai_feature_matcher import AIFeatureMatcher
+    print("✅ Successfully imported AIFeatureMatcher")
+except ImportError as e:
+    print(f"❌ Failed to import AIFeatureMatcher: {e}")
+    print(f"\nDEBUG INFO:")
+    print(f"   sys.path: {sys.path[:3]}")
+    print(f"   Current dir: {Path.cwd()}")
+    exit(1)
+
+# Setup paths (relative to project root)
+csv_path = PROJECT_ROOT / "outputs" / "unique_features.csv"
+prompt_path = PROJECT_ROOT / "BMEcat_transformer" / "prompts" / "xml_specs_mapping.yaml"
+ai_features_path = PROJECT_ROOT / "outputs" / "ai_generated_features.json"
+
+print(f"\n📁 Checking paths:")
+print(f"   CSV path: {csv_path} - {'✅ exists' if csv_path.exists() else '❌ NOT FOUND'}")
+print(f"   Prompt path: {prompt_path} - {'✅ exists' if prompt_path.exists() else '❌ NOT FOUND'}")
+print(f"   AI features: {ai_features_path} - {'✅ exists' if ai_features_path.exists() else '⚠️  will be created'}")
+
+if not csv_path.exists():
+    print("\n❌ ERROR: CSV file not found!")
+    print("   You need to run extract_features.py first to generate unique_features.csv")
+    exit(1)
+
+# Create matcher instance (without API key since we're just testing CSV loading)
+print("\n🔧 Initializing AIFeatureMatcher...")
+matcher = AIFeatureMatcher(
+    api_key="test_key",
+    model="test_model",
+    base_url="test_url",
+    confidence_threshold=0.7,
+    prompt_path=str(prompt_path),
+    csv_path=str(csv_path),
+    ai_features_path=str(ai_features_path)
+)
+
+# Load references
+print("\n📥 Loading CSV references...")
+success = matcher.load_references()
+
+if not success:
+    print("❌ Failed to load references!")
+    exit(1)
+
+print(f"✅ Loaded {len(matcher.allowed_features)} features from CSV")
+
+# Test if Verpackung is found
+print("\n"+"="*80)
+print("TESTING: _is_feature_in_csv('Verpackung')")
+print("="*80)
+
+test_features = [
+    "Verpackung",
+    "verpackung",
+    "VERPACKUNG",
+    " Verpackung ",
+    "Akku",
+    "Spannung",
+    "NotInCSV"
+]
+
+print("\nTesting various feature names:")
+for feat in test_features:
+    result = matcher._is_feature_in_csv(feat)
+    status = "✅ FOUND" if result else "❌ NOT FOUND"
+    print(f"   {status}: '{feat}'")
+
+# Show first 20 features from CSV for reference
+print("\n"+"="*80)
+print("FIRST 20 FEATURES IN LOADED CSV:")
+print("="*80)
+for i, row in enumerate(matcher.allowed_features[:20]):
+    fname = row.get('fname_de', 'N/A')
+    fvalue = row.get('fvalue_de', 'N/A')
+    print(f"{i+1:2d}. {fname:30s} = {fvalue}")
+
+# Search for Verpackung manually in loaded data
+print("\n"+"="*80)
+print("MANUAL SEARCH: Looking for 'Verpackung' in loaded CSV data")
+print("="*80)
+
+found = False
+for i, row in enumerate(matcher.allowed_features):
+    fname = row.get('fname_de', '')
+    if 'verpackung' in fname.lower():
+        found = True
+        print(f"✅ FOUND at row {i+1}:")
+        print(f"   fname_de: {fname}")
+        print(f"   fname_fr: {row.get('fname_fr', 'N/A')}")
+        print(f"   fname_it: {row.get('fname_it', 'N/A')}")
+
+if not found:
+    print("❌ 'Verpackung' NOT FOUND in loaded CSV data!")
+    print("\n🔍 Features containing 'pack', 'box', or 'emball':")
+    similar = [row for row in matcher.allowed_features 
+               if any(word in row.get('fname_de', '').lower() 
+                     for word in ['pack', 'box', 'emball'])]
+    for row in similar[:10]:
+        print(f"   - {row.get('fname_de', 'N/A')}")
+
+print("\n"+"="*80)
+print("TEST COMPLETE")
+print("="*80)
 ------------------------------------------------- ./BMEcat_transformer/test_imports.py --------------------------------------------------
 
 #!/usr/bin/env python3
@@ -6259,8 +6515,10 @@ import os
 from typing import Dict, List, Any
 from datetime import datetime
 import requests
+import re
 
 from utils.logger import setup_logger
+from processors.rules_processor import RulesProcessor
 
 
 class AIFeatureMatcher:
@@ -6299,6 +6557,10 @@ class AIFeatureMatcher:
         self.allowed_features: List[Dict[str, str]] = []
         self.ai_features: Dict[str, Any] = {"metadata": {}, "features": []}
         self.prompt_template: str = ""
+        
+        # Rules processor (NEW)
+        self.rules_processor: RulesProcessor | None = None
+        self.custom_rules_instructions: str = ""
 
     def load_references(self) -> bool:
         """Load CSV and AI features references.
@@ -6338,6 +6600,24 @@ class AIFeatureMatcher:
                 prompt_config = yaml.safe_load(f)
                 self.prompt_template = prompt_config.get('prompt', '')
             self.logger.info("Loaded prompt template")
+            
+            # Load custom rules (NEW)
+            rules_path = os.path.join(
+                os.path.dirname(os.path.dirname(__file__)),
+                "config",
+                "ai_extraction_rules.json"
+            )
+            
+            if os.path.exists(rules_path):
+                self.rules_processor = RulesProcessor(rules_path)
+                if self.rules_processor.load_and_validate():
+                    self.custom_rules_instructions = self.rules_processor.convert_to_prompt_instructions()
+                    self.logger.info("✅ Custom rules loaded and converted to prompt instructions")
+                else:
+                    self.logger.warning("⚠️  Rules validation failed - continuing without custom rules")
+            else:
+                self.logger.info("No custom rules file found - using default extraction logic only")
+            
             return True
         except Exception as e:
             self.logger.error(f"Failed to load prompt: {e}")
@@ -6406,6 +6686,12 @@ class AIFeatureMatcher:
         prompt = prompt.replace("{ALLOWED_FEATURES_CSV}", csv_features)
         prompt = prompt.replace("{AI_FEATURES_FALLBACK}", ai_features_list)
         prompt = prompt.replace("{CONFIDENCE_THRESHOLD}", str(self.confidence_threshold))
+        
+        # Inject custom rules (NEW)
+        if self.custom_rules_instructions:
+            prompt = prompt.replace("{CUSTOM_RULES}", self.custom_rules_instructions)
+        else:
+            prompt = prompt.replace("{CUSTOM_RULES}", "No custom rules defined.")
 
         return prompt
 
@@ -6541,7 +6827,8 @@ class AIFeatureMatcher:
     def _is_feature_in_csv(self, feature_name: str) -> bool:
         """Check if feature name exists in unique_features.csv.
         
-        Uses fuzzy matching to account for minor variations.
+        Normalizes by removing hyphens/spaces and comparing exactly.
+        This prevents false positives like "Akku" matching "Akku-Kompatibilität".
         
         Args:
             feature_name: Feature name to check (German).
@@ -6552,19 +6839,20 @@ class AIFeatureMatcher:
         if not self.allowed_features:
             return False
         
-        # Normalize for comparison
-        feature_normalized = feature_name.lower().strip()
+        import re
         
-        # Check exact match first
-        for row in self.allowed_features:
-            csv_name = row.get('fname_de', '').lower().strip()
-            if csv_name == feature_normalized:
-                return True
+        # Normalize: lowercase, remove hyphens and spaces
+        def normalize(s: str) -> str:
+            s = s.lower().strip()
+            s = re.sub(r'[-\s]+', '', s)
+            return s
         
-        # Check substring match (e.g., "Garantie" in "Garantieumfang")
+        feature_normalized = normalize(feature_name)
+        
+        # Check exact match after normalization
         for row in self.allowed_features:
-            csv_name = row.get('fname_de', '').lower().strip()
-            if csv_name and (csv_name in feature_normalized or feature_normalized in csv_name):
+            csv_name = row.get('fname_de', '')
+            if normalize(csv_name) == feature_normalized:
                 return True
         
         return False
@@ -6584,7 +6872,7 @@ class AIFeatureMatcher:
                 # Add warning prefix if not already present
                 if not fname.startswith('⚠️ '):
                     feature['fname'] = f"⚠️ {fname}"
-                    self.logger.warning(f"Feature NOT in CSV taxonomy: {fname}")
+                    self.logger.info(f"Feature NOT in CSV taxonomy: {fname}")
         
         return features
 
@@ -7009,6 +7297,205 @@ class XMLSpecsExtractor:
         
         self.logger.info(f"Saved scraped text: {filepath}")
         return filepath
+------------------------------------------------- ./BMEcat_transformer/processors/rules_processor.py --------------------------------------------------
+
+from __future__ import annotations
+
+"""Rules Processor for AI Feature Extraction.
+
+Validates, loads, and converts custom business rules into AI prompt instructions.
+"""
+
+import json
+import os
+from typing import Dict, List, Any
+from utils.logger import setup_logger
+
+
+class RulesProcessor:
+    """Process and validate custom extraction rules."""
+
+    def __init__(self, rules_path: str) -> None:
+        """Initialize with rules JSON path.
+        
+        Args:
+            rules_path: Path to ai_extraction_rules.json
+        """
+        self.rules_path = rules_path
+        self.logger = setup_logger(__name__)
+        self.rules: Dict[str, Any] = {"metadata": {}, "rules": []}
+        self.validation_errors: List[str] = []
+
+    def load_and_validate(self) -> bool:
+        """Load and validate rules file.
+        
+        Returns:
+            True if successful, False otherwise.
+        """
+        # Load JSON
+        if not os.path.exists(self.rules_path):
+            self.logger.error(f"Rules file not found: {self.rules_path}")
+            return False
+
+        try:
+            with open(self.rules_path, 'r', encoding='utf-8') as f:
+                self.rules = json.load(f)
+            self.logger.info(f"Loaded {len(self.rules.get('rules', []))} rules from {self.rules_path}")
+        except json.JSONDecodeError as e:
+            self.logger.error(f"Invalid JSON in rules file: {e}")
+            return False
+        except Exception as e:
+            self.logger.error(f"Failed to load rules: {e}")
+            return False
+
+        # Validate structure
+        if not self._validate_structure():
+            for error in self.validation_errors:
+                self.logger.error(f"Validation error: {error}")
+            return False
+
+        self.logger.info("✅ Rules validation passed")
+        return True
+
+    def _validate_structure(self) -> bool:
+        """Validate rules JSON structure.
+        
+        Returns:
+            True if valid, False otherwise.
+        """
+        self.validation_errors = []
+
+        # Check metadata
+        if "metadata" not in self.rules:
+            self.validation_errors.append("Missing 'metadata' section")
+
+        # Check rules array
+        if "rules" not in self.rules:
+            self.validation_errors.append("Missing 'rules' array")
+            return False
+
+        if not isinstance(self.rules["rules"], list):
+            self.validation_errors.append("'rules' must be an array")
+            return False
+
+        # Validate each rule
+        for idx, rule in enumerate(self.rules["rules"]):
+            rule_id = rule.get("id", f"rule_{idx}")
+            
+            # Required fields
+            required = ["id", "description", "priority", "trigger", "actions"]
+            for field in required:
+                if field not in rule:
+                    self.validation_errors.append(f"Rule '{rule_id}': missing required field '{field}'")
+
+            # Priority must be int
+            if "priority" in rule and not isinstance(rule["priority"], int):
+                self.validation_errors.append(f"Rule '{rule_id}': 'priority' must be integer, got {type(rule['priority']).__name__}")
+
+            # Trigger must be dict
+            if "trigger" in rule and not isinstance(rule["trigger"], dict):
+                self.validation_errors.append(f"Rule '{rule_id}': 'trigger' must be object/dict")
+
+            # Actions must be dict
+            if "actions" in rule and not isinstance(rule["actions"], dict):
+                self.validation_errors.append(f"Rule '{rule_id}': 'actions' must be object/dict")
+
+        return len(self.validation_errors) == 0
+
+    def get_enabled_rules(self) -> List[Dict[str, Any]]:
+        """Get list of enabled rules sorted by priority.
+        
+        Returns:
+            List of enabled rule dictionaries.
+        """
+        enabled = [r for r in self.rules.get("rules", []) if r.get("enabled", True)]
+        return sorted(enabled, key=lambda x: x.get("priority", 999))
+
+    def convert_to_prompt_instructions(self) -> str:
+        """Convert rules to natural language instructions for AI prompt.
+        
+        Returns:
+            Formatted string of rule instructions.
+        """
+        enabled_rules = self.get_enabled_rules()
+        if not enabled_rules:
+            return "No custom rules defined."
+
+        instructions = ["## CUSTOM EXTRACTION RULES (CRITICAL - FOLLOW STRICTLY)\n"]
+        
+        for rule in enabled_rules:
+            rule_id = rule.get("id", "unknown")
+            description = rule.get("description", "")
+            priority = rule.get("priority", 0)
+            trigger = rule.get("trigger", {})
+            actions = rule.get("actions", {})
+
+            instructions.append(f"### Rule {priority}: {rule_id}")
+            instructions.append(f"**Description:** {description}\n")
+
+            # Trigger conditions
+            instructions.append("**When:**")
+            trigger_type = trigger.get("type", "")
+            
+            if trigger_type == "text_contains":
+                patterns = trigger.get("patterns", [])
+                fields = trigger.get("fields", [])
+                instructions.append(f"- If ANY of these fields: {', '.join(fields)}")
+                instructions.append(f"- Contains ANY of: {', '.join(patterns)}")
+            
+            elif trigger_type == "text_analysis":
+                conditions = trigger.get("conditions", [])
+                for cond in conditions:
+                    field = cond.get("field", "")
+                    if "not_contains" in cond:
+                        patterns = cond["not_contains"]
+                        instructions.append(f"- Field '{field}' does NOT contain: {', '.join(patterns)}")
+                    if "contains_any" in cond:
+                        patterns = cond["contains_any"]
+                        instructions.append(f"- Field '{field}' contains ANY: {', '.join(patterns)}")
+
+            # Actions
+            instructions.append("\n**Then:**")
+            action_type = actions.get("type", "")
+            
+            if action_type == "add_mandatory_fields":
+                fields = actions.get("fields", [])
+                instructions.append(f"- MUST include these fields in output: {', '.join(fields)}")
+                instructions.append("- These fields are MANDATORY even if values need to be extracted")
+            
+            elif action_type == "set_field_values":
+                values = actions.get("values", {})
+                instructions.append("- Set these exact values:")
+                for fname, fvalue in values.items():
+                    instructions.append(f"  * {fname}: \"{fvalue}\"")
+            
+            elif action_type == "extract_and_add_field":
+                field_name = actions.get("field_name", "")
+                extraction = actions.get("extraction", {})
+                patterns = extraction.get("patterns", [])
+                instructions.append(f"- Add new field: '{field_name}'")
+                instructions.append(f"- Extract value matching patterns: {', '.join(patterns[:3])}...")
+                
+                normalize = extraction.get("normalize", {})
+                if normalize:
+                    instructions.append("- Normalize extracted values:")
+                    for standard, variants in normalize.items():
+                        instructions.append(f"  * If found {variants} → use '{standard}'")
+
+            instructions.append("")  # Empty line between rules
+
+        return "\n".join(instructions)
+
+    def log_rule_match(self, rule_id: str, product_id: str, details: str) -> None:
+        """Log when a rule is triggered.
+        
+        Args:
+            rule_id: Rule identifier
+            product_id: Product SUPPLIER_PID
+            details: Description of what matched
+        """
+        self.logger.info(f"🔍 Rule '{rule_id}' → TRIGGERED for {product_id}: {details}")
+
 ------------------------------------------------- ./BMEcat_transformer/processors/feature_mapper.py --------------------------------------------------
 
 from __future__ import annotations
@@ -7528,6 +8015,8 @@ prompt: |
     "ai_generated": false,
     "confidence": 0.92
   }
+  
+  {CUSTOM_RULES}
   
   ## OUTPUT FORMAT
   Respond with valid JSON only in this structure:

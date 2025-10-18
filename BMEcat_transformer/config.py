@@ -57,6 +57,13 @@ GROK_CONFIDENCE_THRESHOLD: float = 0.70
 AI_FEATURES_FILENAME: str = "ai_generated_features.json"
 AI_FEATURES_PATH: str = os.path.join(OUTPUT_DIR, AI_FEATURES_FILENAME)
 
+# Custom extraction rules configuration
+AI_EXTRACTION_RULES_PATH: str = os.path.join(
+    os.path.dirname(__file__),
+    "config",
+    "ai_extraction_rules.json"
+)
+
 # UDX XML Fields Mapping
 UDX_FIELD_MAPPING: dict[str, str] = {
     "produktstaerken": "UDX.EDXF.LANGTEXT",

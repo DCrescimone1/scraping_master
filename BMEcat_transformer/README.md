@@ -52,6 +52,46 @@ Selection logic:
 - `SCRAPING_METHOD=firecrawl` → uses `easy_rich/src/web_scraper.py`
 - `SCRAPING_METHOD=playwright` → uses `manual_scrape/src/web_scraper.py`
 
+## Custom Extraction Rules
+
+The AI feature matcher supports custom business logic rules defined in `config/ai_extraction_rules.json`.
+
+### Rule Structure
+
+Rules are defined in JSON with these keys:
+
+- **id**: Unique identifier
+- **description**: What the rule does
+- **priority**: Lower runs first
+- **enabled**: Active/inactive
+- **trigger**: Conditions that activate the rule
+- **actions**: What to do when triggered
+
+### Example Rules
+
+- **Battery Product Detection**: Adds mandatory battery-related fields when text mentions battery terms (e.g., "akku").
+- **Battery Inclusion Check**: Sets placeholders when battery is not included in the delivery scope.
+- **Packaging Detection**: Extracts packaging type (e.g., T-STAK, K-Koffer) from `Lieferumfang` and adds `Verpackung`.
+
+### Adding New Rules
+
+1. Edit `config/ai_extraction_rules.json`.
+2. Follow the existing structure and set a **priority** (lower = earlier).
+3. Save the file; the AI will automatically load and apply the rules during extraction.
+
+### Rule Logging
+
+Rule matches are logged during execution. Example:
+
+```
+🔍 Rule 'battery_product_detection' → TRIGGERED for DCG405NT-XJ
+🔍 Rule 'battery_inclusion_check' → TRIGGERED for DCG405NT-XJ
+```
+
+### Validation
+
+Rules are validated on load. If validation fails, the system continues with default extraction logic (rules are skipped).
+
 ## Usage
 
 From `BMEcat_transformer/` directory:

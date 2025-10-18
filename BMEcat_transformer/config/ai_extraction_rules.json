@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Custom business logic rules for AI feature extraction",
+    "last_updated": "2025-01-18"
+  },
+  "rules": [
+    {
+      "id": "battery_product_detection",
+      "description": "Detect if product is battery-powered and enforce mandatory battery fields",
+      "priority": 1,
+      "enabled": true,
+      "trigger": {
+        "type": "text_contains",
+        "fields": ["description", "produktstaerken", "technische_daten"],
+        "patterns": ["akku", "batterie", "battery", "akku-"],
+        "case_sensitive": false
+      },
+      "actions": {
+        "type": "add_mandatory_fields",
+        "fields": ["Akku", "Akku-Typ", "Akku-Kapazität", "Ladegerät"]
+      }
+    },
+    {
+      "id": "battery_inclusion_check",
+      "description": "Check if battery is included in delivery scope, set placeholder values if not",
+      "priority": 2,
+      "enabled": true,
+      "depends_on": ["battery_product_detection"],
+      "trigger": {
+        "type": "text_analysis",
+        "conditions": [
+          {
+            "field": "lieferumfang",
+            "not_contains": ["akku", "battery", "batterie", "akkus"]
+          },
+          {
+            "field": "description",
+            "contains_any": ["ohne akku", "ohne akkus", "basistype", "ohne batterie", "basis-type", "ohne ladegerät"]
+          }
+        ],
+        "match_type": "any"
+      },
+      "actions": {
+        "type": "set_field_values",
+        "values": {
+          "Akku": "-- stück",
+          "Akku-Typ": "--",
+          "Akku-Kapazität": "-- Ah",
+          "Ladegerät": "--"
+        }
+      }
+    },
+    {
+      "id": "packaging_detection",
+      "description": "Detect packaging type from Lieferumfang and add Verpackung field",
+      "priority": 3,
+      "enabled": true,
+      "trigger": {
+        "type": "text_contains",
+        "fields": ["lieferumfang"],
+        "patterns": ["box", "koffer", "stak", "case"],
+        "case_sensitive": false
+      },
+      "actions": {
+        "type": "extract_and_add_field",
+        "field_name": "Verpackung",
+        "extraction": {
+          "patterns": [
+            "T-STAK[- ]?Box[- ]?[IVX]*",
+            "T[- ]?STAK[- ]?Box[- ]?[IVX]*",
+            "K-Koffer",
+            "TSTAK",
+            "[A-Z]-?Box"
+          ],
+          "normalize": {
+            "T-STAK": ["T STAK", "TSTAK", "T-Stak"],
+            "K-Koffer": ["K Koffer", "k-koffer"]
+          }
+        }
+      }
+    }
+  ]
+}
