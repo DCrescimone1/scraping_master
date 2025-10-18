@@ -52,32 +52,37 @@
       }
     },
     {
-      "id": "packaging_detection",
-      "description": "Detect packaging type from Lieferumfang and add Verpackung field",
-      "priority": 3,
+      "id": "extract_packaging_from_description",
+      "description": "Extract T-STAK packaging info from LANGTEXT (produktstaerken) when not explicitly listed in lieferumfang",
+      "priority": 1,
       "enabled": true,
       "trigger": {
-        "type": "text_contains",
-        "fields": ["lieferumfang"],
-        "patterns": ["box", "koffer", "stak", "case"],
-        "case_sensitive": false
+        "type": "text_analysis",
+        "conditions": [
+          {
+            "field": "produktstaerken",
+            "contains_any": ["T STAK", "T-STAK", "serienmäßig in", "basistype"]
+          }
+        ]
       },
       "actions": {
         "type": "extract_and_add_field",
         "field_name": "Verpackung",
         "extraction": {
+          "source_fields": ["produktstaerken", "lieferumfang"],
           "patterns": [
-            "T-STAK[- ]?Box[- ]?[IVX]*",
-            "T[- ]?STAK[- ]?Box[- ]?[IVX]*",
-            "K-Koffer",
-            "TSTAK",
-            "[A-Z]-?Box"
+            "T STAK-Box ([IVX]+)",
+            "T-STAK-Box ([IVX]+)",
+            "T STAK™-Box ([IVX]+)",
+            "serienmäßig in (T STAK[^,\\.]+)",
+            "(T STAK[^,\\.<]+Box[^,\\.<]*)"
           ],
           "normalize": {
-            "T-STAK": ["T STAK", "TSTAK", "T-Stak"],
-            "K-Koffer": ["K Koffer", "k-koffer"]
+            "T-STAK": ["T STAK", "TSTAK", "T STAK™", "T STAKâ„¢"]
           }
-        }
+        },
+        "mandatory": true,
+        "ai_generated": false
       }
     }
   ]

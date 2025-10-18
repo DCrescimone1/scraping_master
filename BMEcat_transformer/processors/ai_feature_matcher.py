@@ -369,6 +369,6 @@ class AIFeatureMatcher:
                 # Add warning prefix if not already present
                 if not fname.startswith('⚠️ '):
                     feature['fname'] = f"⚠️ {fname}"
-                    self.logger.info(f"Feature NOT in CSV taxonomy: {fname}")
+                    self.logger.debug(f"Feature NOT in CSV taxonomy: {fname}")
         
         return features

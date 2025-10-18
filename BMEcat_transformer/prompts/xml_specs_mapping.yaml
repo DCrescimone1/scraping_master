@@ -99,9 +99,9 @@ prompt: |
   Output JSON:
   {
     "fname": "Verpackung",
-    "fvalue": "T-STAK-Box II",
+    "fvalue": "T-STAK",
     "funit": null,
-    "source": "LIEFERUMFANG",
+    "source": "LANGTEXT",
     "ai_generated": false,
     "confidence": 0.92
   }
